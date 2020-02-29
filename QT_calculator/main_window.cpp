@@ -8,6 +8,7 @@
 					ui(new Ui::main_window)
 {
 	ui->setupUi(this);
+	update_text();
 }
 
 					main_window::~main_window()
@@ -102,6 +103,30 @@ void				main_window::on_button_evaluate_clicked()
 	calculator.write_action('=');
 	update_text();
 }
+
+void				main_window::on_button_clear_clicked()
+{
+	calculator.clear();
+	update_text();
+}
+
+void				main_window::on_button_comma_clicked()
+{
+	calculator.write_symbol(',');
+	update_text();
+}
+
+void				main_window::on_button_sign_clicked()
+{
+	calculator.write_sign();
+	update_text();
+}
+
+void				main_window::on_button_percent_clicked()
+{
+
+}
+
 
 //					PRIVATE
 

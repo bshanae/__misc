@@ -34,7 +34,13 @@ private slots:
 	void			on_button_substract_clicked();
 	void			on_button_multiply_clicked();
 	void			on_button_divide_clicked();
+
 	void			on_button_evaluate_clicked();
+	void			on_button_clear_clicked();
+
+	void			on_button_comma_clicked();
+	void			on_button_sign_clicked();
+	void			on_button_percent_clicked();
 
 private:
 
