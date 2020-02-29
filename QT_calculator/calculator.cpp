@@ -41,8 +41,10 @@ void					calculator::clear()
 
 const char				*calculator::read_line()
 {
-	if (is_latent_string)
+	if (is_latent_string and not is_minus)
 		return ("0");
+	else if (is_latent_string and is_minus)
+		return ("-0");
 	else
 		return (current_string->c_str());
 }
@@ -79,12 +81,15 @@ void					calculator::switch_sign(const bool &reset)
 void					calculator::evaluate()
 {
 	float				value_left = std::stof(left);
-	float				value_right = std::stof(right);
+	float				value_right = right.empty() ? 0 : std::stof(right);
 	float				result;
 	std::stringstream	stream;
 	std::string			string;
 
-	result = perform_action(value_left, value_right, action[0]);
+	if (*current_string == right)
+		result = perform_action(value_left, value_right, action[0]);
+	else
+		result = value_left;
 
 	stream << std::fixed << std::setprecision(4) << result;
 	string = stream.str();
