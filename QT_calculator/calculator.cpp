@@ -10,6 +10,10 @@
 void					calculator::write_symbol(const char &symbol)
 {
 	is_latent_string = false;
+	if (is_dot and symbol == '.')
+		return ;
+	else if (symbol == '.')
+		is_dot = true;
 	*current_string += symbol;
 }
 
@@ -18,6 +22,8 @@ void					calculator::write_action(const char &action)
 	is_latent_string = false;
 	if (action == '=')
 		evaluate();
+	else if (action == '%')
+		translate_to_percent();
 	else
 	{
 		this->action = action;
@@ -35,6 +41,7 @@ void					calculator::clear()
 	left = "";
 	right = "";
 	is_latent_string = true;
+	is_dot = false;
 	switch_string(&left);
 	switch_sign(true);
 }
@@ -62,6 +69,7 @@ void					calculator::switch_string(std::string *ptr)
 		current_string = &right;
 	else if (*current_string == right)
 		evaluate();
+	is_dot = false;
 }
 
 void					calculator::switch_sign(const bool &reset)
@@ -80,18 +88,48 @@ void					calculator::switch_sign(const bool &reset)
 
 void					calculator::evaluate()
 {
-	float				value_left = std::stof(left);
-	float				value_right = right.empty() ? 0 : std::stof(right);
+	float				value_left = calculator::string_to_float(left);
+	float				value_right = calculator::string_to_float(right);
 	float				result;
-	std::stringstream	stream;
-	std::string			string;
 
 	if (*current_string == right)
 		result = perform_action(value_left, value_right, action[0]);
 	else
 		result = value_left;
 
-	stream << std::fixed << std::setprecision(4) << result;
+	left = calculator::float_to_string(result);
+	right = "";
+	switch_string(&left);
+	is_dot = left.find('.') != std::string::npos;
+}
+
+void					calculator::translate_to_percent()
+{
+	if (is_latent_string)
+		return ;
+
+	float				value = calculator::string_to_float(*current_string);
+	*current_string = calculator::float_to_string(value / 100.f);
+}
+
+float					calculator::string_to_float(const std::string &string)
+{
+	try
+	{
+		return (std::stof(string));
+	}
+	catch (...)
+	{
+		return (0);
+	}
+}
+
+std::string				calculator::float_to_string(const float &value)
+{
+	std::stringstream	stream;
+	std::string			string;
+
+	stream << std::fixed << std::setprecision(4) << value;
 	string = stream.str();
 	while (not string.empty())
 		if (string.back() == '0')
@@ -104,7 +142,5 @@ void					calculator::evaluate()
 		else
 			break ;
 
-	left = string;
-	right = "";
-	switch_string(&left);
+	return (string);
 }

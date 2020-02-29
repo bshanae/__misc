@@ -110,9 +110,9 @@ void				main_window::on_button_clear_clicked()
 	update_text();
 }
 
-void				main_window::on_button_comma_clicked()
+void				main_window::on_button_dot_clicked()
 {
-	calculator.write_symbol(',');
+	calculator.write_symbol('.');
 	update_text();
 }
 
@@ -124,7 +124,8 @@ void				main_window::on_button_sign_clicked()
 
 void				main_window::on_button_percent_clicked()
 {
-
+	calculator.write_action('%');
+	update_text();
 }
 
 
