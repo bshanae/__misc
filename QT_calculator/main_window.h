@@ -30,6 +30,12 @@ private slots:
 	void			on_button_8_clicked();
 	void			on_button_9_clicked();
 
+	void			on_button_add_clicked();
+	void			on_button_substract_clicked();
+	void			on_button_multiply_clicked();
+	void			on_button_divide_clicked();
+	void			on_button_evaluate_clicked();
+
 private:
 
 	Ui::main_window	*ui;

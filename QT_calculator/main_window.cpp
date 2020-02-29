@@ -77,6 +77,32 @@ void				main_window::on_button_9_clicked()
 	update_text();
 }
 
+void				main_window::on_button_add_clicked()
+{
+	calculator.write_action('+');
+}
+
+void				main_window::on_button_substract_clicked()
+{
+	calculator.write_action('-');
+}
+
+void				main_window::on_button_multiply_clicked()
+{
+	calculator.write_action('*');
+}
+
+void				main_window::on_button_divide_clicked()
+{
+	calculator.write_action('/');
+}
+
+void				main_window::on_button_evaluate_clicked()
+{
+	calculator.write_action('=');
+	update_text();
+}
+
 //					PRIVATE
 
 void				main_window::update_text()
