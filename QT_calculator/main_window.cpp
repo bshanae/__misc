@@ -9,6 +9,8 @@
 {
 	ui->setupUi(this);
 	update_text();
+	ui->grid_layout->setSpacing(4);
+	this->setFixedSize(QSize(300, 350));
 }
 
 					main_window::~main_window()
@@ -133,5 +135,5 @@ void				main_window::on_button_percent_clicked()
 
 void				main_window::update_text()
 {
-	ui->text_browser->setText(calculator.read_line());
+	ui->label->setText(calculator.read_line());
 }
