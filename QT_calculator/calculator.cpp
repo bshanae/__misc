@@ -10,6 +10,8 @@
 void					calculator::write_symbol(const char &symbol)
 {
 	is_latent_string = false;
+	if (current_string->size() > 11)
+		return ;
 	if (is_dot and symbol == '.')
 		return ;
 	else if (symbol == '.')
@@ -109,7 +111,8 @@ void					calculator::translate_to_percent()
 		return ;
 
 	float				value = calculator::string_to_float(*current_string);
-	*current_string = calculator::float_to_string(value / 100.f);
+	if (value > 1.f)
+		*current_string = calculator::float_to_string(value / 100.f);
 }
 
 float					calculator::string_to_float(const std::string &string)

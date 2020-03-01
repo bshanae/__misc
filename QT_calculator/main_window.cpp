@@ -8,9 +8,12 @@
 					ui(new Ui::main_window)
 {
 	ui->setupUi(this);
-	update_text();
+	QWidget::setWindowTitle("Calculator");
 	ui->grid_layout->setSpacing(4);
-	this->setFixedSize(QSize(300, 350));
+	this->setFixedSize(QSize(250, 350));
+	foreach(QAbstractButton *button, ui->button_group->buttons())
+		button->setFixedSize(QSize(50, 50));
+	update_text();
 }
 
 					main_window::~main_window()
