@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
-    <height>478</height>
+    <width>576</width>
+    <height>577</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,9 +38,12 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="layout_edit">
-        <item>
-         <widget class="QLabel" name="label">
+       <layout class="QGridLayout" name="layout_edit">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <item row="5" column="0" colspan="2">
+         <widget class="QLabel" name="label_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -48,12 +51,15 @@ p, li { white-space: pre-wrap; }
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Font</string>
+           <string>Color</string>
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QComboBox" name="combo_font">
+        <item row="2" column="0" colspan="4">
+         <widget class="QComboBox" name="combo_font_family">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <item>
            <property name="text">
             <string>Helvetica Neue</string>
@@ -86,6 +92,98 @@ p, li { white-space: pre-wrap; }
           </item>
          </widget>
         </item>
+        <item row="4" column="3">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>S</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>I</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="3">
+         <widget class="QComboBox" name="combo_font_type">
+          <item>
+           <property name="text">
+            <string>Regular</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Italic</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Semibold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Semibold Italic</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Bold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Bold Italic</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QSpinBox" name="spin_font">
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="4">
+         <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-left : 1px;</string>
+          </property>
+          <property name="text">
+           <string>Font</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>B</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>U</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QPushButton" name="button_color">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
@@ -97,7 +195,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>414</width>
+     <width>576</width>
      <height>22</height>
     </rect>
    </property>
