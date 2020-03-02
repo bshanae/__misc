@@ -9,17 +9,17 @@ void				main_window::on_combo_font_family_activated(const QString &string)
 void				main_window::on_combo_font_type_activated(const QString &string)
 {
 	if (string == "Regular")
-		set_font_type(false, QFont::Normal);
+		set_font_style(false, QFont::Normal);
 	else if (string == "Italic")
-		set_font_type(true, QFont::Normal);
+		set_font_style(true, QFont::Normal);
 	else if (string == "Semibold")
-		set_font_type(false, QFont::DemiBold);
+		set_font_style(false, QFont::DemiBold);
 	else if (string == "Semibold Italic")
-		set_font_type(true, QFont::DemiBold);
+		set_font_style(true, QFont::DemiBold);
 	else if (string == "Bold")
-		set_font_type(false, QFont::Bold);
+		set_font_style(false, QFont::Bold);
 	else if (string == "Bold Italic")
-		set_font_type(true, QFont::Bold);
+		set_font_style(true, QFont::Bold);
 }
 
 void				main_window::on_spin_font_valueChanged(int value)
@@ -45,6 +45,30 @@ void				main_window::on_button_color_clicked()
 	QColor			new_color = QColorDialog::getColor();
 
 	ui->button_color->setStyleSheet(QString(TEMPLATE).arg(new_color.name()));
-	set_font_color(new_color);
+	set_text_color(new_color);
 }
 
+void				main_window::on_button_align_left_clicked()
+{
+	set_text_alignment(Qt::AlignLeft);
+}
+
+void				main_window::on_button_align_center_clicked()
+{
+	set_text_alignment(Qt::AlignCenter);
+}
+
+void				main_window::on_button_align_right_clicked()
+{
+	set_text_alignment(Qt::AlignRight);
+}
+
+void				main_window::on_button_align_justify_clicked()
+{
+	set_text_alignment(Qt::AlignJustify);
+}
+
+void				main_window::on_button_bold_clicked()
+{
+	set_text_css("font-weight : bold;");
+}

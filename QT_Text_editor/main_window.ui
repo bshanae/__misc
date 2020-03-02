@@ -26,7 +26,9 @@
          </sizepolicy>
         </property>
         <property name="styleSheet">
-         <string notr="true">border : none;</string>
+         <string notr="true">border : none;
+padding : 10px;
+background : white;</string>
         </property>
         <property name="html">
          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -42,8 +44,21 @@ p, li { white-space: pre-wrap; }
         <property name="leftMargin">
          <number>0</number>
         </property>
+        <item row="7" column="2">
+         <widget class="QPushButton" name="button_align_right">
+          <property name="text">
+           <string>R</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0" colspan="4">
          <widget class="QComboBox" name="combo_font_family">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -79,17 +94,50 @@ p, li { white-space: pre-wrap; }
           </item>
          </widget>
         </item>
-        <item row="4" column="3">
-         <widget class="QPushButton" name="pushButton_2">
+        <item row="4" column="0">
+         <widget class="QPushButton" name="button_bold">
+          <property name="styleSheet">
+           <string notr="true">font-weight : bold;</string>
+          </property>
           <property name="text">
-           <string>S</string>
+           <string>B</string>
           </property>
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="button_italic">
+          <property name="styleSheet">
+           <string notr="true">font-style : italic;</string>
+          </property>
           <property name="text">
            <string>I</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="4">
+         <widget class="QLabel" name="label_font">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+</string>
+          </property>
+          <property name="text">
+           <string>Font</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QPushButton" name="button_underline">
+          <property name="styleSheet">
+           <string notr="true"> text-decoration : underline;</string>
+          </property>
+          <property name="text">
+           <string>U</string>
           </property>
          </widget>
         </item>
@@ -127,40 +175,17 @@ p, li { white-space: pre-wrap; }
           </item>
          </widget>
         </item>
-        <item row="3" column="3">
-         <widget class="QSpinBox" name="spin_font">
-          <property name="value">
-           <number>11</number>
+        <item row="7" column="3">
+         <widget class="QPushButton" name="button_align_justify">
+          <property name="text">
+           <string>J</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0" colspan="4">
-         <widget class="QLabel" name="label">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">margin-left : 1px;</string>
-          </property>
+        <item row="7" column="1">
+         <widget class="QPushButton" name="button_align_center">
           <property name="text">
-           <string>Font</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>B</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="text">
-           <string>U</string>
+           <string>C</string>
           </property>
          </widget>
         </item>
@@ -191,7 +216,7 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item row="5" column="0" colspan="3">
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="label_color">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -199,10 +224,47 @@ p, li { white-space: pre-wrap; }
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true">margin-left : 1px;</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Text color</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="3">
+         <widget class="QPushButton" name="button_crossed">
+          <property name="styleSheet">
+           <string notr="true"> text-decoration : line-through;</string>
+          </property>
+          <property name="text">
+           <string>S</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QSpinBox" name="spin_font">
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QPushButton" name="button_align_left">
+          <property name="text">
+           <string>L</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="4">
+         <widget class="QLabel" name="label_alignment">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Alignment</string>
           </property>
          </widget>
         </item>
