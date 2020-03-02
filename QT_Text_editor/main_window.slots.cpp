@@ -3,17 +3,28 @@
 
 void				main_window::on_combo_font_family_activated(const QString &string)
 {
-	set_font(string);
+	set_font_family(string);
 }
 
 void				main_window::on_combo_font_type_activated(const QString &string)
 {
-	set_font("", string);
+	if (string == "Regular")
+		set_font_type(false, QFont::Normal);
+	else if (string == "Italic")
+		set_font_type(true, QFont::Normal);
+	else if (string == "Semibold")
+		set_font_type(false, QFont::DemiBold);
+	else if (string == "Semibold Italic")
+		set_font_type(true, QFont::DemiBold);
+	else if (string == "Bold")
+		set_font_type(false, QFont::Bold);
+	else if (string == "Bold Italic")
+		set_font_type(true, QFont::Bold);
 }
 
 void				main_window::on_spin_font_valueChanged(int value)
 {
-	set_font("", "", value);
+	set_font_size(value);
 }
 
 #define TEMPLATE							\
@@ -25,7 +36,7 @@ void				main_window::on_spin_font_valueChanged(int value)
 	border-left : 1px solid #c2c2c2;		\
 	border-right : 1px solid #c2c2c2;		\
 	margin : 2px 0px 1px 0px;				\
-	background-color : white;				\
+	background-color : %1;					\
 	border-radius : 4px;					\
 }"
 
@@ -33,6 +44,7 @@ void				main_window::on_button_color_clicked()
 {
 	QColor			new_color = QColorDialog::getColor();
 
-	ui->button_color->setStyleSheet(TEMPLATE);
+	ui->button_color->setStyleSheet(QString(TEMPLATE).arg(new_color.name()));
+	set_font_color(new_color);
 }
 

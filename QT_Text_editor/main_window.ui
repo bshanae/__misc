@@ -173,7 +173,17 @@ p, li { white-space: pre-wrap; }
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">QPushButton	
+{
+	padding : 2px 11px 1px 11px;
+	border-top : 1px solid #c8c8c8;
+	border-bottom : 1px solid #acacac;
+	border-left : 1px solid #c2c2c2;
+	border-right : 1px solid #c2c2c2;
+	margin : 2px 0px 1px 0px;
+	background-color : black;
+	border-radius : 4px;
+}</string>
           </property>
           <property name="text">
            <string/>

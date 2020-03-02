@@ -28,8 +28,10 @@ private:
 
 	Ui::main_window *ui;
 
-	void			set_font(const QString &family = "", const QString &type = "Regular", const int &size = -1);
-	void			set_font_type(const bool &italic, const QFont::Weight &weight);
+	void			set_font_family(const QString &family = "");
+	void			set_font_type(const bool &italic = false, const QFont::Weight &weight = QFont::Normal);
+	void			set_font_size(const int &size = -1);
+	void			set_font_color(const QColor &color = Qt::black);
 };
 
 #endif
