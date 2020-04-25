@@ -1,1 +1,4 @@
 build-QT*
+Makefile/venv
+Makefile/.idea
+.DS_Store

@@ -1,0 +1,20 @@
+compiler(clang++)
+project(test)
+executable(test)
+
+add_flag(std=c++17)
+
+add_source(
+	../test_project/main.cpp
+	../test_project/print_hi/impl.cpp
+	../test_project/print_bye/impl.cpp)
+
+include_directory(
+	../test_project)
+
+link_directory(
+	../test_project/lib)
+
+link_library(
+	1
+	'-framework OpenCL')
