@@ -1,0 +1,46 @@
+#include "engine.h"
+
+void				model_random_color(t_engine *engine)
+{
+	int 			i_mesh;
+	int 			i_vertex;
+	t_mesh			*mesh;
+	t_vector3		vector;
+
+	srand(time(NULL));
+	i_mesh = 0;
+	while (i_mesh < (int)engine->model.meshes->length)
+	{
+		mesh = vector_at(engine->model.meshes, i_mesh++);
+		i_vertex = 0;
+		while (i_vertex++ < (int)mesh->vector_vertex->length)
+		{
+			vector.x = (float)rand() / (float)(RAND_MAX);
+			vector.y = (float)rand() / (float)(RAND_MAX);
+			vector.z = (float)rand() / (float)(RAND_MAX);
+			vector_push(mesh->vector_color, &vector);
+		}
+	}
+}
+
+void				model_center(t_engine *engine)
+{
+	t_model			*model;
+	int 			i_mesh;
+	int 			i_vertex;
+	t_mesh			*mesh;
+	t_vector3		*vertex;
+
+	model = &engine->model;
+	i_mesh = 0;
+	while (i_mesh < (int)model->meshes->length)
+	{
+		mesh = vector_at(model->meshes, i_mesh++);
+		i_vertex = 0;
+		while (i_vertex < (int)mesh->vector_vertex->length)
+		{
+			vertex = vector_at(mesh->vector_vertex, i_vertex++);
+			*vertex = vector3_sub(*vertex, model->center);
+		}
+	}
+}

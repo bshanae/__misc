@@ -1,0 +1,44 @@
+30
+##start
+a 50 200
+b 100 150
+c 100 250
+d 200 150
+e 200 250
+f 300 150
+g 300 250
+##end
+h 400 200
+a-b
+a-c
+b-d
+b-g
+c-e
+d-f
+e-g
+f-h
+g-h
+#	  b - d - f
+#   /  \        \
+#  a      \      h
+#   \        \  /
+#	  c - e - g
+
+L1-b L2-c
+L3-b L1-d L4-c L2-e
+L5-b L3-d L1-f L6-c L4-e L2-g
+L7-b L5-d L3-f L1-h L8-c L6-e L4-g L2-h
+L9-b L7-d L5-f L3-h L10-c L8-e L6-g L4-h
+L11-b L9-d L7-f L5-h L12-c L10-e L8-g L6-h
+L13-b L11-d L9-f L7-h L14-c L12-e L10-g L8-h
+L15-b L13-d L11-f L9-h L16-c L14-e L12-g L10-h
+L17-b L15-d L13-f L11-h L18-c L16-e L14-g L12-h
+L19-b L17-d L15-f L13-h L20-c L18-e L16-g L14-h
+L21-b L19-d L17-f L15-h L22-c L20-e L18-g L16-h
+L23-b L21-d L19-f L17-h L24-c L22-e L20-g L18-h
+L25-b L23-d L21-f L19-h L26-c L24-e L22-g L20-h
+L27-b L25-d L23-f L21-h L28-c L26-e L24-g L22-h
+L29-b L27-d L25-f L23-h L30-c L28-e L26-g L24-h
+L29-d L27-f L25-h L30-e L28-g L26-h
+L29-f L27-h L30-g L28-h
+L29-h L30-h

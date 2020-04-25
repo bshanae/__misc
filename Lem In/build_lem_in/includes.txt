@@ -1,0 +1,17 @@
+../libft/includes
+../source_global/global_error
+../source_global/global_buffer
+../source_global/global_bool
+../source_global/global_range
+../source_global/global_command
+../source_global/global_room
+../source_global/global_parser
+../source_global/global_map
+../source_global/global_trace
+../source_lem_in/lem_in_plugin
+../source_lem_in/lem_in_state
+../source_lem_in/lem_in_main
+../source_lem_in/lem_in_info
+../source_lem_in/lem_in_flags
+../source_lem_in/lem_in_eval
+../source_lem_in/lem_in_work

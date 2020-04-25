@@ -1,0 +1,55 @@
+#	GLOBAL_ERROR	###########################################################
+../source_global/global_error/global_print_x.c
+../source_global/global_error/global_raise_x.c
+../source_global/global_error/global_assert_x.c
+../source_global/global_error/global_malloc.c
+../source_global/global_error/global_gnl.c
+#	GLOBAL_BUFFER ###########################################################
+../source_global/global_buffer/global_buffer_x.c
+#	GLOBAL_ROOM	###########################################################
+../source_global/global_room/global_room_x.c
+#	GLOBAL_MAP	###########################################################
+../source_global/global_map/global_map_create.c
+../source_global/global_map/global_map_destroy.c
+../source_global/global_map/global_map_verify_x.c
+../source_global/global_map/global_map_parse_x.c
+../source_global/global_map/global_map_parse_part_x.c
+../source_global/global_map/global_map_parse.c
+../source_global/global_map/global_map_find_room.c
+../source_global/global_map/global_map_temp_x.c
+../source_global/global_map/global_map_f.c
+../source_global/global_map/global_map_info.c
+#	GLOBAL_PARSER	###########################################################
+../source_global/global_parser/global_parser_pass_x.c
+../source_global/global_parser/global_parser_is_x.c
+../source_global/global_parser/global_parser_get_x.c
+../source_global/global_parser/global_parser_verify_name.c
+#	GLOBAL_TRACE	###########################################################
+../source_global/global_trace/global_trace_create.c
+../source_global/global_trace/global_trace_destroy.c
+../source_global/global_trace/global_trace_parse.c
+../source_global/global_trace/global_trace_parse_x.c
+../source_global/global_trace/global_trace_info.c
+#	LEM_IN_MAIN		###########################################################
+../source_main/lem_in_main.c
+../source_lem_in/lem_in_main/lem_in_main_new.c
+../source_lem_in/lem_in_main/lem_in_main_delete.c
+../source_lem_in/lem_in_main/lem_in_main_load.c
+#	LEM_IN_FLAGS	###########################################################
+../source_lem_in/lem_in_flags/lem_in_flags.c
+#	LEM_IN_INFO		###########################################################
+../source_lem_in/lem_in_info/lem_in_info_x.c
+../source_lem_in/lem_in_info/lem_in_print_x.c
+#	LEM_IN_WORK		###########################################################
+../source_lem_in/lem_in_work/lem_in_work.c
+../source_lem_in/lem_in_work/lem_in_bfs.c
+../source_lem_in/lem_in_work/lem_in_bfs_x.c
+../source_lem_in/lem_in_work/lem_in_parent_x.c
+../source_lem_in/lem_in_work/lem_in_bhandari.c
+../source_lem_in/lem_in_work/lem_in_solve_conflict.c
+../source_lem_in/lem_in_work/lem_in_backtrack.c
+../source_lem_in/lem_in_work/lem_in_lock_x.c
+../source_lem_in/lem_in_work/lem_in_out.c
+#	LEM_IN_EVAL	###############################################################
+../source_lem_in/lem_in_eval/lem_in_eval_create.c
+../source_lem_in/lem_in_eval/lem_in_eval_destroy.c

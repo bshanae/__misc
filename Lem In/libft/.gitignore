@@ -1,0 +1,4 @@
+build/objects
+build/depends
+libft.a
+*.DS_Store

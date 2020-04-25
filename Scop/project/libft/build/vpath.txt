@@ -1,0 +1,11 @@
+# STD
+./build/source_std_char
+./build/source_std_mem
+./build/source_std_num
+./build/source_std_string
+#	ERROR
+./build/source_error
+#	GNL
+./build/source_get_next_line
+#	VECTOR
+./build/source_vector

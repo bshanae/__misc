@@ -1,0 +1,2 @@
+exe ../lem-in
+extern ../libft/libft.a ../libft

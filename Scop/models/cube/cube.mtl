@@ -1,0 +1,5 @@
+newmtl cube
+Kd 0.00 0.00 0.00
+map_Kd crate.bmp
+Ka 0.00 0.00 0.00
+Ks 0.00 0.00 0.00

@@ -1,0 +1,4 @@
+../libft
+/Users/bshanae/.brew/Cellar/sdl2/2.0.10/lib
+/Users/bshanae/.brew/Cellar/sdl2_image/2.0.5/lib
+/Users/bshanae/.brew/Cellar/sdl2_ttf/2.0.15/lib
