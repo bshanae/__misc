@@ -8,7 +8,7 @@ link_directories(
 	/usr/local/Cellar/glew/2.1.0_1/lib
 	/usr/local/Cellar/glfw/3.3/lib
 	/usr/local/Cellar/freetype/2.10.1/lib
-	~/workspace/21_libft/)
+	project/libft)
 
 link_libraries(
 	"-framework OpenGL"

@@ -1,4 +1,6 @@
-build-QT*
-Makefile/venv
-Makefile/.idea
 .DS_Store
+*.o
+*.d
+.idea
+cmake-build-debug
+venv

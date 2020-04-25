@@ -1,0 +1,76 @@
+compiler(gcc)
+project(scop)
+executable(scop)
+
+add_flag(OBJECT
+	'`pkg-config --cflags glew`'
+	'`pkg-config --cflags glfw3`')
+
+add_flag(EXECUTABLE
+	'`pkg-config --libs glew`'
+    '`pkg-config --libs glfw3`')
+
+add_source(
+	../project/main.c
+    ../project/core/core.c
+    ../project/core/info.c
+    ../project/math/vector/vector2.c
+    ../project/math/vector/vector3.c
+    ../project/math/vector/vector4.c
+    ../project/math/matrix/empty.c
+    ../project/math/matrix/look_at.c
+    ../project/math/matrix/perspective.c
+    ../project/math/matrix/product.c
+    ../project/math/matrix/print.c
+    ../project/math/matrix/rotate_x.c
+    ../project/math/matrix/scale.c
+    ../project/math/matrix/translate.c
+    ../project/math/matrix/identity.c
+    ../project/math/other/degrees_to_radians.c
+    ../project/engine/engine.c
+    ../project/engine/OpenGL_x.c
+    ../project/engine/shader_x.c
+    ../project/engine/program_x.c
+    ../project/engine/loop.c
+    ../project/engine/render.c
+    ../project/engine/handle_key.c
+    ../project/engine/handle_x.c
+    ../project/engine/vbo_x.c
+    ../project/engine/vao_x.c
+    ../project/engine/mesh_x.c
+    ../project/engine/camera_x.c
+    ../project/engine/uniform_x.c
+    ../project/engine/texture_x_a.c
+    ../project/engine/texture_x_b.c
+    ../project/engine/material_x.c
+    ../project/engine/model_x_a.c
+    ../project/engine/model_x_b.c
+    ../project/engine/model_x_с.c
+    ../project/parser/parser.c
+    ../project/parser/fill_x.c
+    ../project/parser/read_model.c
+    ../project/parser/read_model_x_a.c
+    ../project/parser/read_model_x_b.c
+    ../project/parser/read_material_x_a.c
+    ../project/parser/read_material_x_b.c
+    ../project/parser/interim_mesh_x.c
+    ../project/parser/generate_x.c
+    ../project/parser/extract_directory.c)
+
+include_directory(
+    ../project/libft/includes
+    ../project
+    ../project/common
+    ../project/core
+    ../project/math
+    ../project/engine
+    ../project/parser)
+
+link_directory(
+	../project/libft)
+
+link_library(
+	glfw
+	glew
+	ft
+	'-framework OpenGL')
