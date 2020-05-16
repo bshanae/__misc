@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(21_scop C)
+project(Scop C)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
@@ -21,7 +21,7 @@ include_directories(
 	/usr/local/Cellar/glew/2.1.0_1/include
 	/usr/local/Cellar/glfw/3.3/include
 	/usr/local/Cellar/freetype/2.10.1/include/freetype2
-	~/workspace/21_libft/includes)
+	project/libft/includes)
 
 include_directories(
 	project
@@ -86,7 +86,7 @@ set(SCOP_PARSER
 	project/parser/generate_x.c
 	project/parser/extract_directory.c)
 
-add_executable(21_scop
+add_executable(Scop
 	${SCOP_MAIN}
 	${SCOP_CORE}
 	${SCOP_MATH}

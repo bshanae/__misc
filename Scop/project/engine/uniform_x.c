@@ -20,17 +20,21 @@ void				uniform_start(t_engine *engine)
 	engine->uniform.material_specular = M1(M2, "uniform_material.specular");
 	engine->uniform.material_specular_exponent = M1(M2, "uniform_material.specular_exponent");
 	engine->uniform.material_alpha = M1(M2, "uniform_material.alpha");
+	engine->uniform.model_min = M1(M2, "uniform_model_min");
+	engine->uniform.model_max = M1(M2, "uniform_model_max");
 }
 
 void 				uniform_update_common(t_engine *engine)
 {
-	glUniform1i(engine->uniform.mod_from, engine->model.mod_from);
-	glUniform1i(engine->uniform.mod_to, engine->model.mod_to);
-	glUniform1f(engine->uniform.mod_transition, engine->model.mod_transition);
 	glUniformMatrix4fv(engine->uniform.projection, 1, GL_FALSE, &engine->camera.matrix_projection.data[0][0]);
 	glUniformMatrix4fv(engine->uniform.view, 1, GL_FALSE, &engine->camera.matrix_view.data[0][0]);
 	glUniformMatrix4fv(engine->uniform.transformation, 1, GL_FALSE, &engine->model.transformation.data[0][0]);
 	glUniform3fv(engine->uniform.camera_position, 1, &engine->camera.position.x);
+	glUniform1i(engine->uniform.mod_from, engine->model.mod_from);
+	glUniform1i(engine->uniform.mod_to, engine->model.mod_to);
+	glUniform1f(engine->uniform.mod_transition, engine->model.mod_transition);
+	glUniform3fv(engine->uniform.model_min, 1, &engine->model.min.x);
+	glUniform3fv(engine->uniform.model_max, 1, &engine->model.max.x);
 }
 
 void				uniform_update_material(t_engine *engine, t_material *material)

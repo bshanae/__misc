@@ -59,7 +59,8 @@ typedef struct		s_mesh
 	t_vector 		*vector_vertex;
 	t_vector 		*vector_texture;
 	t_vector 		*vector_normal;
-	t_vector 		*vector_color;
+	t_vector 		*vector_rgb_color;
+	t_vector 		*vector_random_color;
 	t_material		*material;
 	int 			vertex_number;
 	t_vao 			vao;
@@ -112,6 +113,8 @@ typedef struct		s_uniform_set
 	t_uniform		material_specular;
 	t_uniform		material_specular_exponent;
 	t_uniform		material_alpha;
+	t_uniform		model_min;
+	t_uniform		model_max;
 }					t_uniform_set;
 
 typedef struct		s_camera
@@ -178,6 +181,7 @@ void				model_update(t_engine *engine, t_matrix *rotation);
 void				model_analyze(t_engine *engine);
 
 void				model_center(t_engine *engine);
+void				model_rgb_color(t_engine *engine);
 void				model_random_color(t_engine *engine);
 void				model_auto_normal(t_engine *engine);
 void				model_auto_texture(t_engine *engine);

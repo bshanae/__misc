@@ -23,8 +23,9 @@
 # define SCOP_MATERIAL_TRANSPARENT	"Tr "
 # define SCOP_MATERIAL_DISSOLVE		"d "
 
-#define SCOP_MOD_MATERIAL			0
+#define SCOP_MOD_RGB				0
 #define SCOP_MOD_RANDOM				1
-#define SCOP_MOD_TEXTURE			2
+#define SCOP_MOD_MATERIAL			2
+#define SCOP_MOD_TEXTURE			3
 
 #endif

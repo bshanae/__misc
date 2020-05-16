@@ -10,7 +10,7 @@
 # define SCOP_VERTEX_SHADER				"project/resources/vertex.glsl"
 # define SCOP_FRAGMENT_SHADER			"project/resources/fragment.glsl"
 
-# define SCOP_VAO_ATTRIBUTE_NUMBER		4
+# define SCOP_VAO_ATTRIBUTE_NUMBER		5
 
 # define SCOP_CAMERA_FOV				45
 # define SCOP_CAMERA_POSITION			vector3_pack(0, 0, 15)

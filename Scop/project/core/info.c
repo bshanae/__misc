@@ -5,9 +5,10 @@ void				info()
 	printf("\nControls : \n");
 	printf("return - start/stop model mod\n");
 	printf("p - switch polygon mod\n");
-	printf("1 - model use random color on each polygon\n");
-	printf("2 - model use its material\n");
-	printf("3 - model use kitty texture\n");
+	printf("1 - use colors interpolated between model's minimum and maximum\n");
+	printf("2 - use random color on each vertex\n");
+	printf("3 - use model's material\n");
+	printf("4 - use kitty texture\n");
 	printf("\nCamera controls : \n");
 	printf("a/d/w/s/q/e - move\n");
 	printf("arrows - rotate\n");

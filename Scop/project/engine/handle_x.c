@@ -22,11 +22,14 @@ t_bool				handle_common(t_engine *engine, int key)
 t_bool				handle_mod(t_engine *engine, int key)
 {
 	int 			new_mod;
+
 	if (key == GLFW_KEY_1)
 		new_mod = SCOP_MOD_RANDOM;
 	else if (key == GLFW_KEY_2)
-		new_mod = SCOP_MOD_MATERIAL;
+		new_mod = SCOP_MOD_RGB;
 	else if (key == GLFW_KEY_3)
+		new_mod = SCOP_MOD_MATERIAL;
+	else if (key == GLFW_KEY_4)
 		new_mod = SCOP_MOD_TEXTURE;
 	else
 		return (false);

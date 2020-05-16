@@ -16,6 +16,7 @@ void 				generate_model(t_parser *parser)
 	}
 	model_analyze(parser->engine);
 	model_center(parser->engine);
+	model_rgb_color(parser->engine);
 	model_random_color(parser->engine);
 	model_auto_scale(parser->engine);
 	if (!parser->model.data_normal->length)

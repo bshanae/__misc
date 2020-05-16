@@ -1,5 +1,29 @@
 #include "engine.h"
 
+void				model_rgb_color(t_engine *engine)
+{
+	int 			i_mesh;
+	int 			i_vertex;
+	t_mesh			*mesh;
+	t_vector3		*vertex;
+	t_vector3		color;
+
+	i_mesh = 0;
+	while (i_mesh < (int)engine->model.meshes->length)
+	{
+		mesh = vector_at(engine->model.meshes, i_mesh++);
+		i_vertex = 0;
+		while (i_vertex < (int)mesh->vector_vertex->length)
+		{
+			vertex = vector_at(mesh->vector_vertex, i_vertex++);
+			color.x = (vertex->x - engine->model.min.x) / engine->model.size.x;
+			color.y = (vertex->y - engine->model.min.y) / engine->model.size.y;
+			color.z = (vertex->z - engine->model.min.z) / engine->model.size.z;
+			vector_push(mesh->vector_rgb_color, &color);
+		}
+	}
+}
+
 void				model_random_color(t_engine *engine)
 {
 	int 			i_mesh;
@@ -18,7 +42,7 @@ void				model_random_color(t_engine *engine)
 			vector.x = (float)rand() / (float)(RAND_MAX);
 			vector.y = (float)rand() / (float)(RAND_MAX);
 			vector.z = (float)rand() / (float)(RAND_MAX);
-			vector_push(mesh->vector_color, &vector);
+			vector_push(mesh->vector_random_color, &vector);
 		}
 	}
 }

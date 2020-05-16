@@ -23,8 +23,6 @@ void				OpenGL_start(t_engine *engine)
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
 
 	glfwGetFramebufferSize(engine->window, &engine->window_width, &engine->window_height);
 	glViewport(0, 0, engine->window_width, engine->window_height);
