@@ -14,9 +14,21 @@ add_source(
 	../project/main.c
     ../project/core/core.c
     ../project/core/info.c
-    ../project/math/vector/vector2.c
-    ../project/math/vector/vector3.c
-    ../project/math/vector/vector4.c
+    ../project/math/vector/add.c
+    ../project/math/vector/array.c
+    ../project/math/vector/cross.c
+    ../project/math/vector/div.c
+    ../project/math/vector/dot.c
+    ../project/math/vector/empty.c
+    ../project/math/vector/length_x.c
+    ../project/math/vector/max.c
+    ../project/math/vector/min.c
+    ../project/math/vector/mul.c
+    ../project/math/vector/normalize.c
+    ../project/math/vector/pack.c
+    ../project/math/vector/print.c
+    ../project/math/vector/rotate_x.c
+    ../project/math/vector/sub.c
     ../project/math/matrix/empty.c
     ../project/math/matrix/look_at.c
     ../project/math/matrix/perspective.c
@@ -27,6 +39,7 @@ add_source(
     ../project/math/matrix/translate.c
     ../project/math/matrix/identity.c
     ../project/math/other/degrees_to_radians.c
+    ../project/math/other/clamp.c
     ../project/engine/engine.c
     ../project/engine/opengl_x.c
     ../project/engine/shader_x.c
@@ -55,8 +68,7 @@ add_source(
     ../project/parser/read_material_x_b.c
     ../project/parser/interim_mesh_x.c
     ../project/parser/generate_x.c
-    ../project/parser/extract_directory.c
-    ../project/math/other/clamp.c)
+    ../project/parser/extract_directory.c)
 
 include_directory(
     ../project/libft/includes

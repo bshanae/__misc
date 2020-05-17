@@ -42,14 +42,6 @@ typedef struct 			s_vector3
 	float				z;
 }						t_vector3;
 
-typedef struct 			s_vector4
-{
-	float				x;
-	float				y;
-	float				z;
-	float				w;
-}						t_vector4;
-
 t_vector2				vector2_empty();
 t_vector2				vector2_pack(float x, float y);
 t_vector2				vector2_add(t_vector2 a, t_vector2 b);
@@ -60,7 +52,7 @@ void 					vector2_print(t_vector2 vector);
 
 t_vector3				vector3_empty();
 t_vector3				vector3_pack(float x, float y, float z);
-float 					*vector3_value(t_vector3 *vector, int index);
+float 					*vector3_array(t_vector3 *vector, int index);
 void 					vector3_print(t_vector3 vector);
 t_vector3				vector3_add(t_vector3 a, t_vector3 b);
 t_vector3				vector3_sub(t_vector3 a, t_vector3 b);
@@ -75,11 +67,6 @@ t_vector3				vector3_rotate(t_vector3 vector, t_axis axis, float angle);
 t_vector3 				vector3_rotate_euler(t_vector3 vector, t_vector3 angle);
 t_vector3 				vector3_min(t_vector3 a, t_vector3 b);
 t_vector3 				vector3_max(t_vector3 a, t_vector3 b);
-
-t_vector4				vector4_pack(float x, float y, float z, float w);
-float 					*vector4_value(t_vector4 *vector, int index);
-void 					vector4_print(const t_vector4 *vector);
-
 
 //						MATRIX
 

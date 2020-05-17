@@ -39,9 +39,21 @@ set(SCOP_CORE
 	project/core/info.c)
 
 set(SCOP_MATH
-	project/math/vector/vector2.c
-	project/math/vector/vector3.c
-	project/math/vector/vector4.c
+	project/math/vector/add.c
+	project/math/vector/array.c
+	project/math/vector/cross.c
+	project/math/vector/div.c
+	project/math/vector/dot.c
+	project/math/vector/empty.c
+	project/math/vector/length_x.c
+	project/math/vector/max.c
+	project/math/vector/min.c
+	project/math/vector/mul.c
+	project/math/vector/normalize.c
+	project/math/vector/pack.c
+	project/math/vector/print.c
+	project/math/vector/rotate_x.c
+	project/math/vector/sub.c
 	project/math/matrix/empty.c
 	project/math/matrix/look_at.c
 	project/math/matrix/perspective.c
