@@ -2,8 +2,8 @@
 
 void				model_rgb_color(t_engine *engine)
 {
-	int 			i_mesh;
-	int 			i_vertex;
+	int				i_mesh;
+	int				i_vertex;
 	t_mesh			*mesh;
 	t_vector3		*vertex;
 	t_vector3		color;
@@ -13,7 +13,7 @@ void				model_rgb_color(t_engine *engine)
 	{
 		mesh = vector_at(engine->model.meshes, i_mesh++);
 		i_vertex = 0;
-		while (i_vertex  < (int)mesh->vector_vertex->length)
+		while (i_vertex < (int)mesh->vector_vertex->length)
 		{
 			vertex = vector_at(mesh->vector_vertex, i_vertex++);
 			color.x = (vertex->x - engine->model.min.x) / engine->model.size.x;
@@ -26,8 +26,8 @@ void				model_rgb_color(t_engine *engine)
 
 void				model_random_color(t_engine *engine)
 {
-	int 			i_mesh;
-	int 			i_vertex;
+	int				i_mesh;
+	int				i_vertex;
 	t_mesh			*mesh;
 	t_vector3		vector;
 
@@ -50,8 +50,8 @@ void				model_random_color(t_engine *engine)
 void				model_center(t_engine *engine)
 {
 	t_model			*model;
-	int 			i_mesh;
-	int 			i_vertex;
+	int				i_mesh;
+	int				i_vertex;
 	t_mesh			*mesh;
 	t_vector3		*vertex;
 

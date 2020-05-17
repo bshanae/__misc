@@ -1,6 +1,6 @@
 #include "engine.h"
 
-t_mesh				mesh_create()
+t_mesh				mesh_create(void)
 {
 	t_mesh			mesh;
 
@@ -28,19 +28,16 @@ void				mesh_load(t_mesh *mesh)
 {
 	mesh->vao = vao_create();
 	mesh->vertex_number = (int)mesh->vector_vertex->length;
-
 	vao_bind(&mesh->vao);
-
 	vao_attribute(&mesh->vao, mesh->vector_vertex, 3);
 	vao_attribute(&mesh->vao, mesh->vector_texture, 2);
 	vao_attribute(&mesh->vao, mesh->vector_normal, 3);
 	vao_attribute(&mesh->vao, mesh->vector_rgb_color, 3);
 	vao_attribute(&mesh->vao, mesh->vector_random_color, 3);
-
 	vao_bind(NULL);
 }
 
-void 				mesh_draw(const t_mesh *mesh)
+void				mesh_draw(const t_mesh *mesh)
 {
 	vao_bind(&mesh->vao);
 	glDrawArrays(GL_TRIANGLES, 0, mesh->vertex_number);

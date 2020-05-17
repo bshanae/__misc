@@ -51,11 +51,12 @@ set(SCOP_MATH
 	project/math/matrix/scale.c
 	project/math/matrix/translate.c
 	project/math/matrix/identity.c
-	project/math/other/degrees_to_radians.c)
+	project/math/other/degrees_to_radians.c
+	project/math/other/clamp.c)
 
 set(SCOP_ENGINE
 	project/engine/engine.c
-	project/engine/OpenGL_x.c
+	project/engine/opengl_x.c
 	project/engine/shader_x.c
 	project/engine/program_x.c
 	project/engine/loop.c
@@ -72,7 +73,7 @@ set(SCOP_ENGINE
 	project/engine/material_x.c
 	project/engine/model_x_a.c
 	project/engine/model_x_b.c
-	project/engine/model_x_с.c)
+	project/engine/model_x_c.c)
 
 set(SCOP_PARSER
 	project/parser/parser.c

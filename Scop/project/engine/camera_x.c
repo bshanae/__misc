@@ -1,6 +1,6 @@
 #include "engine.h"
 
-void 				camera_start(t_engine *engine)
+void				camera_start(t_engine *engine)
 {
 	t_camera		*camera;
 
@@ -19,11 +19,15 @@ void 				camera_start(t_engine *engine)
 	camera_update(engine);
 }
 
-void 				camera_move(t_engine *engine, t_axis axis, t_sign sign, t_vector3 *target)
+void				camera_move(
+					t_engine *engine,
+					t_axis axis,
+					t_sign sign,
+					t_vector3 *target)
 {
 	t_camera		*camera;
 	t_vector3		work_vector;
-	float 			delta;
+	float			delta;
 
 	camera = &engine->camera;
 	delta = (float)sign *
@@ -37,35 +41,29 @@ void 				camera_move(t_engine *engine, t_axis axis, t_sign sign, t_vector3 *targ
 		work_vector = camera->axis_y;
 	else if (axis == axis_z)
 		work_vector = camera->axis_z;
-
 	work_vector = vector3_mul(work_vector, delta);
 	*target = vector3_add(*target, work_vector);
 	camera_update(engine);
 }
 
-static void			add_if_in_range(float *target, float value, float min, float max)
-{
-	const float		temp = *target + value;
-
-	if (temp > min && temp < max)
-		*target = temp;
-}
-
-void 				camera_rotate(t_engine *engine, t_axis axis, t_sign sign, t_matrix *target)
+void				camera_rotate(
+					t_engine *engine,
+					t_axis axis,
+					t_sign sign,
+					t_matrix *target)
 {
 	t_camera		*camera;
 	float			delta;
 
 	camera = &engine->camera;
-	delta = (float)sign * (target ? SCOP_TARGET_ROTATION_SPEED : SCOP_CAMERA_ROTATION_SPEED);
+	delta = (float)sign *
+		(target ? SCOP_TARGET_ROTATION_SPEED : SCOP_CAMERA_ROTATION_SPEED);
 	if (!target)
 	{
 		if (axis == axis_x)
-			add_if_in_range(&camera->angles.x, delta, M_PI * -0.5f, M_PI * 0.5f);
+			camera->angles.x += delta;
 		else if (axis == axis_y)
 			camera->angles.y += delta;
-		else if (axis == axis_z)
-			add_if_in_range(&camera->angles.z, delta, -90.f, 90.f);
 		camera_update(engine);
 	}
 	else
@@ -84,6 +82,9 @@ void				camera_update(t_engine *engine)
 	t_camera		*camera;
 
 	camera = &engine->camera;
+	camera->angles.x = clamp(
+		M_PI * -0.5f + SCOP_EPSILON, M_PI * 0.5f - SCOP_EPSILON,
+		camera->angles.x);
 	camera->direction = SCOP_CAMERA_DIRECTION;
 	camera->direction = vector3_rotate_euler(camera->direction, camera->angles);
 	camera->axis_x = vector3_rotate_euler(SCOP_AXIS_X, camera->angles);

@@ -2,7 +2,7 @@
 
 void				matrix_print(const t_matrix *matrix)
 {
-	int i;
+	int				i;
 
 	i = 0;
 	while (i < 4)

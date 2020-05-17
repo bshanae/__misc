@@ -1,5 +1,5 @@
-#ifndef SCOP_CONTROL_H
-# define SCOP_CONTROL_H
+#ifndef SCOP_SETTINGS_H
+# define SCOP_SETTINGS_H
 
 # define SCOP_WINDOW_WIDTH				1280
 # define SCOP_WINDOW_HEIGHT				720

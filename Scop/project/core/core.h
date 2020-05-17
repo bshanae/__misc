@@ -11,7 +11,7 @@ typedef struct		s_core
 }					t_core;
 
 void				core_start(t_core *core);
-void 				core_finish(t_core *core);
+void				core_finish(t_core *core);
 
 void				info();
 

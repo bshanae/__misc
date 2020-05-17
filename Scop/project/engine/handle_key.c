@@ -1,13 +1,9 @@
 #include "engine.h"
 
-void 				handle_key(GLFWwindow* window, int key, int scancode, int action, int mode)
+static void			helper(t_engine *engine, int key)
 {
 	static t_bool	mod_model;
-	t_engine		*engine;
 
-	if (action != GLFW_PRESS && action != GLFW_REPEAT)
-		return ;
-	engine = glfwGetWindowUserPointer(window);
 	if (key == GLFW_KEY_ESCAPE)
 		glfwSetWindowShouldClose(engine->window, GL_TRUE);
 	else if (key == GLFW_KEY_ENTER)
@@ -29,4 +25,20 @@ void 				handle_key(GLFWwindow* window, int key, int scancode, int action, int m
 	else
 		return ;
 	engine->render_request = true;
+}
+
+void				handle_key(
+					GLFWwindow *window,
+					int key,
+					int scancode,
+					int action,
+					int mode)
+{
+	t_engine		*engine;
+
+	scancode = 0;
+	mode = 0;
+	if (action != GLFW_PRESS && action != GLFW_REPEAT)
+		return ;
+	helper(glfwGetWindowUserPointer(window), key);
 }

@@ -21,7 +21,7 @@ t_bool				handle_common(t_engine *engine, int key)
 
 t_bool				handle_mod(t_engine *engine, int key)
 {
-	int 			new_mod;
+	int				new_mod;
 
 	if (key == GLFW_KEY_1)
 		new_mod = SCOP_MOD_RANDOM;
@@ -67,7 +67,6 @@ t_bool				handle_camera(t_engine *engine, int key)
 	return (true);
 }
 
-
 t_bool				handle_model_a(t_engine *engine, int key)
 {
 	if (key == GLFW_KEY_A)
@@ -82,9 +81,11 @@ t_bool				handle_model_a(t_engine *engine, int key)
 		camera_move(engine, axis_y, sign_plus, &engine->model.position);
 	else if (key == GLFW_KEY_E)
 		camera_move(engine, axis_y, sign_minus, &engine->model.position);
-	else if (key == GLFW_KEY_MINUS && engine->model.scale > SCOP_MODEL_SCALE_MIN)
+	else if (key == GLFW_KEY_MINUS &&
+			engine->model.scale > SCOP_MODEL_SCALE_MIN)
 		engine->model.scale -= SCOP_MODEL_SCALE_STEP;
-	else if (key == GLFW_KEY_EQUAL && engine->model.scale < SCOP_MODEL_SCALE_MAX)
+	else if (key == GLFW_KEY_EQUAL &
+			engine->model.scale < SCOP_MODEL_SCALE_MAX)
 		engine->model.scale += SCOP_MODEL_SCALE_STEP;
 	else
 		return (false);
@@ -94,7 +95,7 @@ t_bool				handle_model_a(t_engine *engine, int key)
 
 t_bool				handle_model_b(t_engine *engine, int key)
 {
-	t_matrix 		rotation;
+	t_matrix		rotation;
 
 	rotation = matrix_identity();
 	if (key == GLFW_KEY_J || key == GLFW_KEY_LEFT)

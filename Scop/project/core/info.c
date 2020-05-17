@@ -1,6 +1,6 @@
 #include "core.h"
 
-void				info()
+void				info(void)
 {
 	printf("\nControls : \n");
 	printf("return - start/stop model mod\n");

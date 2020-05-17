@@ -1,7 +1,6 @@
 #ifndef ENGINE_H
 # define ENGINE_H
 
-# include "scop_OpenGL.h"
 # include "scop_constant.h"
 # include "scop_settings.h"
 # include "core.h"
@@ -9,6 +8,11 @@
 
 # include "libft_standart.h"
 # include "libft_vector.h"
+
+# define GLEW_STATIC
+# include <GL/glew.h>
+# include "GLFW/glfw3.h"
+
 # include <stdio.h>
 # include <float.h>
 # include <time.h>
@@ -16,28 +20,28 @@
 typedef GLuint		t_vbo;
 
 t_vbo				vbo_create();
-void 				vbo_destroy(t_vbo *vbo);
-void 				vbo_bind(const t_vbo *vbo);
-void 				vbo_buffer(const t_vector *vector);
+void				vbo_destroy(t_vbo *vbo);
+void				vbo_bind(const t_vbo *vbo);
+void				vbo_buffer(const t_vector *vector);
 
 typedef struct		s_vao
 {
 	GLuint			object;
 	t_vbo			attribute_data[SCOP_VAO_ATTRIBUTE_NUMBER];
-	int 			attribute_next;
+	int				attribute_next;
 }					t_vao;
 
-t_vao 				vao_create();
-void 				vao_destroy(t_vao *vao);
-void 				vao_bind(const t_vao *vao);
-void 				vao_attribute(
+t_vao				vao_create();
+void				vao_destroy(t_vao *vao);
+void				vao_bind(const t_vao *vao);
+void				vao_attribute(
 					t_vao *vao, const t_vector *vector, int element_size);
 
 typedef GLuint		t_texture;
 
 t_texture			texture_create(const char *path);
 void				texture_destroy(t_texture *texture);
-void 				texture_bind(t_texture *texture);
+void				texture_bind(t_texture *texture);
 
 typedef struct		s_material
 {
@@ -47,29 +51,28 @@ typedef struct		s_material
 	t_vector3		diffuse;
 	t_vector3		specular;
 	float			specular_exponent;
-	float 			alpha;
+	float			alpha;
 }					t_material;
 
 t_material			material_create(const char *name);
-void 				material_destroy(t_material *material);
-
+void				material_destroy(t_material *material);
 
 typedef struct		s_mesh
 {
-	t_vector 		*vector_vertex;
-	t_vector 		*vector_texture;
-	t_vector 		*vector_normal;
-	t_vector 		*vector_rgb_color;
-	t_vector 		*vector_random_color;
+	t_vector		*vector_vertex;
+	t_vector		*vector_texture;
+	t_vector		*vector_normal;
+	t_vector		*vector_rgb_color;
+	t_vector		*vector_random_color;
 	t_material		*material;
-	int 			vertex_number;
-	t_vao 			vao;
+	int				vertex_number;
+	t_vao			vao;
 }					t_mesh;
 
 t_mesh				mesh_create();
 void				mesh_destroy(t_mesh *mesh);
 void				mesh_load(t_mesh *mesh);
-void 				mesh_draw(const t_mesh *mesh);
+void				mesh_draw(const t_mesh *mesh);
 
 typedef struct		s_model
 {
@@ -78,10 +81,10 @@ typedef struct		s_model
 	float			scale;
 	t_matrix		rotation;
 	t_matrix		transformation;
-	t_vector3 		min;
-	t_vector3 		max;
-	t_vector3 		size;
-	t_vector3 		center;
+	t_vector3		min;
+	t_vector3		max;
+	t_vector3		size;
+	t_vector3		center;
 	int				mod_from;
 	int				mod_to;
 	float			mod_transition;
@@ -89,7 +92,7 @@ typedef struct		s_model
 
 typedef GLuint		t_shader;
 
-t_shader 			shader_create(GLuint type, const char *path);
+t_shader			shader_create(GLuint type, const char *path);
 void				shader_destroy(t_shader *shader);
 
 typedef GLuint		t_program;
@@ -151,10 +154,15 @@ typedef struct		s_engine
 void				engine_start(t_engine *engine, t_core *core);
 void				engine_finish(t_engine *engine);
 
-void				OpenGL_start(t_engine *engine);
-void				OpenGL_finish();
+void				opengl_start(t_engine *engine);
+void				opengl_finish();
 
-void 				handle_key(GLFWwindow* window, int key, int scancode, int action, int mode);
+void				handle_key(
+					GLFWwindow *window,
+					int key,
+					int scancode,
+					int action,
+					int mode);
 
 t_bool				handle_common(t_engine *engine, int key);
 t_bool				handle_mod(t_engine *engine, int key);
@@ -166,17 +174,27 @@ void				program_start(t_engine *engine);
 void				program_finish(t_engine *engine);
 
 void				camera_start(t_engine *engine);
-void				camera_move(t_engine *engine, t_axis axis, t_sign sign, t_vector3 *target);
-void				camera_rotate(t_engine *engine, t_axis axis, t_sign sign, t_matrix *target);
+void				camera_move(
+					t_engine *engine,
+					t_axis axis,
+					t_sign sign,
+					t_vector3 *target);
+void				camera_rotate(
+					t_engine *engine,
+					t_axis axis,
+					t_sign sign,
+					t_matrix *target);
 void				camera_update(t_engine *engine);
 
-void 				uniform_start(t_engine *engine);
-void		 		uniform_update_common(t_engine *engine);
-void				uniform_update_material(t_engine *engine, t_material *material);
+void				uniform_start(t_engine *engine);
+void				uniform_update_common(t_engine *engine);
+void				uniform_update_material(
+					t_engine *engine,
+					t_material *material);
 
 void				model_start(t_engine *engine);
-void 				model_finish(t_engine *engine);
-void 				model_load(t_engine *engine);
+void				model_finish(t_engine *engine);
+void				model_load(t_engine *engine);
 void				model_update(t_engine *engine, t_matrix *rotation);
 void				model_analyze(t_engine *engine);
 
@@ -187,8 +205,8 @@ void				model_auto_normal(t_engine *engine);
 void				model_auto_texture(t_engine *engine);
 void				model_auto_scale(t_engine *engine);
 
-void 				texture_start(t_engine *engine, const char *path);
-void 				texture_finish(t_engine *engine);
+void				texture_start(t_engine *engine, const char *path);
+void				texture_finish(t_engine *engine);
 
 void				loop(t_engine *engine);
 void				render(t_engine *engine);

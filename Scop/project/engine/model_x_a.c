@@ -2,7 +2,6 @@
 
 void				model_start(t_engine *engine)
 {
-
 	engine->model.meshes = vector_create(sizeof(t_mesh));
 	engine->model.position = vector3_empty();
 	engine->model.scale = 1.f;
@@ -14,7 +13,7 @@ void				model_start(t_engine *engine)
 	model_update(engine, NULL);
 }
 
-void 				model_finish(t_engine *engine)
+void				model_finish(t_engine *engine)
 {
 	t_vector_iter	iter;
 
@@ -24,9 +23,9 @@ void 				model_finish(t_engine *engine)
 	vector_destroy(&engine->model.meshes);
 }
 
-void 				model_load(t_engine *engine)
+void				model_load(t_engine *engine)
 {
-	int 			i;
+	int				i;
 
 	i = 0;
 	while (i < (int)engine->model.meshes->length)
@@ -40,15 +39,17 @@ void				model_update(t_engine *engine, t_matrix *rotation)
 
 	translate = matrix_translate(engine->model.position);
 	scale = matrix_scale(engine->model.scale);
-	engine->model.rotation = matrix_product(rotation ? *rotation : matrix_identity(), engine->model.rotation);
-	engine->model.transformation = matrix_product_multiple(3, translate, engine->model.rotation, scale);
+	engine->model.rotation = matrix_product(
+		rotation ? *rotation : matrix_identity(), engine->model.rotation);
+	engine->model.transformation = matrix_product_multiple(
+		3, translate, engine->model.rotation, scale);
 }
 
 void				model_analyze(t_engine *engine)
 {
 	t_model			*model;
-	int 			i_vertex;
-	int 			i_mesh;
+	int				i_vertex;
+	int				i_mesh;
 	t_mesh			*mesh;
 	t_vector3		*vertex;
 

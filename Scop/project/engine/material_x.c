@@ -15,7 +15,7 @@ t_material			material_create(const char *name)
 	return (material);
 }
 
-void 				material_destroy(t_material *material)
+void				material_destroy(t_material *material)
 {
 	free(material->name);
 	texture_destroy(&material->texture);

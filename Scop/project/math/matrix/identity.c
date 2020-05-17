@@ -1,9 +1,9 @@
 #include "scop_math.h"
 
-t_matrix			matrix_identity()
+t_matrix			matrix_identity(void)
 {
 	t_matrix		matrix;
-	int 			i;
+	int				i;
 
 	matrix = matrix_empty();
 	i = 0;

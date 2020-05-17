@@ -3,7 +3,7 @@
 t_matrix			matrix_scale(float value)
 {
 	t_matrix		matrix;
-	int 			i;
+	int				i;
 
 	matrix = matrix_identity();
 	i = 0;

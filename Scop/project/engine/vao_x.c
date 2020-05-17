@@ -1,18 +1,17 @@
 #include "engine.h"
 
-t_vao 				vao_create()
+t_vao				vao_create(void)
 {
 	t_vao			vao;
 
 	vao.attribute_next = 0;
 	glGenVertexArrays(1, &vao.object);
 	return (vao);
-
 }
 
-void 				vao_destroy(t_vao *vao)
+void				vao_destroy(t_vao *vao)
 {
-	int 			i;
+	int				i;
 
 	i = 0;
 	while (i < vao->attribute_next)
@@ -20,17 +19,17 @@ void 				vao_destroy(t_vao *vao)
 	glDeleteVertexArrays(1, &vao->object);
 }
 
-void 				vao_bind(const t_vao *vao)
+void				vao_bind(const t_vao *vao)
 {
 	glBindVertexArray(vao ? vao->object : 0);
 }
 
-void 				vao_attribute(
+void				vao_attribute(
 					t_vao *vao,
 					const t_vector *vector,
 					int element_size)
 {
-	t_vbo 			*vbo;
+	t_vbo			*vbo;
 
 	ft_assert_critical(NULL,
 		vao->attribute_next < SCOP_VAO_ATTRIBUTE_NUMBER,

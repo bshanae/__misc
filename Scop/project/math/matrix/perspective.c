@@ -1,30 +1,29 @@
 #include "scop_math.h"
 
-t_matrix			matrix_perspective(float fov, float aspect_ratio, float near, float far)
+t_matrix			matrix_perspective(
+					float fov,
+					float aspect_ratio,
+					float near,
+					float far)
 {
 	t_matrix		matrix;
-
-	float f = tanf(degrees_to_radians(fov) / 2.f);
+	const float		f = tanf(degrees_to_radians(fov) / 2.f);
 
 	matrix.data[0][0] = 1.f / (aspect_ratio * f);
 	matrix.data[0][1] = 0;
 	matrix.data[0][2] = 0;
 	matrix.data[0][3] = 0;
-
 	matrix.data[1][0] = 0;
 	matrix.data[1][1] = 1.f / f;
 	matrix.data[1][2] = 0;
 	matrix.data[1][3] = 0;
-
 	matrix.data[2][0] = 0;
 	matrix.data[2][1] = 0;
 	matrix.data[2][2] = -1 * (far + near) / (far - near);
 	matrix.data[2][3] = -1;
-
 	matrix.data[3][0] = 0;
 	matrix.data[3][1] = 0;
 	matrix.data[3][2] = -2 * far * near / (far - near);
 	matrix.data[3][3] = 0;
-
 	return (matrix);
 }

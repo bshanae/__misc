@@ -4,8 +4,8 @@ void				program_start(t_engine *engine)
 {
 	t_shader		shader_vertex;
 	t_shader		shader_fragment;
-	int 			success;
-	char 			log[1024];
+	int				success;
+	char			log[1024];
 
 	shader_vertex = shader_create(GL_VERTEX_SHADER, SCOP_VERTEX_SHADER);
 	shader_fragment = shader_create(GL_FRAGMENT_SHADER, SCOP_FRAGMENT_SHADER);

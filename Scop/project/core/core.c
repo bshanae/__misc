@@ -8,7 +8,7 @@ void				core_start(t_core *core)
 	printf("Scop start\n");
 }
 
-void 				core_finish(t_core *core)
+void				core_finish(t_core *core)
 {
 	printf("\nScop finish\n");
 }

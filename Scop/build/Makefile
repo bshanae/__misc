@@ -16,8 +16,8 @@ PREFIX = scop
 EXECUTABLE = scop
 
 INCLUDE = -I ../project/libft/includes -I ../project -I ../project/common -I ../project/core -I ../project/math -I ../project/engine -I ../project/parser
-OBJECT = ${OBJECT_FOLDER}/main.c.o ${OBJECT_FOLDER}/core.c.o ${OBJECT_FOLDER}/info.c.o ${OBJECT_FOLDER}/vector2.c.o ${OBJECT_FOLDER}/vector3.c.o ${OBJECT_FOLDER}/vector4.c.o ${OBJECT_FOLDER}/empty.c.o ${OBJECT_FOLDER}/look_at.c.o ${OBJECT_FOLDER}/perspective.c.o ${OBJECT_FOLDER}/product.c.o ${OBJECT_FOLDER}/print.c.o ${OBJECT_FOLDER}/rotate_x.c.o ${OBJECT_FOLDER}/scale.c.o ${OBJECT_FOLDER}/translate.c.o ${OBJECT_FOLDER}/identity.c.o ${OBJECT_FOLDER}/degrees_to_radians.c.o ${OBJECT_FOLDER}/engine.c.o ${OBJECT_FOLDER}/OpenGL_x.c.o ${OBJECT_FOLDER}/shader_x.c.o ${OBJECT_FOLDER}/program_x.c.o ${OBJECT_FOLDER}/loop.c.o ${OBJECT_FOLDER}/render.c.o ${OBJECT_FOLDER}/handle_key.c.o ${OBJECT_FOLDER}/handle_x.c.o ${OBJECT_FOLDER}/vbo_x.c.o ${OBJECT_FOLDER}/vao_x.c.o ${OBJECT_FOLDER}/mesh_x.c.o ${OBJECT_FOLDER}/camera_x.c.o ${OBJECT_FOLDER}/uniform_x.c.o ${OBJECT_FOLDER}/texture_x_a.c.o ${OBJECT_FOLDER}/texture_x_b.c.o ${OBJECT_FOLDER}/material_x.c.o ${OBJECT_FOLDER}/model_x_a.c.o ${OBJECT_FOLDER}/model_x_b.c.o ${OBJECT_FOLDER}/model_x_с.c.o ${OBJECT_FOLDER}/parser.c.o ${OBJECT_FOLDER}/fill_x.c.o ${OBJECT_FOLDER}/read_model.c.o ${OBJECT_FOLDER}/read_model_x_a.c.o ${OBJECT_FOLDER}/read_model_x_b.c.o ${OBJECT_FOLDER}/read_material_x_a.c.o ${OBJECT_FOLDER}/read_material_x_b.c.o ${OBJECT_FOLDER}/interim_mesh_x.c.o ${OBJECT_FOLDER}/generate_x.c.o ${OBJECT_FOLDER}/extract_directory.c.o
-DEPEND = ${DEPEND_FOLDER}/main.c.d ${DEPEND_FOLDER}/core.c.d ${DEPEND_FOLDER}/info.c.d ${DEPEND_FOLDER}/vector2.c.d ${DEPEND_FOLDER}/vector3.c.d ${DEPEND_FOLDER}/vector4.c.d ${DEPEND_FOLDER}/empty.c.d ${DEPEND_FOLDER}/look_at.c.d ${DEPEND_FOLDER}/perspective.c.d ${DEPEND_FOLDER}/product.c.d ${DEPEND_FOLDER}/print.c.d ${DEPEND_FOLDER}/rotate_x.c.d ${DEPEND_FOLDER}/scale.c.d ${DEPEND_FOLDER}/translate.c.d ${DEPEND_FOLDER}/identity.c.d ${DEPEND_FOLDER}/degrees_to_radians.c.d ${DEPEND_FOLDER}/engine.c.d ${DEPEND_FOLDER}/OpenGL_x.c.d ${DEPEND_FOLDER}/shader_x.c.d ${DEPEND_FOLDER}/program_x.c.d ${DEPEND_FOLDER}/loop.c.d ${DEPEND_FOLDER}/render.c.d ${DEPEND_FOLDER}/handle_key.c.d ${DEPEND_FOLDER}/handle_x.c.d ${DEPEND_FOLDER}/vbo_x.c.d ${DEPEND_FOLDER}/vao_x.c.d ${DEPEND_FOLDER}/mesh_x.c.d ${DEPEND_FOLDER}/camera_x.c.d ${DEPEND_FOLDER}/uniform_x.c.d ${DEPEND_FOLDER}/texture_x_a.c.d ${DEPEND_FOLDER}/texture_x_b.c.d ${DEPEND_FOLDER}/material_x.c.d ${DEPEND_FOLDER}/model_x_a.c.d ${DEPEND_FOLDER}/model_x_b.c.d ${DEPEND_FOLDER}/model_x_с.c.d ${DEPEND_FOLDER}/parser.c.d ${DEPEND_FOLDER}/fill_x.c.d ${DEPEND_FOLDER}/read_model.c.d ${DEPEND_FOLDER}/read_model_x_a.c.d ${DEPEND_FOLDER}/read_model_x_b.c.d ${DEPEND_FOLDER}/read_material_x_a.c.d ${DEPEND_FOLDER}/read_material_x_b.c.d ${DEPEND_FOLDER}/interim_mesh_x.c.d ${DEPEND_FOLDER}/generate_x.c.d ${DEPEND_FOLDER}/extract_directory.c.d
+OBJECT = ${OBJECT_FOLDER}/main.c.o ${OBJECT_FOLDER}/core.c.o ${OBJECT_FOLDER}/info.c.o ${OBJECT_FOLDER}/vector2.c.o ${OBJECT_FOLDER}/vector3.c.o ${OBJECT_FOLDER}/vector4.c.o ${OBJECT_FOLDER}/empty.c.o ${OBJECT_FOLDER}/look_at.c.o ${OBJECT_FOLDER}/perspective.c.o ${OBJECT_FOLDER}/product.c.o ${OBJECT_FOLDER}/print.c.o ${OBJECT_FOLDER}/rotate_x.c.o ${OBJECT_FOLDER}/scale.c.o ${OBJECT_FOLDER}/translate.c.o ${OBJECT_FOLDER}/identity.c.o ${OBJECT_FOLDER}/degrees_to_radians.c.o ${OBJECT_FOLDER}/engine.c.o ${OBJECT_FOLDER}/opengl_x.c.o ${OBJECT_FOLDER}/shader_x.c.o ${OBJECT_FOLDER}/program_x.c.o ${OBJECT_FOLDER}/loop.c.o ${OBJECT_FOLDER}/render.c.o ${OBJECT_FOLDER}/handle_key.c.o ${OBJECT_FOLDER}/handle_x.c.o ${OBJECT_FOLDER}/vbo_x.c.o ${OBJECT_FOLDER}/vao_x.c.o ${OBJECT_FOLDER}/mesh_x.c.o ${OBJECT_FOLDER}/camera_x.c.o ${OBJECT_FOLDER}/uniform_x.c.o ${OBJECT_FOLDER}/texture_x_a.c.o ${OBJECT_FOLDER}/texture_x_b.c.o ${OBJECT_FOLDER}/material_x.c.o ${OBJECT_FOLDER}/model_x_a.c.o ${OBJECT_FOLDER}/model_x_b.c.o ${OBJECT_FOLDER}/model_x_c.c.o ${OBJECT_FOLDER}/parser.c.o ${OBJECT_FOLDER}/fill_x.c.o ${OBJECT_FOLDER}/read_model.c.o ${OBJECT_FOLDER}/read_model_x_a.c.o ${OBJECT_FOLDER}/read_model_x_b.c.o ${OBJECT_FOLDER}/read_material_x_a.c.o ${OBJECT_FOLDER}/read_material_x_b.c.o ${OBJECT_FOLDER}/interim_mesh_x.c.o ${OBJECT_FOLDER}/generate_x.c.o ${OBJECT_FOLDER}/extract_directory.c.o ${OBJECT_FOLDER}/clamp.c.o
+DEPEND = ${DEPEND_FOLDER}/main.c.d ${DEPEND_FOLDER}/core.c.d ${DEPEND_FOLDER}/info.c.d ${DEPEND_FOLDER}/vector2.c.d ${DEPEND_FOLDER}/vector3.c.d ${DEPEND_FOLDER}/vector4.c.d ${DEPEND_FOLDER}/empty.c.d ${DEPEND_FOLDER}/look_at.c.d ${DEPEND_FOLDER}/perspective.c.d ${DEPEND_FOLDER}/product.c.d ${DEPEND_FOLDER}/print.c.d ${DEPEND_FOLDER}/rotate_x.c.d ${DEPEND_FOLDER}/scale.c.d ${DEPEND_FOLDER}/translate.c.d ${DEPEND_FOLDER}/identity.c.d ${DEPEND_FOLDER}/degrees_to_radians.c.d ${DEPEND_FOLDER}/engine.c.d ${DEPEND_FOLDER}/opengl_x.c.d ${DEPEND_FOLDER}/shader_x.c.d ${DEPEND_FOLDER}/program_x.c.d ${DEPEND_FOLDER}/loop.c.d ${DEPEND_FOLDER}/render.c.d ${DEPEND_FOLDER}/handle_key.c.d ${DEPEND_FOLDER}/handle_x.c.d ${DEPEND_FOLDER}/vbo_x.c.d ${DEPEND_FOLDER}/vao_x.c.d ${DEPEND_FOLDER}/mesh_x.c.d ${DEPEND_FOLDER}/camera_x.c.d ${DEPEND_FOLDER}/uniform_x.c.d ${DEPEND_FOLDER}/texture_x_a.c.d ${DEPEND_FOLDER}/texture_x_b.c.d ${DEPEND_FOLDER}/material_x.c.d ${DEPEND_FOLDER}/model_x_a.c.d ${DEPEND_FOLDER}/model_x_b.c.d ${DEPEND_FOLDER}/model_x_c.c.d ${DEPEND_FOLDER}/parser.c.d ${DEPEND_FOLDER}/fill_x.c.d ${DEPEND_FOLDER}/read_model.c.d ${DEPEND_FOLDER}/read_model_x_a.c.d ${DEPEND_FOLDER}/read_model_x_b.c.d ${DEPEND_FOLDER}/read_material_x_a.c.d ${DEPEND_FOLDER}/read_material_x_b.c.d ${DEPEND_FOLDER}/interim_mesh_x.c.d ${DEPEND_FOLDER}/generate_x.c.d ${DEPEND_FOLDER}/extract_directory.c.d ${DEPEND_FOLDER}/clamp.c.d
 LINK_DIRECTORY = -L ../project/libft
 LINK_LIBRARY = -l glfw -l glew -l ft -framework OpenGL
 
@@ -76,7 +76,7 @@ ${OBJECT_FOLDER}/vector2.c.o : ${DEPEND_FOLDER}/vector2.c.d | ${OBJECT_FOLDER} $
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/vector2.c.o -MF ${DEPEND_FOLDER}/vector2.c.d -c ../project/math/vector/vector2.c -o ${OBJECT_FOLDER}/vector2.c.o
 
 ${OBJECT_FOLDER}/vector3.c.o : ${DEPEND_FOLDER}/vector3.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,11%${COMMA} compiling object ../project/math/vector/vector3.c}
+	${call INFO,10%${COMMA} compiling object ../project/math/vector/vector3.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/vector3.c.o -MF ${DEPEND_FOLDER}/vector3.c.d -c ../project/math/vector/vector3.c -o ${OBJECT_FOLDER}/vector3.c.o
 
 ${OBJECT_FOLDER}/vector4.c.o : ${DEPEND_FOLDER}/vector4.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
@@ -92,15 +92,15 @@ ${OBJECT_FOLDER}/look_at.c.o : ${DEPEND_FOLDER}/look_at.c.d | ${OBJECT_FOLDER} $
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/look_at.c.o -MF ${DEPEND_FOLDER}/look_at.c.d -c ../project/math/matrix/look_at.c -o ${OBJECT_FOLDER}/look_at.c.o
 
 ${OBJECT_FOLDER}/perspective.c.o : ${DEPEND_FOLDER}/perspective.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,20%${COMMA} compiling object ../project/math/matrix/perspective.c}
+	${call INFO,19%${COMMA} compiling object ../project/math/matrix/perspective.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/perspective.c.o -MF ${DEPEND_FOLDER}/perspective.c.d -c ../project/math/matrix/perspective.c -o ${OBJECT_FOLDER}/perspective.c.o
 
 ${OBJECT_FOLDER}/product.c.o : ${DEPEND_FOLDER}/product.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,22%${COMMA} compiling object ../project/math/matrix/product.c}
+	${call INFO,21%${COMMA} compiling object ../project/math/matrix/product.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/product.c.o -MF ${DEPEND_FOLDER}/product.c.d -c ../project/math/matrix/product.c -o ${OBJECT_FOLDER}/product.c.o
 
 ${OBJECT_FOLDER}/print.c.o : ${DEPEND_FOLDER}/print.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,24%${COMMA} compiling object ../project/math/matrix/print.c}
+	${call INFO,23%${COMMA} compiling object ../project/math/matrix/print.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/print.c.o -MF ${DEPEND_FOLDER}/print.c.d -c ../project/math/matrix/print.c -o ${OBJECT_FOLDER}/print.c.o
 
 ${OBJECT_FOLDER}/rotate_x.c.o : ${DEPEND_FOLDER}/rotate_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
@@ -112,132 +112,136 @@ ${OBJECT_FOLDER}/scale.c.o : ${DEPEND_FOLDER}/scale.c.d | ${OBJECT_FOLDER} ${DEP
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/scale.c.o -MF ${DEPEND_FOLDER}/scale.c.d -c ../project/math/matrix/scale.c -o ${OBJECT_FOLDER}/scale.c.o
 
 ${OBJECT_FOLDER}/translate.c.o : ${DEPEND_FOLDER}/translate.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,31%${COMMA} compiling object ../project/math/matrix/translate.c}
+	${call INFO,30%${COMMA} compiling object ../project/math/matrix/translate.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/translate.c.o -MF ${DEPEND_FOLDER}/translate.c.d -c ../project/math/matrix/translate.c -o ${OBJECT_FOLDER}/translate.c.o
 
 ${OBJECT_FOLDER}/identity.c.o : ${DEPEND_FOLDER}/identity.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,33%${COMMA} compiling object ../project/math/matrix/identity.c}
+	${call INFO,32%${COMMA} compiling object ../project/math/matrix/identity.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/identity.c.o -MF ${DEPEND_FOLDER}/identity.c.d -c ../project/math/matrix/identity.c -o ${OBJECT_FOLDER}/identity.c.o
 
 ${OBJECT_FOLDER}/degrees_to_radians.c.o : ${DEPEND_FOLDER}/degrees_to_radians.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,35%${COMMA} compiling object ../project/math/other/degrees_to_radians.c}
+	${call INFO,34%${COMMA} compiling object ../project/math/other/degrees_to_radians.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/degrees_to_radians.c.o -MF ${DEPEND_FOLDER}/degrees_to_radians.c.d -c ../project/math/other/degrees_to_radians.c -o ${OBJECT_FOLDER}/degrees_to_radians.c.o
 
 ${OBJECT_FOLDER}/engine.c.o : ${DEPEND_FOLDER}/engine.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,37%${COMMA} compiling object ../project/engine/engine.c}
+	${call INFO,36%${COMMA} compiling object ../project/engine/engine.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/engine.c.o -MF ${DEPEND_FOLDER}/engine.c.d -c ../project/engine/engine.c -o ${OBJECT_FOLDER}/engine.c.o
 
-${OBJECT_FOLDER}/OpenGL_x.c.o : ${DEPEND_FOLDER}/OpenGL_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,40%${COMMA} compiling object ../project/engine/OpenGL_x.c}
-	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/OpenGL_x.c.o -MF ${DEPEND_FOLDER}/OpenGL_x.c.d -c ../project/engine/OpenGL_x.c -o ${OBJECT_FOLDER}/OpenGL_x.c.o
+${OBJECT_FOLDER}/opengl_x.c.o : ${DEPEND_FOLDER}/opengl_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
+	${call INFO,39%${COMMA} compiling object ../project/engine/opengl_x.c}
+	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/opengl_x.c.o -MF ${DEPEND_FOLDER}/opengl_x.c.d -c ../project/engine/opengl_x.c -o ${OBJECT_FOLDER}/opengl_x.c.o
 
 ${OBJECT_FOLDER}/shader_x.c.o : ${DEPEND_FOLDER}/shader_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,42%${COMMA} compiling object ../project/engine/shader_x.c}
+	${call INFO,41%${COMMA} compiling object ../project/engine/shader_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/shader_x.c.o -MF ${DEPEND_FOLDER}/shader_x.c.d -c ../project/engine/shader_x.c -o ${OBJECT_FOLDER}/shader_x.c.o
 
 ${OBJECT_FOLDER}/program_x.c.o : ${DEPEND_FOLDER}/program_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,44%${COMMA} compiling object ../project/engine/program_x.c}
+	${call INFO,43%${COMMA} compiling object ../project/engine/program_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/program_x.c.o -MF ${DEPEND_FOLDER}/program_x.c.d -c ../project/engine/program_x.c -o ${OBJECT_FOLDER}/program_x.c.o
 
 ${OBJECT_FOLDER}/loop.c.o : ${DEPEND_FOLDER}/loop.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,46%${COMMA} compiling object ../project/engine/loop.c}
+	${call INFO,45%${COMMA} compiling object ../project/engine/loop.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/loop.c.o -MF ${DEPEND_FOLDER}/loop.c.d -c ../project/engine/loop.c -o ${OBJECT_FOLDER}/loop.c.o
 
 ${OBJECT_FOLDER}/render.c.o : ${DEPEND_FOLDER}/render.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,48%${COMMA} compiling object ../project/engine/render.c}
+	${call INFO,47%${COMMA} compiling object ../project/engine/render.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/render.c.o -MF ${DEPEND_FOLDER}/render.c.d -c ../project/engine/render.c -o ${OBJECT_FOLDER}/render.c.o
 
 ${OBJECT_FOLDER}/handle_key.c.o : ${DEPEND_FOLDER}/handle_key.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,51%${COMMA} compiling object ../project/engine/handle_key.c}
+	${call INFO,50%${COMMA} compiling object ../project/engine/handle_key.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/handle_key.c.o -MF ${DEPEND_FOLDER}/handle_key.c.d -c ../project/engine/handle_key.c -o ${OBJECT_FOLDER}/handle_key.c.o
 
 ${OBJECT_FOLDER}/handle_x.c.o : ${DEPEND_FOLDER}/handle_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,53%${COMMA} compiling object ../project/engine/handle_x.c}
+	${call INFO,52%${COMMA} compiling object ../project/engine/handle_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/handle_x.c.o -MF ${DEPEND_FOLDER}/handle_x.c.d -c ../project/engine/handle_x.c -o ${OBJECT_FOLDER}/handle_x.c.o
 
 ${OBJECT_FOLDER}/vbo_x.c.o : ${DEPEND_FOLDER}/vbo_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,55%${COMMA} compiling object ../project/engine/vbo_x.c}
+	${call INFO,54%${COMMA} compiling object ../project/engine/vbo_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/vbo_x.c.o -MF ${DEPEND_FOLDER}/vbo_x.c.d -c ../project/engine/vbo_x.c -o ${OBJECT_FOLDER}/vbo_x.c.o
 
 ${OBJECT_FOLDER}/vao_x.c.o : ${DEPEND_FOLDER}/vao_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,57%${COMMA} compiling object ../project/engine/vao_x.c}
+	${call INFO,56%${COMMA} compiling object ../project/engine/vao_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/vao_x.c.o -MF ${DEPEND_FOLDER}/vao_x.c.d -c ../project/engine/vao_x.c -o ${OBJECT_FOLDER}/vao_x.c.o
 
 ${OBJECT_FOLDER}/mesh_x.c.o : ${DEPEND_FOLDER}/mesh_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,60%${COMMA} compiling object ../project/engine/mesh_x.c}
+	${call INFO,58%${COMMA} compiling object ../project/engine/mesh_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/mesh_x.c.o -MF ${DEPEND_FOLDER}/mesh_x.c.d -c ../project/engine/mesh_x.c -o ${OBJECT_FOLDER}/mesh_x.c.o
 
 ${OBJECT_FOLDER}/camera_x.c.o : ${DEPEND_FOLDER}/camera_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,62%${COMMA} compiling object ../project/engine/camera_x.c}
+	${call INFO,60%${COMMA} compiling object ../project/engine/camera_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/camera_x.c.o -MF ${DEPEND_FOLDER}/camera_x.c.d -c ../project/engine/camera_x.c -o ${OBJECT_FOLDER}/camera_x.c.o
 
 ${OBJECT_FOLDER}/uniform_x.c.o : ${DEPEND_FOLDER}/uniform_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,64%${COMMA} compiling object ../project/engine/uniform_x.c}
+	${call INFO,63%${COMMA} compiling object ../project/engine/uniform_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/uniform_x.c.o -MF ${DEPEND_FOLDER}/uniform_x.c.d -c ../project/engine/uniform_x.c -o ${OBJECT_FOLDER}/uniform_x.c.o
 
 ${OBJECT_FOLDER}/texture_x_a.c.o : ${DEPEND_FOLDER}/texture_x_a.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,66%${COMMA} compiling object ../project/engine/texture_x_a.c}
+	${call INFO,65%${COMMA} compiling object ../project/engine/texture_x_a.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/texture_x_a.c.o -MF ${DEPEND_FOLDER}/texture_x_a.c.d -c ../project/engine/texture_x_a.c -o ${OBJECT_FOLDER}/texture_x_a.c.o
 
 ${OBJECT_FOLDER}/texture_x_b.c.o : ${DEPEND_FOLDER}/texture_x_b.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,68%${COMMA} compiling object ../project/engine/texture_x_b.c}
+	${call INFO,67%${COMMA} compiling object ../project/engine/texture_x_b.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/texture_x_b.c.o -MF ${DEPEND_FOLDER}/texture_x_b.c.d -c ../project/engine/texture_x_b.c -o ${OBJECT_FOLDER}/texture_x_b.c.o
 
 ${OBJECT_FOLDER}/material_x.c.o : ${DEPEND_FOLDER}/material_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,71%${COMMA} compiling object ../project/engine/material_x.c}
+	${call INFO,69%${COMMA} compiling object ../project/engine/material_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/material_x.c.o -MF ${DEPEND_FOLDER}/material_x.c.d -c ../project/engine/material_x.c -o ${OBJECT_FOLDER}/material_x.c.o
 
 ${OBJECT_FOLDER}/model_x_a.c.o : ${DEPEND_FOLDER}/model_x_a.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,73%${COMMA} compiling object ../project/engine/model_x_a.c}
+	${call INFO,71%${COMMA} compiling object ../project/engine/model_x_a.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/model_x_a.c.o -MF ${DEPEND_FOLDER}/model_x_a.c.d -c ../project/engine/model_x_a.c -o ${OBJECT_FOLDER}/model_x_a.c.o
 
 ${OBJECT_FOLDER}/model_x_b.c.o : ${DEPEND_FOLDER}/model_x_b.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,75%${COMMA} compiling object ../project/engine/model_x_b.c}
+	${call INFO,73%${COMMA} compiling object ../project/engine/model_x_b.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/model_x_b.c.o -MF ${DEPEND_FOLDER}/model_x_b.c.d -c ../project/engine/model_x_b.c -o ${OBJECT_FOLDER}/model_x_b.c.o
 
-${OBJECT_FOLDER}/model_x_с.c.o : ${DEPEND_FOLDER}/model_x_с.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,77%${COMMA} compiling object ../project/engine/model_x_с.c}
-	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/model_x_с.c.o -MF ${DEPEND_FOLDER}/model_x_с.c.d -c ../project/engine/model_x_с.c -o ${OBJECT_FOLDER}/model_x_с.c.o
+${OBJECT_FOLDER}/model_x_c.c.o : ${DEPEND_FOLDER}/model_x_c.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
+	${call INFO,76%${COMMA} compiling object ../project/engine/model_x_c.c}
+	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/model_x_c.c.o -MF ${DEPEND_FOLDER}/model_x_c.c.d -c ../project/engine/model_x_c.c -o ${OBJECT_FOLDER}/model_x_c.c.o
 
 ${OBJECT_FOLDER}/parser.c.o : ${DEPEND_FOLDER}/parser.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,80%${COMMA} compiling object ../project/parser/parser.c}
+	${call INFO,78%${COMMA} compiling object ../project/parser/parser.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/parser.c.o -MF ${DEPEND_FOLDER}/parser.c.d -c ../project/parser/parser.c -o ${OBJECT_FOLDER}/parser.c.o
 
 ${OBJECT_FOLDER}/fill_x.c.o : ${DEPEND_FOLDER}/fill_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,82%${COMMA} compiling object ../project/parser/fill_x.c}
+	${call INFO,80%${COMMA} compiling object ../project/parser/fill_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/fill_x.c.o -MF ${DEPEND_FOLDER}/fill_x.c.d -c ../project/parser/fill_x.c -o ${OBJECT_FOLDER}/fill_x.c.o
 
 ${OBJECT_FOLDER}/read_model.c.o : ${DEPEND_FOLDER}/read_model.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,84%${COMMA} compiling object ../project/parser/read_model.c}
+	${call INFO,82%${COMMA} compiling object ../project/parser/read_model.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/read_model.c.o -MF ${DEPEND_FOLDER}/read_model.c.d -c ../project/parser/read_model.c -o ${OBJECT_FOLDER}/read_model.c.o
 
 ${OBJECT_FOLDER}/read_model_x_a.c.o : ${DEPEND_FOLDER}/read_model_x_a.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,86%${COMMA} compiling object ../project/parser/read_model_x_a.c}
+	${call INFO,84%${COMMA} compiling object ../project/parser/read_model_x_a.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/read_model_x_a.c.o -MF ${DEPEND_FOLDER}/read_model_x_a.c.d -c ../project/parser/read_model_x_a.c -o ${OBJECT_FOLDER}/read_model_x_a.c.o
 
 ${OBJECT_FOLDER}/read_model_x_b.c.o : ${DEPEND_FOLDER}/read_model_x_b.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,88%${COMMA} compiling object ../project/parser/read_model_x_b.c}
+	${call INFO,86%${COMMA} compiling object ../project/parser/read_model_x_b.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/read_model_x_b.c.o -MF ${DEPEND_FOLDER}/read_model_x_b.c.d -c ../project/parser/read_model_x_b.c -o ${OBJECT_FOLDER}/read_model_x_b.c.o
 
 ${OBJECT_FOLDER}/read_material_x_a.c.o : ${DEPEND_FOLDER}/read_material_x_a.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,91%${COMMA} compiling object ../project/parser/read_material_x_a.c}
+	${call INFO,89%${COMMA} compiling object ../project/parser/read_material_x_a.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/read_material_x_a.c.o -MF ${DEPEND_FOLDER}/read_material_x_a.c.d -c ../project/parser/read_material_x_a.c -o ${OBJECT_FOLDER}/read_material_x_a.c.o
 
 ${OBJECT_FOLDER}/read_material_x_b.c.o : ${DEPEND_FOLDER}/read_material_x_b.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,93%${COMMA} compiling object ../project/parser/read_material_x_b.c}
+	${call INFO,91%${COMMA} compiling object ../project/parser/read_material_x_b.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/read_material_x_b.c.o -MF ${DEPEND_FOLDER}/read_material_x_b.c.d -c ../project/parser/read_material_x_b.c -o ${OBJECT_FOLDER}/read_material_x_b.c.o
 
 ${OBJECT_FOLDER}/interim_mesh_x.c.o : ${DEPEND_FOLDER}/interim_mesh_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,95%${COMMA} compiling object ../project/parser/interim_mesh_x.c}
+	${call INFO,93%${COMMA} compiling object ../project/parser/interim_mesh_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/interim_mesh_x.c.o -MF ${DEPEND_FOLDER}/interim_mesh_x.c.d -c ../project/parser/interim_mesh_x.c -o ${OBJECT_FOLDER}/interim_mesh_x.c.o
 
 ${OBJECT_FOLDER}/generate_x.c.o : ${DEPEND_FOLDER}/generate_x.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,97%${COMMA} compiling object ../project/parser/generate_x.c}
+	${call INFO,95%${COMMA} compiling object ../project/parser/generate_x.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/generate_x.c.o -MF ${DEPEND_FOLDER}/generate_x.c.d -c ../project/parser/generate_x.c -o ${OBJECT_FOLDER}/generate_x.c.o
 
 ${OBJECT_FOLDER}/extract_directory.c.o : ${DEPEND_FOLDER}/extract_directory.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
-	${call INFO,100%${COMMA} compiling object ../project/parser/extract_directory.c}
+	${call INFO,97%${COMMA} compiling object ../project/parser/extract_directory.c}
 	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/extract_directory.c.o -MF ${DEPEND_FOLDER}/extract_directory.c.d -c ../project/parser/extract_directory.c -o ${OBJECT_FOLDER}/extract_directory.c.o
+
+${OBJECT_FOLDER}/clamp.c.o : ${DEPEND_FOLDER}/clamp.c.d | ${OBJECT_FOLDER} ${DEPEND_FOLDER}
+	${call INFO,100%${COMMA} compiling object ../project/math/other/clamp.c}
+	@${COMPILER} ${INCLUDE} ${FLAG_OBJECT} ${FLAG_COMMON} -MMD -MP -MT ${OBJECT_FOLDER}/clamp.c.o -MF ${DEPEND_FOLDER}/clamp.c.d -c ../project/math/other/clamp.c -o ${OBJECT_FOLDER}/clamp.c.o
 	
 
 #						DEPENDENCIES

@@ -4,17 +4,26 @@ t_matrix			matrix_product(t_matrix a, t_matrix b)
 {
 	t_matrix		matrix;
 	float			num;
+	int				i;
+	int				j;
+	int				k;
 
-	matrix = (t_matrix){};
-	for (int i = 0; i < 4; i++)
+	i = 0;
+	while (i < 4)
 	{
-		for (int j = 0; j < 4; j++)
+		j = 0;
+		while (j < 4)
 		{
 			num = 0;
-			for (int k = 0; k < 4; k++)
+			k = 0;
+			while (k < 4)
+			{
 				num += a.data[k][j] * b.data[i][k];
-			matrix.data[i][j] = num;
+				k++;
+			}
+			matrix.data[i][j++] = num;
 		}
+		i++;
 	}
 	return (matrix);
 }
@@ -24,7 +33,8 @@ t_matrix			matrix_product_multiple(int number, ...)
 	t_matrix		final;
 	va_list			args;
 
-	ft_assert(NULL, number > 0, "Invalid number of arguments for matrix multiplication");
+	ft_assert(NULL, number > 0,
+		"Invalid number of arguments for matrix multiplication");
 	final = matrix_identity();
 	va_start(args, number);
 	while (number-- > 0)

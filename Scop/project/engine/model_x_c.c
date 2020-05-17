@@ -20,8 +20,8 @@ static void			helper(t_mesh *mesh, int i)
 
 void				model_auto_normal(t_engine *engine)
 {
-	int 			i_mesh;
-	int 			i_vertex;
+	int				i_mesh;
+	int				i_vertex;
 	t_mesh			*mesh;
 
 	i_mesh = 0;
@@ -39,8 +39,8 @@ void				model_auto_normal(t_engine *engine)
 
 void				model_auto_texture(t_engine *engine)
 {
-	int 			i_mesh;
-	int 			i_vertex;
+	int				i_mesh;
+	int				i_vertex;
 	t_mesh			*mesh;
 	t_vector3		*vertex;
 	t_vector2		*texture;

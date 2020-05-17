@@ -3,7 +3,7 @@
 t_matrix			matrix_translate(t_vector3 value)
 {
 	t_matrix		matrix;
-	int 			i;
+	int				i;
 
 	matrix = matrix_identity();
 	i = 0;

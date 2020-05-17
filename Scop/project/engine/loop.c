@@ -1,6 +1,6 @@
 #include "engine.h"
 
-static void 		helper_counter(t_engine *engine)
+static void			helper_counter(t_engine *engine)
 {
 	t_matrix		rotate;
 
@@ -9,7 +9,8 @@ static void 		helper_counter(t_engine *engine)
 	{
 		engine->counter_rotation = 0;
 		engine->render_request = true;
-		rotate = matrix_rotate_around_axis(SCOP_AXIS_Y, SCOP_MODEL_ROTATION_SPEED);
+		rotate = matrix_rotate_around_axis(
+			SCOP_AXIS_Y, SCOP_MODEL_ROTATION_SPEED);
 		model_update(engine, &rotate);
 	}
 	if (!engine->block_transition &&
@@ -36,5 +37,3 @@ void				loop(t_engine *engine)
 			render(engine);
 	}
 }
-
-

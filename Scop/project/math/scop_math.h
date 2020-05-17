@@ -109,10 +109,9 @@ t_matrix				matrix_rotate_around_axis(t_vector3 axis, float angle);
 
 void					matrix_print(const t_matrix *matrix);
 
-
 //						OTHER
 
-
 float 					degrees_to_radians(float value);
+float					clamp(float min, float max, float value);
 
 #endif

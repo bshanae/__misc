@@ -4,7 +4,7 @@ void				engine_start(t_engine *engine, t_core *core)
 {
 	engine->error_config = &core->error_config;
 	engine->render_request = true;
-	OpenGL_start(engine);
+	opengl_start(engine);
 	camera_start(engine);
 	program_start(engine);
 	uniform_start(engine);
@@ -20,5 +20,5 @@ void				engine_finish(t_engine *engine)
 	model_finish(engine);
 	texture_finish(engine);
 	program_finish(engine);
-	OpenGL_finish();
+	opengl_finish();
 }
