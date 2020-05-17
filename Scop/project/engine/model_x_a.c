@@ -8,8 +8,8 @@ void				model_start(t_engine *engine)
 	engine->model.scale = 1.f;
 	engine->model.rotation = matrix_identity();
 	engine->model.transformation = matrix_identity();
-	engine->model.mod_from = SCOP_MOD_RANDOM;
-	engine->model.mod_to = SCOP_MOD_RANDOM;
+	engine->model.mod_from = SCOP_MOD_RGB;
+	engine->model.mod_to = SCOP_MOD_RGB;
 	engine->model.mod_transition = 1.f;
 	model_update(engine, NULL);
 }

@@ -13,7 +13,7 @@ void				model_rgb_color(t_engine *engine)
 	{
 		mesh = vector_at(engine->model.meshes, i_mesh++);
 		i_vertex = 0;
-		while (i_vertex < (int)mesh->vector_vertex->length)
+		while (i_vertex  < (int)mesh->vector_vertex->length)
 		{
 			vertex = vector_at(mesh->vector_vertex, i_vertex++);
 			color.x = (vertex->x - engine->model.min.x) / engine->model.size.x;

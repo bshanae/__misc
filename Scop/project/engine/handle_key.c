@@ -14,6 +14,7 @@ void 				handle_key(GLFWwindow* window, int key, int scancode, int action, int m
 	{
 		mod_model = !mod_model;
 		engine->block_rotation_by_mod = mod_model;
+		engine->block_rotation = false;
 	}
 	else if (handle_common(engine, key))
 		;
