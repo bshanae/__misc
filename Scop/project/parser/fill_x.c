@@ -27,7 +27,7 @@ t_interim_vertex		fill_interim_vertex(const char *in)
 {
 	t_interim_vertex	vertex;
 	int					*out;
-	int 				count;
+	int					count;
 
 	vertex = (t_interim_vertex){-1, -1, -1};
 	out = &vertex.vertex;

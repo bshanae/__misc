@@ -1,6 +1,6 @@
 #include "parser.h"
 
-static t_bool 			helper_a(t_parser *parser)
+static t_bool			helper_a(t_parser *parser)
 {
 	t_material			material;
 
@@ -13,16 +13,18 @@ static t_bool 			helper_a(t_parser *parser)
 		material = material_create(
 			parser->material.current_line + ft_strlen(SCOP_MATERIAL_NEW));
 		vector_push(parser->material.library, &material);
-		parser->material.current_material = vector_back(parser->material.library);
+		parser->material.current_material =
+			vector_back(parser->material.library);
 	}
-	else if (ft_str_prefix(parser->material.current_line, SCOP_MATERIAL_TEXTURE))
+	else if (ft_str_prefix(parser->material.current_line,
+		SCOP_MATERIAL_TEXTURE))
 		read_material_texture(parser);
 	else
 		return (false);
 	return (true);
 }
 
-static t_bool 			helper_b(t_parser *parser)
+static t_bool			helper_b(t_parser *parser)
 {
 	if (ft_str_prefix(parser->material.current_line,
 		SCOP_MATERIAL_AMBIENT))
@@ -47,7 +49,7 @@ static t_bool 			helper_b(t_parser *parser)
 	return (true);
 }
 
-void 					read_model_library(t_parser *parser)
+void					read_model_library(t_parser *parser)
 {
 	char				*file;
 	char				*path;
@@ -59,7 +61,8 @@ void 					read_model_library(t_parser *parser)
 	path = ft_strjoin(parser->working_directory, file);
 	fd = open(path, O_RDONLY);
 	free(path);
-	ft_assert_critical(parser->error_config, fd != -1, "Bad material library file");
+	ft_assert_critical(
+		parser->error_config, fd != -1, "Bad material library file");
 	while (get_next_line(fd, &parser->material.current_line) > 0)
 	{
 		if (!helper_a(parser))
@@ -70,9 +73,9 @@ void 					read_model_library(t_parser *parser)
 	close(fd);
 }
 
-void 					read_model_material(t_parser *parser)
+void					read_model_material(t_parser *parser)
 {
-	char 				*name;
+	char				*name;
 	t_vector_iter		iter;
 	t_material			*material[2];
 	t_interim_mesh		mesh;

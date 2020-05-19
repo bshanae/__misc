@@ -1,6 +1,6 @@
 #include "parser.h"
 
-void 				generate_model(t_parser *parser)
+void				generate_model(t_parser *parser)
 {
 	t_vector_iter	iter;
 	t_mesh			mesh;
@@ -30,7 +30,7 @@ void 				generate_model(t_parser *parser)
 t_mesh				generate_mesh(t_parser *parser)
 {
 	static int		count;
-	int 			i;
+	int				i;
 	t_mesh			mesh;
 
 	mesh = mesh_create();
@@ -51,15 +51,18 @@ t_mesh				generate_mesh(t_parser *parser)
 	return (mesh);
 }
 
-void 				generate_vertex(t_parser *parser, t_mesh *out)
+void				generate_vertex(t_parser *parser, t_mesh *out)
 {
 	t_vector3		*vertex;
 	t_vector2		*texture;
 	t_vector3		*normal;
 
-	vertex = vector_at(parser->model.data_vertex, parser->model.current_vertex->vertex);
-	texture = vector_at(parser->model.data_texture, parser->model.current_vertex->texture);
-	normal = vector_at(parser->model.data_normal, parser->model.current_vertex->normal);
+	vertex = vector_at(parser->model.data_vertex,
+		parser->model.current_vertex->vertex);
+	texture = vector_at(parser->model.data_texture,
+		parser->model.current_vertex->texture);
+	normal = vector_at(parser->model.data_normal,
+		parser->model.current_vertex->normal);
 	vector_push(out->vector_vertex, vertex);
 	vector_push(out->vector_texture, texture);
 	vector_push(out->vector_normal, normal);

@@ -1,9 +1,9 @@
 #include "parser.h"
 
-char 				*extract_directory(const char *begin)
+char				*extract_directory(const char *begin)
 {
 	char			*end;
-	char 			*result;
+	char			*result;
 
 	end = ft_strrchr(begin, '/');
 	if (!end)
@@ -12,4 +12,3 @@ char 				*extract_directory(const char *begin)
 	ft_strncpy(result, begin, end - begin);
 	return (result);
 }
-

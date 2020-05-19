@@ -1,6 +1,6 @@
 #include "parser.h"
 
-t_interim_mesh		interim_mesh_create()
+t_interim_mesh		interim_mesh_create(void)
 {
 	t_interim_mesh	mesh;
 
@@ -8,6 +8,7 @@ t_interim_mesh		interim_mesh_create()
 	mesh.material = NULL;
 	return (mesh);
 }
+
 void				interim_mesh_destroy(t_interim_mesh *mesh)
 {
 	vector_destroy(&mesh->data);

@@ -26,7 +26,7 @@ void					read_model_normal(t_parser *parser)
 
 static void				helper_write(t_parser *parser, t_vector *vector)
 {
-	int 				i;
+	int					i;
 
 	i = 1;
 	while (i < (int)vector->length - 1)
@@ -37,7 +37,7 @@ static void				helper_write(t_parser *parser, t_vector *vector)
 	}
 }
 
-void 					read_model_face(t_parser *parser)
+void					read_model_face(t_parser *parser)
 {
 	char				*local_line;
 	t_interim_vertex	vertex;

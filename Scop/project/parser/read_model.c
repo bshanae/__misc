@@ -1,6 +1,6 @@
 #include "parser.h"
 
-static void 			helper(t_parser *parser, int count)
+static void				helper(t_parser *parser, int count)
 {
 	if (ft_str_prefix(parser->model.current_line, SCOP_MODEL_EMPTY))
 		;
@@ -31,7 +31,7 @@ static void 			helper(t_parser *parser, int count)
 void					read_model(t_parser *parser, const char *path)
 {
 	int					fd;
-	static int 			count;
+	static int			count;
 
 	if (count)
 		ft_raise_error(NULL, "Can't read more than one model");

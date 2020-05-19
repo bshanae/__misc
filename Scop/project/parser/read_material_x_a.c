@@ -25,12 +25,14 @@ void					read_material_diffuse(t_parser *parser)
 
 void					read_material_specular(t_parser *parser)
 {
-	fill_float(parser->material.current_line + ft_strlen(SCOP_MATERIAL_SPECULAR),
+	fill_float(
+		parser->material.current_line + ft_strlen(SCOP_MATERIAL_SPECULAR),
 		3, &parser->material.current_material->specular.x);
 }
 
 void					read_material_exponent(t_parser *parser)
 {
-	fill_float(parser->material.current_line + ft_strlen(SCOP_MATERIAL_EXPONENT),
+	fill_float(
+		parser->material.current_line + ft_strlen(SCOP_MATERIAL_EXPONENT),
 		1, &parser->material.current_material->specular_exponent);
 }
