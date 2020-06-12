@@ -22,16 +22,9 @@ typedef enum			e_sign
 
 typedef struct			s_vector2
 {
-	float				x;
-	float				y;
+	float		x;
+	float		y;
 }						t_vector2;
-
-typedef struct			s_vector3
-{
-	float				x;
-	float				y;
-	float				z;
-}						t_vector3;
 
 t_vector2				vector2_empty();
 t_vector2				vector2_pack(float x, float y);
@@ -41,9 +34,26 @@ t_vector2				vector2_mul(t_vector2 vector, float value);
 t_vector2				vector2_div(t_vector2 vector, float value);
 void					vector2_print(t_vector2 vector);
 
+typedef struct			s_vector3
+{
+	union				u_vector3
+	{
+		struct			s_xyz
+		{
+			float		x;
+			float		y;
+			float		z;
+		};
+
+		struct			s_data
+		{
+			float		data[3];
+		};
+	};
+}						t_vector3;
+
 t_vector3				vector3_empty();
 t_vector3				vector3_pack(float x, float y, float z);
-float					*vector3_array(t_vector3 *vector, int index);
 void					vector3_print(t_vector3 vector);
 t_vector3				vector3_add(t_vector3 a, t_vector3 b);
 t_vector3				vector3_sub(t_vector3 a, t_vector3 b);

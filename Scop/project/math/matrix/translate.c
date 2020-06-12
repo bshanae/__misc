@@ -9,7 +9,7 @@ t_matrix			matrix_translate(t_vector3 value)
 	i = 0;
 	while (i < 3)
 	{
-		matrix.data[3][i] = *vector3_array(&value, i);
+		matrix.data[3][i] = value.data[i];
 		i++;
 	}
 	return (matrix);

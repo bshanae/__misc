@@ -6,3 +6,6 @@ cmake-build-debug
 venv
 
 Scop/build/scop
+
+Asteroids/Project/Library
+Asteroids/Project/Temp
