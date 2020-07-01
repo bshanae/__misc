@@ -6,7 +6,7 @@
 /*   By: bshanae <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 16:15:36 by bshanae           #+#    #+#             */
-/*   Updated: 2020/05/17 16:44:59 by belchenkovova    ###   ########.fr       */
+/*   Updated: 2019/12/18 16:43:00 by bshanae          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 
 int					ft_atoi_rigorous(const char *str);
-char				**ft_str_tokenize(const char *string, char delimiter, t_bool save_delimiter);
+char				**ft_str_tokenize(
+						const char *string,
+						char delimiter,
+						t_bool save_delimiter);
 int					ft_str_prefix(const char *string, const char *prefix);
 int					ft_str_suffix(const char *string, const char *suffix);
 
