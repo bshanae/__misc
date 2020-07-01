@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_key.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bshanae <bshanae@21-school.ru>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/01 13:49:45 by bshanae           #+#    #+#             */
+/*   Updated: 2020/07/01 13:49:47 by bshanae          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "engine.h"
 
 static void			helper(t_engine *engine, int key)
@@ -34,8 +46,6 @@ void				handle_key(
 					int action,
 					int mode)
 {
-	t_engine		*engine;
-
 	scancode = 0;
 	mode = 0;
 	if (action != GLFW_PRESS && action != GLFW_REPEAT)

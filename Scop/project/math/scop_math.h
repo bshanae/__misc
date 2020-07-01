@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scop_math.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bshanae <bshanae@21-school.ru>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/01 13:52:19 by bshanae           #+#    #+#             */
+/*   Updated: 2020/07/01 13:52:20 by bshanae          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCOP_MATH_H
 # define SCOP_MATH_H
 
@@ -36,24 +48,14 @@ void					vector2_print(t_vector2 vector);
 
 typedef struct			s_vector3
 {
-	union				u_vector3
-	{
-		struct			s_xyz
-		{
-			float		x;
-			float		y;
-			float		z;
-		};
-
-		struct			s_data
-		{
-			float		data[3];
-		};
-	};
+	float				x;
+	float				y;
+	float				z;
 }						t_vector3;
 
 t_vector3				vector3_empty();
 t_vector3				vector3_pack(float x, float y, float z);
+float					*vector3_array(t_vector3 *vector, int index);
 void					vector3_print(t_vector3 vector);
 t_vector3				vector3_add(t_vector3 a, t_vector3 b);
 t_vector3				vector3_sub(t_vector3 a, t_vector3 b);
