@@ -159,7 +159,6 @@ typedef struct		s_engine
 	int				counter_rotation;
 	int				counter_transition;
 	t_bool			block_rotation;
-	t_bool			block_rotation_by_mod;
 	t_bool			block_transition;
 }					t_engine;
 

@@ -18,12 +18,10 @@ static void			helper(t_engine *engine, int key)
 
 	if (key == GLFW_KEY_ESCAPE)
 		glfwSetWindowShouldClose(engine->window, GL_TRUE);
+	else if (key == GLFW_KEY_R)
+		engine->block_rotation = !engine->block_rotation;
 	else if (key == GLFW_KEY_ENTER)
-	{
 		mod_model = !mod_model;
-		engine->block_rotation_by_mod = mod_model;
-		engine->block_rotation = false;
-	}
 	else if (handle_common(engine, key))
 		;
 	else if (handle_mod(engine, key))

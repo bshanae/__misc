@@ -16,7 +16,7 @@ static void			helper_counter(t_engine *engine)
 {
 	t_matrix		rotate;
 
-	if (!engine->block_rotation && !engine->block_rotation_by_mod &&
+	if (!engine->block_rotation &&
 		++engine->counter_rotation >= SCOP_MODEL_ROTATION_FREQUENCY)
 	{
 		engine->counter_rotation = 0;

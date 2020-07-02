@@ -50,9 +50,8 @@ vec4						material_color()
 
 	vec3					normal = normalize(pass_normal);
 	vec3					light_direction = normalize(light_position - pass_transformed_position);
-	float					diffuse = max(dot(normal, light_direction), 0.0);
-	vec3					diffuse_final = light_color * diffuse *
-		(uniform_material.use_texture ? texture(uniform_material.texture, pass_UV).rgb : uniform_material.diffuse);
+	float					diffuse = max(dot(normal, light_direction), 0.2);
+	vec3					diffuse_final = light_color * diffuse * (uniform_material.use_texture ? texture(uniform_material.texture, pass_UV).rgb : uniform_material.diffuse);
 
 	vec3					view_direction = normalize(uniform_camera_position - pass_transformed_position);
 	vec3					reflection_direction = reflect(-light_direction, normal);

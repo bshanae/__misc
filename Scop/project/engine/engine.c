@@ -23,7 +23,6 @@ void				engine_start(t_engine *engine, t_core *core)
 	model_start(engine);
 	engine->counter_rotation = 0;
 	engine->block_rotation = false;
-	engine->block_rotation_by_mod = false;
 	engine->block_transition = false;
 }
 
