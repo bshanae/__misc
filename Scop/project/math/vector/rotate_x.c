@@ -54,8 +54,8 @@ t_vector3			vector3_rotate(t_vector3 vector, t_axis axis, float angle)
 
 t_vector3			vector3_rotate_euler(t_vector3 vector, t_vector3 angle)
 {
-	vector = vector3_rotate(vector, axis_y, angle.y);
 	vector = vector3_rotate(vector, axis_x, angle.x);
+	vector = vector3_rotate(vector, axis_y, angle.y);
 	vector = vector3_rotate(vector, axis_z, angle.z);
 	return (vector);
 }

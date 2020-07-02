@@ -97,8 +97,8 @@ void				camera_update(t_engine *engine)
 	camera->angles.x = clamp(
 		M_PI * -0.5f + SCOP_EPSILON, M_PI * 0.5f - SCOP_EPSILON,
 		camera->angles.x);
-	camera->direction = SCOP_CAMERA_DIRECTION;
-	camera->direction = vector3_rotate_euler(camera->direction, camera->angles);
+	camera->direction = vector3_rotate_euler(SCOP_CAMERA_DIRECTION,
+		camera->angles);
 	camera->axis_x = vector3_rotate_euler(SCOP_AXIS_X, camera->angles);
 	camera->axis_y = vector3_rotate_euler(SCOP_AXIS_Y, camera->angles);
 	camera->axis_z = vector3_rotate_euler(SCOP_AXIS_Z, camera->angles);
