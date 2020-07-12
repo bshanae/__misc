@@ -6,27 +6,36 @@ public class				Group
 		private set;
 	}
 
-	public int				Factor
+	public float			Factor
 	{
 		get;
 		private set;
 	}
 	
-	public int				Power
+	public float			Power
 	{
 		get ;
 		private set;
 	}
 
-							Group
+	public					Group
 							(
-								Variable variable,
-								int factor = 1,
-								int power = 1
+								Variable variable = null,
+								float factor = 1f,
+								float power = 1f
 							)
 	{
 		Variable = variable;
 		Factor = factor;
 		Power = power;
+	}
+
+	public override string	ToString()
+	{
+		string				variableName = " ";
+
+		if (Variable != null)
+			variableName = "" + Variable.String[0];
+		return $"Group : {{variable = {variableName}, factor = {Factor}, power = {Power}}}";
 	}
 }
