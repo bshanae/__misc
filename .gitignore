@@ -1,11 +1,13 @@
 .DS_Store
+.object
+.depend
 *.o
 *.d
 .idea
 cmake-build-debug
 venv
 
-Scop/build/scop
+School 21/Graphics/Scop/build/scop
 
-Asteroids/Project/Library
-Asteroids/Project/Temp
+Unity/Asteroids/Project/Library
+Unity/Asteroids/Project/Temp
