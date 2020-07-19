@@ -15,12 +15,15 @@ public class				Constant : Token
 		if (success)
 			Value = result;
 		else
-		{
-//			error
-		}
+			Error.Raise("Can't parse constant");
 	}
-
-	public override string	ToString()
+	
+	public override string	ShortDescription()
+	{
+		return $"{Value}";
+	}
+	
+	public override string	LongDescription()
 	{
 		return $"Constant : {{string = {String}, value = {Value}}}";
 	}

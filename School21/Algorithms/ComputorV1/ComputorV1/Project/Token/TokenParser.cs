@@ -7,12 +7,11 @@ public static class			TokenParser
 	{
 		if (IsOperator(source))
 			return new Operator(source);
-		else if (IsConstant(source))
+		if (IsConstant(source))
 			return new Constant(source);
-		else if (IsVariable(source))
+		if (IsVariable(source))
 			return new Variable(source);
-		else
-			return new BadToken(source);		
+		return new BadToken(source);		
 	}
 
 	private static bool		IsOperator(string input)

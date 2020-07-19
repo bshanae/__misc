@@ -1,161 +1,105 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class				GroupTree
 {
-	public List<Group>		LeftList
+	private List<IGroup>	_Workspace = new List<IGroup>();
+
+	public BinaryGroup		Root;
+
+	#region Main
+
+	public					GroupTree()
+	{}
+
+	public					GroupTree(List<Token> tokens)
 	{
-		get;
-		private set; 
+		foreach (var token in tokens)
+			_Workspace.Add(new UnaryGroup(token));
+		
+		Console.WriteLine("Zero pass : " + ToString());
+		PerformPass(ValidatePower, OperatorType.Power);
+		Console.WriteLine("First pass : " + ToString());
+		PerformPass(DefaultValidate, OperatorType.Multiplication, OperatorType.Division);
+		Console.WriteLine("Second pass : " + ToString());
+		PerformPass(DefaultValidate, OperatorType.Addition, OperatorType.Subtraction);
+		Console.WriteLine("Third pass : " + ToString());
+		PerformPass(DefaultValidate, OperatorType.Equality);
+		Console.WriteLine("Fourth pass : " + ToString());
 	}
 	
-	public List<Group>		RightList
-	{
-		get;
-		private set; 
-	}
-
-	private List<Group>		currentList;
-
-	private Token[]			tokens;
-	private int				tokenIndex;
-
-	private Constant		lastConstant;
-	private Variable		lastVariable;
-
-	private float?			factorForGroup = null;
-	private float?			powerForGroup = null;
-
-	private Group			newGroup;
-
-	private Token			PreviousToken => tokenIndex - 1 >= 0 ? tokens[tokenIndex - 1] : null;
-	private Token			CurrentToken => tokens[tokenIndex];
-	private Token			NextToken => tokenIndex + 1 < tokens.Length ? tokens[tokenIndex + 1] : null;
-	
-	public					GroupTree(Token[] tokens)
-	{
-		LeftList = new List<Group>();
-		RightList = new List<Group>();
-		
-		this.tokens = tokens;
-		currentList = LeftList;
-
-		for (tokenIndex = 0; tokenIndex < tokens.Length; tokenIndex++)
-		{
-			if (CurrentToken is Operator)
-				ProcessOperator();
-			else if (CurrentToken is Constant)
-				ProcessConstant();
-			else if (CurrentToken is Variable)
-				ProcessVariable();
-			else
-				Error.Raise("Unexpected token");
-		}
-		
-		BuildGroup();
-	}
-
 	public override string	ToString()
 	{
-		string				result = "GroupTree : \n";
-
-		foreach (var group in LeftList)
-			result += group + "\n";
-		result += "\n";
-		foreach (var group in RightList)
-			result += group + "\n";
-
-		return result;
-	}
-
-	private void			ProcessOperator()
-	{
-		switch ((tokens[tokenIndex] as Operator).Type)
+		if (_Workspace.Count != 0)
 		{
-			case OperatorType.Addition :
-			case OperatorType.Subtraction :
-				BuildGroup();
-				break;
+			string			result = "";
 
-			case OperatorType.Multiplication :
-			case OperatorType.Division :
-				
-				float		modifier = 1f;
-
-				if ((tokens[tokenIndex] as Operator).Type == OperatorType.Division)
-					modifier = 0.1f;
-				
-				if (PreviousToken is Constant)
-				{
-					if (NextToken is Variable)
-						factorForGroup = ((PreviousToken as Constant).Value ?? 1f) * modifier;
-					else
-						Error.Raise("Bad multiplication/division pattern");
-				}
-				else if (PreviousToken is Variable)
-				{
-					if (NextToken is Constant)
-						factorForGroup = ((NextToken as Constant).Value ?? 1f) * modifier;
-					else
-						Error.Raise("Bad multiplication/division pattern");
-				}
-				else
-					Error.Raise("Bad multiplication/division pattern");
-				break;
-
-			case OperatorType.Power :
-				if (!(PreviousToken is Variable))
-					Error.Raise("Bad power pattern");
-				else if (!(NextToken is Constant))
-					Error.Raise("Bad power pattern");
-				else
-				{
-					powerForGroup = (NextToken as Constant).Value ?? 1f;
-					
-				}
-				break;
-
-			case OperatorType.Equality :
-				currentList = RightList;
-				break;
-			
-			default :
-				Error.Raise("Unexpected operator type");
-				break;
+			for (int i = 0; i < _Workspace.Count; i++)
+				result += _Workspace[i] + (i < _Workspace.Count - 1 ? ", " : "");
+			return result;
 		}
-	}
-
-	private void			ProcessConstant()
-	{
-		lastConstant = CurrentToken as Constant;
+		
+		return Root.ToString();
 	}
 	
-	private void			ProcessVariable()
+	#endregion
+
+	#region Parsing
+	
+	private void			PerformPass(Action<int> validate, params OperatorType[] types)
 	{
-		if (lastVariable != null)
-			Error.Raise("Unexpected variable");
-		lastVariable = CurrentToken as Variable;
+		Operator			@operator;
+		BinaryGroup			newGroup;
+		
+		for (int i = 0; i < _Workspace.Count; i++)
+		{
+			@operator = (_Workspace[i] as UnaryGroup)?.Token as Operator;
+			if (@operator == null)
+				continue;
+			if (!@operator.IsAnyOf(types))
+				continue;
+
+			validate?.Invoke(i);
+			
+			newGroup = new BinaryGroup(@operator.Type);
+			newGroup.LeftChild = _Workspace[i - 1];
+			newGroup.RightChild = _Workspace[i + 1];
+			
+			_Workspace.RemoveRange(i - 1, 3);
+			_Workspace.Insert(i - 1, newGroup);
+						
+			i = i - 1;
+		}
+	}
+	
+	#endregion
+
+	#region Validation
+
+	private void			DefaultValidate(int index)
+	{
+		if (index - 1 < 0)
+			Error.Raise("Parsing error");
+		if (index + 1 >= _Workspace.Count)
+			Error.Raise("Parsing error");
+	}
+	
+	private void			ValidatePower(int index)
+	{
+		DefaultValidate(index);
+
+		UnaryGroup			left = _Workspace[index - 1] as UnaryGroup;
+		UnaryGroup			right = _Workspace[index + 1] as UnaryGroup;
+		
+		if (left == null || right == null)
+			Error.Raise("Parsing error");
+		
+		if (!(left.Token is Variable))
+			Error.Raise("Parsing error");
+		if (!(right.Token is Constant))
+			Error.Raise("Parsing error");
 	}
 
-	private void			BuildGroup()
-	{
-		float				factor = factorForGroup ?? 0f;
-		float				power = powerForGroup ?? 0f;
-		
-		if (lastConstant != null)
-			factor = lastConstant.Value ?? 1f;
-		if (lastVariable != null && factorForGroup == null)
-			factor = 1f;
-		if (lastVariable == null && powerForGroup == null)
-			power = 1f; 
-		
-		newGroup = new Group(factor, power);
-		currentList.Add(newGroup);
-		
-		lastConstant = null;
-		lastVariable = null;
-		
-		factorForGroup = null;
-		powerForGroup = null;
-	}
+	#endregion
 }
