@@ -1,6 +1,0 @@
-/Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/ComputorV1/bin/Debug/ComputorV1.exe
-/Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/ComputorV1/bin/Debug/ComputorV1.pdb
-/Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/ComputorV1/obj/Debug/ComputorV1.csprojAssemblyReference.cache
-/Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/ComputorV1/obj/Debug/ComputorV1.csproj.CoreCompileInputs.cache
-/Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/ComputorV1/obj/Debug/ComputorV1.exe
-/Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/ComputorV1/obj/Debug/ComputorV1.pdb

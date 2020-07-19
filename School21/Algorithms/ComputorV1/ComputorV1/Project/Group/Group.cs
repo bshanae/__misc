@@ -1,11 +1,7 @@
+using System;
+
 public class				Group
 {
-	public Variable			Variable
-	{
-		get;
-		private set;
-	}
-
 	public float			Factor
 	{
 		get;
@@ -18,14 +14,8 @@ public class				Group
 		private set;
 	}
 
-	public					Group
-							(
-								Variable variable = null,
-								float factor = 1f,
-								float power = 1f
-							)
+	public					Group(float factor = 0f, float power = 0f)
 	{
-		Variable = variable;
 		Factor = factor;
 		Power = power;
 	}
@@ -34,8 +24,35 @@ public class				Group
 	{
 		string				variableName = " ";
 
-		if (Variable != null)
-			variableName = "" + Variable.String[0];
-		return $"Group : {{variable = {variableName}, factor = {Factor}, power = {Power}}}";
+		return $"Group : {{factor = {Factor}, power = {Power}}}";
+	}
+	
+	public static Group		operator + (Group left, Group right)
+	{
+		Group				result = new Group();
+		
+		if (!Compatible(left, right))
+			throw new Exception("Can't add groups");
+		
+		result.Power = left.Power;
+		result.Factor = left.Factor + right.Factor;
+		return result;
+	}
+	
+	public static Group		operator - (Group left, Group right)
+	{
+		Group				result = new Group();
+
+		if (!Compatible(left, right))
+			throw new Exception("Can't subtract groups");
+		
+		result.Power = left.Power;
+		result.Factor = left.Factor - right.Factor;
+		return result;
+	}
+
+	private static bool		Compatible(Group left, Group right)
+	{
+		return left.Power == right.Power;
 	}
 }

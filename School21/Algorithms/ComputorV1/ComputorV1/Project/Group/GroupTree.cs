@@ -1,9 +1,19 @@
+using System;
 using System.Collections.Generic;
 
 public class				GroupTree
 {
-	protected List<Group>	leftList = new List<Group>();
-	protected List<Group>	rightList = new List<Group>();
+	public List<Group>		LeftList
+	{
+		get;
+		private set; 
+	}
+	
+	public List<Group>		RightList
+	{
+		get;
+		private set; 
+	}
 
 	private List<Group>		currentList;
 
@@ -24,8 +34,11 @@ public class				GroupTree
 	
 	public					GroupTree(Token[] tokens)
 	{
+		LeftList = new List<Group>();
+		RightList = new List<Group>();
+		
 		this.tokens = tokens;
-		currentList = leftList;
+		currentList = LeftList;
 
 		for (tokenIndex = 0; tokenIndex < tokens.Length; tokenIndex++)
 		{
@@ -46,10 +59,10 @@ public class				GroupTree
 	{
 		string				result = "GroupTree : \n";
 
-		foreach (var group in leftList)
+		foreach (var group in LeftList)
 			result += group + "\n";
 		result += "\n";
-		foreach (var group in rightList)
+		foreach (var group in RightList)
 			result += group + "\n";
 
 		return result;
@@ -96,11 +109,14 @@ public class				GroupTree
 				else if (!(NextToken is Constant))
 					Error.Raise("Bad power pattern");
 				else
+				{
 					powerForGroup = (NextToken as Constant).Value ?? 1f;
+					
+				}
 				break;
 
 			case OperatorType.Equality :
-				currentList = rightList;
+				currentList = RightList;
 				break;
 			
 			default :
@@ -123,14 +139,17 @@ public class				GroupTree
 
 	private void			BuildGroup()
 	{
-		float				factor = 1f;
-
-		if (factorForGroup != null)
-			factor = factorForGroup.Value;
-		else if (lastConstant != null)
-			factor = lastConstant.Value ?? 1f;
+		float				factor = factorForGroup ?? 0f;
+		float				power = powerForGroup ?? 0f;
 		
-		newGroup = new Group(lastVariable, factor, powerForGroup ?? 1f);
+		if (lastConstant != null)
+			factor = lastConstant.Value ?? 1f;
+		if (lastVariable != null && factorForGroup == null)
+			factor = 1f;
+		if (lastVariable == null && powerForGroup == null)
+			power = 1f; 
+		
+		newGroup = new Group(factor, power);
 		currentList.Add(newGroup);
 		
 		lastConstant = null;

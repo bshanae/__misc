@@ -5,9 +5,7 @@ public class				Variable : Token
 	public float?			Value;
 
 	public					Variable(string source) : base(source)
-	{
-
-	}
+	{}
 
 	public override string	ToString()
 	{
