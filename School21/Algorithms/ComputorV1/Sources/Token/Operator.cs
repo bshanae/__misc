@@ -10,31 +10,25 @@ public enum					OperatorType
 
 public static class			OperatorTypeExtensions
 {
-	public static string	AsString(this OperatorType type)
-	{
-		switch (type)
+	public static string	AsString(this OperatorType type) =>
+		type switch
 		{
-			case OperatorType.Addition :
-				return "+";
-			
-			case OperatorType.Subtraction :
-				return "-";
-			
-			case OperatorType.Multiplication :
-				return "*";
-			
-			case OperatorType.Division :
-				return "/";
-			
-			case OperatorType.Power :
-				return "^";
-			
-			case OperatorType.Equality :
-				return "=";
-		}
-		
-		return "?";
-	}
+			OperatorType.Addition => "+",
+			OperatorType.Subtraction => "-",
+			OperatorType.Multiplication => "*",
+			OperatorType.Division => "/",
+			OperatorType.Power => "^",
+			OperatorType.Equality => "=",
+			_ => "?"
+		};
+
+	public static bool		CanMerge(this OperatorType left, OperatorType right) =>
+		left switch
+		{
+			OperatorType.Multiplication => right == OperatorType.Addition || right == OperatorType.Subtraction,
+			OperatorType.Division => right == OperatorType.Addition || right == OperatorType.Subtraction,
+			_ => false
+		};
 }
 
 public class				Operator : Token
@@ -44,7 +38,7 @@ public class				Operator : Token
 		get ;
 		private set ;
 	}
-
+	
 	public					Operator(string source) : base(source)
 	{
 		switch (source[0])

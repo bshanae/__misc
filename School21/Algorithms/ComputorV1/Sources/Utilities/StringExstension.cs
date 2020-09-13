@@ -10,8 +10,8 @@ public static class				StringExstension
 
 	public static List<Token>	Tokenize(this string value)
 	{
-		string[]				strings = null;
 		List<Token>				tokens = new List<Token>();
+		string[]				strings;
 
 		strings = Regex.Split(value, @"([\*\/\+\-\^\=])");
 		foreach (var entry in strings)

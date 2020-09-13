@@ -6,17 +6,19 @@ public class				BinaryGroup : IGroup
 	public IGroup			LeftChild;
 	public IGroup			RightChild;
 
-	public					BinaryGroup(
+	public					BinaryGroup
+							(
 								OperatorType? operatorType = null,
 								IGroup left = null,
-								IGroup right = null)
+								IGroup right = null
+							)
 	{
 		OperatorType = operatorType;
 		LeftChild = left;
 		RightChild = right;
 	}
 
-	public bool				HasChildren()
+	public bool				HaveChildren()
 	{
 		return LeftChild != null || RightChild != null;
 	}

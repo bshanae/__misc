@@ -5,9 +5,7 @@ using System.Linq;
 public class				GroupTree
 {
 	private List<IGroup>	_Workspace = new List<IGroup>();
-
-	public BinaryGroup		Root;
-
+	
 	#region Main
 
 	public					GroupTree()
@@ -18,36 +16,31 @@ public class				GroupTree
 		foreach (var token in tokens)
 			_Workspace.Add(new UnaryGroup(token));
 		
-		Console.WriteLine("Zero pass : " + ToString());
-		PerformPass(ValidatePower, OperatorType.Power);
-		Console.WriteLine("First pass : " + ToString());
-		PerformPass(DefaultValidate, OperatorType.Multiplication, OperatorType.Division);
-		Console.WriteLine("Second pass : " + ToString());
-		PerformPass(DefaultValidate, OperatorType.Addition, OperatorType.Subtraction);
-		Console.WriteLine("Third pass : " + ToString());
-		PerformPass(DefaultValidate, OperatorType.Equality);
-		Console.WriteLine("Fourth pass : " + ToString());
+		Console.WriteLine("Pass No. 0 : " + this);
+		PerformPass(OperatorType.Power);
+		Console.WriteLine("Pass No. 1 : " + this);
+		PerformPass(OperatorType.Multiplication, OperatorType.Division);
+		Console.WriteLine("Pass No. 2 : " + this);
+		PerformPass(OperatorType.Addition, OperatorType.Subtraction);
+		Console.WriteLine("Pass No. 3 : " + this);
+		PerformPass(OperatorType.Equality);
+		Console.WriteLine("Pass No. 4 : " + this);
 	}
 	
 	public override string	ToString()
 	{
-		if (_Workspace.Count != 0)
-		{
-			string			result = "";
-
-			for (int i = 0; i < _Workspace.Count; i++)
-				result += _Workspace[i] + (i < _Workspace.Count - 1 ? ", " : "");
-			return result;
-		}
+		string				result = "";
 		
-		return Root.ToString();
+		for (int i = 0; i < _Workspace.Count; i++)
+			result += _Workspace[i] + (i < _Workspace.Count - 1 ? ", " : "");
+		return result;
 	}
 	
 	#endregion
 
 	#region Parsing
 	
-	private void			PerformPass(Action<int> validate, params OperatorType[] types)
+	private void			PerformPass(params OperatorType[] types)
 	{
 		Operator			@operator;
 		BinaryGroup			newGroup;
@@ -60,7 +53,7 @@ public class				GroupTree
 			if (!@operator.IsAnyOf(types))
 				continue;
 
-			validate?.Invoke(i);
+			Validate(i);
 			
 			newGroup = new BinaryGroup(@operator.Type);
 			newGroup.LeftChild = _Workspace[i - 1];
@@ -69,7 +62,7 @@ public class				GroupTree
 			_Workspace.RemoveRange(i - 1, 3);
 			_Workspace.Insert(i - 1, newGroup);
 						
-			i = i - 1;
+			i -= 1;
 		}
 	}
 	
@@ -77,27 +70,11 @@ public class				GroupTree
 
 	#region Validation
 
-	private void			DefaultValidate(int index)
+	private void			Validate(int index)
 	{
 		if (index - 1 < 0)
 			Error.Raise("Parsing error");
 		if (index + 1 >= _Workspace.Count)
-			Error.Raise("Parsing error");
-	}
-	
-	private void			ValidatePower(int index)
-	{
-		DefaultValidate(index);
-
-		UnaryGroup			left = _Workspace[index - 1] as UnaryGroup;
-		UnaryGroup			right = _Workspace[index + 1] as UnaryGroup;
-		
-		if (left == null || right == null)
-			Error.Raise("Parsing error");
-		
-		if (!(left.Token is Variable))
-			Error.Raise("Parsing error");
-		if (!(right.Token is Constant))
 			Error.Raise("Parsing error");
 	}
 

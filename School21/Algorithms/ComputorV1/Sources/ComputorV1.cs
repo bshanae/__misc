@@ -15,19 +15,24 @@ public class			ComputorV1
 		tokens = expression.Tokenize();
 		foreach (var token in tokens)
 			Console.WriteLine(token);
+		Console.WriteLine();
 		
 		tree = new GroupTree(tokens);
-		// Console.WriteLine("\n" + tree);
-		//
+		Console.WriteLine(tree);
+		
 		// equation = new Equation(tree);
 		// Console.WriteLine("\n" + equation);
-		
-		// Console.WriteLine("\n");
 	}
 
 	public static void	Main(string[] args)
 	{
 		// Work("1 = 2");
-		Work("1 * x^ 2 + x * 2 * 2 + 3 - 5 = 0");
+		Work("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
 	}
 }
+
+/*
+	Bonuses :
+	1. Complex expressions (1 * 2 * 3..., x * x * 2...)
+	2. Ignoring operator * (2x)
+*/
