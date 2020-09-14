@@ -2,19 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class				GroupTree
+public partial class		Expression
 {
-	private List<IGroup>	_Workspace = new List<IGroup>();
+	private List<IMember>	_Workspace = new List<IMember>();
 	
 	#region Main
-
-	public					GroupTree()
+	
+	public					Expression()
 	{}
-
-	public					GroupTree(List<Token> tokens)
+	
+	public					Expression(List<Token> tokens)
 	{
 		foreach (var token in tokens)
-			_Workspace.Add(new UnaryGroup(token));
+			_Workspace.Add(new UnaryMember(token));
 		
 		Console.WriteLine("Pass No. 0 : " + this);
 		PerformPass(OperatorType.Power);
@@ -37,25 +37,25 @@ public class				GroupTree
 	}
 	
 	#endregion
-
+	
 	#region Parsing
 	
 	private void			PerformPass(params OperatorType[] types)
 	{
 		Operator			@operator;
-		BinaryGroup			newGroup;
+		BinaryMember		newGroup;
 		
 		for (int i = 0; i < _Workspace.Count; i++)
 		{
-			@operator = (_Workspace[i] as UnaryGroup)?.Token as Operator;
+			@operator = (_Workspace[i] as UnaryMember)?.Token as Operator;
 			if (@operator == null)
 				continue;
 			if (!@operator.IsAnyOf(types))
 				continue;
-
+	
 			Validate(i);
 			
-			newGroup = new BinaryGroup(@operator.Type);
+			newGroup = new BinaryMember(@operator.Type);
 			newGroup.LeftChild = _Workspace[i - 1];
 			newGroup.RightChild = _Workspace[i + 1];
 			
@@ -67,9 +67,9 @@ public class				GroupTree
 	}
 	
 	#endregion
-
+	
 	#region Validation
-
+	
 	private void			Validate(int index)
 	{
 		if (index - 1 < 0)
@@ -77,6 +77,6 @@ public class				GroupTree
 		if (index + 1 >= _Workspace.Count)
 			Error.Raise("Parsing error");
 	}
-
+	
 	#endregion
 }

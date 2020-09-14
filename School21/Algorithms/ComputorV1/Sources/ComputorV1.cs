@@ -6,7 +6,7 @@ public class			ComputorV1
 	private static void	Work(string expression)
 	{
 		List<Token>		tokens;
-		GroupTree		tree;
+		Expression		tree;
 		Equation		equation;
 		
 		expression = expression.RemoveSpaces();
@@ -17,7 +17,7 @@ public class			ComputorV1
 			Console.WriteLine(token);
 		Console.WriteLine();
 		
-		tree = new GroupTree(tokens);
+		tree = new Expression(tokens);
 		Console.WriteLine(tree);
 		
 		// equation = new Equation(tree);

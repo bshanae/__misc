@@ -42,10 +42,10 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Sources\ComputorV1.cs" />
         <Compile Include="Sources\Equation\Equation.cs" />
-        <Compile Include="Sources\Group\BinaryGroup.cs" />
-        <Compile Include="Sources\Group\GroupTree.cs" />
-        <Compile Include="Sources\Group\IGroup.cs" />
-        <Compile Include="Sources\Group\UnaryGroup.cs" />
+        <Compile Include="Sources\Expression\Expression.BinaryMember.cs" />
+        <Compile Include="Sources\Expression\Expression.cs" />
+        <Compile Include="Sources\Expression\Expression.Member.cs.cs" />
+        <Compile Include="Sources\Expression\Expression.UnaryMember.cs.cs" />
         <Compile Include="Sources\Token\BadToken.cs" />
         <Compile Include="Sources\Token\Constant.cs" />
         <Compile Include="Sources\Token\Operator.cs" />
