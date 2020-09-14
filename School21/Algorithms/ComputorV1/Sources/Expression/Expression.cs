@@ -6,10 +6,7 @@ public partial class		Expression
 {
 	private List<IMember>	_Workspace = new List<IMember>();
 	
-	#region Main
-	
-	public					Expression()
-	{}
+	#region Public methods
 	
 	public					Expression(List<Token> tokens)
 	{
@@ -42,38 +39,54 @@ public partial class		Expression
 	
 	private void			PerformPass(params OperatorType[] types)
 	{
-		Operator			@operator;
+		Operator[]			@operator = {null, null};
 		BinaryMember		newGroup;
 		
-		for (int i = 0; i < _Workspace.Count; i++)
+		for (var i = 0; i < _Workspace.Count;)
 		{
-			@operator = (_Workspace[i] as UnaryMember)?.Token as Operator;
-			if (@operator == null)
-				continue;
-			if (!@operator.IsAnyOf(types))
-				continue;
+			@operator[0] = (_Workspace[i] as UnaryMember)?.Token as Operator;
+			if (@operator[0] == null || !@operator[0].IsAnyOf(types))
+			{
+				i++;
+				continue ;
+			}
 	
-			Validate(i);
+			ValidateLeft(i);
 			
-			newGroup = new BinaryMember(@operator.Type);
-			newGroup.LeftChild = _Workspace[i - 1];
-			newGroup.RightChild = _Workspace[i + 1];
+			newGroup = new BinaryMember(@operator[0].Type);
+			newGroup.Children.Add(_Workspace[i - 1]);
 			
-			_Workspace.RemoveRange(i - 1, 3);
-			_Workspace.Insert(i - 1, newGroup);
-						
-			i -= 1;
+			_Workspace.RemoveAt(i - 1);
+			i--;
+			
+			while (i + 1 <= _Workspace.Count)
+			{
+				@operator[1] = (_Workspace[i] as UnaryMember)?.Token as Operator;
+				if (@operator[1] == null || @operator[1].Type != @operator[0].Type)
+					break ;
+				
+				ValidateRight(i);
+				
+				newGroup.Children.Add(_Workspace[i + 1]);
+				_Workspace.RemoveRange(i, 2);
+			}
+			
+			_Workspace.Insert(i, newGroup);
 		}
 	}
 	
 	#endregion
 	
-	#region Validation
+	#region Private methods
 	
-	private void			Validate(int index)
+	private void			ValidateLeft(int index)
 	{
 		if (index - 1 < 0)
 			Error.Raise("Parsing error");
+	}
+	
+	private void			ValidateRight(int index)
+	{
 		if (index + 1 >= _Workspace.Count)
 			Error.Raise("Parsing error");
 	}

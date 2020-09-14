@@ -27,7 +27,8 @@ public class			ComputorV1
 	public static void	Main(string[] args)
 	{
 		// Work("1 = 2");
-		Work("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
+		// Work("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
+		Work("1 + 2 = 0");
 	}
 }
 
