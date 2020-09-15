@@ -1,10 +1,10 @@
 public partial class 	Expression
 {
-	public class		ConstantOrVariable : Element
+	public class		TokenWrap : Element
 	{
 		public Token	Token;
 
-		public			ConstantOrVariable(Token token = null)
+		public			TokenWrap(Token token = null)
 		{
 			Token = token;
 		}

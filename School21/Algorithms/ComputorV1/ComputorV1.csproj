@@ -46,7 +46,7 @@
         <Compile Include="Sources\Expression\Expression.Operation.cs" />
         <Compile Include="Sources\Expression\Expression.cs" />
         <Compile Include="Sources\Expression\Expression.Element.cs" />
-        <Compile Include="Sources\Expression\Expression.ConstantOrVariable.cs" />
+        <Compile Include="Sources\Expression\Expression.TokenWrap.cs" />
         <Compile Include="Sources\Token\BadToken.cs" />
         <Compile Include="Sources\Token\Bracket.cs" />
         <Compile Include="Sources\Token\Constant.cs" />

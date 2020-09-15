@@ -4,7 +4,7 @@ using System.Linq;
 
 public partial class		Expression
 {
-	private List<Element>	_Workspace = new List<Element>();
+	private List<Element>	_Elements = new List<Element>();
 	private List<Group>		_Groups = new List<Group>();
 	
 	#region Public methods
@@ -12,52 +12,76 @@ public partial class		Expression
 	public					Expression(List<Token> tokens)
 	{
 		foreach (var token in tokens)
-			_Workspace.Add(new ConstantOrVariable(token));
+			_Elements.Add(new TokenWrap(token));
 		
 		Console.WriteLine("Pass No. 0 : " + this);
 		ProcessBrackets();
 		Console.WriteLine("Pass No. 1 : " + this);
-		ProcessOperators(OperatorType.Power);
+		ProcessUnaryMinus();
 		Console.WriteLine("Pass No. 2 : " + this);
-		ProcessOperators(OperatorType.Multiplication, OperatorType.Division);
+		ProcessOperators(OperatorType.Power);
 		Console.WriteLine("Pass No. 3 : " + this);
-		ProcessOperators(OperatorType.Addition, OperatorType.Subtraction);
+		ProcessOperators(OperatorType.Multiplication, OperatorType.Division);
 		Console.WriteLine("Pass No. 4 : " + this);
-		ProcessOperators(OperatorType.Equality);
+		ProcessOperators(OperatorType.Addition, OperatorType.Subtraction);
 		Console.WriteLine("Pass No. 5 : " + this);
+		ProcessOperators(OperatorType.Equality);
+		Console.WriteLine("Pass No. 6 : " + this);
 		
-		Error.Assert(_Workspace.Count == 1, "Can't parse expression");
+		Error.Assert(_Elements.Count == 1, "Can't parse expression");
 	}
 	
 	public override string	ToString()
 	{
 		string				result = "";
 		
-		for (int i = 0; i < _Workspace.Count; i++)
-			result += _Workspace[i] + (i < _Workspace.Count - 1 ? ", " : "");
+		for (int i = 0; i < _Elements.Count; i++)
+			result += _Elements[i] + (i < _Elements.Count - 1 ? ", " : "");
 		return result;
 	}
 	
 	#endregion
 
 	#region					Private methods
+
+	private void			ProcessUnaryMinus()
+	{
+		bool?				previousIsOperator = null;
+
+		for (int i = 0; i < _Elements.Count; i++)
+			if (_Elements[i] is TokenWrap token)
+			{
+				if
+				(
+					token.Token is Operator @operator
+					&& @operator.Type == OperatorType.Subtraction
+					&& previousIsOperator.GetValueOrDefault(true)
+				)
+				{
+					_Elements.Insert(i, new TokenWrap(new Constant("0")));
+					i++;
+				}
+
+				previousIsOperator = ((TokenWrap)_Elements[i])?.Token is Operator;
+			}
+	}
 	
-		private void		ProcessBrackets()
+	private void			ProcessBrackets()
 	{
 		Bracket				bracket;
 		Group				group;
 		
 		var					groupStack = new Stack<Group>();
 		
-		for (var i = 0; i < _Workspace.Count;)
+		for (var i = 0; i < _Elements.Count;)
 		{
-			bracket = (_Workspace[i] as ConstantOrVariable)?.Token as Bracket;
+			bracket = (_Elements[i] as TokenWrap)?.Token as Bracket;
 			if (bracket == null)
 			{
 				if (groupStack.Count > 0)
 				{
-					groupStack.Peek().Children.Add(_Workspace[i]);
-					_Workspace.RemoveAt(i);
+					groupStack.Peek().Children.Add(_Elements[i]);
+					_Elements.RemoveAt(i);
 				}
 				else
 					i++;
@@ -66,13 +90,13 @@ public partial class		Expression
 			{
 				case BracketType.Left:
 					group = new Group();
-					_Workspace.RemoveAt(i);
+					_Elements.RemoveAt(i);
 					
 					if (groupStack.Count > 0)
 						groupStack.Peek().Children.Add(group);
 					else
 					{
-						_Workspace.Insert(i, group);
+						_Elements.Insert(i, group);
 						i++;
 					}
 
@@ -84,7 +108,7 @@ public partial class		Expression
 					Error.Assert(groupStack.Count > 0, "Error while processing brackets");
 
 					groupStack.Pop();
-					_Workspace.RemoveAt(i);
+					_Elements.RemoveAt(i);
 					break;
 				
 				default:
@@ -103,7 +127,7 @@ public partial class		Expression
 		
 		for (var i = 0; i < elements.Count;)
 		{
-			@operator[0] = (elements[i] as ConstantOrVariable)?.Token as Operator;
+			@operator[0] = (elements[i] as TokenWrap)?.Token as Operator;
 			if (@operator[0] == null || !@operator[0].IsAnyOf(types))
 			{
 				i++;
@@ -120,7 +144,7 @@ public partial class		Expression
 			
 			while (i + 1 <= elements.Count)
 			{
-				@operator[1] = (elements[i] as ConstantOrVariable)?.Token as Operator;
+				@operator[1] = (elements[i] as TokenWrap)?.Token as Operator;
 				if (@operator[1] == null || @operator[1].Type != @operator[0].Type)
 					break ;
 				
@@ -136,7 +160,7 @@ public partial class		Expression
 		
 	private void			ProcessOperators(params OperatorType[] types)
 	{
-		ProcessOperators(_Workspace, types);
+		ProcessOperators(_Elements, types);
 		
 		foreach (var group in _Groups)
 			ProcessOperators(group.Children, types);
