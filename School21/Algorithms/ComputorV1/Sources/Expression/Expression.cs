@@ -4,7 +4,7 @@ using System.Linq;
 
 public partial class		Expression
 {
-	private List<Element>	_Elements = new List<Element>();
+	private List<IElement>	_Elements = new List<IElement>();
 	private List<Group>		_Groups = new List<Group>();
 	
 	#region Public methods
@@ -15,9 +15,9 @@ public partial class		Expression
 			_Elements.Add(new TokenWrap(token));
 		
 		Console.WriteLine("Pass No. 0 : " + this);
-		ProcessBrackets();
-		Console.WriteLine("Pass No. 1 : " + this);
 		ProcessUnaryMinus();
+		Console.WriteLine("Pass No. 1 : " + this);
+		ProcessBrackets();
 		Console.WriteLine("Pass No. 2 : " + this);
 		ProcessOperators(OperatorType.Power);
 		Console.WriteLine("Pass No. 3 : " + this);
@@ -27,6 +27,8 @@ public partial class		Expression
 		Console.WriteLine("Pass No. 5 : " + this);
 		ProcessOperators(OperatorType.Equality);
 		Console.WriteLine("Pass No. 6 : " + this);
+		Reduce();
+		Console.WriteLine("Pass No. 7 : " + this);
 		
 		Error.Assert(_Elements.Count == 1, "Can't parse expression");
 	}
@@ -46,7 +48,7 @@ public partial class		Expression
 
 	private void			ProcessUnaryMinus()
 	{
-		bool?				previousIsOperator = null;
+		bool?				previousIsContantOrVariable = null;
 
 		for (int i = 0; i < _Elements.Count; i++)
 			if (_Elements[i] is TokenWrap token)
@@ -55,14 +57,15 @@ public partial class		Expression
 				(
 					token.Token is Operator @operator
 					&& @operator.Type == OperatorType.Subtraction
-					&& previousIsOperator.GetValueOrDefault(true)
+					&& !previousIsContantOrVariable.GetValueOrDefault(true)
 				)
 				{
 					_Elements.Insert(i, new TokenWrap(new Constant("0")));
+					previousIsContantOrVariable = true;
 					i++;
 				}
-
-				previousIsOperator = ((TokenWrap)_Elements[i])?.Token is Operator;
+				else
+					previousIsContantOrVariable = token.Token is Constant || token.Token is Operator;
 			}
 	}
 	
@@ -120,7 +123,7 @@ public partial class		Expression
 		Error.Assert(groupStack.Count == 0, "Invalid brackets pattern");
 	}
 
-	private static void		ProcessOperators(List<Element> elements, params OperatorType[] types)
+	private static void		ProcessOperators(List<IElement> elements, params OperatorType[] types)
 	{
 		Operator[]			@operator = {null, null};
 		Operation			operation;
@@ -172,11 +175,48 @@ public partial class		Expression
 			Error.Raise("Parsing error");
 	}
 	
-	private static void		ValidateRight(List<Element> list, int index)
+	private static void		ValidateRight(List<IElement> list, int index)
 	{
 		if (index + 1 >= list.Count)
 			Error.Raise("Parsing error");
 	}
-	
+
+	private void			Reduce()
+	{
+		for (int i = 0; i < _Elements.Count; i++)
+			_Elements[i] = Reduce(_Elements[i]);
+	}
+
+	private static IElement	Reduce(IElement element)
+	{
+		if (!(element is IComplexElement))
+			return element;
+		
+		var					complexElement = element as IComplexElement;
+		
+		for (int i = 0; i < complexElement.Children.Count; i++)
+			if (complexElement.Children[i] is IComplexElement)
+				complexElement.Children[i] = Reduce(complexElement.Children[i]);
+
+		if (complexElement is Operation operation && operation.OperatorType.CanCalculate())
+		{
+			TokenWrap		target = null;
+			
+			for (int i = 0; i < operation.Children.Count; i++)
+				if(operation.Children[i] is TokenWrap token && token.Token is Constant constant)
+				{
+					if (target == null)
+						target = token;
+					else
+					{
+						target.Token = operation.OperatorType.Calculate(target.Token as Constant, constant);
+						operation.Children.RemoveAt(i--);
+					}
+				}
+		}
+
+		return complexElement.Children.Count == 1 ? complexElement.Children[0] : element;
+	}
+
 	#endregion
 }

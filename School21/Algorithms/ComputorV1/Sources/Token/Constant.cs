@@ -1,6 +1,6 @@
 public class				Constant : Token
 {
-	public float?			Value
+	public float			Value
 	{
 		get ;
 		private set ;
@@ -8,16 +8,19 @@ public class				Constant : Token
 
 	public					Constant(string source) : base(source)
 	{
-		bool				success;
 		int					result;
 
-		success = int.TryParse(String, out result);
-		if (success)
+		if (int.TryParse(String, out result))
 			Value = result;
 		else
 			Error.Raise("Can't parse constant");
 	}
 	
+	public					Constant(float value) : base(value.ToString())
+	{
+		Value = value;
+	}
+
 	public override string	ShortDescription()
 	{
 		return $"{Value}";

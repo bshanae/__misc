@@ -1,3 +1,5 @@
+using System;
+
 public enum					OperatorType
 {
 	Addition,
@@ -22,13 +24,41 @@ public static class			OperatorTypeExtensions
 			_ => "?"
 		};
 
-	public static bool		CanMerge(this OperatorType left, OperatorType right) =>
-		left switch
+	public static bool		CanCalculate(this OperatorType type) =>
+		type switch
 		{
-			OperatorType.Multiplication => right == OperatorType.Addition || right == OperatorType.Subtraction,
-			OperatorType.Division => right == OperatorType.Addition || right == OperatorType.Subtraction,
+			OperatorType.Addition => true,
+			OperatorType.Subtraction => true,
+			OperatorType.Multiplication => true,
+			OperatorType.Division => true,
+			OperatorType.Power => true,
 			_ => false
 		};
+	
+	public static Constant	Calculate(this OperatorType type, Constant left, Constant right)
+	{
+		switch (type)
+		{
+			case OperatorType.Addition :
+				return new Constant(left.Value + right.Value);
+				
+			case OperatorType.Subtraction :
+				return new Constant(left.Value - right.Value);
+				
+			case OperatorType.Multiplication :
+				return new Constant(left.Value * right.Value);
+				
+			case OperatorType.Division :
+				return new Constant(left.Value / right.Value);
+				
+			case OperatorType.Power :
+				return new Constant((float)Math.Pow(left.Value, right.Value));
+				
+			default :
+				Error.Raise();
+				return null;
+		}
+	}
 }
 
 public class				Operator : Token
@@ -38,7 +68,7 @@ public class				Operator : Token
 		get ;
 		private set ;
 	}
-	
+
 	public					Operator(string source) : base(source)
 	{
 		switch (source[0])

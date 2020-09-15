@@ -43,9 +43,10 @@
         <Compile Include="Sources\ComputorV1.cs" />
         <Compile Include="Sources\Equation\Equation.cs" />
         <Compile Include="Sources\Expression\Expression.Group.cs" />
+        <Compile Include="Sources\Expression\Expression.ICompexElement.cs" />
         <Compile Include="Sources\Expression\Expression.Operation.cs" />
         <Compile Include="Sources\Expression\Expression.cs" />
-        <Compile Include="Sources\Expression\Expression.Element.cs" />
+        <Compile Include="Sources\Expression\Expression.IElement.cs" />
         <Compile Include="Sources\Expression\Expression.TokenWrap.cs" />
         <Compile Include="Sources\Token\BadToken.cs" />
         <Compile Include="Sources\Token\Bracket.cs" />

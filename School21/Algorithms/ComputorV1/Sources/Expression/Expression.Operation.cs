@@ -1,11 +1,7 @@
-using System.Collections.Generic;
-
 public partial class			Expression
 {
-	public class				Operation : Element
+	public class				Operation : IComplexElement
 	{
-		public List<Element>	Children;
-
 		public OperatorType		OperatorType
 		{
 			get ;
@@ -15,7 +11,6 @@ public partial class			Expression
 		public					Operation(OperatorType operatorType)
 		{
 			OperatorType = operatorType;
-			Children = new List<Element>();
 		}
 
 		public override string	ToString()

@@ -1,16 +1,7 @@
-using System.Collections.Generic;
-
 public partial class			Expression
 {
-	public class				Group : Element
+	public class				Group : IComplexElement
 	{
-		public List<Element>	Children;
-
-		public					Group()
-		{
-			Children = new List<Element>();
-		}
-
 		public override string	ToString()
 		{
 			var					result = "";

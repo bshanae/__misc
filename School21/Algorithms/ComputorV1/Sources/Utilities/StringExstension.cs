@@ -13,7 +13,7 @@ public static class				StringExstension
 	{
 		string[]				strings;
 
-		strings = Regex.Split(value, @"([\*\\\+\-\^=\(\)])");
+		strings = Regex.Split(value, @"([\*\/\+\-\^=\(\)])");
 		return
 		(
 			(
