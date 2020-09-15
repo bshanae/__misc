@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 public partial class			Expression
 {
-	public class				BinaryMember : IMember
+	public class				Operation : Element
 	{
-		public List<IMember>	Children;
+		public List<Element>	Children;
 
 		public OperatorType		OperatorType
 		{
@@ -12,10 +12,10 @@ public partial class			Expression
 			private set ;
 		}
 
-		public					BinaryMember(OperatorType operatorType)
+		public					Operation(OperatorType operatorType)
 		{
 			OperatorType = operatorType;
-			Children = new List<IMember>();
+			Children = new List<Element>();
 		}
 
 		public override string	ToString()

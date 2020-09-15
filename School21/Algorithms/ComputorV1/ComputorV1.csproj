@@ -42,11 +42,13 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Sources\ComputorV1.cs" />
         <Compile Include="Sources\Equation\Equation.cs" />
-        <Compile Include="Sources\Expression\Expression.MultiaryMember.cs" />
+        <Compile Include="Sources\Expression\Expression.Group.cs" />
+        <Compile Include="Sources\Expression\Expression.Operation.cs" />
         <Compile Include="Sources\Expression\Expression.cs" />
-        <Compile Include="Sources\Expression\Expression.IMember.cs.cs" />
-        <Compile Include="Sources\Expression\Expression.UnaryMember.cs.cs" />
+        <Compile Include="Sources\Expression\Expression.Element.cs" />
+        <Compile Include="Sources\Expression\Expression.ConstantOrVariable.cs" />
         <Compile Include="Sources\Token\BadToken.cs" />
+        <Compile Include="Sources\Token\Bracket.cs" />
         <Compile Include="Sources\Token\Constant.cs" />
         <Compile Include="Sources\Token\Operator.cs" />
         <Compile Include="Sources\Token\Token.cs" />

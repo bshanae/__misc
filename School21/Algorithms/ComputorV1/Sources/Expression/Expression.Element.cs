@@ -1,6 +1,6 @@
 
 public partial class	Expression
 {
-	public interface	IMember
+	public interface	Element
 	{ }
 }

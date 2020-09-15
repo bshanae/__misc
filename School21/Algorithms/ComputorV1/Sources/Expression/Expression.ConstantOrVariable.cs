@@ -1,10 +1,10 @@
 public partial class 	Expression
 {
-	public class		UnaryMember : IMember
+	public class		ConstantOrVariable : Element
 	{
 		public Token	Token;
 
-		public			UnaryMember(Token token = null)
+		public			ConstantOrVariable(Token token = null)
 		{
 			Token = token;
 		}

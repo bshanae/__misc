@@ -11,6 +11,8 @@ public static class			TokenParser
 			return new Constant(source);
 		if (IsVariable(source))
 			return new Variable(source);
+		if (IsBracket(source))
+			return new Bracket(source);
 		return new BadToken(source);		
 	}
 
@@ -50,4 +52,12 @@ public static class			TokenParser
 
 		return Variable.AvaliableNames.Contains(input[0]);
 	}
+
+	private static bool		IsBracket(string input) =>
+		input[0] switch
+		{
+			'(' => true,
+			')' => true,
+			_ => false
+		};
 }
