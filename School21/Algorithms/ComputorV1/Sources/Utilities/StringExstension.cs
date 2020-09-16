@@ -20,7 +20,7 @@ public static class				StringExstension
 				from entry
 				in strings
 				where entry.Length > 0
-				select TokenParser.Parse(entry)
+				select Token.Parse(entry)
 			)
 			.ToList()
 		);

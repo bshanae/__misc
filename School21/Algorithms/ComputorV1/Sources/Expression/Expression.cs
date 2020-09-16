@@ -6,13 +6,15 @@ public partial class		Expression
 {
 	private List<IElement>	_Elements = new List<IElement>();
 	private List<Group>		_Groups = new List<Group>();
+
+	public IElement			Root => _Elements[0];
 	
 	#region Public methods
 	
-	public					Expression(List<Token> tokens)
+	public					Expression(List<global::Token> tokens)
 	{
 		foreach (var token in tokens)
-			_Elements.Add(new TokenWrap(token));
+			_Elements.Add(new Token(token));
 		
 		Console.WriteLine("Pass No. 0 : " + this);
 		ProcessUnaryMinus();
@@ -51,21 +53,21 @@ public partial class		Expression
 		bool?				previousIsContantOrVariable = null;
 
 		for (int i = 0; i < _Elements.Count; i++)
-			if (_Elements[i] is TokenWrap token)
+			if (_Elements[i] is Token token)
 			{
 				if
 				(
-					token.Token is Operator @operator
+					token.Value is Operator @operator
 					&& @operator.Type == OperatorType.Subtraction
 					&& !previousIsContantOrVariable.GetValueOrDefault(true)
 				)
 				{
-					_Elements.Insert(i, new TokenWrap(new Constant("0")));
+					_Elements.Insert(i, new Token(new Constant("0")));
 					previousIsContantOrVariable = true;
 					i++;
 				}
 				else
-					previousIsContantOrVariable = token.Token is Constant || token.Token is Operator;
+					previousIsContantOrVariable = token.Value is Constant || token.Value is Operator;
 			}
 	}
 	
@@ -78,7 +80,7 @@ public partial class		Expression
 		
 		for (var i = 0; i < _Elements.Count;)
 		{
-			bracket = (_Elements[i] as TokenWrap)?.Token as Bracket;
+			bracket = (_Elements[i] as Token)?.Value as Bracket;
 			if (bracket == null)
 			{
 				if (groupStack.Count > 0)
@@ -130,7 +132,7 @@ public partial class		Expression
 		
 		for (var i = 0; i < elements.Count;)
 		{
-			@operator[0] = (elements[i] as TokenWrap)?.Token as Operator;
+			@operator[0] = (elements[i] as Token)?.Value as Operator;
 			if (@operator[0] == null || !@operator[0].IsAnyOf(types))
 			{
 				i++;
@@ -147,7 +149,7 @@ public partial class		Expression
 			
 			while (i + 1 <= elements.Count)
 			{
-				@operator[1] = (elements[i] as TokenWrap)?.Token as Operator;
+				@operator[1] = (elements[i] as Token)?.Value as Operator;
 				if (@operator[1] == null || @operator[1].Type != @operator[0].Type)
 					break ;
 				
@@ -200,16 +202,16 @@ public partial class		Expression
 
 		if (complexElement is Operation operation && operation.OperatorType.CanCalculate())
 		{
-			TokenWrap		target = null;
+			Token		target = null;
 			
 			for (int i = 0; i < operation.Children.Count; i++)
-				if(operation.Children[i] is TokenWrap token && token.Token is Constant constant)
+				if(operation.Children[i] is Token token && token.Value is Constant constant)
 				{
 					if (target == null)
 						target = token;
 					else
 					{
-						target.Token = operation.OperatorType.Calculate(target.Token as Constant, constant);
+						target.Value = operation.OperatorType.Calculate(target.Value as Constant, constant);
 						operation.Children.RemoveAt(i--);
 					}
 				}
