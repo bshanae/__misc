@@ -46,8 +46,6 @@
         <Compile Include="Sources\Equation\Operation.cs" />
         <Compile Include="Sources\Equation\OperatorTypeExtensions.cs" />
         <Compile Include="Sources\Equation\Term.cs" />
-        <Compile Include="Sources\Expression\Group.cs" />
-        <Compile Include="Sources\Expression\CompexElement.cs" />
         <Compile Include="Sources\Expression\Operation.cs" />
         <Compile Include="Sources\Expression\Expression.cs" />
         <Compile Include="Sources\Expression\Element.cs" />

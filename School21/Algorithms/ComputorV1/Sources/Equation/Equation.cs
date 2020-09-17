@@ -32,15 +32,15 @@ public partial class		Equation
 
 	private void			Reduce()
 	{
-		root = Reduce(root);
+		root = ReduceHorizontally(root);
 	}
 
-	private static Element	Reduce(Element element)
+	private static Element	ReduceHorizontally(Element element)
 	{
 		if (element is Operation operation)
 		{
 			for (int i = 0; i < operation.Children.Count; i++)
-				operation.Children[i] = Reduce(operation.Children[i]);
+				operation.Children[i] = ReduceHorizontally(operation.Children[i]);
 			
 			if (!operation.OperatorType.CanCalculate())
 				return element;
@@ -74,6 +74,16 @@ public partial class		Equation
 		}
 
 		return element;
+	}
+
+	private static Element	ReduceVertically(Element element)
+	{
+		if (element is Operation operation && operation.OperatorType.CanCalculate())
+		{
+			
+		}
+
+		return null;
 	}
 	
 	#endregion

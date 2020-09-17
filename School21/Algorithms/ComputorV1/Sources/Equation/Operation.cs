@@ -22,7 +22,7 @@ public partial class			Equation
 		
 		public override string	ToString()
 		{
-						string result = "";
+			string				result = "";
 
 			result += "[";
 			

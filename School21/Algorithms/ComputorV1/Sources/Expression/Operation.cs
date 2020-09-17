@@ -1,7 +1,11 @@
+using System.Collections.Generic;
+
 public partial class			Expression
 {
-	public class				Operation : IComplexElement
+	public class				Operation : Element
 	{
+		public List<Element>	Children = new List<Element>();
+		
 		public OperatorType		OperatorType
 		{ get ; }
 

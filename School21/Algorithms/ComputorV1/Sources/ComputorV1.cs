@@ -33,7 +33,7 @@ public class			ComputorV1
 	{
 		// Work("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
 		// Work("x + 2 * (x * 2 - 3) = 0");
-		Work("1 - 3 * 2 * x + x + 3 * x = 0");
+		Work("x ^ 2 + 3 * x = 0");
 	}
 }
 

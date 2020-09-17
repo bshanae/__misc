@@ -1,5 +1,3 @@
-using System;
-
 public partial class			Equation
 {
 	public abstract class		Element

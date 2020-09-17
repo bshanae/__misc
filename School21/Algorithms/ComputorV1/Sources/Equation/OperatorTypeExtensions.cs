@@ -1,3 +1,4 @@
+using System;
 using static Equation;
 
 public static partial class	OperatorTypeExtensions
@@ -31,7 +32,7 @@ public static partial class	OperatorTypeExtensions
 				return new Term(left.Factor / right.Factor, left.Power - right.Power);
 				
 			case OperatorType.Power :
-				return new Term(left.Factor, left.Power + right.Power);
+				return new Term(left.Factor, left.Power * (int)Math.Floor(right.Factor));
 				
 			default :
 				Error.Raise();
