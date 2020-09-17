@@ -4,10 +4,10 @@ using System.Linq;
 
 public partial class		Expression
 {
-	private List<IElement>	_Elements = new List<IElement>();
+	private List<Element>	_Elements = new List<Element>();
 	private List<Group>		_Groups = new List<Group>();
 
-	public IElement			Root => _Elements[0];
+	public Element			Root => _Elements[0];
 	
 	#region Public methods
 	
@@ -29,8 +29,6 @@ public partial class		Expression
 		Console.WriteLine("Pass No. 5 : " + this);
 		ProcessOperators(OperatorType.Equality);
 		Console.WriteLine("Pass No. 6 : " + this);
-		Reduce();
-		Console.WriteLine("Pass No. 7 : " + this);
 		
 		Error.Assert(_Elements.Count == 1, "Can't parse expression");
 	}
@@ -50,7 +48,7 @@ public partial class		Expression
 
 	private void			ProcessUnaryMinus()
 	{
-		bool?				previousIsContantOrVariable = null;
+		bool?				isPreviousConstantOrVariable = null;
 
 		for (int i = 0; i < _Elements.Count; i++)
 			if (_Elements[i] is Token token)
@@ -59,15 +57,15 @@ public partial class		Expression
 				(
 					token.Value is Operator @operator
 					&& @operator.Type == OperatorType.Subtraction
-					&& !previousIsContantOrVariable.GetValueOrDefault(true)
+					&& !isPreviousConstantOrVariable.GetValueOrDefault(true)
 				)
 				{
 					_Elements.Insert(i, new Token(new Constant("0")));
-					previousIsContantOrVariable = true;
+					isPreviousConstantOrVariable = true;
 					i++;
 				}
 				else
-					previousIsContantOrVariable = token.Value is Constant || token.Value is Operator;
+					isPreviousConstantOrVariable = token.Value is Constant || token.Value is Operator;
 			}
 	}
 	
@@ -125,7 +123,7 @@ public partial class		Expression
 		Error.Assert(groupStack.Count == 0, "Invalid brackets pattern");
 	}
 
-	private static void		ProcessOperators(List<IElement> elements, params OperatorType[] types)
+	private static void		ProcessOperators(List<Element> elements, params OperatorType[] types)
 	{
 		Operator[]			@operator = {null, null};
 		Operation			operation;
@@ -177,47 +175,10 @@ public partial class		Expression
 			Error.Raise("Parsing error");
 	}
 	
-	private static void		ValidateRight(List<IElement> list, int index)
+	private static void		ValidateRight(List<Element> list, int index)
 	{
 		if (index + 1 >= list.Count)
 			Error.Raise("Parsing error");
-	}
-
-	private void			Reduce()
-	{
-		for (int i = 0; i < _Elements.Count; i++)
-			_Elements[i] = Reduce(_Elements[i]);
-	}
-
-	private static IElement	Reduce(IElement element)
-	{
-		if (!(element is IComplexElement))
-			return element;
-		
-		var					complexElement = element as IComplexElement;
-		
-		for (int i = 0; i < complexElement.Children.Count; i++)
-			if (complexElement.Children[i] is IComplexElement)
-				complexElement.Children[i] = Reduce(complexElement.Children[i]);
-
-		if (complexElement is Operation operation && operation.OperatorType.CanCalculate())
-		{
-			Token		target = null;
-			
-			for (int i = 0; i < operation.Children.Count; i++)
-				if(operation.Children[i] is Token token && token.Value is Constant constant)
-				{
-					if (target == null)
-						target = token;
-					else
-					{
-						target.Value = operation.OperatorType.Calculate(target.Value as Constant, constant);
-						operation.Children.RemoveAt(i--);
-					}
-				}
-		}
-
-		return complexElement.Children.Count == 1 ? complexElement.Children[0] : element;
 	}
 
 	#endregion

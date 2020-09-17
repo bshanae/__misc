@@ -26,19 +26,18 @@ public class			ComputorV1
 		
 		Console.WriteLine(">>> Solving equation <<<\n");
 		
-		// equation = new Equation(tree);
-		// Console.WriteLine("\n" + equation);
+		equation = new Equation(tree);
 	}
 
 	public static void	Main(string[] args)
 	{
 		// Work("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
-		Work("x + 2 * (x * 2 - 3) = 0");
+		// Work("x + 2 * (x * 2 - 3) = 0");
+		Work("1 - 3 * 2 * x + x + 3 * x = 0");
 	}
 }
 
 /*
 	Bonuses :
-	1. Complex expressions (1 * 2 * 3..., x * x * 2...)
-	2. Ignoring operator * (2x)
+		1. Free form expressions
 */

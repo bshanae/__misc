@@ -44,6 +44,7 @@
         <Compile Include="Sources\Equation\Equation.cs" />
         <Compile Include="Sources\Equation\Element.cs" />
         <Compile Include="Sources\Equation\Operation.cs" />
+        <Compile Include="Sources\Equation\OperatorTypeExtensions.cs" />
         <Compile Include="Sources\Equation\Term.cs" />
         <Compile Include="Sources\Expression\Group.cs" />
         <Compile Include="Sources\Expression\CompexElement.cs" />
@@ -55,10 +56,13 @@
         <Compile Include="Sources\Token\Bracket.cs" />
         <Compile Include="Sources\Token\Constant.cs" />
         <Compile Include="Sources\Token\Operator.cs" />
+        <Compile Include="Sources\Token\OperatorType.cs" />
+        <Compile Include="Sources\Token\OperatorTypeExtensions.cs" />
         <Compile Include="Sources\Token\Token.cs" />
         <Compile Include="Sources\Token\Variable.cs" />
         <Compile Include="Sources\Utilities\Error.cs" />
         <Compile Include="Sources\Utilities\Describable.cs" />
+        <Compile Include="Sources\Utilities\ListExtensions.cs" />
         <Compile Include="Sources\Utilities\StringExstension.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

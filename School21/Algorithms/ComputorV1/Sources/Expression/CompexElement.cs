@@ -2,8 +2,8 @@ using System.Collections.Generic;
 
 public partial class			Expression
 {
-	public class				IComplexElement : IElement
+	public class				IComplexElement : Element
 	{ 
-		public List<IElement>	Children = new List<IElement>();
+		public List<Element>	Children = new List<Element>();
 	}
 }

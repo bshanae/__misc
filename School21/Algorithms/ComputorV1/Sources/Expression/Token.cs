@@ -1,6 +1,6 @@
 public partial class 			Expression
 {
-	public class				Token : IElement
+	public class				Token : Element
 	{
 		public global::Token	Value;
 

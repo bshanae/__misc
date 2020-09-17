@@ -3,10 +3,7 @@ public partial class			Expression
 	public class				Operation : IComplexElement
 	{
 		public OperatorType		OperatorType
-		{
-			get ;
-			private set ;
-		}
+		{ get ; }
 
 		public					Operation(OperatorType operatorType)
 		{
