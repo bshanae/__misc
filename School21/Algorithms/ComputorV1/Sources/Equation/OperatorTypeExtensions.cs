@@ -32,7 +32,10 @@ public static partial class	OperatorTypeExtensions
 				return new Term(left.Factor / right.Factor, left.Power - right.Power);
 				
 			case OperatorType.Power :
-				return new Term(left.Factor, left.Power * (int)Math.Floor(right.Factor));
+				if (left.Power == 0)
+					return new Term((float)Math.Pow(left.Factor, right.Factor), 0);
+				else
+					return new Term(left.Factor, left.Power * (int)Math.Floor(right.Factor));
 				
 			default :
 				Error.Raise();

@@ -1,41 +1,39 @@
-using System.Linq;
-using System.Collections.Generic;
 public partial class			Equation
 {
 	public class				Operation : Element
 	{
-		public List<Element>	Children = new List<Element>();
-
 		public OperatorType		OperatorType
 		{ get; }
 
-		public					Operation(OperatorType @operator)
+		public Element			left;
+		public Element			right;
+		public					Operation
+								(
+									OperatorType @operator,
+									Element left = null,
+									Element right = null
+								)
 		{
 			OperatorType = @operator;
+			this.left = left;
+			this.right = right;
 		}
 
 		public					Operation(Expression.Operation operation)
 		{
 			OperatorType = operation.OperatorType;
-			Children = operation.Children.Select(Element.Convert).ToList();
+			left = Element.Convert(operation.Left.Clone() as Expression.Element);
+			right = Element.Convert(operation.Right.Clone() as Expression.Element);
 		}
-		
+
+		public override object	Clone()
+		{
+			return new Operation(OperatorType, left.Clone() as Element, right.Clone() as Element);
+		}
+
 		public override string	ToString()
 		{
-			string				result = "";
-
-			result += "[";
-			
-			for (var i = 0; i < Children.Count; i++) 
-			{
-				result += Children[i];
-				if (i < Children.Count - 1)
-					result += " " + OperatorType.AsString() + " ";
-			}
-			
-			result += "]";
-
-			return result;
+			return $"[{left} {OperatorType.AsString()} {right}]";
 		}
 	}
 }

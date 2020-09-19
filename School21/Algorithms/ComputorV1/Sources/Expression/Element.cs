@@ -1,6 +1,10 @@
 
-public partial class	Expression
+using System;
+
+public partial class			Expression
 {
-	public interface	Element
-	{ }
+	public abstract class		Element : ICloneable
+	{
+		public abstract object	Clone();
+	}
 }

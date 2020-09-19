@@ -10,6 +10,8 @@ public partial class			Equation
 		public int				Power
 		{ get; }
 
+		public bool				IsZero => Factor == 0f;
+
 		public					Term(float factor, int power)
 		{
 			Factor = factor;
@@ -31,6 +33,11 @@ public partial class			Equation
 				Error.Raise("Can't create equation term");
 		}
 		
+		public override object	Clone()
+		{
+			return new Term(Factor, Power);
+		}
+
 		public override string	ToString()
 		{
 			string				result = "";

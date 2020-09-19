@@ -1,6 +1,8 @@
+using System;
+
 public partial class			Equation
 {
-	public abstract class		Element
+	public abstract class		Element : ICloneable
 	{
 		public static Element	Convert(Expression.Element element)
 		{
@@ -16,5 +18,7 @@ public partial class			Equation
 			Error.Raise("Can't create Equation.Element from Expression.Element");
 			return null;
 		}
+
+		public abstract object	Clone();
 	}
 }

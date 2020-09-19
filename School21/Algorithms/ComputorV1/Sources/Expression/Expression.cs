@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 public partial class		Expression
 {
@@ -15,19 +14,36 @@ public partial class		Expression
 		foreach (var token in tokens)
 			_Elements.Add(new Token(token));
 		
-		Console.WriteLine("Pass No. 0 : " + this);
-		ProcessUnaryMinus();
-		Console.WriteLine("Pass No. 1 : " + this);
-		ProcessOperators(OperatorType.Power);
-		Console.WriteLine("Pass No. 2 : " + this);
-		ProcessOperators(OperatorType.Multiplication, OperatorType.Division);
-		Console.WriteLine("Pass No. 3 : " + this);
-		ProcessOperators(OperatorType.Addition, OperatorType.Subtraction);
-		Console.WriteLine("Pass No. 4 : " + this);
-		ProcessOperators(OperatorType.Equality);
-		Console.WriteLine("Pass No. 5 : " + this);
+		Console.WriteLine("Expression :");
+		Console.WriteLine(this);
+		Console.WriteLine();
 		
-		Error.Assert(_Elements.Count == 1, "Can't parse expression");
+		// ProcessUnaryMinus();
+		// Console.WriteLine("Processed unary minuses :");
+		// Console.WriteLine(this);
+		// Console.WriteLine();
+		
+		ProcessOperators(OperatorType.Power);
+		Console.WriteLine("Processed powers :");
+		Console.WriteLine(this);
+		Console.WriteLine();
+		
+		ProcessOperators(OperatorType.Multiplication, OperatorType.Division);
+		Console.WriteLine("Processed multiplication and division :");
+		Console.WriteLine(this);
+		Console.WriteLine();
+		
+		ProcessOperators(OperatorType.Addition, OperatorType.Subtraction);
+		Console.WriteLine("Processed addition and subtraction :");
+		Console.WriteLine(this);
+		Console.WriteLine();
+		
+		ProcessOperators(OperatorType.Equality);
+		Console.WriteLine("Processed equality :");
+		Console.WriteLine(this);
+		Console.WriteLine();
+		
+		Error.Assert(_Elements.Count == 1, "Invalid expression");
 	}
 	
 	public override string	ToString()
@@ -66,60 +82,34 @@ public partial class		Expression
 			}
 	}
 	
-	private static void		ProcessOperators(List<Element> elements, params OperatorType[] types)
-	{
-		Operator[]			@operator = {null, null};
-		Operation			operation;
-		
-		for (var i = 0; i < elements.Count;)
-		{
-			@operator[0] = (elements[i] as Token)?.Value as Operator;
-			if (@operator[0] == null || !@operator[0].IsAnyOf(types))
-			{
-				i++;
-				continue ;
-			}
-	
-			ValidateLeft(i);
-			
-			operation = new Operation(@operator[0].Type);
-			operation.Children.Add(elements[i - 1]);
-			
-			elements.RemoveAt(i - 1);
-			i--;
-			
-			while (i + 1 <= elements.Count)
-			{
-				@operator[1] = (elements[i] as Token)?.Value as Operator;
-				if (@operator[1] == null || @operator[1].Type != @operator[0].Type)
-					break ;
-				
-				ValidateRight(elements, i);
-				
-				operation.Children.Add(elements[i + 1]);
-				elements.RemoveRange(i, 2);
-			}
-			
-			elements.Insert(i, operation);
-		}	
-	}
-		
 	private void			ProcessOperators(params OperatorType[] types)
 	{
-		ProcessOperators(_Elements, types);
-	}
+		Operator			@operator;
+		Operation			operation;
+		
+		for (var i = 0; i < _Elements.Count; i++)
+		{
+			@operator = (_Elements[i] as Token)?.Value as Operator;
+			if (@operator == null || !@operator.IsAnyOf(types))
+				continue ;
 	
-	private static void		ValidateLeft(int index)
+			Validate(i);
+			
+			operation = new Operation(@operator.Type, _Elements[i - 1], _Elements[i + 1]);
+			_Elements.RemoveRange(i - 1, 3);
+			_Elements.Insert(i - 1, operation);
+
+			i--;
+		}
+	}
+
+	private void			Validate(int index)
 	{
 		if (index - 1 < 0)
 			Error.Raise("Parsing error");
-	}
-	
-	private static void		ValidateRight(List<Element> list, int index)
-	{
-		if (index + 1 >= list.Count)
+		if (index + 1 >= _Elements.Count)
 			Error.Raise("Parsing error");
 	}
-
+	
 	#endregion
 }

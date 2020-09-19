@@ -19,10 +19,8 @@ public class			ComputorV1
 			Console.WriteLine(token);
 		Console.WriteLine();
 		
-		Console.WriteLine(">>> Solving expression <<<\n");
-		
+		Console.WriteLine(">>> Parsing expression <<<\n");
 		tree = new Expression(tokens);
-		Console.WriteLine();
 		
 		Console.WriteLine(">>> Solving equation <<<\n");
 		
@@ -32,8 +30,8 @@ public class			ComputorV1
 	public static void	Main(string[] args)
 	{
 		// Work("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
-		// Work("x + 2 * (x * 2 - 3) = 0");
-		Work("x ^ 2 + 3 * x = 0");
+		// Work("1 * x * 2 + 2 - 3 = x ^ 2 + 2 * x - x * 3");
+		Work("1 + 2 * x + 3 * x ^ 2 / 3 = 0");
 	}
 }
 

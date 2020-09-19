@@ -4,32 +4,35 @@ public partial class			Expression
 {
 	public class				Operation : Element
 	{
-		public List<Element>	Children = new List<Element>();
-		
 		public OperatorType		OperatorType
 		{ get ; }
+		
+		public Element			Left
+		{ get ; }
+		
+		public Element			Right
+		{ get ; }
 
-		public					Operation(OperatorType operatorType)
+		public					Operation
+								(
+									OperatorType operatorType,
+									Element left,
+									Element right
+								)
 		{
 			OperatorType = operatorType;
+			Left = left;
+			Right = right;
+		}
+
+		public override object	Clone()
+		{
+			return new Operation(OperatorType, Left.Clone() as Element, Right.Clone() as Element);
 		}
 
 		public override string	ToString()
 		{
-			string result = "";
-
-			result += "[";
-			
-			for (var i = 0; i < Children.Count; i++) 
-			{
-				result += Children[i];
-				if (i < Children.Count - 1)
-					result += " " + OperatorType.AsString() + " ";
-			}
-			
-			result += "]";
-
-			return result;
+			return $"[{Left} {OperatorType.AsString()} {Right}]";
 		}
 	}
 }

@@ -9,6 +9,11 @@ public partial class 			Expression
 			Value = token;
 		}
 
+		public override object	Clone()
+		{
+			return new Token(Value);
+		}
+
 		public override string	ToString()
 		{
 			return Value == null ? "?" : Value.ShortDescription();
