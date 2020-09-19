@@ -40,14 +40,17 @@ public static class		ComputorV1
 		// Incomplete quadratic form
 		// Solve("x ^ 2 = 4");
 		// Solve("x = 4");
-		Solve("2 * x ^ 2 = 8");
+		Solve("x * x = 5");
 		// Solve("2 * x = 4");
 		
 		// Special cases
 		// Solve("4 = 4");
 		// Solve("0 = 4");
 		// Solve("x = 4");
-
+		
+		// Random
+		// Solve("2 * 3 ^ -1 * x = 8");
+		// Solve("2 * 3 ^ -1 * x = 8");
 		
 		// Correct
 		// Solve("x - x = 0");

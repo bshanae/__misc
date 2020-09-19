@@ -310,8 +310,8 @@ public static partial class						Equation
 
 		if (discriminant > 0)
 		{
-			equationRoots[0] = (-b + (float)Math.Sqrt(discriminant)) / (2 * a);
-			equationRoots[1] = (-b - (float)Math.Sqrt(discriminant)) / (2 * a);
+			equationRoots[0] = (-b + Math.SquareRoot(discriminant)) / (2 * a);
+			equationRoots[1] = (-b - Math.SquareRoot(discriminant)) / (2 * a);
 		}
 		else if (discriminant == 0)
 			equationRoots[0] = -b / (2 * a);
@@ -323,8 +323,8 @@ public static partial class						Equation
 			equationRoots[0] = c / -b;
 		else if (b == 0)
 		{
-			equationRoots[0] = -(float)Math.Sqrt(c / -a);
-			equationRoots[1] = +(float)Math.Sqrt(c / -a);
+			equationRoots[0] = -Math.SquareRoot(c / -a);
+			equationRoots[1] = +Math.SquareRoot(c / -a);
 		}
 	}
 

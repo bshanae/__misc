@@ -1,4 +1,3 @@
-using System;
 using static Equation;
 
 public static partial class	OperatorTypeExtensions
@@ -33,9 +32,9 @@ public static partial class	OperatorTypeExtensions
 				
 			case OperatorType.Power :
 				if (left.Power == 0)
-					return new Term((float)Math.Pow(left.Factor, right.Factor), 0);
+					return new Term(Math.WholePower(left.Factor, (int)right.Factor), 0);
 				else
-					return new Term(left.Factor, left.Power * (int)Math.Floor(right.Factor));
+					return new Term(left.Factor, left.Power * (int)right.Factor);
 				
 			default :
 				Error.Raise();
