@@ -18,10 +18,10 @@ public partial class		Expression
 		Console.WriteLine(this);
 		Console.WriteLine();
 		
-		// ProcessUnaryMinus();
-		// Console.WriteLine("Processed unary minuses :");
-		// Console.WriteLine(this);
-		// Console.WriteLine();
+		ProcessUnaryMinus();
+		Console.WriteLine("Processed unary minuses :");
+		Console.WriteLine(this);
+		Console.WriteLine();
 		
 		ProcessOperators(OperatorType.Power);
 		Console.WriteLine("Processed powers :");
@@ -78,7 +78,7 @@ public partial class		Expression
 					i++;
 				}
 				else
-					isPreviousConstantOrVariable = token.Value is Constant || token.Value is Operator;
+					isPreviousConstantOrVariable = token.Value is Constant || token.Value is Variable;
 			}
 	}
 	

@@ -28,9 +28,13 @@ public partial class					Equation
 		ConvertOperation(OperatorType.Subtraction);
 		Console.WriteLine("Converted subtraction to addition :");
 		Console.WriteLine(elementsRoot);
-		
+
 		Reduce();
 		Console.WriteLine("Reduced equation :");
+		Console.WriteLine(elementsRoot);
+		
+		DiscardZeros();
+		Console.WriteLine("Discarded nulls :");
 		Console.WriteLine(elementsRoot);
 		
 		SortTerms();
@@ -75,17 +79,17 @@ public partial class					Equation
 
 	private void						ConvertOperation(OperatorType operatorType)
 	{
-		elementsRoot = ConvertOperationRecursively(elementsRoot, operatorType);
+		elementsRoot = ConvertOperation(elementsRoot, operatorType);
 	}
 	
-	private Element						ConvertOperationRecursively(Element element, OperatorType operatorType)
+	private Element						ConvertOperation(Element element, OperatorType operatorType)
 	{
 		Operation						operation = element as Operation;
 
 		if (operation != null)
 		{
-			operation.left = ConvertOperationRecursively(operation.left, operatorType);
-			operation.right = ConvertOperationRecursively(operation.right, operatorType);
+			operation.left = ConvertOperation(operation.left, operatorType);
+			operation.right = ConvertOperation(operation.right, operatorType);
 		}
 
 		if (operation != null && operation.OperatorType == operatorType)
@@ -144,6 +148,28 @@ public partial class					Equation
 				return element;
 
 			return operation.OperatorType.Calculate(left, right);			
+		}
+
+		return element;
+	}
+
+	private void						DiscardZeros()
+	{
+		elementsRoot = DiscardZeros(elementsRoot);
+	}
+
+	private static Element				DiscardZeros(Element element)
+	{
+		if (element is Operation operation && operation.OperatorType == OperatorType.Addition)
+		{
+			DiscardZeros(operation.left);
+			DiscardZeros(operation.right);
+
+			if (operation.left is Term leftTerm && leftTerm.IsZero)
+				return operation.right;
+			
+			if (operation.right is Term rightTerm && rightTerm.IsZero)
+				return operation.left;
 		}
 
 		return element;

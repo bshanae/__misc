@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class			ComputorV1
 {
-	private static void	Work(string expression)
+	private static void	Solve(string expression)
 	{
 		List<Token>		tokens;
 		Expression		tree;
@@ -29,9 +29,15 @@ public class			ComputorV1
 
 	public static void	Main(string[] args)
 	{
-		// Work("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
-		// Work("1 * x * 2 + 2 - 3 = x ^ 2 + 2 * x - x * 3");
-		Work("1 + 2 * x + 3 * x ^ 2 / 3 = 0");
+		// Solve("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
+		// Solve("1 * x * 2 + 2 - 3 = x ^ 2 + 2 * x - x * 3");
+		Solve("x - x = 0");
+		
+		// Errors
+		// Solve("=");
+		// Solve("1 =");
+		// Solve("1 = = 1");
+		// Solve("1 = 1 = 1");
 	}
 }
 
