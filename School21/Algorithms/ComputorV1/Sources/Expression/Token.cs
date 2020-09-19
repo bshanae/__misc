@@ -1,4 +1,4 @@
-public partial class 			Expression
+public static partial class		Expression
 {
 	public class				Token : Element
 	{

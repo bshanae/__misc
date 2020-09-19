@@ -4,7 +4,7 @@ public static class		Error
 {
 	public static void	Raise(string message = "Critical error")
 	{
-		Console.WriteLine("ComputerV1 : " + message);
+		Printer.Print("ComputerV1 : " + message);
 		Environment.Exit(1);
 	}
 

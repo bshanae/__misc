@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-public partial class			Expression
+public static partial class		Expression
 {
 	public class				Operation : Element
 	{

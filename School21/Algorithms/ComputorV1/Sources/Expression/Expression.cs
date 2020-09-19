@@ -1,67 +1,68 @@
 using System;
 using System.Collections.Generic;
 
-public partial class		Expression
+public static partial class			Expression
 {
-	private List<Element>	_Elements = new List<Element>();
+	private static List<Element>	_Elements = new List<Element>();
 
-	public Element			Root => _Elements[0];
+	public static Element			Root => _Elements[0];
 	
 	#region Public methods
 	
-	public					Expression(List<global::Token> tokens)
+	public static void				Build(List<global::Token> tokens)
 	{
 		foreach (var token in tokens)
 			_Elements.Add(new Token(token));
 		
-		Console.WriteLine("Expression :");
-		Console.WriteLine(this);
-		Console.WriteLine();
+		Printer.PrintLineIfVerbose("Expression :");
+		Print();
+		Printer.PrintLineIfVerbose();
 		
 		ProcessUnaryMinus();
-		Console.WriteLine("Processed unary minuses :");
-		Console.WriteLine(this);
-		Console.WriteLine();
+		Printer.PrintLineIfVerbose("Processed unary minuses :");
+		Print();
+		Printer.PrintLineIfVerbose();
 		
 		ProcessOperators(OperatorType.Power);
-		Console.WriteLine("Processed powers :");
-		Console.WriteLine(this);
-		Console.WriteLine();
+		Printer.PrintLineIfVerbose("Processed powers :");
+		Print();
+		Printer.PrintLineIfVerbose();
 		
 		ProcessOperators(OperatorType.Multiplication, OperatorType.Division);
-		Console.WriteLine("Processed multiplication and division :");
-		Console.WriteLine(this);
-		Console.WriteLine();
+		Printer.PrintLineIfVerbose("Processed multiplication and division :");
+		Print();
+		Printer.PrintLineIfVerbose();
 		
 		ProcessOperators(OperatorType.Addition, OperatorType.Subtraction);
-		Console.WriteLine("Processed addition and subtraction :");
-		Console.WriteLine(this);
-		Console.WriteLine();
+		Printer.PrintLineIfVerbose("Processed addition and subtraction :");
+		Print();
+		Printer.PrintLineIfVerbose();
 		
 		ProcessOperators(OperatorType.Equality);
-		Console.WriteLine("Processed equality :");
-		Console.WriteLine(this);
-		Console.WriteLine();
+		Printer.PrintLineIfVerbose("Processed equality :");
+		Print();
+		Printer.PrintLineIfVerbose();
 		
 		Error.Assert(_Elements.Count == 1, "Invalid expression");
 	}
 	
-	public override string	ToString()
+	public static void					Print()
 	{
-		string				result = "";
+		string							result = "";
 		
 		for (int i = 0; i < _Elements.Count; i++)
 			result += _Elements[i] + (i < _Elements.Count - 1 ? ", " : "");
-		return result;
+		
+		Printer.PrintLineIfVerbose(result);
 	}
 	
 	#endregion
 
-	#region					Private methods
+	#region								Private methods
 
-	private void			ProcessUnaryMinus()
+	private static void					ProcessUnaryMinus()
 	{
-		bool?				isPreviousConstantOrVariable = null;
+		bool?							isPreviousConstantOrVariable = null;
 
 		for (int i = 0; i < _Elements.Count; i++)
 			if (_Elements[i] is Token token)
@@ -82,10 +83,10 @@ public partial class		Expression
 			}
 	}
 	
-	private void			ProcessOperators(params OperatorType[] types)
+	private static void					ProcessOperators(params OperatorType[] types)
 	{
-		Operator			@operator;
-		Operation			operation;
+		Operator						@operator;
+		Operation						operation;
 		
 		for (var i = 0; i < _Elements.Count; i++)
 		{
@@ -103,7 +104,7 @@ public partial class		Expression
 		}
 	}
 
-	private void			Validate(int index)
+	private static void					Validate(int index)
 	{
 		if (index - 1 < 0)
 			Error.Raise("Parsing error");

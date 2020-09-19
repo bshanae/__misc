@@ -1,7 +1,7 @@
 
 using System;
 
-public partial class			Expression
+public static partial class		Expression
 {
 	public abstract class		Element : ICloneable
 	{
