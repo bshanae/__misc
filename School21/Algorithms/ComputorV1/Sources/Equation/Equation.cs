@@ -20,13 +20,17 @@ public partial class					Equation
 		MoveAllTermToLeftSide();
 		Console.WriteLine("Move all terms to left side :");
 		Console.WriteLine(elementsRoot);
+
+		ConvertOperation(OperatorType.Subtraction);
+		Console.WriteLine("Converted subtraction to addition :");
+		Console.WriteLine(elementsRoot);
 		
 		ConvertOperation(OperatorType.Division);
 		Console.WriteLine("Converted division to multiplication :");
 		Console.WriteLine(elementsRoot);
-		
-		ConvertOperation(OperatorType.Subtraction);
-		Console.WriteLine("Converted subtraction to addition :");
+
+		ApplyMultiplication();
+		Console.WriteLine("Applied multiplication :");
 		Console.WriteLine(elementsRoot);
 
 		Reduce();
@@ -120,6 +124,53 @@ public partial class					Equation
 		return element;
 	}
 	
+	private void						ApplyMultiplication()
+	{
+		elementsRoot = ApplyMultiplication(elementsRoot);
+	}
+	
+	private static Element				ApplyMultiplication(Element element)
+	{
+		if (element is Operation parentOperation)
+		{
+			parentOperation.left = ApplyMultiplication(parentOperation.left);
+			parentOperation.right = ApplyMultiplication(parentOperation.right);
+
+			if (parentOperation.OperatorType != OperatorType.Multiplication)
+				return element;
+			
+			Operation					childOperation;
+			Term						childTerm;
+
+			childOperation = parentOperation.left as Operation ?? parentOperation.right as Operation;
+			childTerm = parentOperation.left as Term ?? parentOperation.right as Term;
+
+			if
+			(
+				childOperation != null
+				&& childOperation.OperatorType != OperatorType.Multiplication
+				&& childTerm != null
+				&& childTerm.Power == 0
+			)
+			{
+				Operation				transformedOperation;
+				
+				transformedOperation = new Operation(childOperation.OperatorType);
+				transformedOperation.left = ApplyMultiplication(childOperation.left, childTerm);
+				transformedOperation.right = ApplyMultiplication(childOperation.right, childTerm);
+
+				return transformedOperation;
+			}
+		}
+
+		return element;
+	}
+
+	private static Element				ApplyMultiplication(Element element, Term term)
+	{
+		return new Operation(OperatorType.Multiplication, element, term);			
+	}
+	
 	private void						Reduce()
 	{
 		elementsRoot = Reduce(elementsRoot);
@@ -199,6 +250,11 @@ public partial class					Equation
 					sortedTerms[term.Power].Add(term);
 				break;
 		}
+	}
+
+	private void						Solve()
+	{
+		
 	}
 
 	#endregion

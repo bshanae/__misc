@@ -31,13 +31,16 @@ public class			ComputorV1
 	{
 		// Solve("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
 		// Solve("1 * x * 2 + 2 - 3 = x ^ 2 + 2 * x - x * 3");
-		Solve("x - x = 0");
-		
+		Solve("0 = 1 * x * 2 * x");
+
 		// Errors
 		// Solve("=");
 		// Solve("1 =");
 		// Solve("1 = = 1");
 		// Solve("1 = 1 = 1");
+		
+		// Correct
+		// Solve("x - x = 0");
 	}
 }
 
