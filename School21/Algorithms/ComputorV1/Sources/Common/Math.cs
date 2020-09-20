@@ -60,6 +60,19 @@ public static partial class	Math
 		return AlmostEquals(Floor(value), value);
 	}
 	
-	
+	public static int		GreatestCommonDivisor(int a, int b)
+	{
+		int					temporary = b;
+		
+	    while (b != 0)
+	    {
+	        temporary = b;
+	        b = a % b;
+	        a = temporary;
+	    }
+		
+	    return a;
+	}
+
 	#endregion
 }
