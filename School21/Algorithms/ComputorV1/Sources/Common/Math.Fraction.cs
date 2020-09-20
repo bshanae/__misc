@@ -2,23 +2,22 @@ public static partial class		Math
 {
 	public struct				Fraction
 	{
-//								TODO Change names
-		public float			_A_ { get ; }
-		public float			_B_ { get ; }
+		public float			Numerator { get ; }
+		public float			Divider { get ; }
 
-		public float			_C_ => _A_ / _B_;
+		public float			Value => Numerator / Divider;
 
 		public					Fraction(float a, float b = 1f)
 		{
-			_A_ = a;
-			_B_ = b;
+			Numerator = a;
+			Divider = b;
 			
 			Reduce();
 		}
 
 		public override string	ToString()
 		{
-			return IsWhole(_A_) && IsWhole(_B_) ? $"{_A_} / {_B_}" : _C_.ToString();
+			return IsWhole(Numerator) && IsWhole(Divider) ? $"{Numerator} / {Divider}" : Value.ToString();
 		}
 
 		private void			Reduce()

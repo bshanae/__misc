@@ -47,12 +47,17 @@ public static partial class	Math
 	{
 		return value < 0 ? value * -1f : value;
 	}
-	
-//							TODO Implement correctly
+
+	private static int		Floor(float value)
+	{
+		int					intValue = (int)value;
+		
+		return value < intValue ? intValue - 1 : intValue;
+	}
 	
 	public static bool		IsWhole(float value)
 	{
-		return System.Math.Floor(value) == value;
+		return AlmostEquals(Floor(value), value);
 	}
 	
 	

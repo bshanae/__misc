@@ -145,7 +145,7 @@ public static class			Tester
 		if (root == null)
 			return value == null;
 		else
-			return value != null && Math.AlmostEquals(root.Value._C_, value.Value, 0.0001f);
+			return value != null && Math.AlmostEquals(root.Value.Value, value.Value, 0.0001f);
 	}
 	
 	#endregion
