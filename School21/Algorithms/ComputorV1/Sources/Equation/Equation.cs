@@ -156,7 +156,7 @@ public static partial class						Equation
 				transformedOperation.left = ApplyMultiplication(childOperation.left, childTerm);
 				transformedOperation.right = ApplyMultiplication(childOperation.right, childTerm);
 
-				return transformedOperation;
+				return ApplyMultiplication(transformedOperation);
 			}
 		}
 
