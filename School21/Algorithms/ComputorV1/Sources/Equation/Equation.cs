@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 public static partial class						Equation
@@ -7,17 +6,17 @@ public static partial class						Equation
 
 	private static Element						elementsRoot;
 	private static Dictionary<int, List<Term>>	sortedTerms;
-	private static float?[]						equationRoots;
+	private static Math.Fraction?[]				equationRoots;
 
-	public static float?						FirstRoot => equationRoots[0];
-	public static float?						SecondRoot => equationRoots[1];
+	public static Math.Fraction?				FirstRoot => equationRoots[0];
+	public static Math.Fraction?				SecondRoot => equationRoots[1];
 
 	#region										Public methods
 	
 	public static void							Build()
 	{
 		elementsRoot = Element.Convert(Expression.Root);
-		equationRoots = new float?[]{null, null};
+		equationRoots = new Math.Fraction?[]{null, null};
 
 		Printer.PrintLineIfVerbose("Equation :");
 		Printer.PrintLineIfVerbose(elementsRoot);
@@ -309,21 +308,21 @@ public static partial class						Equation
 
 		if (discriminant > 0)
 		{
-			equationRoots[0] = (-b + Math.SquareRoot(discriminant)) / (2 * a);
-			equationRoots[1] = (-b - Math.SquareRoot(discriminant)) / (2 * a);
+			equationRoots[0] = new Math.Fraction(-b + Math.SquareRoot(discriminant), 2 * a);
+			equationRoots[1] = new Math.Fraction(-b - Math.SquareRoot(discriminant), 2 * a);
 		}
 		else if (discriminant == 0)
-			equationRoots[0] = -b / (2 * a);
+			equationRoots[0] = new Math.Fraction(-b, 2 * a);
 	}
 	
 	private static void							SolveIncompleteQuadraticEquation(float a, float b, float c)
 	{
 		if (a == 0)
-			equationRoots[0] = c / -b;
+			equationRoots[0] = new Math.Fraction(c, -b);
 		else if (b == 0)
 		{
-			equationRoots[0] = -Math.SquareRoot(c / -a);
-			equationRoots[1] = +Math.SquareRoot(c / -a);
+			equationRoots[0] = new Math.Fraction(-Math.SquareRoot(c / -a));
+			equationRoots[1] = new Math.Fraction(+Math.SquareRoot(c / -a));
 		}
 	}
 

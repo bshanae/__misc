@@ -1,8 +1,10 @@
-public static class		Math
+public static partial class	Math
 {
-	const float			EPSILON = 0.00001f;
+	const float				EPSILON = 0.00001f;
+
+	#region					Public methods
 	
-	public static float WholePower(float value, int power)
+	public static float		WholePower(float value, int power)
 	{
 		if (power > 1)
 			return WholePower(value * power, power - 1);
@@ -16,11 +18,11 @@ public static class		Math
 		return value;
 	}
 
-	public static float	SquareRoot(float value)
+	public static float		SquareRoot(float value)
 	{
-		float			low = 0f;
-		float			high = value;
-		float			middle = 0f;
+		float				low = 0f;
+		float				high = value;
+		float				middle = 0f;
 		
 		for(int i = 0 ; i < 1000 ; i++)
 		{
@@ -36,13 +38,23 @@ public static class		Math
 		return middle;
 	}
 
-	public static bool	AlmostEquals(float a, float b, float epsilon = EPSILON)
+	public static bool		AlmostEquals(float a, float b, float epsilon = EPSILON)
 	{
 		return Absolute(a - b) < epsilon;
 	}
 	
-	public static float	Absolute(float value)
+	public static float		Absolute(float value)
 	{
 		return value < 0 ? value * -1f : value;
 	}
+	
+//							TODO Implement correctly
+	
+	public static bool		IsWhole(float value)
+	{
+		return System.Math.Floor(value) == value;
+	}
+	
+	
+	#endregion
 }

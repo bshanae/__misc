@@ -55,6 +55,7 @@
         <Compile Include="Sources\Common\Describable.cs" />
         <Compile Include="Sources\Common\Error.cs" />
         <Compile Include="Sources\Common\Math.cs" />
+        <Compile Include="Sources\Common\Math.Fraction.cs" />
         <Compile Include="Sources\Common\Options.cs" />
         <Compile Include="Sources\Common\Printer.cs" />
         <Compile Include="Sources\Main.cs" />

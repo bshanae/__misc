@@ -15,14 +15,11 @@ public static class				StringExstension
 
 		strings = Regex.Split(value, @"([\*\/\+\-\^=\(\)])");
 		return
-		(
 			(
-				from entry
-				in strings
+				from entry in strings
 				where entry.Length > 0
 				select Token.Parse(entry)
 			)
-			.ToList()
-		);
-	}	
+			.ToList();
+	}
 }

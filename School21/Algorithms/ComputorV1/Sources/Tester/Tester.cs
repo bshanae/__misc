@@ -47,11 +47,11 @@ public static class			Tester
 	private static bool		RunComputorForExpected(string expression, float? firstRoot, float? secondRoot)
 	{
 		ComputorV1.Main(new []{expression, "Test", "Verbose"});
-		return AreRootsEqual(Equation.FirstRoot, firstRoot) && AreRootsEqual(Equation.SecondRoot, secondRoot);
+		return DoesRootEqual(Equation.FirstRoot, firstRoot) && DoesRootEqual(Equation.SecondRoot, secondRoot);
 	}
 
-	private static bool		AreRootsEqual(float? a, float? b)
+	private static bool		DoesRootEqual(Math.Fraction? root, float? value)
 	{
-		return a.HasValue == b.HasValue && Math.AlmostEquals(a.Value, b.Value, 0.001f);
+		return root.HasValue == value.HasValue && Math.AlmostEquals(root.Value._C_, value.Value, 0.001f);
 	}
 }

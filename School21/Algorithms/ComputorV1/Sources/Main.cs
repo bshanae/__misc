@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 public static class		ComputorV1
 {
@@ -23,12 +24,14 @@ public static class		ComputorV1
 		Equation.Build();
 	}
 
-	public static void	Main(string[] args)
+	public static void	Main(string[] arguments)
 	{
-		Options.Parse(args);
+		var				argumentList = arguments.ToList();
 		
-		Error.Assert(args.Length > 0, "Invalid number of arguments");
-		Solve(args[0]);
+		Options.Parse(argumentList);
+		
+		Error.Assert(argumentList.Count > 0, "Invalid number of arguments");
+		Solve(argumentList[0]);
 	}
 }
 
