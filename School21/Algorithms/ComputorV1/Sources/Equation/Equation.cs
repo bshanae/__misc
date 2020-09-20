@@ -9,6 +9,9 @@ public static partial class						Equation
 	private static Dictionary<int, List<Term>>	sortedTerms;
 	private static float?[]						equationRoots;
 
+	public static float?						FirstRoot => equationRoots[0];
+	public static float?						SecondRoot => equationRoots[1];
+
 	#region										Public methods
 	
 	public static void							Build()
@@ -143,7 +146,7 @@ public static partial class						Equation
 			if
 			(
 				childOperation != null
-				&& childOperation.OperatorType != OperatorType.Multiplication
+				&& !childOperation.OperatorType.IsAnyOf(OperatorType.Multiplication, OperatorType.Power)
 				&& childTerm != null
 				&& childTerm.Power == 0
 			)
@@ -152,11 +155,7 @@ public static partial class						Equation
 				
 				transformedOperation = new Operation(childOperation.OperatorType);
 				transformedOperation.left = ApplyMultiplication(childOperation.left, childTerm);
-
-				if (childOperation.OperatorType != OperatorType.Power)
-					transformedOperation.right = ApplyMultiplication(childOperation.right, childTerm);
-				else
-					transformedOperation.right = childTerm; 
+				transformedOperation.right = ApplyMultiplication(childOperation.right, childTerm);
 
 				return transformedOperation;
 			}

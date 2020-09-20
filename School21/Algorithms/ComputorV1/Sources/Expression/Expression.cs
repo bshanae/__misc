@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public static partial class			Expression
 {
-	private static List<Element>	_Elements = new List<Element>();
+	private static List<Element>	_Elements;
 
 	public static Element			Root => _Elements[0];
 	
@@ -11,6 +11,8 @@ public static partial class			Expression
 	
 	public static void				Build(List<global::Token> tokens)
 	{
+		_Elements = new List<Element>();
+		
 		foreach (var token in tokens)
 			_Elements.Add(new Token(token));
 		

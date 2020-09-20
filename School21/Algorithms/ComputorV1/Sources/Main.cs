@@ -1,5 +1,4 @@
-﻿﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public static class		ComputorV1
 {
@@ -28,32 +27,8 @@ public static class		ComputorV1
 	{
 		Options.Parse(args);
 		
-		// Solve("1 * x ^ 1 * x + 2 * x * 2 + 3 - 5 = 0");
-		// Solve("1 * x * 2 + 2 - 3 = x ^ 2 + 2 * x - x * 3");
-		
-		// Errors
-		// Solve("=");
-		// Solve("1 =");
-		// Solve("1 = = 1");
-		// Solve("1 = 1 = 1");
-		
-		// Incomplete quadratic form
-		// Solve("x ^ 2 = 4");
-		// Solve("x = 4");
-		Solve("x * x = 5");
-		// Solve("2 * x = 4");
-		
-		// Special cases
-		// Solve("4 = 4");
-		// Solve("0 = 4");
-		// Solve("x = 4");
-		
-		// Random
-		// Solve("2 * 3 ^ -1 * x = 8");
-		// Solve("2 * 3 ^ -1 * x = 8");
-		
-		// Correct
-		// Solve("x - x = 0");
+		Error.Assert(args.Length > 0, "Invalid number of arguments");
+		Solve(args[0]);
 	}
 }
 

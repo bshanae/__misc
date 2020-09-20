@@ -36,9 +36,9 @@ public static class		Math
 		return middle;
 	}
 
-	public static bool	AlmostEquals(float a, float b)
+	public static bool	AlmostEquals(float a, float b, float epsilon = EPSILON)
 	{
-		return Absolute(a - b) < EPSILON;
+		return Absolute(a - b) < epsilon;
 	}
 	
 	public static float	Absolute(float value)

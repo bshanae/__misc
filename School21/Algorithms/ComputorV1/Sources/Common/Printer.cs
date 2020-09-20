@@ -1,10 +1,16 @@
 using System;
+using NUnit.Framework;
 
 public static class		Printer
 {
 	public static void	Print(object @object = null)
 	{
-		Console.Write(@object ?? "");
+		string			message = @object?.ToString();
+		
+		if (Options.Test)
+			TestContext.Write(message);
+		else
+			Console.Write(message);
 	}
 	
 	public static void	PrintIfVerbose(object @object = null)
@@ -15,7 +21,12 @@ public static class		Printer
 	
 	public static void	PrintLine(object @object = null)
 	{
-		Console.WriteLine(@object ?? "");
+		string			message = @object?.ToString();
+		
+		if (Options.Test)
+			TestContext.WriteLine(message);
+		else
+			Console.WriteLine(message);
 	}
 	
 	public static void	PrintLineIfVerbose(object @object = null)
