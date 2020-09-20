@@ -48,7 +48,7 @@ public static partial class						Equation
 		Printer.PrintLineIfVerbose();
 		
 		DiscardZeros();
-		Printer.PrintLineIfVerbose("Discarded nulls :");
+		Printer.PrintLineIfVerbose("Discarded zeros :");
 		Printer.PrintLineIfVerbose(elementsRoot);
 		Printer.PrintLineIfVerbose();
 		

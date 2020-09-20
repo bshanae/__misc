@@ -77,6 +77,12 @@ public static class			Tester
 
 	#endregion
 	
+	#region					Invalid complex cases
+	
+	// (x + x ^ 2) * (1 + x) = 0
+	
+	#endregion
+	
 	#region					Incomplete form
 	
 	[Test]
@@ -108,10 +114,8 @@ public static class			Tester
 	
 	#region					Special cases
 	
-			// Special cases
-		// Solve("4 = 4");
-		// Solve("0 = 4");
-		// Solve("x = 4");
+	// "4 = 4"
+	// "0 = 4"
 	
 	#endregion
 	

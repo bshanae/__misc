@@ -73,16 +73,25 @@ public static partial class			Expression
 				(
 					token.Value is Operator @operator
 					&& @operator.Type == OperatorType.Subtraction
-					&& !isPreviousConstantOrVariable.GetValueOrDefault(true)
+					&& !isPreviousConstantOrVariable.GetValueOrDefault(false)
 				)
 				{
-					_Elements.Insert(i, new Token(new Constant("0")));
+					CheckRight(i);
+
+					Element					nextElement = _Elements[i + 1];
+						
+					_Elements.RemoveRange(i, 2);
+					_Elements.Insert(i, CreateFakeExpressionForUnaryMinus(nextElement));
 					isPreviousConstantOrVariable = true;
-					i++;
 				}
 				else
 					isPreviousConstantOrVariable = token.Value is Constant || token.Value is Variable;
 			}
+	}
+
+	private static Element				CreateFakeExpressionForUnaryMinus(Element element)
+	{
+		return new Operation(OperatorType.Subtraction, new Token(new Constant("0")), element);
 	}
 	
 	private static void					ProcessOperators(params OperatorType[] types)
@@ -96,7 +105,7 @@ public static partial class			Expression
 			if (@operator == null || !@operator.IsAnyOf(types))
 				continue ;
 	
-			Validate(i);
+			CheckLeftAndRight(i);
 			
 			operation = new Operation(@operator.Type, _Elements[i - 1], _Elements[i + 1]);
 			_Elements.RemoveRange(i - 1, 3);
@@ -106,12 +115,22 @@ public static partial class			Expression
 		}
 	}
 
-	private static void					Validate(int index)
+	private static void					CheckLeft(int index)
 	{
 		if (index - 1 < 0)
 			Error.Raise("Parsing error");
+	}
+		
+	private static void					CheckRight(int index)
+	{
 		if (index + 1 >= _Elements.Count)
 			Error.Raise("Parsing error");
+	}
+	
+	private static void					CheckLeftAndRight(int index)
+	{
+		CheckLeft(index);
+		CheckRight(index);
 	}
 	
 	#endregion
