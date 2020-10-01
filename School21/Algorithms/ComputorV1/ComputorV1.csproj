@@ -52,37 +52,19 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Sources\Common\Describable.cs" />
-        <Compile Include="Sources\Common\Error.cs" />
-        <Compile Include="Sources\Common\Math.cs" />
-        <Compile Include="Sources\Common\Math.Fraction.cs" />
-        <Compile Include="Sources\Common\Options.cs" />
-        <Compile Include="Sources\Common\Printer.cs" />
-        <Compile Include="Sources\Main.cs" />
-        <Compile Include="Sources\Equation\Equation.cs" />
-        <Compile Include="Sources\Equation\Element.cs" />
-        <Compile Include="Sources\Equation\Operation.cs" />
-        <Compile Include="Sources\Equation\OperatorTypeExtensions.cs" />
-        <Compile Include="Sources\Equation\Term.cs" />
-        <Compile Include="Sources\Expression\Operation.cs" />
-        <Compile Include="Sources\Expression\Expression.cs" />
-        <Compile Include="Sources\Expression\Element.cs" />
-        <Compile Include="Sources\Expression\Token.cs" />
-        <Compile Include="Sources\Tester\Tester.cs" />
-        <Compile Include="Sources\Token\BadToken.cs" />
-        <Compile Include="Sources\Token\Bracket.cs" />
-        <Compile Include="Sources\Token\Constant.cs" />
-        <Compile Include="Sources\Token\Operator.cs" />
-        <Compile Include="Sources\Token\OperatorType.cs" />
-        <Compile Include="Sources\Token\OperatorTypeExtensions.cs" />
-        <Compile Include="Sources\Token\Token.cs" />
-        <Compile Include="Sources\Token\Variable.cs" />
-        <Compile Include="Sources\Extensions\DictionaryExtensions.cs" />
-        <Compile Include="Sources\Extensions\ListExtensions.cs" />
-        <Compile Include="Sources\Extensions\StringExstension.cs" />
+        <Compile Include="Sources\Equation\Parser\Parser.cs" />
+        <Compile Include="Sources\Equation\Tokens\Constant.cs" />
+        <Compile Include="Sources\Equation\Tokens\Operand.cs" />
+        <Compile Include="Sources\Equation\Tokens\Operator.cs" />
+        <Compile Include="Sources\Equation\Tokens\Token.cs" />
+        <Compile Include="Sources\Equation\Tokens\Variable.cs" />
+        <Compile Include="Sources\Program\Program.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Sources\Equation\Solver" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
