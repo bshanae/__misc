@@ -52,6 +52,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Sources\Common\Describable.cs" />
         <Compile Include="Sources\Equation\Parser\Parser.cs" />
         <Compile Include="Sources\Equation\Tokens\Constant.cs" />
         <Compile Include="Sources\Equation\Tokens\Operand.cs" />

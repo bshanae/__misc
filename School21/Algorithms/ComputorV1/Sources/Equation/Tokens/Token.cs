@@ -1,8 +1,8 @@
 namespace						Equation
 {
-	public abstract class		Token
+	public abstract class		Token : Describable
 	{
-		readonly string			String;
+		public readonly string	String;
 
 		protected				Token(string @string)
 		{
@@ -11,7 +11,10 @@ namespace						Equation
 
 		public override string	ToString()
 		{
-			return String;
+			return ShortDescription();
 		}
+
+		public abstract string	ShortDescription();
+		public abstract string	LongDescription();
 	}
 }

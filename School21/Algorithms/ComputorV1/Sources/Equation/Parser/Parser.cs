@@ -56,7 +56,7 @@ namespace							Equation
 
 			return (T)Activator.CreateInstance(typeof(T), tokenString);
 		}
-
+		
 		private static string		GetAssociatedCharacters<T>() where T : Token
 		{
 			if (typeof(T) == typeof(Constant))
