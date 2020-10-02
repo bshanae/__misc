@@ -69,15 +69,20 @@ namespace							Equation
 
 		private static void			ProcessUnaryMinus(List<Token> tokens)
 		{
-			bool					IsIndexValid(int i) => i > 0 && i < tokens.Count;
 			bool					IsSubtractionOperator(int i) => tokens[i] is Operator @operator && @operator.Type == Operator.Types.Subtraction;
 
-			for (var i = 0; i < tokens.Count; i++)
-				if (IsSubtractionOperator(i) && IsIndexValid(i + 1) && tokens[i + 1] is Constant constant)
+			for (var i = 0; i < tokens.Count - 1; i++)
+				if (IsSubtractionOperator(i) && tokens[i + 1] is Operand operand)
 				{
-					constant.Factor *= -1f;
+					operand.Factor *= -1f;
 					tokens.RemoveAt(i--);
 				}
+		}
+
+		private static void			ProcessHiddenMultiplication(List<Token> tokens)
+		{
+			// for (var i = 0; i < tokens.Count; i++)
+				
 		}
 
 		private static void			PrintTokenList(List<Token> tokens, string message = null)

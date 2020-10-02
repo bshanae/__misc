@@ -22,7 +22,7 @@ namespace						Equation
 		{
 			string 				factorString = Factor == 1f ? "" : (Factor + " * ");
 			
-			return $"[{factorString}{String}]";;
+			return $"[{factorString}{Value}]";
 		}
 
 		public override string	LongDescription()
