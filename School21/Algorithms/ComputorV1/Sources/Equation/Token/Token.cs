@@ -14,7 +14,11 @@ namespace						Equation
 			return ShortDescription();
 		}
 
-		public abstract string	ShortDescription();
+		public virtual string	ShortDescription()
+		{
+			return $"[{String}]";
+		}
+		
 		public abstract string	LongDescription();
 	}
 }

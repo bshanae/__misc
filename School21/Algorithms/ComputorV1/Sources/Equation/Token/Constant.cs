@@ -20,7 +20,9 @@ namespace						Equation
 		
 		public override string	ShortDescription()
 		{
-			return String;
+			string 				factorString = Factor == 1f ? "" : (Factor + " * ");
+			
+			return $"[{factorString}{String}]";;
 		}
 
 		public override string	LongDescription()

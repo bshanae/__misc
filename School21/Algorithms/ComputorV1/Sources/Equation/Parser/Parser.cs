@@ -16,6 +16,8 @@ namespace							Equation
 			var						characters = new Queue<char>(expression);
 			var						tokens = new List<Token>();
 			
+			Console.WriteLine($"Expression : {expression}");
+			
 			while (characters.Count > 0)
 			{
 				if (IsAssociated<Constant>(characters.Peek()))
@@ -29,9 +31,17 @@ namespace							Equation
 				else
 					throw new Exception("[Equation.Parser, Parse] Bad token");
 			}
+			
+			PrintTokenList(tokens, "Tokenized expression : ");
+			
+			ProcessUnaryMinus(tokens);			
+			
+			PrintTokenList(tokens, "Processed unary minuses : ");
 
 			return tokens;
 		}
+		
+		#region						Service methods
 		
 		private static bool			IsAssociated<T>(char character) where T : Token
 		{
@@ -56,7 +66,39 @@ namespace							Equation
 
 			return (T)Activator.CreateInstance(typeof(T), tokenString);
 		}
+
+		private static void			ProcessUnaryMinus(List<Token> tokens)
+		{
+			bool					IsIndexValid(int i) => i > 0 && i < tokens.Count;
+			bool					IsSubtractionOperator(int i) => tokens[i] is Operator @operator && @operator.Type == Operator.Types.Subtraction;
+
+			for (var i = 0; i < tokens.Count; i++)
+				if (IsSubtractionOperator(i) && IsIndexValid(i + 1) && tokens[i + 1] is Constant constant)
+				{
+					constant.Factor *= -1f;
+					tokens.RemoveAt(i--);
+				}
+		}
+
+		private static void			PrintTokenList(List<Token> tokens, string message = null)
+		{
+			if (message != null)
+				Console.Write($"{message} : ");
+
+			for (var i = 0; i < tokens.Count; i++)
+			{
+				Console.Write(tokens[i]);
+				if (i < tokens.Count - 1)
+					Console.Write(" ");
+			}
+			
+			Console.WriteLine();
+		}
 		
+		#endregion
+		
+		#region						Helper methods
+
 		private static string		GetAssociatedCharacters<T>() where T : Token
 		{
 			if (typeof(T) == typeof(Constant))
@@ -80,5 +122,7 @@ namespace							Equation
 			
 			throw new Exception("[Equation.Parser, GetLenghtLimitOfToken] Unknown token type"); 
 		}
+
+		#endregion
 	}
 }

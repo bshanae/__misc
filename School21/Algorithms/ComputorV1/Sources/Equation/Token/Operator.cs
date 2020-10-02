@@ -4,7 +4,7 @@ namespace						Equation
 {
 	public class				Operator : Token
 	{
-		enum 					Types
+		public enum 			Types
 		{
 			Addition,
 			Subtraction,
@@ -14,7 +14,7 @@ namespace						Equation
 			Equality
 		}
 
-		private Types			Type;
+		public readonly Types	Type;
 		
 		public					Operator(string @string) : base(@string)
 		{
@@ -47,11 +47,6 @@ namespace						Equation
 				default :
 					throw new Exception("[Operator, Operator] Can't build instance");
 			}
-		}
-
-		public override string	ShortDescription()
-		{
-			return String;
 		}
 
 		public override string	LongDescription()
