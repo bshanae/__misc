@@ -32,11 +32,13 @@ namespace							Equation
 					throw new Exception("[Equation.Parser, Parse] Bad token");
 			}
 			
-			PrintTokenList(tokens, "Tokenized expression : ");
+			PrintTokenList(tokens, "Tokenized expression");
 			
-			ProcessUnaryMinus(tokens);			
+			ProcessUnaryMinus(tokens);
+			PrintTokenList(tokens, "Processed unary minuses");
 			
-			PrintTokenList(tokens, "Processed unary minuses : ");
+			ProcessImplicitMultiplication(tokens);
+			PrintTokenList(tokens, "Processed implicit multiplication");
 
 			return tokens;
 		}
@@ -79,16 +81,16 @@ namespace							Equation
 				}
 		}
 
-		private static void			ProcessHiddenMultiplication(List<Token> tokens)
+		private static void			ProcessImplicitMultiplication(List<Token> tokens)
 		{
-			// for (var i = 0; i < tokens.Count; i++)
-				
+			for (var i = 0; i < tokens.Count - 1; i++)
+				if (tokens[i] is Constant && tokens[i + 1] is Variable)
+					tokens.Insert(i++, new Operator("+"));
 		}
 
 		private static void			PrintTokenList(List<Token> tokens, string message = null)
 		{
-			if (message != null)
-				Console.Write($"{message} : ");
+			
 
 			for (var i = 0; i < tokens.Count; i++)
 			{
@@ -97,7 +99,8 @@ namespace							Equation
 					Console.Write(" ");
 			}
 			
-			Console.WriteLine();
+			if (message != null)
+				Console.WriteLine($" <- {message}");
 		}
 		
 		#endregion
