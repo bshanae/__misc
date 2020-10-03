@@ -45,7 +45,14 @@ namespace							Equation
 				if (IsSubtractionOperator(i) && Workspace.Tokens[i + 1] is Operand operand)
 				{
 					operand.Factor *= -1f;
-					Workspace.Tokens.RemoveAt(i--);
+
+					if (i > 0 && Workspace.Tokens[i - 1] is Operand)
+					{
+						Workspace.Tokens.RemoveAt(i);
+						Workspace.Tokens.Insert(i, new Operator("+"));
+					}
+					else
+						Workspace.Tokens.RemoveAt(i--);
 				}
 			
 			PrintTokenList("Processed unary minuses");

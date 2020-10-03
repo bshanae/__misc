@@ -19,7 +19,7 @@
 		//   x ^ 2 / 2 / 2 = 0
 		//   2x^2 + 4x - 2 = 0
 
-		Equation.Workspace.Expression = "3x^2 + 3x = 6x";
+		Equation.Workspace.Expression = "-x - 3 = 0";
 
 		Equation.Parser.Parse();
 		Equation.Parser.ProcessUnaryMinus();
