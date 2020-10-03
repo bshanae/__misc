@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace							Equation
 {
@@ -102,9 +103,9 @@ namespace							Equation
 		
 		#endregion
 		
-		#region						CollectTokens
+		#region						Main methods
 		
-		public static void			CollectTokens()
+		public static void			BuildTerms()
 		{
 			CurrentExpectation = new Expectation(Expectation.Option.Operand);
 
@@ -113,14 +114,24 @@ namespace							Equation
 			
 			ProcessToken(null);
 			
-			Console.WriteLine("\nCollected terms :");
+			Console.WriteLine("\nBuilt terms :");
 			foreach (var term in Workspace.Terms)
 				Console.WriteLine(term);
+		}
+
+		public static void			SortTerms()
+		{
+			foreach (var term in Workspace.Terms)
+				SortTerm(term);
+			
+			Console.WriteLine("\nSorted terms :");
+			foreach (var powerAndTerm in Workspace.SortedTerms)
+				Console.WriteLine($"{powerAndTerm.Key} : {powerAndTerm.Value}");
 		}
 		
 		#endregion
 		
-		#region						ProcessToken
+		#region						Term processing
 
 		private static void			ProcessToken(Token currentToken)
 		{
@@ -153,7 +164,7 @@ namespace							Equation
 
 		#endregion
 		
-		#region						ProcessOption
+		#region						Option processing
 		
 		private static void			ProcessOption(Expectation.Option option)
 		{
@@ -288,6 +299,20 @@ namespace							Equation
 			CurrentExpectation = null;
 		}
 
+		#endregion
+		
+		#region						Term sorting
+
+		private static void			SortTerm(Term term)
+		{
+			var						termPower = (int)term.Power;
+
+			if (!Workspace.SortedTerms.ContainsKey(termPower))
+				Workspace.SortedTerms[termPower] = term;
+			else
+				Workspace.SortedTerms[termPower] = Term.Sum(Workspace.SortedTerms[termPower], term);
+		}
+		
 		#endregion
 	}
 }

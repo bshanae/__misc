@@ -1,3 +1,5 @@
+using System;
+
 namespace						Equation
 {
 	public class				Term
@@ -11,13 +13,21 @@ namespace						Equation
 			Power = power;
 		}
 
+		public static Term		Sum(Term left, Term right)
+		{
+			if (left.Power != right.Power)
+				throw new Exception("[Equation.Term, Sum] Can't sum terms with different powers");
+			
+			return new Term(left.Factor + right.Factor, left.Power);
+		}
+
 		public override string	ToString()
 		{
 			bool				shouldShowFactor;
 			bool				shouldShowVariable;
 			bool				shouldShowPower;
 
-			shouldShowVariable = Power != 0f;
+			shouldShowVariable = Factor != 0f && Power != 0f;
 			shouldShowPower = Power != 0f && Power != 1f;
 			shouldShowFactor = Factor != 1f || !shouldShowVariable;
 
