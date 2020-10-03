@@ -1,9 +1,8 @@
 using System;
-using System.Linq;
 
-namespace							Equation
+namespace							Computor
 {
-	public static class				Solver
+	public static class				Analyzer
 	{
 		#region						Nested types
 		

@@ -1,4 +1,4 @@
-namespace						Equation
+namespace						Computor
 {
 	public abstract class		Token : Describable
 	{

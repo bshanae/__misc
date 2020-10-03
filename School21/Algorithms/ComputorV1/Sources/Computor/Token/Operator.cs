@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace						Equation
+namespace						Computor
 {
 	public class				Operator : Token
 	{

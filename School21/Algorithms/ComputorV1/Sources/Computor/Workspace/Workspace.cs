@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace									Equation
+namespace									Computor
 {
 	public static class						Workspace
 	{

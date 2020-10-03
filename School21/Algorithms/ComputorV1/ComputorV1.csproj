@@ -53,15 +53,18 @@
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Sources\Common\Describable.cs" />
-        <Compile Include="Sources\Equation\Parser\Parser.cs" />
-        <Compile Include="Sources\Equation\Solver\Solver.cs" />
-        <Compile Include="Sources\Equation\Term\Term.cs" />
-        <Compile Include="Sources\Equation\Token\Constant.cs" />
-        <Compile Include="Sources\Equation\Token\Operand.cs" />
-        <Compile Include="Sources\Equation\Token\Operator.cs" />
-        <Compile Include="Sources\Equation\Token\Token.cs" />
-        <Compile Include="Sources\Equation\Token\Variable.cs" />
-        <Compile Include="Sources\Equation\Workspace\Workspace.cs" />
+        <Compile Include="Sources\Computor\Parser\Parser.cs" />
+        <Compile Include="Sources\Computor\Analyzer\Analyzer.cs" />
+        <Compile Include="Sources\Computor\Solver\Solver.cs" />
+        <Compile Include="Sources\Computor\Term\Term.cs" />
+        <Compile Include="Sources\Computor\Token\Constant.cs" />
+        <Compile Include="Sources\Computor\Token\Operand.cs" />
+        <Compile Include="Sources\Computor\Token\Operator.cs" />
+        <Compile Include="Sources\Computor\Token\Token.cs" />
+        <Compile Include="Sources\Computor\Token\Variable.cs" />
+        <Compile Include="Sources\Computor\Workspace\Workspace.cs" />
+        <Compile Include="Sources\Math\Fraction.cs" />
+        <Compile Include="Sources\Math\Math.cs" />
         <Compile Include="Sources\Program\Program.cs" />
     </ItemGroup>
     <ItemGroup>

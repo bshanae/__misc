@@ -1,6 +1,6 @@
 using System;
 
-namespace						Equation
+namespace						Computor
 {
 	public class				Constant : Operand
 	{

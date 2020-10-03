@@ -1,4 +1,4 @@
-namespace						Equation
+namespace						Computor
 {
 	public class				Variable : Operand
 	{

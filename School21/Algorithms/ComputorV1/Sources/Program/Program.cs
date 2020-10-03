@@ -1,4 +1,6 @@
-﻿public static class		Program
+﻿using Computor;
+
+public static class		Program
 {
 	public static void	Main(string[] arguments)
 	{
@@ -19,13 +21,15 @@
 		//   x ^ 2 / 2 / 2 = 0
 		//   2x^2 + 4x - 2 = 0
 
-		Equation.Workspace.Expression = "-x - 3 = 0";
+		Workspace.Expression = "x^2 = 4";
 
-		Equation.Parser.Parse();
-		Equation.Parser.ProcessUnaryMinus();
-		Equation.Parser.ProcessImplicitMultiplication();
+		Parser.Parse();
+		Parser.ProcessUnaryMinus();
+		Parser.ProcessImplicitMultiplication();
 		
-		Equation.Solver.BuildTerms();
-		Equation.Solver.SortTerms();
+		Analyzer.BuildTerms();
+		Analyzer.SortTerms();
+		
+		Solver.Solve();
 	}
 }
