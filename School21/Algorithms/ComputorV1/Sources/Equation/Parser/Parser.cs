@@ -11,36 +11,53 @@ namespace							Equation
 		private const string		CharactersOfOperator = "+-*/^=";
 		private const string		IgnoredCharacters = " ";
 
-		public static List<Token>	Parse(string expression)
+		public static void			Parse()
 		{
-			var						characters = new Queue<char>(expression);
-			var						tokens = new List<Token>();
+			var						characters = new Queue<char>(Workspace.Expression);
 			
-			Console.WriteLine($"Expression : {expression}");
+			Console.WriteLine($"Expression : {Workspace.Expression}");
 			
 			while (characters.Count > 0)
 			{
 				if (IsAssociated<Constant>(characters.Peek()))
-					tokens.Add(ExtractToken<Constant>(characters));
+					Workspace.Tokens.Add(ExtractToken<Constant>(characters));
 				else if (IsAssociated<Variable>(characters.Peek()))
-					tokens.Add(ExtractToken<Variable>(characters));
+					Workspace.Tokens.Add(ExtractToken<Variable>(characters));
 				else if (IsAssociated<Operator>(characters.Peek()))
-					tokens.Add(ExtractToken<Operator>(characters));
+					Workspace.Tokens.Add(ExtractToken<Operator>(characters));
 				else if (IsIgnored(characters.Peek()))
 					characters.Dequeue();
 				else
 					throw new Exception("[Equation.Parser, Parse] Bad token");
 			}
 			
-			PrintTokenList(tokens, "Tokenized expression");
-			
-			ProcessUnaryMinus(tokens);
-			PrintTokenList(tokens, "Processed unary minuses");
-			
-			ProcessImplicitMultiplication(tokens);
-			PrintTokenList(tokens, "Processed implicit multiplication");
+			PrintTokenList("Tokenized expression");
+		}
+		
+		public static void			ProcessUnaryMinus()
+		{
+			bool					IsSubtractionOperator(int i)
+			{
+				return Workspace.Tokens[i] is Operator @operator && @operator.ThisType == Operator.Type.Subtraction;
+			}
 
-			return tokens;
+			for (var i = 0; i < Workspace.Tokens.Count - 1; i++)
+				if (IsSubtractionOperator(i) && Workspace.Tokens[i + 1] is Operand operand)
+				{
+					operand.Factor *= -1f;
+					Workspace.Tokens.RemoveAt(i--);
+				}
+			
+			PrintTokenList("Processed unary minuses");
+		}
+
+		public static void			ProcessImplicitMultiplication()
+		{
+			for (var i = 0; i < Workspace.Tokens.Count - 1; i++)
+				if (Workspace.Tokens[i] is Constant && Workspace.Tokens[i + 1] is Variable)
+					Workspace.Tokens.Insert(i++ + 1, new Operator("*"));
+			
+			PrintTokenList("Processed implicit multiplication");
 		}
 		
 		#region						Service methods
@@ -69,33 +86,12 @@ namespace							Equation
 			return (T)Activator.CreateInstance(typeof(T), tokenString);
 		}
 
-		private static void			ProcessUnaryMinus(List<Token> tokens)
+		private static void			PrintTokenList(string message = null)
 		{
-			bool					IsSubtractionOperator(int i) => tokens[i] is Operator @operator && @operator.Type == Operator.Types.Subtraction;
-
-			for (var i = 0; i < tokens.Count - 1; i++)
-				if (IsSubtractionOperator(i) && tokens[i + 1] is Operand operand)
-				{
-					operand.Factor *= -1f;
-					tokens.RemoveAt(i--);
-				}
-		}
-
-		private static void			ProcessImplicitMultiplication(List<Token> tokens)
-		{
-			for (var i = 0; i < tokens.Count - 1; i++)
-				if (tokens[i] is Constant && tokens[i + 1] is Variable)
-					tokens.Insert(i++, new Operator("+"));
-		}
-
-		private static void			PrintTokenList(List<Token> tokens, string message = null)
-		{
-			
-
-			for (var i = 0; i < tokens.Count; i++)
+			for (var i = 0; i < Workspace.Tokens.Count; i++)
 			{
-				Console.Write(tokens[i]);
-				if (i < tokens.Count - 1)
+				Console.Write(Workspace.Tokens[i]);
+				if (i < Workspace.Tokens.Count - 1)
 					Console.Write(" ");
 			}
 			

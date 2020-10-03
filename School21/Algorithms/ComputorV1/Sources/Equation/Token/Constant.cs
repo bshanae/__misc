@@ -4,7 +4,7 @@ namespace						Equation
 {
 	public class				Constant : Operand
 	{
-		readonly float			Value;
+		public readonly float	Value;
 
 		public					Constant(string @string) : base(@string)
 		{

@@ -1,10 +1,11 @@
 using System;
+using System.Linq;
 
 namespace						Equation
 {
 	public class				Operator : Token
 	{
-		public enum 			Types
+		public enum 			Type
 		{
 			Addition,
 			Subtraction,
@@ -14,34 +15,34 @@ namespace						Equation
 			Equality
 		}
 
-		public readonly Types	Type;
+		public readonly Type	ThisType;
 		
 		public					Operator(string @string) : base(@string)
 		{
 			switch (@string[0])
 			{
 				case '+' :
-					Type = Types.Addition;
+					ThisType = Type.Addition;
 					break ;
 					
 				case '-' :
-					Type = Types.Subtraction;
+					ThisType = Type.Subtraction;
 					break ;
 					
 				case '*' :
-					Type = Types.Multiplication;
+					ThisType = Type.Multiplication;
 					break ;
 					
 				case '/' :
-					Type = Types.Division;
+					ThisType = Type.Division;
 					break ;
 					
 				case '^' :
-					Type = Types.Power;
+					ThisType = Type.Power;
 					break ;
 					
 				case '=' :
-					Type = Types.Equality;
+					ThisType = Type.Equality;
 					break ;
 				
 				default :
@@ -51,7 +52,9 @@ namespace						Equation
 
 		public override string	LongDescription()
 		{
-			return $"[Operator : {Type}]";
+			return $"[Operator : {ThisType}]";
 		}
+
+		public bool				IsAnyOf(params Type[] types) => types.Contains(ThisType);
 	}
 }

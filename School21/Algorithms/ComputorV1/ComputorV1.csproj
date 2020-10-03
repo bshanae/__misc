@@ -54,18 +54,18 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Sources\Common\Describable.cs" />
         <Compile Include="Sources\Equation\Parser\Parser.cs" />
+        <Compile Include="Sources\Equation\Solver\Solver.cs" />
+        <Compile Include="Sources\Equation\Term\Term.cs" />
         <Compile Include="Sources\Equation\Token\Constant.cs" />
         <Compile Include="Sources\Equation\Token\Operand.cs" />
         <Compile Include="Sources\Equation\Token\Operator.cs" />
         <Compile Include="Sources\Equation\Token\Token.cs" />
         <Compile Include="Sources\Equation\Token\Variable.cs" />
+        <Compile Include="Sources\Equation\Workspace\Workspace.cs" />
         <Compile Include="Sources\Program\Program.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Sources\Equation\Solver" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
