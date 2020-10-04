@@ -1,33 +1,8 @@
 ﻿using System.Collections.Generic;
 using Computor;
 
-public static class			Program
+public static partial class	Program
 {
-	public static class		Options
-	{
-		public static bool	Verbose = false;
-		public static bool	Test = false;
-	
-		public static void	Parse(List<string> flags)
-		{
-			for (int i = 0; i < flags.Count; i++)
-				switch (flags[i])
-				{
-					case "Verbose" :
-					case "verbose" :
-						Verbose = true;
-						flags.RemoveAt(i--);
-						break;
-					
-					case "Test" :
-					case "test" :
-						Test = true;
-						flags.RemoveAt(i--);
-						break;
-				}
-		}
-	}
-	
 	public static void		Main(string[] arguments)
 	{
 		// Tests :
@@ -46,16 +21,29 @@ public static class			Program
 		//   x ^ 2 * x  = 0
 		//   x ^ 2 / 2 / 2 = 0
 		//   2x^2 + 4x - 2 = 0
-		
+
+		Options.Report = Options.ReportFormat.Standard;
+
 		Workspace.Expression = "7x^2 - 3x - 22 = 0";
 
 		Parser.Parse();
+		Reporter.Report(Reporter.Event.ParsedExpression);
+		
 		Parser.ProcessUnaryMinus();
+		Reporter.Report(Reporter.Event.ProcessedUnaryMinus);
+		
 		Parser.ProcessImplicitMultiplication();
+		Reporter.Report(Reporter.Event.ProcessedImplicitMultiplication);
 		
 		Analyzer.BuildTerms();
+		Reporter.Report(Reporter.Event.BuiltTerms);
+		
 		Analyzer.SortTerms();
+		Reporter.Report(Reporter.Event.SortedTerms);
 		
 		Solver.Solve();
+		Reporter.Report(Reporter.Event.SolvedEquation);
+		
+		Reporter.Report(Reporter.Request.EquationInfo);
 	}
 }

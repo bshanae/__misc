@@ -14,9 +14,7 @@ namespace							Computor
 		public static void			Parse()
 		{
 			var						characters = new Queue<char>(Workspace.Expression);
-			
-			Console.WriteLine($"Expression : {Workspace.Expression}");
-			
+
 			while (characters.Count > 0)
 			{
 				if (IsAssociated<Constant>(characters.Peek()))

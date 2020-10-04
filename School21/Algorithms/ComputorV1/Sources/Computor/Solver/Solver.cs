@@ -4,7 +4,6 @@ namespace								Computor
 {
 	public class						Solver
 	{
-		private static Math.Fraction?[]	Roots = new Math.Fraction?[2];
 		public static void				Solve()
 		{
 			float						a = GetFactorByPower(2);
@@ -15,11 +14,6 @@ namespace								Computor
 				SolveCompleteQuadraticEquation(a, b ,c);
 			else
 				SolveIncompleteQuadraticEquation(a, b ,c);
-			
-			if (Roots[0] != null && Roots[1] != null)
-				Console.WriteLine($"{Roots[0]}, {Roots[1]}");
-			else if (Roots[0] != null && Roots[1] == null)
-				Console.WriteLine($"{Roots[0]}");
 		}
 		
 		private static void				SolveCompleteQuadraticEquation(float a, float b, float c)
@@ -28,21 +22,23 @@ namespace								Computor
 	
 			if (discriminant > 0)
 			{
-				Roots[0] = new Math.Fraction(-b + Math.SquareRoot(discriminant), 2 * a);
-				Roots[1] = new Math.Fraction(-b - Math.SquareRoot(discriminant), 2 * a);
+				Workspace.EquationRoots[0] = new Math.Fraction(-b + Math.SquareRoot(discriminant), 2 * a);
+				Workspace.EquationRoots[1] = new Math.Fraction(-b - Math.SquareRoot(discriminant), 2 * a);
 			}
 			else if (discriminant == 0)
-				Roots[0] = new Math.Fraction(-b, 2 * a);
+				Workspace.EquationRoots[0] = new Math.Fraction(-b, 2 * a);
+
+			Workspace.Discriminant = discriminant;
 		}
 		
 		private static void				SolveIncompleteQuadraticEquation(float a, float b, float c)
 		{
 			if (a == 0)
-				Roots[0] = new Math.Fraction(c, -b);
+				Workspace.EquationRoots[0] = new Math.Fraction(c, -b);
 			else if (b == 0)
 			{
-				Roots[0] = new Math.Fraction(-Math.SquareRoot(c / -a));
-				Roots[1] = new Math.Fraction(+Math.SquareRoot(c / -a));
+				Workspace.EquationRoots[0] = new Math.Fraction(-Math.SquareRoot(c / -a));
+				Workspace.EquationRoots[1] = new Math.Fraction(+Math.SquareRoot(c / -a));
 			}
 		}
 	

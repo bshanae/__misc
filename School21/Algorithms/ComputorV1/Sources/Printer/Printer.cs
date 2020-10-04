@@ -22,16 +22,4 @@ public static class		Printer
 		else
 			Console.WriteLine(message);
 	}
-	
-	public static void	PrintIfVerbose(object @object = null)
-	{
-		if (Program.Options.Verbose)
-			Print(@object);
-	}
-	
-	public static void	PrintLineIfVerbose(object @object = null)
-	{
-		if (Program.Options.Verbose)
-			PrintLine(@object);
-	}
 }
