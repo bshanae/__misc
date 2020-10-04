@@ -116,7 +116,7 @@ public static class			Tester
 	
 	private static void		RunProgram(string input)
 	{
-		Program.Main(new []{input});
+		Program.Main(new []{input, "test"});
 	}
 
 	private static bool		DoesOutputEqual(string expected)
