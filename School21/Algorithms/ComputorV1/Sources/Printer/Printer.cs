@@ -9,8 +9,8 @@ public static class		Printer
 		
 		if (Program.Options.Report == Program.Options.ReportFormat.Test)
 			TestContext.Write(message);
-		else
-			Console.Write(message);
+		
+		Console.Write(message);
 	}
 	
 	public static void	PrintLine(object @object = null)

@@ -109,15 +109,8 @@ public static class		Reporter
 			Printer.PrintLine();
 			Printer.Print("Build terms : ");
 
-			// TODO Fix this
-			for (int i = 0; i < Workspace.Terms.Count; i++)
-			{
-				Printer.Print(Workspace.Terms[i]);
-					
-				if (i < Workspace.Terms.Count - 1)
-					Printer.Print(", ");		
-			}
-			
+			Printer.Print(string.Join(", ", Workspace.Terms));
+
 			Printer.PrintLine();
 		}
 	}
@@ -128,14 +121,14 @@ public static class		Reporter
 		{
 			Printer.Print("Sorted terms : ");
 
-			// TODO Fix this
-			for (int i = 0; i < Workspace.SortedTerms.Count; i++)
-			{
-				Printer.Print(Workspace.SortedTerms[i]);
-					
-				if (i < Workspace.SortedTerms.Count - 1)
-					Printer.Print(", ");		
-			}
+			Printer.Print
+			(
+				string.Join
+				(
+					", ",
+					Workspace.SortedTerms.Select(powerAndTerm => powerAndTerm.Value)
+				)
+			);
 			
 			Printer.PrintLine();
 		}
@@ -290,6 +283,8 @@ public static class		Reporter
 			Printer.Print($"{Workspace.EquationRoots[0]}, {Workspace.EquationRoots[1]}");
 		else if (rootsCount == 1)
 			Printer.Print($"{Workspace.EquationRoots[0]}");
+		else if (rootsCount == 0)
+				Printer.Print("");
 		
 		Printer.PrintLine();
 	}
