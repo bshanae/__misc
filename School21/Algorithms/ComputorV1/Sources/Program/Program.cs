@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Computor;
 
 public static partial class	Program
@@ -22,10 +23,15 @@ public static partial class	Program
 		//   x ^ 2 / 2 / 2 = 0
 		//   2x^2 + 4x - 2 = 0
 
-		Options.Report = Options.ReportFormat.Standard;
+		List<string>		argumentsList = arguments.ToList();	
+		
+		Options.Parse(argumentsList);
 
-		Workspace.Expression = "7x^2 - 3x - 22 = 0";
+		// TODO Validate
+		Workspace.Expression = argumentsList[0];
 
+		Reporter.Report(Reporter.Event.Start);
+		
 		Parser.Parse();
 		Reporter.Report(Reporter.Event.ParsedExpression);
 		
@@ -45,5 +51,7 @@ public static partial class	Program
 		Reporter.Report(Reporter.Event.SolvedEquation);
 		
 		Reporter.Report(Reporter.Request.EquationInfo);
+		
+		Reporter.Report(Reporter.Event.End);
 	}
 }

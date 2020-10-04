@@ -8,31 +8,27 @@ public static partial class			Program
 		public enum					ReportFormat
 		{
 			Standard,
-			Internal
+			Internal,
+			Test
 		}
 
-		public static ReportFormat	Report;
-		public static bool			Test = false;
+		public static ReportFormat	Report = ReportFormat.Standard;
 	
 		public static void			Parse(List<string> flags)
 		{
 
 			for (int i = 0; i < flags.Count; i++)
 			{
-				if (DoesFlagStartWith(flags[i], "verbose"))
+				if (DoesFlagStartWith(flags[i], "report"))
 				{
-					string		value = GetValueFromFlag(flags[i], "verbose");
-
-					value = value.ToLower();
-					if (value == "standard")
-						Report = ReportFormat.Standard;
-					else if (value == "internal")
-						Report = ReportFormat.Internal;
-					else
-						throw new Exception("[Program.Options, Parse] Unknown format type");
+					Report = GetValueFromFlag(flags[i], "report").ToLower() switch
+					{
+						"standard" => ReportFormat.Standard,
+						"internal" => ReportFormat.Internal,
+						"test" => ReportFormat.Test,
+						_ => throw new Exception("[Program.Options, Parse] Unknown format type")
+					};
 				}
-				else if (DoesFlagStartWith(flags[i], "test"))
-					Test = true;
 				else
 					continue ;
 				
@@ -42,15 +38,12 @@ public static partial class			Program
 		
 		private static bool			DoesFlagStartWith(string flag, string key)
 		{
-			return flag.ToLower().StartsWith(key.ToLower());
+			return flag.ToLower().StartsWith(key);
 		}
 
 		private static string		GetValueFromFlag(string flag, string key)
 		{
-			var						flagCopy = flag.ToLower().Clone() as string;
-
-			flagCopy.Remove(0, key.Length + "=".Length);
-			return flagCopy;
+			return flag.ToLower().Remove(0, key.Length + "=".Length);
 		}
 	}
 }

@@ -5,6 +5,8 @@ public static class		Reporter
 {
 	public enum			Event
 	{
+		Start,
+		End,
 		ParsedExpression,
 		ProcessedUnaryMinus,
 		ProcessedImplicitMultiplication,
@@ -24,6 +26,14 @@ public static class		Reporter
 	{
 		switch (@event)
 		{
+			case Event.Start :
+				ReportStart();
+				break ;
+			
+			case Event.End :
+				ReportEnd();
+				break ;
+			
 			case Event.ParsedExpression :
 				ReportWhenParsedTokens();
 				break ;
@@ -64,6 +74,16 @@ public static class		Reporter
 	
 	#region				Report implementations
 
+	private static void ReportStart()
+	{
+		Printer.PrintLine();
+	}
+	
+	private static void ReportEnd()
+	{
+		Printer.PrintLine();
+	}
+	
 	private static void	ReportWhenParsedTokens()
 	{
 		if (Program.Options.Report == Program.Options.ReportFormat.Internal)
@@ -89,6 +109,7 @@ public static class		Reporter
 			Printer.PrintLine();
 			Printer.Print("Build terms : ");
 
+			// TODO Fix this
 			for (int i = 0; i < Workspace.Terms.Count; i++)
 			{
 				Printer.Print(Workspace.Terms[i]);
@@ -107,6 +128,7 @@ public static class		Reporter
 		{
 			Printer.Print("Sorted terms : ");
 
+			// TODO Fix this
 			for (int i = 0; i < Workspace.SortedTerms.Count; i++)
 			{
 				Printer.Print(Workspace.SortedTerms[i]);
@@ -122,10 +144,14 @@ public static class		Reporter
 	private static void	ReportWhenSolvedEquation()
 	{
 		if (Program.Options.Report == Program.Options.ReportFormat.Internal)
-		{
-			Printer.Print("Solved equation, equation roots : ");
-			PrintEquationRoots();
-		}
+			PrintEquationRoots
+				(
+					"Solved equation, there are no roots",
+					"Solved equation, root : ",
+					"Solved equation, roots : "
+				);
+		else if (Program.Options.Report == Program.Options.ReportFormat.Test)
+			PrintEquationRoots("", "", "");
 	}
 
 	private static void	ReportEquationInfo()
@@ -136,8 +162,12 @@ public static class		Reporter
 			PrintEquationDegree();
 			PrintDiscriminantSign();
 			
-			Printer.Print("Equation roots : ");
-			PrintEquationRoots();
+			PrintEquationRoots
+				(
+					"Equation has no roots",
+					"Equation root",
+					"Equations roots"
+				);
 		}
 	}
 	
@@ -154,7 +184,7 @@ public static class		Reporter
 
 	private static void PrintReducedEquation()
 	{
-		static void		PrintTerm(Term term, bool printPlusSign)
+		static void		PrintTerm(Term term, bool printPlusSign = false)
 		{
 			bool		shouldShowFactor;
 			bool		shouldShowVariable;
@@ -189,7 +219,7 @@ public static class		Reporter
 		
 		if (Workspace.SortedTerms.ContainsKey(2))
 		{
-			PrintTerm(Workspace.SortedTerms[2], false);
+			PrintTerm(Workspace.SortedTerms[2]);
 			didPrintATerm = true;
 		}
 		
@@ -198,7 +228,7 @@ public static class		Reporter
 			if (didPrintATerm)
 				Printer.Print(" ");
 			
-			PrintTerm(Workspace.SortedTerms[1], true);
+			PrintTerm(Workspace.SortedTerms[1], didPrintATerm);
 			didPrintATerm = true;
 		}
 		
@@ -207,7 +237,7 @@ public static class		Reporter
 			if (didPrintATerm)
 				Printer.Print(" ");
 			
-			PrintTerm(Workspace.SortedTerms[0], true);
+			PrintTerm(Workspace.SortedTerms[0], didPrintATerm);
 			didPrintATerm = true;
 		}
 		
@@ -235,22 +265,33 @@ public static class		Reporter
 			Printer.PrintLine("Discriminant is strictly negative, equation doesn't have roots");
 	}
 
-	private static void PrintEquationRoots()
+	private static void PrintEquationRoots(string messageForNoRoots, string messageForOneRoot, string messageForTwoRoots)
 	{
 		int				rootsCount = 0;
 
 		rootsCount += Workspace.EquationRoots[0] != null ? 1 : 0;
 		rootsCount += Workspace.EquationRoots[1] != null ? 1 : 0;
-		
-		if (Program.Options.Report == Program.Options.ReportFormat.Internal)
-			Printer.Print("Equation roots : ");
+
+		if
+		(
+			Program.Options.Report == Program.Options.ReportFormat.Standard ||
+			Program.Options.Report == Program.Options.ReportFormat.Internal
+		)
+		{
+			if (rootsCount == 2)
+				Printer.Print($"{messageForTwoRoots} : ");
+			else if (rootsCount == 1)
+				Printer.Print($"{messageForOneRoot} : ");
+			else if (rootsCount == 0)
+				Printer.Print(messageForNoRoots);
+		}
 		
 		if (rootsCount == 2)
-			Printer.PrintLine($"{Workspace.EquationRoots[0]}, {Workspace.EquationRoots[1]}");
+			Printer.Print($"{Workspace.EquationRoots[0]}, {Workspace.EquationRoots[1]}");
 		else if (rootsCount == 1)
-			Printer.PrintLine($"{Workspace.EquationRoots[0]}");
-		else if (rootsCount == 0)
-			Printer.PrintLine("None");
+			Printer.Print($"{Workspace.EquationRoots[0]}");
+		
+		Printer.PrintLine();
 	}
 
 	#endregion
