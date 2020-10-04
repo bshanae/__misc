@@ -30,8 +30,6 @@ namespace							Computor
 				else
 					throw new Exception("[Equation.Parser, Parse] Bad token");
 			}
-			
-			PrintTokenList("Tokenized expression");
 		}
 		
 		public static void			ProcessUnaryMinus()
@@ -54,8 +52,6 @@ namespace							Computor
 					else
 						Workspace.Tokens.RemoveAt(i--);
 				}
-			
-			PrintTokenList("Processed unary minuses");
 		}
 
 		public static void			ProcessImplicitMultiplication()
@@ -63,8 +59,6 @@ namespace							Computor
 			for (var i = 0; i < Workspace.Tokens.Count - 1; i++)
 				if (Workspace.Tokens[i] is Constant && Workspace.Tokens[i + 1] is Variable)
 					Workspace.Tokens.Insert(i++ + 1, new Operator("*"));
-			
-			PrintTokenList("Processed implicit multiplication");
 		}
 		
 		#region						Service methods
@@ -91,19 +85,6 @@ namespace							Computor
 					break;
 
 			return (T)Activator.CreateInstance(typeof(T), tokenString);
-		}
-
-		private static void			PrintTokenList(string message = null)
-		{
-			for (var i = 0; i < Workspace.Tokens.Count; i++)
-			{
-				Console.Write(Workspace.Tokens[i]);
-				if (i < Workspace.Tokens.Count - 1)
-					Console.Write(" ");
-			}
-			
-			if (message != null)
-				Console.WriteLine($" <- {message}");
 		}
 		
 		#endregion

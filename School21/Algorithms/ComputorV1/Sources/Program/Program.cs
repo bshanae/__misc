@@ -1,8 +1,34 @@
-﻿using Computor;
+﻿using System.Collections.Generic;
+using Computor;
 
-public static class		Program
+public static class			Program
 {
-	public static void	Main(string[] arguments)
+	public static class		Options
+	{
+		public static bool	Verbose = false;
+		public static bool	Test = false;
+	
+		public static void	Parse(List<string> flags)
+		{
+			for (int i = 0; i < flags.Count; i++)
+				switch (flags[i])
+				{
+					case "Verbose" :
+					case "verbose" :
+						Verbose = true;
+						flags.RemoveAt(i--);
+						break;
+					
+					case "Test" :
+					case "test" :
+						Test = true;
+						flags.RemoveAt(i--);
+						break;
+				}
+		}
+	}
+	
+	public static void		Main(string[] arguments)
 	{
 		// Tests :
 		// 	 xx = 0
@@ -20,8 +46,8 @@ public static class		Program
 		//   x ^ 2 * x  = 0
 		//   x ^ 2 / 2 / 2 = 0
 		//   2x^2 + 4x - 2 = 0
-
-		Workspace.Expression = "x^2 = 4";
+		
+		Workspace.Expression = "7x^2 - 3x - 22 = 0";
 
 		Parser.Parse();
 		Parser.ProcessUnaryMinus();

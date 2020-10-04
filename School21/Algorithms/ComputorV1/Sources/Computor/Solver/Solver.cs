@@ -17,11 +17,9 @@ namespace								Computor
 				SolveIncompleteQuadraticEquation(a, b ,c);
 			
 			if (Roots[0] != null && Roots[1] != null)
-				Console.WriteLine($"Equation roots : {Roots[0]}, {Roots[1]}");
+				Console.WriteLine($"{Roots[0]}, {Roots[1]}");
 			else if (Roots[0] != null && Roots[1] == null)
-				Console.WriteLine($"Equation root : {Roots[0]}");
-			else if (Roots[0] == null && Roots[1] == null)
-				Console.WriteLine("Equation has no roots");
+				Console.WriteLine($"{Roots[0]}");
 		}
 		
 		private static void				SolveCompleteQuadraticEquation(float a, float b, float c)

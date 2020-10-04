@@ -25,7 +25,10 @@ public static partial class		Math
 
 		public override string	ToString()
 		{
-			return IsWhole() ? $"{Numerator} / {Denominator}" : Value.ToString();
+			if (IsWhole())
+				return Denominator != 1f ? $"{Numerator} / {Denominator}" : $"{Numerator}";
+			else
+				return Value.ToString();
 		}
 
 		private bool			IsWhole()

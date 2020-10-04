@@ -65,7 +65,9 @@
         <Compile Include="Sources\Computor\Workspace\Workspace.cs" />
         <Compile Include="Sources\Math\Fraction.cs" />
         <Compile Include="Sources\Math\Math.cs" />
+        <Compile Include="Sources\Printer\Printer.cs" />
         <Compile Include="Sources\Program\Program.cs" />
+        <Compile Include="Sources\Tester\Tester.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

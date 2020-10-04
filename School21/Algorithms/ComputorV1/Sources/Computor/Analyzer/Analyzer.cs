@@ -112,20 +112,12 @@ namespace							Computor
 				ProcessToken(token);
 			
 			ProcessToken(null);
-			
-			Console.WriteLine("\nBuilt terms :");
-			foreach (var term in Workspace.Terms)
-				Console.WriteLine(term);
 		}
 
 		public static void			SortTerms()
 		{
 			foreach (var term in Workspace.Terms)
 				SortTerm(term);
-			
-			Console.WriteLine("\nSorted terms :");
-			foreach (var powerAndTerm in Workspace.SortedTerms)
-				Console.WriteLine($"{powerAndTerm.Key} : {powerAndTerm.Value}");
 		}
 		
 		#endregion
