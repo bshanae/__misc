@@ -93,12 +93,12 @@ namespace							Computor
 		
 		#region						Fields
 
-		private static Token		CurrentToken = null;
-		private static Expectation	CurrentExpectation = null;
-		private static Term			CurrentTerm = null;
-		private static Operator		LastInternalOperator = null;
-		private static Operator		LastExternalOperator = null;
-		private static bool			IsRightSideOfEquation = false;
+		private static Token		_currentToken;
+		private static Expectation	_currentExpectation;
+		private static Term			_currentTerm;
+		private static Operator		_lastInternalOperator;
+		private static Operator		_lastExternalOperator;
+		private static bool			_isRightSideOfEquation;
 		
 		#endregion
 		
@@ -106,7 +106,13 @@ namespace							Computor
 		
 		public static void			BuildTerms()
 		{
-			CurrentExpectation = new Expectation(Expectation.Option.Operand);
+			_currentToken = null;
+			_currentTerm = null;
+			_lastInternalOperator = null;
+			_lastExternalOperator = null;
+			_isRightSideOfEquation = false;
+			
+			_currentExpectation = new Expectation(Expectation.Option.Operand);
 
 			foreach (var token in Workspace.Tokens)
 				ProcessToken(token);
@@ -128,16 +134,16 @@ namespace							Computor
 		{
 			bool					TryProcessOption(Expectation.Option option)
 			{
-				if (!CurrentExpectation.IsOptionSet(option))
+				if (!_currentExpectation.IsOptionSet(option))
 					return false;
-				if (!Expectation.IsTokenExpected(option, CurrentToken))
+				if (!Expectation.IsTokenExpected(option, _currentToken))
 					return false;
 				
 				ProcessOption(option);
 				return true;
 			}
 			
-			CurrentToken = currentToken;
+			_currentToken = currentToken;
 			
 			if (TryProcessOption(Expectation.Option.Operand))
 				;
@@ -187,37 +193,37 @@ namespace							Computor
 		{
 			float					localFactor = 1f;
 
-			if (LastExternalOperator?.ThisType == Operator.Type.Subtraction)
+			if (_lastExternalOperator?.ThisType == Operator.Type.Subtraction)
 				localFactor *= -1f;
-			if (IsRightSideOfEquation)
+			if (_isRightSideOfEquation)
 				localFactor *= -1f;
 			
-			if (CurrentToken is Constant constant)
+			if (_currentToken is Constant constant)
 			{
-				CurrentTerm ??= new Term(constant.Factor * localFactor, 0f);
+				_currentTerm ??= new Term(constant.Factor * localFactor, 0f);
 
-				if (LastInternalOperator == null || LastInternalOperator.ThisType == Operator.Type.Multiplication)
-					CurrentTerm.Factor *= constant.Value;
-				else if (LastInternalOperator.ThisType == Operator.Type.Division)
-					CurrentTerm.Factor /= constant.Value;
+				if (_lastInternalOperator == null || _lastInternalOperator.ThisType == Operator.Type.Multiplication)
+					_currentTerm.Factor *= constant.Value;
+				else if (_lastInternalOperator.ThisType == Operator.Type.Division)
+					_currentTerm.Factor /= constant.Value;
 				
-				LastInternalOperator = null;
+				_lastInternalOperator = null;
 			}
-			else if (CurrentToken is Variable variable)
+			else if (_currentToken is Variable variable)
 			{
-				CurrentTerm ??= new Term(variable.Factor * localFactor, 0f);
+				_currentTerm ??= new Term(variable.Factor * localFactor, 0f);
 				
-				if (LastInternalOperator == null || LastInternalOperator.ThisType == Operator.Type.Multiplication)
-					CurrentTerm.Power++;
-				else if (LastInternalOperator.ThisType == Operator.Type.Division)
-					CurrentTerm.Power--;
+				if (_lastInternalOperator == null || _lastInternalOperator.ThisType == Operator.Type.Multiplication)
+					_currentTerm.Power++;
+				else if (_lastInternalOperator.ThisType == Operator.Type.Division)
+					_currentTerm.Power--;
 
-				LastInternalOperator = null;
+				_lastInternalOperator = null;
 			}
 			else
 				throw new Exception("[Solver, ProcessOperand] Term building error");
 			
-			CurrentExpectation = new Expectation
+			_currentExpectation = new Expectation
 				(
 					Expectation.Option.InternalOperator,
 					Expectation.Option.ExternalOperator,
@@ -227,18 +233,18 @@ namespace							Computor
 		
 		private static void			ProcessConstantForPower()
 		{
-			if (CurrentToken is Constant constant)
+			if (_currentToken is Constant constant)
 			{
-				if (LastInternalOperator.ThisType != Operator.Type.Power)
+				if (_lastInternalOperator.ThisType != Operator.Type.Power)
 					throw new Exception("[Solver, ProcessPower] Term building error");
 
-				CurrentTerm.Power += constant.Value - 1;
-				LastInternalOperator = null;
+				_currentTerm.Power += constant.Value - 1;
+				_lastInternalOperator = null;
 			}
 			else
 				throw new Exception("[Solver, ProcessPower] Term building error");
 			
-			CurrentExpectation = new Expectation
+			_currentExpectation = new Expectation
 				(
 				Expectation.Option.InternalOperator,
 					Expectation.Option.ExternalOperator,
@@ -248,14 +254,14 @@ namespace							Computor
 		
 		private static void			ProcessInternalOperator()
 		{
-			if (CurrentToken is Operator @operator)
+			if (_currentToken is Operator @operator)
 			{
-				LastInternalOperator = @operator;
+				_lastInternalOperator = @operator;
 				
 				if (@operator.ThisType == Operator.Type.Power)
-					CurrentExpectation = new Expectation(Expectation.Option.ConstantForPower);
+					_currentExpectation = new Expectation(Expectation.Option.ConstantForPower);
 				else
-					CurrentExpectation = new Expectation(Expectation.Option.Operand);
+					_currentExpectation = new Expectation(Expectation.Option.Operand);
 			}
 			else
 				throw new Exception("[Solver, ProcessInternalOperator] Term building error");
@@ -263,31 +269,31 @@ namespace							Computor
 		
 		private static void			ProcessExternalOperator()
 		{
-			if (CurrentToken is Operator @operator)
+			if (_currentToken is Operator @operator)
 			{
-				Workspace.Terms.Add(CurrentTerm);
-				CurrentTerm = null;
+				Workspace.Terms.Add(_currentTerm);
+				_currentTerm = null;
 				
-				LastExternalOperator = @operator;
+				_lastExternalOperator = @operator;
 				
 				if (@operator.ThisType == Operator.Type.Equality)
-					IsRightSideOfEquation = true;
+					_isRightSideOfEquation = true;
 			}
 			else
 				throw new Exception("[Solver, ProcessExternalOperator] Term building error");
 			
-			CurrentExpectation = new Expectation(Expectation.Option.Operand);
+			_currentExpectation = new Expectation(Expectation.Option.Operand);
 		}
 
 		private static void			ProcessEnd()
 		{
-			if (CurrentTerm != null)
+			if (_currentTerm != null)
 			{
-				Workspace.Terms.Add(CurrentTerm);
-				CurrentTerm = null;
+				Workspace.Terms.Add(_currentTerm);
+				_currentTerm = null;
 			}
 
-			CurrentExpectation = null;
+			_currentExpectation = null;
 		}
 
 		#endregion

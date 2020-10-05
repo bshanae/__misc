@@ -1,9 +1,8 @@
-using System;
 using System.Linq;
 
 namespace								Computor
 {
-	public class						Solver
+	public static class					Solver
 	{
 		public static void				Solve()
 		{

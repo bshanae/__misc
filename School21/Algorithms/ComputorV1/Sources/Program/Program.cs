@@ -22,6 +22,7 @@ public static partial class	Program
 		//   x ^ 2 * x  = 0
 		//   x ^ 2 / 2 / 2 = 0
 		//   2x^2 + 4x - 2 = 0
+		//   x * x = 0
 
 		List<string>		argumentsList = arguments.ToList();	
 		

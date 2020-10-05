@@ -28,7 +28,7 @@ public static partial class		Math
 			if (IsWhole())
 				return Denominator != 1f ? $"{Numerator} / {Denominator}" : $"{Numerator}";
 			else
-				return Value.ToString();
+				return Value.ToString("0.000000");
 		}
 
 		private bool			IsWhole()
@@ -45,6 +45,12 @@ public static partial class		Math
 				
 			Numerator /= gcd;
 			Denominator /= gcd;
+
+			if (Denominator < 0f)
+			{
+				Numerator *= -1f;
+				Denominator *= -1f;
+			}
 		}
 	}
 }
