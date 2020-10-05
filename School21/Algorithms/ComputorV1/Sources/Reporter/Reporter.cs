@@ -151,10 +151,11 @@ public static class		Reporter
 				(
 					"Solved equation, there are no roots",
 					"Solved equation, root : ",
-					"Solved equation, roots : "
+					"Solved equation, roots : ",
+					"Solved equation, roots : Any number"
 				);
 		else if (Program.Options.Report == Program.Options.ReportFormat.Test)
-			PrintEquationRoots("", "", "");
+			PrintEquationRoots("", "", "", "Any");
 	}
 
 	private static void	ReportEquationInfo()
@@ -169,7 +170,8 @@ public static class		Reporter
 				(
 					"Equation has no roots",
 					"Equation root",
-					"Equations roots"
+					"Equations roots",
+					"Any number if solution for equation"
 				);
 		}
 	}
@@ -260,6 +262,9 @@ public static class		Reporter
 
 	private static void PrintDiscriminantSign()
 	{
+		if (Workspace.AreRootsInfinite)
+			return;
+		
 		if (Workspace.Discriminant > 0f)
 			Printer.PrintLine("Discriminant is strictly positive, equation has two roots");
 		if (Workspace.Discriminant == 0f)
@@ -268,7 +273,13 @@ public static class		Reporter
 			Printer.PrintLine("Discriminant is strictly negative, equation doesn't have roots");
 	}
 
-	private static void PrintEquationRoots(string messageForNoRoots, string messageForOneRoot, string messageForTwoRoots)
+	private static void PrintEquationRoots
+	(
+		string messageForNoRoots,
+		string messageForOneRoot,
+		string messageForTwoRoots,
+		string messageForInfiniteRoots
+	)
 	{
 		if
 		(
@@ -276,20 +287,29 @@ public static class		Reporter
 			Program.Options.Report == Program.Options.ReportFormat.Internal
 		)
 		{
-			if (Workspace.EquationRoots.Count == 2)
+			if (Workspace.AreRootsInfinite)
+				Printer.Print(messageForInfiniteRoots);
+			else if (Workspace.EquationRoots.Count == 2)
 				Printer.Print($"{messageForTwoRoots} : ");
 			else if (Workspace.EquationRoots.Count == 1)
 				Printer.Print($"{messageForOneRoot} : ");
 			else if (Workspace.EquationRoots.Count == 0)
 				Printer.Print(messageForNoRoots);
 		}
-		
-		if (Workspace.EquationRoots.Count == 2)
+		else if (Program.Options.Report == Program.Options.ReportFormat.Test)
+		{
+			if (Workspace.AreRootsInfinite)
+				Printer.Print(messageForInfiniteRoots);
+		}
+
+		if (Workspace.AreRootsInfinite)
+			;	
+		else if (Workspace.EquationRoots.Count == 2)
 			Printer.Print($"{Workspace.EquationRoots[0]}, {Workspace.EquationRoots[1]}");
 		else if (Workspace.EquationRoots.Count == 1)
 			Printer.Print($"{Workspace.EquationRoots[0]}");
 		else if (Workspace.EquationRoots.Count == 0)
-				Printer.Print("");
+			Printer.Print("");
 		
 		if
 		(

@@ -11,5 +11,6 @@ namespace									Computor
 
 		public static float					Discriminant;
 		public static List<Math.Fraction>	EquationRoots = new List<Math.Fraction>();
+		public static bool					AreRootsInfinite = false;
 	}
 }

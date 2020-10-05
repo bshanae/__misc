@@ -21,6 +21,7 @@ public static class			Tester
 		Workspace.Terms = new List<Term>();
 		Workspace.SortedTerms = new Dictionary<int, Term>();
 		Workspace.EquationRoots = new List<Math.Fraction>();
+		Workspace.AreRootsInfinite = false;
 
 		_output = null;
 	}
@@ -120,9 +121,20 @@ public static class			Tester
 	
 	#region					Special cases
 	
-	// "4 = 4"
-	// "0 = 4"
+	[Test]
+	public static void		SpecialCase1()
+	{
+		RunProgram("0 = 4");
+		Assert.AreEqual("", _output);
+	}
 	
+	[Test]
+	public static void		SpecialCase2()
+	{
+		RunProgram("4 = 4");
+		Assert.AreEqual("Any", _output);
+	}
+
 	#endregion
 	
 	#region					Error

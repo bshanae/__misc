@@ -12,8 +12,10 @@ namespace								Computor
 		
 			if (a != 0f && b != 0f)
 				SolveCompleteQuadraticEquation(a, b, c);
-			else
+			else if (a != 0f || b != 0f)
 				SolveIncompleteQuadraticEquation(a, b ,c);
+			else
+				SolveSpecialCases(c);
 		}
 		
 		private static void				SolveCompleteQuadraticEquation(float a, float b, float c)
@@ -42,6 +44,12 @@ namespace								Computor
 				Workspace.EquationRoots.Add(new Math.Fraction(-Math.SquareRoot(c / -a)));
 				Workspace.EquationRoots.Add(new Math.Fraction(+Math.SquareRoot(c / -a)));
 			}
+		}
+
+		private static void				SolveSpecialCases(float c)
+		{
+			if (c == 0)
+				Workspace.AreRootsInfinite = true;
 		}
 	
 		private static float			GetFactorByPower(int power)
