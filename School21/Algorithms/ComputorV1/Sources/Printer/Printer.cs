@@ -7,9 +7,6 @@ public static class		Printer
 	{
 		string			message = @object?.ToString();
 		
-		if (Program.Options.Report == Program.Options.ReportFormat.Test)
-			TestContext.Write(message);
-		
 		Console.Write(message);
 	}
 	
@@ -17,9 +14,6 @@ public static class		Printer
 	{
 		string			message = @object?.ToString();
 		
-		if (Program.Options.Report == Program.Options.ReportFormat.Test)
-			TestContext.WriteLine(message);
-		else
-			Console.WriteLine(message);
+		Console.WriteLine(message);
 	}
 }

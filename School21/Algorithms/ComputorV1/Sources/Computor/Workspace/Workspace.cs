@@ -10,6 +10,6 @@ namespace									Computor
 		public static Dictionary<int, Term>	SortedTerms = new Dictionary<int, Term>();
 
 		public static float					Discriminant;
-		public static Math.Fraction?[]		EquationRoots = new Math.Fraction?[2];
+		public static List<Math.Fraction>	EquationRoots = new List<Math.Fraction>();
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace								Computor
 {
@@ -11,7 +12,7 @@ namespace								Computor
 			float						c = GetFactorByPower(0);
 		
 			if (a != 0f && b != 0f)
-				SolveCompleteQuadraticEquation(a, b ,c);
+				SolveCompleteQuadraticEquation(a, b, c);
 			else
 				SolveIncompleteQuadraticEquation(a, b ,c);
 		}
@@ -22,11 +23,13 @@ namespace								Computor
 	
 			if (discriminant > 0)
 			{
-				Workspace.EquationRoots[0] = new Math.Fraction(-b + Math.SquareRoot(discriminant), 2 * a);
-				Workspace.EquationRoots[1] = new Math.Fraction(-b - Math.SquareRoot(discriminant), 2 * a);
+				Workspace.EquationRoots.Add(new Math.Fraction(-b - Math.SquareRoot(discriminant), 2 * a));
+				Workspace.EquationRoots.Add(new Math.Fraction(-b + Math.SquareRoot(discriminant), 2 * a));
+				
+				Workspace.EquationRoots = Workspace.EquationRoots.OrderBy(fraction => fraction.Value).ToList();
 			}
 			else if (discriminant == 0)
-				Workspace.EquationRoots[0] = new Math.Fraction(-b, 2 * a);
+				Workspace.EquationRoots.Add(new Math.Fraction(-b, 2 * a));
 
 			Workspace.Discriminant = discriminant;
 		}
@@ -34,11 +37,11 @@ namespace								Computor
 		private static void				SolveIncompleteQuadraticEquation(float a, float b, float c)
 		{
 			if (a == 0)
-				Workspace.EquationRoots[0] = new Math.Fraction(c, -b);
+				Workspace.EquationRoots.Add(new Math.Fraction(c, -b));
 			else if (b == 0)
 			{
-				Workspace.EquationRoots[0] = new Math.Fraction(-Math.SquareRoot(c / -a));
-				Workspace.EquationRoots[1] = new Math.Fraction(+Math.SquareRoot(c / -a));
+				Workspace.EquationRoots.Add(new Math.Fraction(-Math.SquareRoot(c / -a)));
+				Workspace.EquationRoots.Add(new Math.Fraction(+Math.SquareRoot(c / -a)));
 			}
 		}
 	

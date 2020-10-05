@@ -76,12 +76,22 @@ public static class		Reporter
 
 	private static void ReportStart()
 	{
-		Printer.PrintLine();
+		if
+		(
+			Program.Options.Report == Program.Options.ReportFormat.Standard ||
+			Program.Options.Report == Program.Options.ReportFormat.Internal
+		)
+			Printer.PrintLine();
 	}
 	
 	private static void ReportEnd()
 	{
-		Printer.PrintLine();
+		if
+		(
+			Program.Options.Report == Program.Options.ReportFormat.Standard ||
+			Program.Options.Report == Program.Options.ReportFormat.Internal
+		)
+			Printer.PrintLine();
 	}
 	
 	private static void	ReportWhenParsedTokens()
@@ -260,33 +270,33 @@ public static class		Reporter
 
 	private static void PrintEquationRoots(string messageForNoRoots, string messageForOneRoot, string messageForTwoRoots)
 	{
-		int				rootsCount = 0;
-
-		rootsCount += Workspace.EquationRoots[0] != null ? 1 : 0;
-		rootsCount += Workspace.EquationRoots[1] != null ? 1 : 0;
-
 		if
 		(
 			Program.Options.Report == Program.Options.ReportFormat.Standard ||
 			Program.Options.Report == Program.Options.ReportFormat.Internal
 		)
 		{
-			if (rootsCount == 2)
+			if (Workspace.EquationRoots.Count == 2)
 				Printer.Print($"{messageForTwoRoots} : ");
-			else if (rootsCount == 1)
+			else if (Workspace.EquationRoots.Count == 1)
 				Printer.Print($"{messageForOneRoot} : ");
-			else if (rootsCount == 0)
+			else if (Workspace.EquationRoots.Count == 0)
 				Printer.Print(messageForNoRoots);
 		}
 		
-		if (rootsCount == 2)
+		if (Workspace.EquationRoots.Count == 2)
 			Printer.Print($"{Workspace.EquationRoots[0]}, {Workspace.EquationRoots[1]}");
-		else if (rootsCount == 1)
+		else if (Workspace.EquationRoots.Count == 1)
 			Printer.Print($"{Workspace.EquationRoots[0]}");
-		else if (rootsCount == 0)
+		else if (Workspace.EquationRoots.Count == 0)
 				Printer.Print("");
 		
-		Printer.PrintLine();
+		if
+		(
+			Program.Options.Report == Program.Options.ReportFormat.Standard ||
+			Program.Options.Report == Program.Options.ReportFormat.Internal
+		)
+			Printer.PrintLine();
 	}
 
 	#endregion
