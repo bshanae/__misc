@@ -11,8 +11,23 @@ namespace							Computor
 		private const string		CharactersOfOperator = "+-*/^=";
 		private const string		IgnoredCharacters = " ";
 
+		public static bool			UnaryMinusProcessingHadEffect
+		{
+			get ;
+			private set ;
+		}
+		
+		public static bool			ImplicitMultiplicationProcessingHadEffect
+		{
+			get ;
+			private set ;
+		}
+
 		public static void			Parse()
 		{
+			UnaryMinusProcessingHadEffect = false;
+			ImplicitMultiplicationProcessingHadEffect = false;
+			
 			var						characters = new Queue<char>(Workspace.Expression);
 
 			while (characters.Count > 0)
@@ -49,6 +64,8 @@ namespace							Computor
 					}
 					else
 						Workspace.Tokens.RemoveAt(i--);
+
+					UnaryMinusProcessingHadEffect = true;
 				}
 		}
 
@@ -56,7 +73,10 @@ namespace							Computor
 		{
 			for (var i = 0; i < Workspace.Tokens.Count - 1; i++)
 				if (Workspace.Tokens[i] is Constant && Workspace.Tokens[i + 1] is Variable)
+				{
 					Workspace.Tokens.Insert(i++ + 1, new Operator("*"));
+					ImplicitMultiplicationProcessingHadEffect = true;
+				}
 		}
 		
 		#region						Service methods

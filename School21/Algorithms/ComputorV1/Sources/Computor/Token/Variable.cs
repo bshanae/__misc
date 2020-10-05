@@ -5,16 +5,11 @@ namespace						Computor
 		public					Variable(string @string) : base(@string)
 		{ }
 		
-		public override string	ShortDescription()
+		public override string	ToString()
 		{
 			string 				factorString = Factor == 1f ? "" : (Factor + " * ");
 			
 			return $"[{factorString}{String}]";;
-		}
-		
-		public override string	LongDescription()
-		{
-			return $"[Variable : {String}]";
 		}
 	}
 }

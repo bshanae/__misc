@@ -1,6 +1,6 @@
 namespace						Computor
 {
-	public abstract class		Token : Describable
+	public abstract class		Token
 	{
 		public readonly string	String;
 
@@ -11,14 +11,7 @@ namespace						Computor
 
 		public override string	ToString()
 		{
-			return ShortDescription();
-		}
-
-		public virtual string	ShortDescription()
-		{
 			return $"[{String}]";
 		}
-		
-		public abstract string	LongDescription();
 	}
 }

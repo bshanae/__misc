@@ -50,11 +50,6 @@ namespace						Computor
 			}
 		}
 
-		public override string	LongDescription()
-		{
-			return $"[Operator : {ThisType}]";
-		}
-
 		public bool				IsAnyOf(params Type[] types) => types.Contains(ThisType);
 	}
 }

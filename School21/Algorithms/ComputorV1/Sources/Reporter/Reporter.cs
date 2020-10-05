@@ -102,12 +102,18 @@ public static class		Reporter
 	
 	private static void	ReportWhenProcessedUnaryMinus()
 	{
+		if (!Parser.UnaryMinusProcessingHadEffect)
+			return ;
+			
 		if (Program.Options.Report == Program.Options.ReportFormat.Internal)
 			PrintTokensWithMessage("Processed unary minus");
 	}
 	
 	private static void	ReportWhenProcessedImplicitMultiplication()
 	{
+		if (!Parser.ImplicitMultiplicationProcessingHadEffect)
+			return ;
+		
 		if (Program.Options.Report == Program.Options.ReportFormat.Internal)
 			PrintTokensWithMessage("Processed implicit multiplication");
 	}
@@ -117,7 +123,7 @@ public static class		Reporter
 		if (Program.Options.Report == Program.Options.ReportFormat.Internal)
 		{
 			Printer.PrintLine();
-			Printer.Print("Build terms : ");
+			Printer.Print("Built terms : ");
 
 			Printer.Print(string.Join(", ", Workspace.Terms));
 

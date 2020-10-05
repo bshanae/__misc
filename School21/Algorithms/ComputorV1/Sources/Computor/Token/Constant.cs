@@ -18,16 +18,11 @@ namespace						Computor
 			}
 		}
 		
-		public override string	ShortDescription()
+		public override string	ToString()
 		{
 			string 				factorString = Factor == 1f ? "" : (Factor + " * ");
 			
 			return $"[{factorString}{Value}]";
-		}
-
-		public override string	LongDescription()
-		{
-			return $"[Constant : {Value}]";
 		}
 	}
 }
