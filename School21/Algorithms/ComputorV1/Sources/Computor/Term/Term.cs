@@ -16,7 +16,7 @@ namespace						Computor
 		public static Term		Sum(Term left, Term right)
 		{
 			if (left.Power != right.Power)
-				throw new Exception("[Equation.Term, Sum] Can't sum terms with different powers");
+				throw new Exception("[Equation.Term] Can't sum terms with different powers");
 			
 			return new Term(left.Factor + right.Factor, left.Power);
 		}

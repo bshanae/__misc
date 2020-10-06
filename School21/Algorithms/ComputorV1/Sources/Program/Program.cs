@@ -1,12 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Computor;
 
-public static partial class	Program
+public static partial class		Program
 {
-	public static void		Main(string[] arguments)
+	private static List<string> arguments;
+	
+	public static void			Main(string[] arguments)
 	{
 		// Tests :
+		//   abdisd
+		//   y = 0
 		// 	 xx = 0
 		// 	 xxxxx = 0
 		// 	 x3 = 0
@@ -24,15 +29,41 @@ public static partial class	Program
 		//   2x^2 + 4x - 2 = 0
 		//   x * x = 0
 
-		List<string>		argumentsList = arguments.ToList();	
-		
-		Options.Parse(argumentsList);
+		try
+		{
+			WorkWithArguments(arguments);
+			WorkWithExpression();
 
-		// TODO Validate
-		Workspace.Expression = argumentsList[0];
+			StartReport();
 
-		Reporter.Report(Reporter.Event.Start);
+			ExecuteParser();
+			ExecuteAnalyzer();
+			ExecuteSolver();
+
+			EndReport();
+		}
+		catch (Exception exception)
+		{
+			Console.WriteLine("Computor error : " + exception.Message);
+		}
+	}
+
+	private static void			WorkWithArguments(string[] arguments)
+	{
+		Program.arguments = arguments.ToList();
 		
+		Options.Parse();
+		Validator.ValidateArguments(Program.arguments);
+	}
+
+	private static void			WorkWithExpression()
+	{
+		Workspace.Expression = arguments[0];
+		Validator.ValidateExpression();
+	}
+
+	private static void			ExecuteParser()
+	{
 		Parser.Parse();
 		Reporter.Report(Reporter.Event.ParsedExpression);
 		
@@ -41,18 +72,32 @@ public static partial class	Program
 		
 		Parser.ProcessImplicitMultiplication();
 		Reporter.Report(Reporter.Event.ProcessedImplicitMultiplication);
-		
+	}
+
+	private static void			ExecuteAnalyzer()
+	{
 		Analyzer.BuildTerms();
 		Reporter.Report(Reporter.Event.BuiltTerms);
 		
 		Analyzer.SortTerms();
 		Reporter.Report(Reporter.Event.SortedTerms);
-		
+	}
+
+	private static void			ExecuteSolver()
+	{
 		Solver.Solve();
 		Reporter.Report(Reporter.Event.SolvedEquation);
 		
 		Reporter.Report(Reporter.Request.EquationInfo);
-		
+	}
+
+	private static void			StartReport()
+	{
+		Reporter.Report(Reporter.Event.Start);
+	}
+
+	private static void			EndReport()
+	{
 		Reporter.Report(Reporter.Event.End);
 	}
 }

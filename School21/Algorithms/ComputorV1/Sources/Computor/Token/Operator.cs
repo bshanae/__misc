@@ -5,6 +5,9 @@ namespace						Computor
 {
 	public class				Operator : Token
 	{
+		public static string	AssociatedCharacters => "+-*/^=";
+		public static int		LengthLimit => 1;
+		
 		public enum 			Type
 		{
 			Addition,
@@ -46,7 +49,7 @@ namespace						Computor
 					break ;
 				
 				default :
-					throw new Exception("[Operator, Operator] Can't build instance");
+					throw new Exception("[Operator] Can't build instance");
 			}
 		}
 

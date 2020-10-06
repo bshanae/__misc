@@ -1,15 +1,13 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace							Computor
 {
 	public static class				Parser
 	{
-		private const string		CharactersOfConstant = ".0123456789";
-		private const string		CharactersOfVariable = "x";
-		private const string		CharactersOfOperator = "+-*/^=";
-		private const string		IgnoredCharacters = " ";
+		public const string			IgnoredCharacters = " ";
 
 		public static bool			UnaryMinusProcessingHadEffect
 		{
@@ -23,26 +21,23 @@ namespace							Computor
 			private set ;
 		}
 
+		private static Queue<char>	_expressionQueue;
+
 		public static void			Parse()
 		{
 			UnaryMinusProcessingHadEffect = false;
 			ImplicitMultiplicationProcessingHadEffect = false;
 			
-			var						characters = new Queue<char>(Workspace.Expression);
+			_expressionQueue = new Queue<char>(Workspace.Expression);
 
-			while (characters.Count > 0)
-			{
-				if (IsAssociated<Constant>(characters.Peek()))
-					Workspace.Tokens.Add(ExtractToken<Constant>(characters));
-				else if (IsAssociated<Variable>(characters.Peek()))
-					Workspace.Tokens.Add(ExtractToken<Variable>(characters));
-				else if (IsAssociated<Operator>(characters.Peek()))
-					Workspace.Tokens.Add(ExtractToken<Operator>(characters));
-				else if (IsIgnored(characters.Peek()))
-					characters.Dequeue();
+			while (_expressionQueue.Count > 0)
+				if (TryExtractToken(typeof(Constant))) ;
+				else if (TryExtractToken(typeof(Variable))) ;
+				else if (TryExtractToken(typeof(Operator))) ;
+				else if (IgnoredCharacters.Contains(_expressionQueue.Peek()))
+					_expressionQueue.Dequeue();
 				else
-					throw new Exception("[Equation.Parser, Parse] Bad token");
-			}
+					throw new Exception("[Parser] Unexpected character");
 		}
 		
 		public static void			ProcessUnaryMinus()
@@ -80,57 +75,59 @@ namespace							Computor
 		}
 		
 		#region						Service methods
-		
-		private static bool			IsAssociated<T>(char character) where T : Token
+
+		private static bool			TryExtractToken(Type classType)
 		{
-			return GetAssociatedCharacters<T>().Contains(character);
+			if (GetAssociatedCharacters(classType).Contains(_expressionQueue.Peek()))
+			{
+				Workspace.Tokens.Add(ExtractToken(classType));
+				return true;
+			}
+
+			return false;
 		}
 
-		private static bool			IsIgnored(char character)
+		private static Token		ExtractToken(Type classType)
 		{
-			return IgnoredCharacters.Contains(character);
-		}
-
-		private static Token		ExtractToken<T>(Queue<char> expression) where T : Token
-		{
-			int						tokenLengthLimit = GetLenghtLimitOfToken<T>();			
+			string					associatedCharacters = GetAssociatedCharacters(classType);
+			int						tokenLengthLimit = GetLengthLimit(classType);
+			
 			string					tokenString = "";
 
-			while (expression.Count > 0 && tokenString.Length < tokenLengthLimit)
-				if (IsAssociated<T>(expression.Peek()))
-					tokenString += expression.Dequeue();
+			while (_expressionQueue.Count > 0 && tokenString.Length < tokenLengthLimit)
+				if (associatedCharacters.Contains(_expressionQueue.Peek()))
+					tokenString += _expressionQueue.Dequeue();
 				else
 					break;
 
-			return (T)Activator.CreateInstance(typeof(T), tokenString);
-		}
-		
-		#endregion
-		
-		#region						Helper methods
-
-		private static string		GetAssociatedCharacters<T>() where T : Token
-		{
-			if (typeof(T) == typeof(Constant))
-				return CharactersOfConstant;
-			if (typeof(T) == typeof(Variable))
-				return CharactersOfVariable;
-			if (typeof(T) == typeof(Operator))
-				return CharactersOfOperator;
-			
-			throw new Exception("[Equation.Parser, GetAssociatedCharacters] Unknown token type"); 
+			return Activator.CreateInstance(classType, tokenString) as Token;
 		}
 
-		private static int			GetLenghtLimitOfToken<T>() where T : Token
+		private static string		GetAssociatedCharacters(Type classType)
 		{
-			if (typeof(T) == typeof(Constant))
-				return int.MaxValue;
-			if (typeof(T) == typeof(Variable))
-				return 1;
-			if (typeof(T) == typeof(Operator))
-				return 1;
+			return GetStaticProperty<string>(classType, "AssociatedCharacters");
+		}
+		
+		private static int			GetLengthLimit(Type classType)
+		{
+			return GetStaticProperty<int>(classType, "LengthLimit");
+		}
+
+		private static T			GetStaticProperty<T>(Type classType, string propertyName)
+		{
+			PropertyInfo			propertyInfo;
+			object					propertyObject;
+
+			if ((propertyInfo = classType.GetProperty(propertyName)) == null)
+				throw new Exception($"[Parser] Can't get property of class {classType}");
 			
-			throw new Exception("[Equation.Parser, GetLenghtLimitOfToken] Unknown token type"); 
+			if ((propertyObject = propertyInfo.GetValue(null, null)) == null)
+				throw new Exception($"[Parser] Can't get value of property for class {classType}");
+			
+			if (!(propertyObject is T))
+				throw new Exception($"[Parser] Can't cast property to target type");
+
+			return (T)propertyObject;
 		}
 
 		#endregion

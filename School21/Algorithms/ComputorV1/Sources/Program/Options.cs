@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public static partial class			Program
 {
 	public static class				Options
@@ -13,13 +11,13 @@ public static partial class			Program
 
 		public static ReportFormat	Report = ReportFormat.Standard;
 	
-		public static void			Parse(List<string> flags)
+		public static void			Parse()
 		{
-			for (int i = 0; i < flags.Count; i++)
+			for (int i = 0; i < arguments.Count; i++)
 			{
 				bool				deleteFlag = true;
 				
-				switch (flags[i])
+				switch (arguments[i])
 				{
 					case "standard" :
 					case "Standard" :
@@ -42,7 +40,7 @@ public static partial class			Program
 				}
 				
 				if (deleteFlag)
-					flags.RemoveAt(i--);
+					arguments.RemoveAt(i--);
 			}
 		}
 	}

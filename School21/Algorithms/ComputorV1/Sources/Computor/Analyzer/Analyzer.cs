@@ -61,7 +61,7 @@ namespace							Computor
 						return token == null;
 				}
 				
-				throw new Exception("[Equation.Solver.Expectation, IsTokenExpected] Unexpected path");
+				throw new Exception("[Equation.Solver.Expectation] Unexpected path");
 			}
 
 			public bool				IsTokenExpected(Token token)
@@ -156,7 +156,7 @@ namespace							Computor
 			else if (TryProcessOption(Expectation.Option.End))
 				;
 			else
-				throw new Exception("[Equation.Solver, ProcessToken] Can't process token");
+				throw new Exception("[Equation.Solver] Can't process token");
 		}
 
 		#endregion
@@ -221,7 +221,7 @@ namespace							Computor
 				_lastInternalOperator = null;
 			}
 			else
-				throw new Exception("[Solver, ProcessOperand] Term building error");
+				throw new Exception("[Solver] Term building error");
 			
 			_currentExpectation = new Expectation
 				(
@@ -236,13 +236,13 @@ namespace							Computor
 			if (_currentToken is Constant constant)
 			{
 				if (_lastInternalOperator.ThisType != Operator.Type.Power)
-					throw new Exception("[Solver, ProcessPower] Term building error");
+					throw new Exception("[Solver] Term building error");
 
 				_currentTerm.Power += constant.Value - 1;
 				_lastInternalOperator = null;
 			}
 			else
-				throw new Exception("[Solver, ProcessPower] Term building error");
+				throw new Exception("[Solver] Term building error");
 			
 			_currentExpectation = new Expectation
 				(
@@ -264,7 +264,7 @@ namespace							Computor
 					_currentExpectation = new Expectation(Expectation.Option.Operand);
 			}
 			else
-				throw new Exception("[Solver, ProcessInternalOperator] Term building error");
+				throw new Exception("[Solver] Term building error");
 		}
 		
 		private static void			ProcessExternalOperator()
@@ -280,7 +280,7 @@ namespace							Computor
 					_isRightSideOfEquation = true;
 			}
 			else
-				throw new Exception("[Solver, ProcessExternalOperator] Term building error");
+				throw new Exception("[Solver] Term building error");
 			
 			_currentExpectation = new Expectation(Expectation.Option.Operand);
 		}
