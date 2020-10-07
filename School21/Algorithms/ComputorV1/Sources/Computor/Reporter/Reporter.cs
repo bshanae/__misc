@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace					Computor
@@ -93,12 +94,12 @@ namespace					Computor
 		{
 			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
 			{
-				Printer.PrintLine();
-				Printer.Print("Built terms : ");
+				Console.WriteLine();
+				Console.Write("Built terms : ");
 
-				Printer.Print(string.Join(", ", Workspace.Terms));
+				Console.Write(string.Join(", ", Workspace.Terms));
 
-				Printer.PrintLine();
+				Console.WriteLine();
 			}
 		}
 
@@ -106,9 +107,9 @@ namespace					Computor
 		{
 			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
 			{
-				Printer.Print("Sorted terms : ");
+				Console.Write("Sorted terms : ");
 
-				Printer.Print
+				Console.Write
 				(
 					string.Join
 					(
@@ -117,7 +118,7 @@ namespace					Computor
 					)
 				);
 
-				Printer.PrintLine();
+				Console.WriteLine();
 			}
 		}
 
@@ -159,9 +160,9 @@ namespace					Computor
 
 		private static void PrintTokensWithMessage(string message)
 		{
-			Printer.Print(message + " : ");
-			Workspace.Tokens.ForEach(token => Printer.Print($"{token} "));
-			Printer.PrintLine();
+			Console.Write(message + " : ");
+			Workspace.Tokens.ForEach(token => Console.Write($"{token} "));
+			Console.WriteLine();
 		}
 
 		private static void PrintReducedEquation()
@@ -192,12 +193,12 @@ namespace					Computor
 				if (shouldShowPower)
 					result += $" ^ {term.Power}";
 
-				Printer.Print(result);
+				Console.Write(result);
 			}
 
 			bool			didPrintATerm = false;
 
-			Printer.Print("Reduced form : ");
+			Console.Write("Reduced form : ");
 
 			if (Workspace.SortedTerms.ContainsKey(2))
 			{
@@ -208,7 +209,7 @@ namespace					Computor
 			if (Workspace.SortedTerms.ContainsKey(1))
 			{
 				if (didPrintATerm)
-					Printer.Print(" ");
+					Console.Write(" ");
 
 				PrintTerm(Workspace.SortedTerms[1], didPrintATerm);
 				didPrintATerm = true;
@@ -217,16 +218,16 @@ namespace					Computor
 			if (Workspace.SortedTerms.ContainsKey(0))
 			{
 				if (didPrintATerm)
-					Printer.Print(" ");
+					Console.Write(" ");
 
 				PrintTerm(Workspace.SortedTerms[0], didPrintATerm);
 				didPrintATerm = true;
 			}
 
 			if (!didPrintATerm)
-				Printer.Print("0");
+				Console.Write("0");
 
-			Printer.PrintLine(" = 0");
+			Console.WriteLine(" = 0");
 		}
 
 		private static void PrintEquationDegree()
@@ -234,7 +235,7 @@ namespace					Computor
 			int				maximumDegree;
 
 			maximumDegree = Workspace.SortedTerms.Select(powerAndTerm => powerAndTerm.Key).Max();
-			Printer.PrintLine($"Polynomial degree : {maximumDegree}");
+			Console.WriteLine($"Polynomial degree : {maximumDegree}");
 		}
 
 		private static void PrintDiscriminantSign()
@@ -243,11 +244,11 @@ namespace					Computor
 				return;
 
 			if (Workspace.Discriminant > 0f)
-				Printer.PrintLine("Discriminant is strictly positive, equation has two roots");
+				Console.WriteLine("Discriminant is strictly positive, equation has two roots");
 			if (Workspace.Discriminant == 0f)
-				Printer.PrintLine("Discriminant is zero, equation has one root");
+				Console.WriteLine("Discriminant is zero, equation has one root");
 			if (Workspace.Discriminant < 0f)
-				Printer.PrintLine("Discriminant is strictly negative, equation doesn't have roots");
+				Console.WriteLine("Discriminant is strictly negative, equation doesn't have roots");
 		}
 
 		private static void PrintEquationRoots
@@ -265,35 +266,35 @@ namespace					Computor
 			)
 			{
 				if (Workspace.AreRootsInfinite)
-					Printer.Print(messageForInfiniteRoots);
+					Console.Write(messageForInfiniteRoots);
 				else if (Workspace.EquationRoots.Count == 2)
-					Printer.Print($"{messageForTwoRoots} : ");
+					Console.Write($"{messageForTwoRoots} : ");
 				else if (Workspace.EquationRoots.Count == 1)
-					Printer.Print($"{messageForOneRoot} : ");
+					Console.Write($"{messageForOneRoot} : ");
 				else if (Workspace.EquationRoots.Count == 0)
-					Printer.Print(messageForNoRoots);
+					Console.Write(messageForNoRoots);
 			}
 			else if (Program.Options.Report == Program.Options.ReportFormat.Test)
 			{
 				if (Workspace.AreRootsInfinite)
-					Printer.Print(messageForInfiniteRoots);
+					Console.Write(messageForInfiniteRoots);
 			}
 
 			if (Workspace.AreRootsInfinite)
 				;
 			else if (Workspace.EquationRoots.Count == 2)
-				Printer.Print($"{Workspace.EquationRoots[0]}, {Workspace.EquationRoots[1]}");
+				Console.Write($"{Workspace.EquationRoots[0]}, {Workspace.EquationRoots[1]}");
 			else if (Workspace.EquationRoots.Count == 1)
-				Printer.Print($"{Workspace.EquationRoots[0]}");
+				Console.Write($"{Workspace.EquationRoots[0]}");
 			else if (Workspace.EquationRoots.Count == 0)
-				Printer.Print("");
+				Console.Write("");
 
 			if
 			(
 				Program.Options.Report == Program.Options.ReportFormat.Standard ||
 				Program.Options.Report == Program.Options.ReportFormat.Internal
 			)
-				Printer.PrintLine();
+				Console.WriteLine();
 		}
 
 		#endregion
