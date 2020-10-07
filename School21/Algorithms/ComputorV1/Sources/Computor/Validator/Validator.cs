@@ -43,52 +43,55 @@ namespace					Computor
 		public static void	ValidateTokens()
 		{
 			Token			previousToken = null;
+			Token			currentToken = null;
+			Token			nextToken = null;
 			
-			int				tokensBeforeEqualityCount = 0;
-			int				tokensAfterEqualityCount = 0;
 			int				equalitySignCount = 0;
 
-			void			CheckMissingOperator(Token token)
+			Token			GetTokenOrNull(int index)
 			{
-				if (token is Operand && previousToken is Operand)
+				if (index < 0)
+					return null;
+				if (index >= Workspace.Tokens.Count)
+					return null;
+
+				return Workspace.Tokens[index];
+			}
+
+			void			CheckMissingOperator()
+			{
+				if (currentToken is Operand && previousToken is Operand)
 					throw new Error.Exception(Error.Code.MissingOperator);
 			}
 			
-			void			CheckMissingOperand(Token token)
+			void			CheckMissingOperand()
 			{
-				if (token is Operator && previousToken is Operator)
+				if (currentToken is Operator && previousToken is Operator)
+					throw new Error.Exception(Error.Code.MissingOperand);
+				
+				if (currentToken is Operator && previousToken == null)
+					throw new Error.Exception(Error.Code.MissingOperand);
+				if (currentToken is Operator && nextToken == null)
 					throw new Error.Exception(Error.Code.MissingOperand);
 			}
 			
-			void			CollectEqualityInfo(Token token)
+			void			CollectEqualityInfo()
 			{
-				if (token is Operator maybeEquality && maybeEquality.ThisType == Operator.Type.Equality)
+				if (currentToken is Operator maybeEquality && maybeEquality.ThisType == Operator.Type.Equality)
 					equalitySignCount++;
-				else
-				{
-					if (equalitySignCount == 0)
-						tokensBeforeEqualityCount++;
-					else
-						tokensAfterEqualityCount++;
-				}
 			}
 
 			void			CheckEquality()
 			{
 				if (equalitySignCount != 1)
 					throw new Error.Exception(Error.Code.MoreThanOneEqualitySign);
-				
-				if (tokensBeforeEqualityCount == 0)
-					throw new Error.Exception(Error.Code.MissingLeftPart);
-				if (tokensAfterEqualityCount == 0)
-					throw new Error.Exception(Error.Code.MissingRightPart);
 			}
 
-			void			CheckPower(Token token)
+			void			CheckPower()
 			{
 				if (previousToken is Operator maybePower && maybePower.ThisType == Operator.Type.Power)
 				{
-					if (token is Constant constant)
+					if (currentToken is Constant constant)
 					{
 						if (!Math.IsWhole(constant.Value))
 							throw new Error.Exception(Error.Code.PowerIsNotInteger);
@@ -98,15 +101,17 @@ namespace					Computor
 				}
 			}
 
-			foreach (var token in Workspace.Tokens)
+			for (int i = 0; i < Workspace.Tokens.Count; i++)
 			{
-				CheckMissingOperator(token);
-				CheckMissingOperand(token);
+				previousToken = GetTokenOrNull(i - 1);
+				currentToken = GetTokenOrNull(i);
+				nextToken = GetTokenOrNull(i + 1);
 				
-				CollectEqualityInfo(token);
-				CheckPower(token);
+				CheckMissingOperator();
+				CheckMissingOperand();
 				
-				previousToken = token;
+				CollectEqualityInfo();
+				CheckPower();
 			}
 			
 			CheckEquality();

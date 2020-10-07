@@ -25,8 +25,6 @@ namespace						Computor
 			PowerIsNotConstant,
 			PowerIsNotInteger,
 			MoreThanOneEqualitySign,
-			MissingLeftPart,
-			MissingRightPart,
 			InvalidPower
 		}
 
@@ -41,8 +39,6 @@ namespace						Computor
 				Code.PowerIsNotConstant => "Power should be followed by constant",
 				Code.PowerIsNotInteger => "Power should be followed by whole number",
 				Code.MoreThanOneEqualitySign => "There should be one equality sign",
-				Code.MissingLeftPart => "Left part of expression is empty",
-				Code.MissingRightPart => "Right part of expression is empty",
 				Code.InvalidPower => "Invalid degree of equation",
 				_ => "Unknown error"
 			};

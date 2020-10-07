@@ -1,23 +1,8 @@
 public static partial class	Math
 {
-	const float				EPSILON = 0.00001f;
+	private const float		Epsilon = 0.00000000001f;
 
 	#region					Public methods
-	
-	public static float		WholePower(float value, int power)
-	{
-		if (power > 1)
-			return WholePower(value * power, power - 1);
-		
-		if (power == 1)
-			;
-		else if (power == 0)
-			return 1f;
-		else if (power < 0)
-			return WholePower(value / power, power + 1);
-
-		return value;
-	}
 
 	public static float		SquareRoot(float value)
 	{
@@ -29,7 +14,7 @@ public static partial class	Math
 		{
 		    middle = (low + high) / 2f;
 			
-		    if (AlmostEquals(middle * middle, value))
+		    if (AlmostEqual(middle * middle, value))
 				return middle;
 		    if (middle * middle > value)
 				high = middle;
@@ -39,7 +24,7 @@ public static partial class	Math
 		return middle;
 	}
 
-	public static bool		AlmostEquals(float a, float b, float epsilon = EPSILON)
+	public static bool		AlmostEqual(float a, float b, float epsilon = Epsilon)
 	{
 		return Absolute(a - b) < epsilon;
 	}
@@ -58,7 +43,7 @@ public static partial class	Math
 	
 	public static bool		IsWhole(float value)
 	{
-		return AlmostEquals(Floor(value), value);
+		return AlmostEqual(Floor(value), value);
 	}
 	
 	public static int		GreatestCommonDivisor(int a, int b)

@@ -34,7 +34,7 @@ public static class			Tester
 	[TestCase("5 * x ^ 2 - 2 * x - 9 = 0", "-1.156466, 1.556466")]
 	[TestCase("3 * x ^ 2 + 4 * x + 2 = 0", "")]
 	[TestCase("-x ^ 2 + 6 * x + 18 = 0", "-2.196153, 8.196153")]
-	[TestCase("x + x ^ 2 + x * x ^ 1 = 0", "-0.5, 0")]
+	[TestCase("x + x ^ 2 + x * x ^ 1 = 0", "-1 / 2, 0")]
 	[TestCase("x ^ 1 * x = 0", "0")]
 	[TestCase("x ^ 2 / 2 / 2 = 0", "0")]
 	[TestCase("2x^2 + 4x - 2 = 0", "-2.414214, 0.414214")]
@@ -45,10 +45,9 @@ public static class			Tester
 		Assert.AreEqual(expected, _output);
 	}
 
-
 	[TestCase("-x ^ 2 = -4", "-2, 2")]
 	[TestCase("x = 5", "5")]
-	[TestCase("x * x = 5", "-2.236066, 2.236066")]
+	[TestCase("x * x = 5", "-2.236068, 2.236068")]
 	[TestCase("2 * x = 7", "7 / 2")] 
 	public static void		IncompleteFormCases(string input, string expected)
 	{
@@ -76,13 +75,20 @@ public static class			Tester
 	[TestCase("xx = 0", Error.Code.MissingOperator)]
 	[TestCase("xxxxx = 0", Error.Code.MissingOperator)]
 	[TestCase("x3 = 0", Error.Code.MissingOperator)]
-	[TestCase("+2 = 0", Error.Code.MissingOperator)]
-	[TestCase("*1 = 0", Error.Code.MissingOperator)]
-	[TestCase("^8 = 0", Error.Code.MissingOperator)]
-	
+
 	[TestCase("x++ = 0", Error.Code.MissingOperand)]
 	[TestCase("1-+2 = 0", Error.Code.MissingOperand)]
 	[TestCase("1---2 = 0", Error.Code.MissingOperand)]
+	[TestCase(" = ", Error.Code.MissingOperand)]
+	[TestCase("= ", Error.Code.MissingOperand)]
+	[TestCase(" = 0", Error.Code.MissingOperand)]
+	[TestCase("1 = ", Error.Code.MissingOperand)]
+	[TestCase("x + 5 = ", Error.Code.MissingOperand)]
+	[TestCase("x * x * x = ", Error.Code.MissingOperand)]
+	[TestCase("+2 = 0", Error.Code.MissingOperand)]
+	[TestCase("*1 = 0", Error.Code.MissingOperand)]
+	[TestCase("^8 = 0", Error.Code.MissingOperand)]
+	[TestCase("x = 0*", Error.Code.MissingOperand)]
 	
 	[TestCase("x^x = 0", Error.Code.PowerIsNotConstant)]
 	[TestCase("2^x = 0", Error.Code.PowerIsNotConstant)]
@@ -92,22 +98,14 @@ public static class			Tester
 
 	[TestCase("1 = 0 = 1", Error.Code.MoreThanOneEqualitySign)]
 	[TestCase("1 = 0 = 1 = x", Error.Code.MoreThanOneEqualitySign)]
-	
-	[TestCase(" = ", Error.Code.MissingLeftPart)]
-	[TestCase("= ", Error.Code.MissingLeftPart)]
-	[TestCase(" = 0", Error.Code.MissingLeftPart)]
-	
-	[TestCase("1 = ", Error.Code.MissingRightPart)]
-	[TestCase("x + 5 = ", Error.Code.MissingRightPart)]
-	
+
 	[TestCase("x ^ 3 = 0", Error.Code.InvalidPower)]
-	[TestCase("x * x * x = 0", Error.Code.MissingRightPart)]
 	public static void		ErrorCases(string input, Error.Code code)
 	{
 		Error.Exception		exception;
 			
 		exception = Assert.Throws<Error.Exception>(() => RunProgram(input));
-		Assert.AreEqual(exception.Code, code);
+		Assert.AreEqual(code, exception.Code);
 	}
 	
 	private static void		RunProgram(string input = null)

@@ -105,18 +105,29 @@ namespace					Computor
 
 		private static void ReportWhenSortedTerms()
 		{
+			bool			PrintIfPowerPresent(int power, bool printComma = false)
+			{
+				if (Workspace.SortedTerms.ContainsKey(power))
+				{
+					if (printComma)
+						Console.Write(", ");
+					
+					Console.Write(Workspace.SortedTerms[power]);
+					return true;
+				}
+
+				return false;
+			}
+			
 			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
 			{
+				bool		didPrintPreviousPower;
+				
 				Console.Write("Sorted terms : ");
 
-				Console.Write
-				(
-					string.Join
-					(
-						", ",
-						Workspace.SortedTerms.Select(powerAndTerm => powerAndTerm.Value)
-					)
-				);
+				didPrintPreviousPower = PrintIfPowerPresent(2);
+				didPrintPreviousPower = PrintIfPowerPresent(1, didPrintPreviousPower);
+				PrintIfPowerPresent(0, didPrintPreviousPower);
 
 				Console.WriteLine();
 			}

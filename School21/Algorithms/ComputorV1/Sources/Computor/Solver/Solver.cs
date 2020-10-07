@@ -16,6 +16,8 @@ namespace								Computor
 				SolveIncompleteQuadraticEquation(a, b ,c);
 			else
 				SolveSpecialCases(c);
+			
+			DeleteRedundantRoots();
 		}
 		
 		private static void				SolveCompleteQuadraticEquation(float a, float b, float c)
@@ -58,6 +60,16 @@ namespace								Computor
 				return Workspace.SortedTerms[power].Factor;
 			else
 				return 0f;
+		}
+
+		private static void				DeleteRedundantRoots()
+		{
+			if
+			(
+				Workspace.EquationRoots.Count == 2
+				&& Math.AlmostEqual(Workspace.EquationRoots[0].Value, Workspace.EquationRoots[1].Value)
+			)
+				Workspace.EquationRoots.RemoveAt(1);
 		}
 	}
 }
