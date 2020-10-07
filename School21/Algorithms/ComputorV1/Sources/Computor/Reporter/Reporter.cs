@@ -6,8 +6,6 @@ namespace					Computor
 	{
 		public enum			Event
 		{
-			Start,
-			End,
 			ParsedExpression,
 			ProcessedUnaryMinus,
 			ProcessedImplicitMultiplication,
@@ -27,14 +25,6 @@ namespace					Computor
 		{
 			switch (@event)
 			{
-				case Event.Start:
-					ReportStart();
-					break;
-
-				case Event.End:
-					ReportEnd();
-					break;
-
 				case Event.ParsedExpression:
 					ReportWhenParsedTokens();
 					break;
@@ -74,26 +64,6 @@ namespace					Computor
 		#endregion
 
 		#region				Report implementations
-
-		private static void	ReportStart()
-		{
-			if
-			(
-				Program.Options.Report == Program.Options.ReportFormat.Standard ||
-				Program.Options.Report == Program.Options.ReportFormat.Internal
-			)
-				Printer.PrintLine();
-		}
-
-		private static void	ReportEnd()
-		{
-			if
-			(
-				Program.Options.Report == Program.Options.ReportFormat.Standard ||
-				Program.Options.Report == Program.Options.ReportFormat.Internal
-			)
-				Printer.PrintLine();
-		}
 
 		private static void ReportWhenParsedTokens()
 		{

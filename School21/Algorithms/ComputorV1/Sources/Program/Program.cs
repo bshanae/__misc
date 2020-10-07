@@ -34,13 +34,9 @@ public static partial class		Program
 			WorkWithArguments(arguments);
 			WorkWithExpression();
 
-			StartReport();
-
 			ExecuteParser();
 			ExecuteAnalyzer();
 			ExecuteSolver();
-
-			EndReport();
 		}
 		catch (Exception exception)
 		{
@@ -89,15 +85,5 @@ public static partial class		Program
 		Reporter.Report(Reporter.Event.SolvedEquation);
 		
 		Reporter.Report(Reporter.Request.EquationInfo);
-	}
-
-	private static void			StartReport()
-	{
-		Reporter.Report(Reporter.Event.Start);
-	}
-
-	private static void			EndReport()
-	{
-		Reporter.Report(Reporter.Event.End);
 	}
 }

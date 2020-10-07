@@ -99,35 +99,21 @@ namespace							Computor
 					tokenString += _expressionQueue.Dequeue();
 				else
 					break;
+			
+			if (classType == typeof(Constant))
+				Validator.ValidateFloat(tokenString);
 
 			return Activator.CreateInstance(classType, tokenString) as Token;
 		}
 
 		private static string		GetAssociatedCharacters(Type classType)
 		{
-			return GetStaticProperty<string>(classType, "AssociatedCharacters");
+			return Utilities.GetStaticProperty<string>(classType, "AssociatedCharacters");
 		}
 		
 		private static int			GetLengthLimit(Type classType)
 		{
-			return GetStaticProperty<int>(classType, "LengthLimit");
-		}
-
-		private static T			GetStaticProperty<T>(Type classType, string propertyName)
-		{
-			PropertyInfo			propertyInfo;
-			object					propertyObject;
-
-			if ((propertyInfo = classType.GetProperty(propertyName)) == null)
-				throw new Exception($"[Parser] Can't get property of class {classType}");
-			
-			if ((propertyObject = propertyInfo.GetValue(null, null)) == null)
-				throw new Exception($"[Parser] Can't get value of property for class {classType}");
-			
-			if (!(propertyObject is T))
-				throw new Exception($"[Parser] Can't cast property to target type");
-
-			return (T)propertyObject;
+			return Utilities.GetStaticProperty<int>(classType, "LengthLimit");
 		}
 
 		#endregion

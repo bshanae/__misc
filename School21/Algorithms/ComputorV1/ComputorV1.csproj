@@ -52,6 +52,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Sources\Common\Utilities.cs" />
         <Compile Include="Sources\Computor\Parser\Parser.cs" />
         <Compile Include="Sources\Computor\Analyzer\Analyzer.cs" />
         <Compile Include="Sources\Computor\Reporter\Reporter.cs" />
