@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace					Computor
@@ -9,7 +10,7 @@ namespace					Computor
 		public static void	ValidateArguments(List<string> arguments)
 		{
 			if (arguments.Count < 1)
-				ExitWithCode(Error.Code.ExpressionIsNotGiven);
+				throw new Error.Exception(Error.Code.ExpressionIsNotGiven);
 		}
 		
 		public static void	ValidateExpression()
@@ -30,34 +31,95 @@ namespace					Computor
 			
 			foreach (var character in Workspace.Expression)
 				if (!IsCharacterValid(character))
-					ExitWithCode(Error.Code.InvalidCharacter);
+					throw new Error.Exception(Error.Code.InvalidCharacter);
 		}
 
 		public static void	ValidateFloat(string @string)
 		{
 			if (!float.TryParse(@string, out _))
-				ExitWithCode(Error.Code.BadFloat);
+				throw new Error.Exception(Error.Code.BadFloat);
 		}
 
 		public static void	ValidateTokens()
 		{
+			Token			previousToken = null;
+			
+			int				tokensBeforeEqualityCount = 0;
+			int				tokensAfterEqualityCount = 0;
+			int				equalitySignCount = 0;
 
+			void			CheckMissingOperator(Token token)
+			{
+				if (token is Operand && previousToken is Operand)
+					throw new Error.Exception(Error.Code.MissingOperator);
+			}
+			
+			void			CheckMissingOperand(Token token)
+			{
+				if (token is Operator && previousToken is Operator)
+					throw new Error.Exception(Error.Code.MissingOperand);
+			}
+			
+			void			CollectEqualityInfo(Token token)
+			{
+				if (token is Operator maybeEquality && maybeEquality.ThisType == Operator.Type.Equality)
+					equalitySignCount++;
+				else
+				{
+					if (equalitySignCount == 0)
+						tokensBeforeEqualityCount++;
+					else
+						tokensAfterEqualityCount++;
+				}
+			}
+
+			void			CheckEquality()
+			{
+				if (equalitySignCount != 1)
+					throw new Error.Exception(Error.Code.MoreThanOneEqualitySign);
+				
+				if (tokensBeforeEqualityCount == 0)
+					throw new Error.Exception(Error.Code.MissingLeftPart);
+				if (tokensAfterEqualityCount == 0)
+					throw new Error.Exception(Error.Code.MissingRightPart);
+			}
+
+			void			CheckPower(Token token)
+			{
+				if (previousToken is Operator maybePower && maybePower.ThisType == Operator.Type.Power)
+				{
+					if (token is Constant constant)
+					{
+						if (!Math.IsWhole(constant.Value))
+							throw new Error.Exception(Error.Code.PowerIsNotInteger);
+					}
+					else
+						throw new Error.Exception(Error.Code.PowerIsNotConstant);
+				}
+			}
+
+			foreach (var token in Workspace.Tokens)
+			{
+				CheckMissingOperator(token);
+				CheckMissingOperand(token);
+				
+				CollectEqualityInfo(token);
+				CheckPower(token);
+				
+				previousToken = token;
+			}
+			
+			CheckEquality();
 		}
 
 		public static void	ValidateTerms()
-		{
-
-		}
+		{}
 
 		public static void	ValidateSortedTerms()
 		{
-
-		}
-
-		private static void	ExitWithCode(Error.Code code)
-		{
-			Console.WriteLine("Computor error : " + Error.GetMessage(code));
-			Environment.Exit(1);
+			foreach (var kvp in Workspace.SortedTerms)
+				if (kvp.Key < 0 || kvp.Key > 2)
+					throw new Error.Exception(Error.Code.InvalidPower);
 		}
 	}
 }

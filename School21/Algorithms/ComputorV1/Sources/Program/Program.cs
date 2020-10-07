@@ -9,26 +9,6 @@ public static partial class		Program
 	
 	public static void			Main(string[] arguments)
 	{
-		// Tests :
-		//   abdisd
-		//   y = 0
-		// 	 xx = 0
-		// 	 xxxxx = 0
-		// 	 x3 = 0
-		// 	 x++ = 0
-		// 	 1-+2 = 0
-		// 	 1---2 = 0
-		// 	 +2 = 0
-		// 	 *1 = 0
-		// 	 ^8 = 0
-		// 	 =
-		// 	 0 =
-		//   x + x ^ 2 + x * x ^ 2 = 0
-		//   x ^ 2 * x  = 0
-		//   x ^ 2 / 2 / 2 = 0
-		//   2x^2 + 4x - 2 = 0
-		//   x * x = 0
-
 		try
 		{
 			WorkWithArguments(arguments);
@@ -38,9 +18,16 @@ public static partial class		Program
 			ExecuteAnalyzer();
 			ExecuteSolver();
 		}
-		catch (Exception exception)
+		catch (Error.Exception exception)
 		{
 			Console.WriteLine("Computor error : " + exception.Message);
+
+			if (Options.Report == Options.ReportFormat.Test)
+				throw;
+		}
+		catch (Exception exception)
+		{
+			Console.WriteLine("Computor internal error : " + exception.Message);
 		}
 	}
 
@@ -68,15 +55,19 @@ public static partial class		Program
 		
 		Parser.ProcessImplicitMultiplication();
 		Reporter.Report(Reporter.Event.ProcessedImplicitMultiplication);
+		
+		Validator.ValidateTokens();
 	}
 
 	private static void			ExecuteAnalyzer()
 	{
 		Analyzer.BuildTerms();
 		Reporter.Report(Reporter.Event.BuiltTerms);
+		Validator.ValidateTerms();
 		
 		Analyzer.SortTerms();
 		Reporter.Report(Reporter.Event.SortedTerms);
+		Validator.ValidateSortedTerms();
 	}
 
 	private static void			ExecuteSolver()

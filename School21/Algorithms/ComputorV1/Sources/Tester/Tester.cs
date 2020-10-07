@@ -25,138 +25,98 @@ public static class			Tester
 
 		_output = null;
 	}
-	
-	#region					Valid cases
 
-	[Test]
-	public static void		Valid1()
+	[TestCase("2 * x ^ 2 - 4 * x - 2 = 0", "-0.414214, 2.414214")]
+	[TestCase("6 * x ^ 2 + 11 * x - 35 = 0", "-7 / 2, 5 / 3")]
+	[TestCase("-4 * x ^ 2 - 7 * x + 12 = 0", "-2.815522, 1.065522")]
+	[TestCase("20 * x ^ 2 -15 * x - 10 = 0", "-0.425391, 1.175390")]
+	[TestCase("x ^ 2 - x - 3 = 0", "-1.302776, 2.302776")]
+	[TestCase("5 * x ^ 2 - 2 * x - 9 = 0", "-1.156466, 1.556466")]
+	[TestCase("3 * x ^ 2 + 4 * x + 2 = 0", "")]
+	[TestCase("-x ^ 2 + 6 * x + 18 = 0", "-2.196153, 8.196153")]
+	[TestCase("x + x ^ 2 + x * x ^ 1 = 0", "-0.5, 0")]
+	[TestCase("x ^ 1 * x = 0", "0")]
+	[TestCase("x ^ 2 / 2 / 2 = 0", "0")]
+	[TestCase("2x^2 + 4x - 2 = 0", "-2.414214, 0.414214")]
+	[TestCase("x * x = 0", "0")]
+	public static void		ValidCases(string input, string expected)
 	{
-		RunProgram("2 * x ^ 2 - 4 * x - 2 = 0");
-		Assert.AreEqual("-0.414214, 2.414214", _output);
-	}
-	
-	[Test]
-	public static void		Valid2()
-	{
-		RunProgram("6 * x ^ 2 + 11 * x - 35 = 0");
-		Assert.AreEqual("-7 / 2, 5 / 3", _output);
-	}
-	
-	[Test]
-	public static void		Valid3()
-	{
-		RunProgram("-4 * x ^ 2 - 7 * x + 12 = 0");
-		Assert.AreEqual("-2.815522, 1.065522", _output);
-	}
-	
-	[Test]
-	public static void		Valid4()
-	{
-		RunProgram("20 * x ^ 2 -15 * x - 10 = 0");
-		Assert.AreEqual("-0.425391, 1.175390", _output);
-	}
-	
-	[Test]
-	public static void		Valid5()
-	{
-		RunProgram("x ^ 2 - x - 3 = 0");
-		Assert.AreEqual("-1.302776, 2.302776", _output);
-	}
-	
-	[Test]
-	public static void		Valid6()
-	{
-		RunProgram("5 * x ^ 2 - 2 * x - 9 = 0");
-		Assert.AreEqual("-1.156466, 1.556466", _output);
-	}
-	
-	[Test]
-	public static void		Valid7()
-	{
-		RunProgram("3 * x ^ 2 + 4 * x + 2 = 0");
-		Assert.AreEqual("", _output);
-	}
-	
-	[Test]
-	public static void		Valid8()
-	{
-		RunProgram("-x ^ 2 + 6 * x + 18 = 0");
-		Assert.AreEqual("-2.196153, 8.196153", _output);
-	}
-	
-	#endregion
-
-	#region					Incomplete orm
-	
-	[Test]
-	public static void		Incomplete1()
-	{
-		RunProgram("-x ^ 2 = -4");
-		Assert.AreEqual("-2, 2", _output);
-	}
-	
-	[Test]
-	public static void		Incomplete2()
-	{
-		RunProgram("x = 5");
-		Assert.AreEqual("5", _output);
-	}
-	
-	[Test]
-	public static void		Incomplete3()
-	{
-		RunProgram("x * x = 5");
-		Assert.AreEqual("-2.236066, 2.236066", _output);
-	}
-	
-	
-	[Test]
-	public static void		Incomplete4()
-	{
-		RunProgram("2 * x = 7");
-		Assert.AreEqual("7 / 2", _output);
-	}
-	
-	#endregion
-	
-	#region					Special cases
-	
-	[Test]
-	public static void		SpecialCase1()
-	{
-		RunProgram("0 = 4");
-		Assert.AreEqual("", _output);
-	}
-	
-	[Test]
-	public static void		SpecialCase2()
-	{
-		RunProgram("4 = 4");
-		Assert.AreEqual("Any", _output);
+		RunProgram(input);
+		Assert.AreEqual(expected, _output);
 	}
 
-	#endregion
-	
-	#region					Error
 
-	// "="
-	// "1 ="
-	// "1 = = 1"
-	// "1 = 1 = 1"
+	[TestCase("-x ^ 2 = -4", "-2, 2")]
+	[TestCase("x = 5", "5")]
+	[TestCase("x * x = 5", "-2.236066, 2.236066")]
+	[TestCase("2 * x = 7", "7 / 2")] 
+	public static void		IncompleteFormCases(string input, string expected)
+	{
+		RunProgram(input);
+		Assert.AreEqual(expected, _output);
+	}
 	
-	#endregion
+	[TestCase("0 = 4", "")]
+	[TestCase("4 = 4", "Any")]
+	[TestCase("x = x", "Any")]
+	public static void		SpecialCases(string input, string expected)
+	{
+		RunProgram(input);
+		Assert.AreEqual(expected, _output);
+	}
+
+	[TestCase(null, Error.Code.ExpressionIsNotGiven)]
 	
-	#region					Private methos
+	[TestCase("ajnakak", Error.Code.InvalidCharacter)]
+	[TestCase("y = 0", Error.Code.InvalidCharacter)]
+
+	[TestCase("x = 1.3.3.3", Error.Code.BadFloat)]
+	[TestCase("x = ..0101", Error.Code.BadFloat)]
 	
-	private static void		RunProgram(string input)
+	[TestCase("xx = 0", Error.Code.MissingOperator)]
+	[TestCase("xxxxx = 0", Error.Code.MissingOperator)]
+	[TestCase("x3 = 0", Error.Code.MissingOperator)]
+	[TestCase("+2 = 0", Error.Code.MissingOperator)]
+	[TestCase("*1 = 0", Error.Code.MissingOperator)]
+	[TestCase("^8 = 0", Error.Code.MissingOperator)]
+	
+	[TestCase("x++ = 0", Error.Code.MissingOperand)]
+	[TestCase("1-+2 = 0", Error.Code.MissingOperand)]
+	[TestCase("1---2 = 0", Error.Code.MissingOperand)]
+	
+	[TestCase("x^x = 0", Error.Code.PowerIsNotConstant)]
+	[TestCase("2^x = 0", Error.Code.PowerIsNotConstant)]
+	
+	[TestCase("x^1.1 = 0", Error.Code.PowerIsNotInteger)]
+	[TestCase("x^.11 * x^1.2 = 0", Error.Code.PowerIsNotInteger)]
+
+	[TestCase("1 = 0 = 1", Error.Code.MoreThanOneEqualitySign)]
+	[TestCase("1 = 0 = 1 = x", Error.Code.MoreThanOneEqualitySign)]
+	
+	[TestCase(" = ", Error.Code.MissingLeftPart)]
+	[TestCase("= ", Error.Code.MissingLeftPart)]
+	[TestCase(" = 0", Error.Code.MissingLeftPart)]
+	
+	[TestCase("1 = ", Error.Code.MissingRightPart)]
+	[TestCase("x + 5 = ", Error.Code.MissingRightPart)]
+	
+	[TestCase("x ^ 3 = 0", Error.Code.InvalidPower)]
+	[TestCase("x * x * x = 0", Error.Code.MissingRightPart)]
+	public static void		ErrorCases(string input, Error.Code code)
+	{
+		Error.Exception		exception;
+			
+		exception = Assert.Throws<Error.Exception>(() => RunProgram(input));
+		Assert.AreEqual(exception.Code, code);
+	}
+	
+	private static void		RunProgram(string input = null)
 	{
 		using var			stringWriter = new StringWriter();
 		
 		Console.SetOut(stringWriter);
-		Program.Main(new []{input, "test"});
+		Program.Main(input != null ? new[] {input, "test"} : new[] {"test"});
 
 		_output = stringWriter.ToString();
 	}
-
-	#endregion
 }
