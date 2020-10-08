@@ -32,7 +32,7 @@ namespace						Computor
 			code switch
 			{
 				Code.ExpressionIsNotGiven => "Expression is not given, pass it as argument to executable",
-				Code.InvalidCharacter => "Invalid character appeared in given expression",
+				Code.InvalidCharacter => "Invalid character in given expression",
 				Code.BadFloat => "Invalid floating point number",
 				Code.MissingOperator => "Missing operator",
 				Code.MissingOperand => "Missing operand",

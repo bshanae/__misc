@@ -2,7 +2,7 @@ namespace						Computor
 {
 	public class				Variable : Operand
 	{
-		public static string	AssociatedCharacters => "x";
+		public static string	AssociatedCharacters => "xX";
 		public static int		LengthLimit => 1;
 		
 		public					Variable(string @string) : base(@string)
