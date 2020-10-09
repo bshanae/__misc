@@ -1,6 +1,6 @@
-package simulation.aircrafts;
+package avajLauncher.simulation.aircrafts;
 
-import simulation.towers.WeatherTower;
+import avajLauncher.simulation.towers.WeatherTower;
 
 public interface    Flyable
 {

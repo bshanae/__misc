@@ -1,6 +1,6 @@
-package simulation.towers;
+package avajLauncher.simulation.towers;
 
-import simulation.aircrafts.Flyable;
+import avajLauncher.simulation.aircrafts.Flyable;
 
 import java.util.List;
 

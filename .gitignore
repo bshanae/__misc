@@ -3,6 +3,7 @@
 .depend
 *.o
 *.d
+*.class
 .idea
 cmake-build-debug
 venv

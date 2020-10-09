@@ -1,11 +1,11 @@
-package simulation.aircrafts;
+package avajLauncher.simulation.aircrafts;
 
-import simulation.Coordinates;
-import simulation.towers.WeatherTower;
+import avajLauncher.simulation.Coordinates;
+import avajLauncher.simulation.towers.WeatherTower;
 
 public class				JetPlane extends Aircraft implements Flyable
 {
-	private WeatherTower	weatherTower;
+	private WeatherTower weatherTower;
 
 	public					JetPlane(String name, Coordinates coordinates)
 	{

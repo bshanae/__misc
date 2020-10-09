@@ -1,4 +1,4 @@
-package simulation.towers;
+package avajLauncher.simulation.towers;
 
 public class		WeatherTower extends Tower
 {

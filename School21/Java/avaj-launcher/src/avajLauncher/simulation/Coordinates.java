@@ -1,4 +1,4 @@
-package simulation;
+package avajLauncher.simulation;
 
 public class		Coordinates
 {

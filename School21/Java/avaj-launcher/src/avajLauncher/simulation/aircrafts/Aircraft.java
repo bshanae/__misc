@@ -1,12 +1,12 @@
-package simulation.aircrafts;
+package avajLauncher.simulation.aircrafts;
 
-import simulation.Coordinates;
+import avajLauncher.simulation.Coordinates;
 
 public class				Aircraft
 {
 	protected long			id;
 	protected String		name;
-	protected Coordinates	coordinates;
+	protected Coordinates coordinates;
 
 	private static long		idCounter = 0;
 
