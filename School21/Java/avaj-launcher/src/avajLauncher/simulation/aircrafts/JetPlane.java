@@ -1,6 +1,6 @@
 package avajLauncher.simulation.aircrafts;
 
-import avajLauncher.simulation.Coordinates;
+import avajLauncher.simulation.other.Coordinates;
 import avajLauncher.simulation.towers.WeatherTower;
 
 public class				JetPlane extends Aircraft implements Flyable
@@ -20,5 +20,11 @@ public class				JetPlane extends Aircraft implements Flyable
 	public void				registerTower(WeatherTower weatherTower)
 	{
 
+	}
+
+	@Override
+	public String			toString()
+	{
+		return "[JetPlane : id = " + id + ", name = " + name + ", coordinates = " + coordinates + "]";
 	}
 }

@@ -1,4 +1,4 @@
-package avajLauncher.simulation;
+package avajLauncher.simulation.other;
 
 public class								WeatherProvider
 {
