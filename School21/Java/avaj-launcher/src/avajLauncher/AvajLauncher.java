@@ -12,7 +12,7 @@ public class			AvajLauncher
 			if (arguments.length < 1)
 				throw new UsageException("No arguments passed to program");
 
-			Simulator.execute("resources/validScenarios/Example.txt");
+			Simulator.execute(arguments[0]);
 		}
 		catch (UsageException exception)
 		{
