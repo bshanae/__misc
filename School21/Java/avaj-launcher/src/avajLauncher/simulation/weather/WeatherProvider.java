@@ -20,15 +20,11 @@ public class								WeatherProvider
 		int									hash;
 		int									index;
 
-		hash = 1;
-		hash *= coordinates.getLongitude() * 123;
-		hash *= coordinates.getLatitude() * 23949;
-		hash *= coordinates.getHeight() * 77;
+		hash = coordinates.getLongitude();
+		hash += coordinates.getLatitude();
+		hash += coordinates.getHeight();
 
 		index = Math.abs(hash % 4);
-
-		System.out.println("hash = " + hash);
-		System.out.println("index = " + index);
 
 		return weather[index];
 	}

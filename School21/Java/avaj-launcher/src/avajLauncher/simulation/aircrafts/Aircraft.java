@@ -25,15 +25,15 @@ public abstract class			Aircraft
 
 	public abstract String		getDescription();
 
-	protected void				moveWithShift(Coordinates shift)
+	protected void				changeCoordinates(int longitudeChange, int latitudeChange, int heightChange)
 	{
 		int						newLongitude;
 		int						newLatitude;
 		int						newHeight;
 
-		newLongitude = coordinates.getLongitude() + shift.getLongitude();
-		newLatitude = coordinates.getLatitude() + shift.getLatitude();
-		newHeight = coordinates.getHeight() + shift.getHeight();
+		newLongitude = coordinates.getLongitude() + longitudeChange;
+		newLatitude = coordinates.getLatitude() + latitudeChange;
+		newHeight = coordinates.getHeight() + heightChange;
 
 		coordinates = new Coordinates(newLongitude, newLatitude, newHeight);
 	}

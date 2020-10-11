@@ -1,13 +1,13 @@
 package avajLauncher.simulation.scenario;
 
 import avajLauncher.simulation.aircrafts.Flyable;
-import avajLauncher.simulation.common.ParsingException;
+import avajLauncher.simulation.common.UsageException;
 
 import java.util.List;
 
 public class				Scenario
 {
-	public static class		BadNumberOfIterations extends ParsingException
+	public static class		BadNumberOfIterations extends UsageException
 	{
 							BadNumberOfIterations()
 		{

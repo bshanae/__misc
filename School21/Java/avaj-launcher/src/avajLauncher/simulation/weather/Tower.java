@@ -36,7 +36,9 @@ public class					Tower
 
 	protected void				conditionsChanged()
 	{
-		for (Flyable observer : observers)
+		final List<Flyable>		observersCopy = new LinkedList<>(observers);
+
+		for (Flyable observer : observersCopy)
 			observer.updateConditions();
 	}
 

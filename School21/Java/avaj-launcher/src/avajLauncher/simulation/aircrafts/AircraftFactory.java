@@ -1,11 +1,11 @@
 package avajLauncher.simulation.aircrafts;
 
 import avajLauncher.simulation.common.Coordinates;
-import avajLauncher.simulation.common.ParsingException;
+import avajLauncher.simulation.common.UsageException;
 
 public class				AircraftFactory
 {
-	public static class		UnknownAircraftType extends ParsingException
+	public static class		UnknownAircraftType extends UsageException
 	{
 							UnknownAircraftType()
 		{

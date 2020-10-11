@@ -26,22 +26,22 @@ public class				Balloon extends Aircraft implements Flyable
 		switch (weatherTower.getWeather(this.coordinates))
 		{
 			case "SUN" :
-				moveWithShift(new Coordinates(2, 0, 4));
+				changeCoordinates(2, 0, 4);
 				logMessage("I have the sun in my eyes, it's not cool");
 				break ;
 
 			case "RAIN" :
-				moveWithShift(new Coordinates(0, 0, -5));
+				changeCoordinates(0, 0, -5);
 				logMessage("The experience is a bit ruined. You ever been in a hot air balloon under rain?!");
 				break ;
 
 			case "FOG" :
-				moveWithShift(new Coordinates(0, 0, -3));
+				changeCoordinates(0, 0, -3);
 				logMessage("There is such a view up there... Too bad I can't see anything....");
 				break ;
 
 			case "SNOW" :
-				moveWithShift(new Coordinates(+2, 0, -15));
+				changeCoordinates(+2, 0, -15);
 				logMessage("It's snowing, we're gonna crash!");
 				break ;
 

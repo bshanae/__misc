@@ -1,7 +1,7 @@
 package avajLauncher;
 
 import avajLauncher.simulation.Simulator;
-import avajLauncher.simulation.common.ParsingException;
+import avajLauncher.simulation.common.UsageException;
 
 public class			AvajLauncher
 {
@@ -9,11 +9,14 @@ public class			AvajLauncher
 	{
 		try
 		{
+			if (arguments.length < 1)
+				throw new UsageException("No arguments passed to program");
+
 			Simulator.execute("resources/validScenarios/Example.txt");
 		}
-		catch (ParsingException exception)
+		catch (UsageException exception)
 		{
-			System.err.println("[avaj-launcher] Parsing error : " + exception.getMessage());
+			System.err.println("[avaj-launcher] Usage error : " + exception.getMessage());
 		}
 		catch (InternalError exception)
 		{
@@ -22,6 +25,7 @@ public class			AvajLauncher
 		catch (Exception exception)
 		{
 			System.err.println("[avaj-launcher] Unknown error : " + exception.getMessage());
+			exception.printStackTrace();
 		}
 	}
 }

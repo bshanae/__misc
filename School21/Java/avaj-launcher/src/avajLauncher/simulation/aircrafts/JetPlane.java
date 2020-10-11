@@ -26,22 +26,22 @@ public class				JetPlane extends Aircraft implements Flyable
 		switch (weatherTower.getWeather(this.coordinates))
 		{
 			case "SUN" :
-				moveWithShift(new Coordinates(10, 0, 2));
+				changeCoordinates(10, 0, 2);
 				logMessage("IT'S SUNNY AND I AM GOING FAAAAST WOOOOOOOOOOW !!!!!!!!!!");
 				break ;
 
 			case "RAIN" :
-				moveWithShift(new Coordinates(0, 5, 0));
+				changeCoordinates(0, 5, 0);
 				logMessage("Well I can't see anything because of the rain but I guess it's cool to fly in a jet plane anyway!");
 				break ;
 
 			case "FOG" :
-				moveWithShift(new Coordinates(0, 1, 0));
+				changeCoordinates(0, 1, 0);
 				logMessage("Is there something in front of me? My radar isn't working! Do I have something to honk?! Oh yes this! Wow it was ejectable seat.");
 				break ;
 
 			case "SNOW" :
-				moveWithShift(new Coordinates(0, 0, -7));
+				changeCoordinates(0, 0, -7);
 				logMessage("It's beautiful!!!!");
 				break ;
 

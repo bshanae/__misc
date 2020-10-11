@@ -2,7 +2,7 @@ package avajLauncher.simulation.scenario;
 
 import avajLauncher.simulation.aircrafts.AircraftFactory;
 import avajLauncher.simulation.aircrafts.Flyable;
-import avajLauncher.simulation.common.ParsingException;
+import avajLauncher.simulation.common.UsageException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +23,7 @@ public class						ScenarioParser
 			LinkedList<Flyable>		flyables = new LinkedList<>();
 
 			if (!scanner.hasNextLine())
-				throw new ParsingException("Scenario file is empty");
+				throw new UsageException("Scenario file is empty");
 
 			numberOfIteration = readNumberOfIterations(scanner.nextLine());
 
@@ -31,7 +31,7 @@ public class						ScenarioParser
 				flyables.add(readAircraft(scanner.nextLine()));
 
 			if (flyables.isEmpty())
-				throw new ParsingException("Aircraft are not present is scenario file");
+				throw new UsageException("Aircraft are not present is scenario file");
 
 			scanner.close();
 
@@ -39,7 +39,7 @@ public class						ScenarioParser
 		}
 		catch (FileNotFoundException exception)
 		{
-			throw new ParsingException("Can't open scenario file");
+			throw new UsageException("Can't open scenario file");
 		}
 	}
 
@@ -61,7 +61,7 @@ public class						ScenarioParser
 		}
 		catch (Tokenizer.BadFormat | Tokenizer.BadInt | Tokenizer.TokensAreLeft exception)
 		{
-			throw new ParsingException("Can't parse number of iterations in scenario file");
+			throw new UsageException("Can't parse number of iterations in scenario file");
 		}
 	}
 
@@ -91,7 +91,7 @@ public class						ScenarioParser
 		}
 		catch (Tokenizer.BadFormat | Tokenizer.BadInt | Tokenizer.TokensAreLeft exception)
 		{
-			throw new ParsingException("Can't parse aircraft in scenario file");
+			throw new UsageException("Can't parse aircraft in scenario file");
 		}
 	}
 
@@ -99,9 +99,9 @@ public class						ScenarioParser
 
 	private static class			Tokenizer
 	{
-		public static class			BadFormat extends ParsingException {}
-		public static class			BadInt extends ParsingException {}
-		public static class			TokensAreLeft extends ParsingException {}
+		public static class			BadFormat extends UsageException {}
+		public static class			BadInt extends UsageException {}
+		public static class			TokensAreLeft extends UsageException {}
 
 		Queue<String>				tokenQueue;
 

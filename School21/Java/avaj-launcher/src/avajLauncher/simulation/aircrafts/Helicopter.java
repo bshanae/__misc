@@ -26,22 +26,22 @@ public class				Helicopter extends Aircraft implements Flyable
 		switch (weatherTower.getWeather(this.coordinates))
 		{
 			case "SUN" :
-				moveWithShift(new Coordinates(10, 0, 2));
+				changeCoordinates(10, 0, 2);
 				logMessage("Wow, it's hot. My rotating motor is going to explode...");
 				break ;
 
 			case "RAIN" :
-				moveWithShift(new Coordinates(5, 0, 0));
+				changeCoordinates(5, 0, 0);
 				logMessage("HELP IT'S RAINING BLBLBLBLBL");
 				break ;
 
 			case "FOG" :
-				moveWithShift(new Coordinates(1, 0, 0));
+				changeCoordinates(1, 0, 0);
 				logMessage("I can't see shit.");
 				break ;
 
 			case "SNOW" :
-				moveWithShift(new Coordinates(0, 0, -12));
+				changeCoordinates(0, 0, -12);
 				logMessage("Brrrrr.... It's freezing!");
 				break ;
 
