@@ -1,12 +1,13 @@
 package avajLauncher.simulation.scenario;
 
-import avajLauncher.simulation.aircrafts.Aircraft;
+import avajLauncher.simulation.aircrafts.Flyable;
+import avajLauncher.simulation.common.ParsingException;
 
 import java.util.List;
 
 public class				Scenario
 {
-	public static class		BadNumberOfIterations extends RuntimeException
+	public static class		BadNumberOfIterations extends ParsingException
 	{
 							BadNumberOfIterations()
 		{
@@ -15,42 +16,24 @@ public class				Scenario
 	}
 
 	private int				numberOfIteration;
-	private List<Aircraft>	aircrafts;
+	private List<Flyable>	flyables;
 
-							Scenario(int numberOfIteration, List<Aircraft> aircrafts)
+							Scenario(int numberOfIteration, List<Flyable> flyables)
 	{
 		if (numberOfIteration < 1)
 			throw new BadNumberOfIterations();
 
 		this.numberOfIteration = numberOfIteration;
-		this.aircrafts = aircrafts;
+		this.flyables = flyables;
 	}
 
-	@Override
-	public String			toString()
+	public int				getNumberOfIteration()
 	{
-		StringBuilder		stringBuilder = new StringBuilder();
+		return numberOfIteration;
+	}
 
-		stringBuilder.append("[Scenario : ");
-		stringBuilder.append("\n");
-
-		stringBuilder.append("\t");
-		stringBuilder.append("Number of iterations : ");
-		stringBuilder.append(numberOfIteration);
-		stringBuilder.append("\n");
-
-		stringBuilder.append("\tAircrafts : {\n");
-
-		for (Aircraft aircraft : aircrafts)
-		{
-			stringBuilder.append("\t\t");
-			stringBuilder.append(aircraft);
-			stringBuilder.append("\n");
-		}
-
-		stringBuilder.append("\t}\n");
-		stringBuilder.append("]");
-
-		return stringBuilder.toString();
+	public List<Flyable>	getFlyables()
+	{
+		return flyables;
 	}
 }

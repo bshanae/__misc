@@ -1,7 +1,8 @@
 package avajLauncher.simulation.scenario;
 
-import avajLauncher.simulation.aircrafts.Aircraft;
 import avajLauncher.simulation.aircrafts.AircraftFactory;
+import avajLauncher.simulation.aircrafts.Flyable;
+import avajLauncher.simulation.common.ParsingException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,48 +10,6 @@ import java.util.*;
 
 public class						ScenarioParser
 {
-//	------------------------------>	Exceptions
-
-	public static class				CantOpenFile extends RuntimeException
-	{
-									CantOpenFile()
-		{
-			super("Can't open scenario file");
-		}
-	}
-
-	public static class				FileIsEmpty extends RuntimeException
-	{
-									FileIsEmpty()
-		{
-			super("Scenario file is empty");
-		}
-	}
-
-	public static class				AircraftsAreNotPresent extends RuntimeException
-	{
-									AircraftsAreNotPresent()
-		{
-			super("Aircraft are not present is scenario file");
-		}
-	}
-
-	public static class				CantParseNumberOfIterations extends RuntimeException
-	{
-									CantParseNumberOfIterations()
-		{
-			super("Can't parse number of iterations in scenario file");
-		}
-	}
-
-	public static class				CantParseAircraft extends RuntimeException
-	{
-									CantParseAircraft()
-		{
-			super("Can't parse aircraft in scenario file");
-		}
-	}
-
 //	------------------------------>	Main method
 
 	public static Scenario			parse(String pathToFile)
@@ -61,26 +20,26 @@ public class						ScenarioParser
 			Scanner					scanner = new Scanner(file);
 
 			int						numberOfIteration;
-			LinkedList<Aircraft>	aircrafts = new LinkedList<>();
+			LinkedList<Flyable>		flyables = new LinkedList<>();
 
 			if (!scanner.hasNextLine())
-				throw new FileIsEmpty();
+				throw new ParsingException("Scenario file is empty");
 
 			numberOfIteration = readNumberOfIterations(scanner.nextLine());
 
 			while (scanner.hasNextLine())
-				aircrafts.add(readAircraft(scanner.nextLine()));
+				flyables.add(readAircraft(scanner.nextLine()));
 
-			if (aircrafts.isEmpty())
-				throw new AircraftsAreNotPresent();
+			if (flyables.isEmpty())
+				throw new ParsingException("Aircraft are not present is scenario file");
 
 			scanner.close();
 
-			return new Scenario(numberOfIteration, aircrafts);
+			return new Scenario(numberOfIteration, flyables);
 		}
 		catch (FileNotFoundException exception)
 		{
-			throw new CantOpenFile();
+			throw new ParsingException("Can't open scenario file");
 		}
 	}
 
@@ -100,13 +59,13 @@ public class						ScenarioParser
 
 			return result;
 		}
-		catch (RuntimeException exception)
+		catch (Tokenizer.BadFormat | Tokenizer.BadInt | Tokenizer.TokensAreLeft exception)
 		{
-			throw new CantParseNumberOfIterations();
+			throw new ParsingException("Can't parse number of iterations in scenario file");
 		}
 	}
 
-	private static Aircraft			readAircraft(String line)
+	private static Flyable			readAircraft(String line)
 	{
 		try
 		{
@@ -128,11 +87,11 @@ public class						ScenarioParser
 
 			tokenizer.assertEmpty();
 
-			return AircraftFactory.newAircraft(type, name, longitude, latitude, height);
+			return (Flyable)AircraftFactory.newAircraft(type, name, longitude, latitude, height);
 		}
 		catch (Tokenizer.BadFormat | Tokenizer.BadInt | Tokenizer.TokensAreLeft exception)
 		{
-			throw new CantParseAircraft();
+			throw new ParsingException("Can't parse aircraft in scenario file");
 		}
 	}
 
@@ -140,9 +99,9 @@ public class						ScenarioParser
 
 	private static class			Tokenizer
 	{
-		public static class			BadFormat extends RuntimeException {}
-		public static class			BadInt extends RuntimeException {}
-		public static class			TokensAreLeft extends RuntimeException {}
+		public static class			BadFormat extends ParsingException {}
+		public static class			BadInt extends ParsingException {}
+		public static class			TokensAreLeft extends ParsingException {}
 
 		Queue<String>				tokenQueue;
 

@@ -1,4 +1,4 @@
-package avajLauncher.simulation.other;
+package avajLauncher.simulation.common;
 
 public class			Coordinates
 {
@@ -18,17 +18,17 @@ public class			Coordinates
 		this.height = Integer.max(0, Integer.min(100, height));
 	}
 
-	int					getLongitude()
+	public int			getLongitude()
 	{
 		return longitude;
 	}
 
-	int					getLatitude()
+	public int			getLatitude()
 	{
 		return latitude;
 	}
 
-	int					getHeight()
+	public int			getHeight()
 	{
 		return height;
 	}
@@ -36,10 +36,6 @@ public class			Coordinates
 	@Override
 	public String		toString()
 	{
-		return
-			"[Coordinates : "
-			+ "longitude = " + latitude
-			+ ", latitude = " + latitude
-			+ ", height = " + height + "]";
+		return String.format("[%d, %d, %d]", longitude, latitude, height);
 	}
 }

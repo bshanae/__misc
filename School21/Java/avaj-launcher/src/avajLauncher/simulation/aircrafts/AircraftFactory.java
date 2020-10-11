@@ -1,10 +1,11 @@
 package avajLauncher.simulation.aircrafts;
 
-import avajLauncher.simulation.other.Coordinates;
+import avajLauncher.simulation.common.Coordinates;
+import avajLauncher.simulation.common.ParsingException;
 
 public class				AircraftFactory
 {
-	public static class		UnknownAircraftType extends RuntimeException
+	public static class		UnknownAircraftType extends ParsingException
 	{
 							UnknownAircraftType()
 		{
@@ -23,7 +24,7 @@ public class				AircraftFactory
 	{
 		return switch (type)
 		{
-			case "Baloon" -> new Baloon(name, new Coordinates(longitude, latitude, height));
+			case "Baloon" -> new Balloon(name, new Coordinates(longitude, latitude, height));
 			case "Helicopter" -> new Helicopter(name, new Coordinates(longitude, latitude, height));
 			case "JetPlane" -> new JetPlane(name, new Coordinates(longitude, latitude, height));
 			default -> throw new UnknownAircraftType();

@@ -4,49 +4,49 @@ import avajLauncher.simulation.common.Coordinates;
 import avajLauncher.simulation.common.InternalException;
 import avajLauncher.simulation.weather.WeatherTower;
 
-public class				Helicopter extends Aircraft implements Flyable
+public class				Balloon extends Aircraft implements Flyable
 {
 	private WeatherTower	weatherTower;
 
-	public					Helicopter(String name, Coordinates coordinates)
+	public					Balloon(String name, Coordinates coordinates)
 	{
 		super(name, coordinates);
 	}
 
 	public String			getDescription()
 	{
-		return String.format("Helicopter#%s(%d)", name, id);
+		return String.format("Baloon#%s(%d)", name, id);
 	}
 
 	public void				updateConditions()
 	{
 		if (weatherTower == null)
-			throw new InternalException("[Helicopter] Can't update conditions, weather tower is null");
+			throw new InternalException("[Balloon] Can't update conditions, weather tower is null");
 
 		switch (weatherTower.getWeather(this.coordinates))
 		{
 			case "SUN" :
-				moveWithShift(new Coordinates(10, 0, 2));
-				logMessage("Wow, it's hot. My rotating motor is going to explode...");
+				moveWithShift(new Coordinates(2, 0, 4));
+				logMessage("I have the sun in my eyes, it's not cool");
 				break ;
 
 			case "RAIN" :
-				moveWithShift(new Coordinates(5, 0, 0));
-				logMessage("HELP IT'S RAINING BLBLBLBLBL");
+				moveWithShift(new Coordinates(0, 0, -5));
+				logMessage("The experience is a bit ruined. You ever been in a hot air balloon under rain?!");
 				break ;
 
 			case "FOG" :
-				moveWithShift(new Coordinates(1, 0, 0));
-				logMessage("I can't see shit.");
+				moveWithShift(new Coordinates(0, 0, -3));
+				logMessage("There is such a view up there... Too bad I can't see anything....");
 				break ;
 
 			case "SNOW" :
-				moveWithShift(new Coordinates(0, 0, -12));
-				logMessage("Brrrrr.... It's freezing!");
+				moveWithShift(new Coordinates(+2, 0, -15));
+				logMessage("It's snowing, we're gonna crash!");
 				break ;
 
 			default :
-				throw new InternalException("[Helicopter] Unknown weather");
+				throw new InternalException("[Balloon] Unknown weather");
 		}
 
 		if (coordinates.getHeight() == 0)
