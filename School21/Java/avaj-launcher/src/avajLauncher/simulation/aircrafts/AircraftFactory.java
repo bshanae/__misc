@@ -22,12 +22,19 @@ public class				AircraftFactory
 								int height
 							)
 	{
-		return switch (type)
+		switch (type)
 		{
-			case "Baloon" -> new Balloon(name, new Coordinates(longitude, latitude, height));
-			case "Helicopter" -> new Helicopter(name, new Coordinates(longitude, latitude, height));
-			case "JetPlane" -> new JetPlane(name, new Coordinates(longitude, latitude, height));
-			default -> throw new UnknownAircraftType();
-		};
+			case "Baloon":
+				return new Balloon(name, new Coordinates(longitude, latitude, height));
+
+			case "Helicopter":
+				return new Helicopter(name, new Coordinates(longitude, latitude, height));
+
+			case "JetPlane":
+				return new JetPlane(name, new Coordinates(longitude, latitude, height));
+
+			default:
+				throw new UnknownAircraftType();
+		}
 	}
 }
