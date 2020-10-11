@@ -2,25 +2,29 @@ package avajLauncher.simulation.scenario;
 
 import avajLauncher.simulation.aircrafts.AircraftFactory;
 import avajLauncher.simulation.aircrafts.Flyable;
+import avajLauncher.simulation.common.InternalException;
 import avajLauncher.simulation.common.UsageException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-public class						ScenarioParser
+public class							ScenarioParser
 {
-//	------------------------------>	Main method
+//	---------------------------------->	Main method
 
-	public static Scenario			parse(String pathToFile)
+	public static Scenario				parse(String pathToFile)
 	{
 		try
 		{
-			File					file = new File(pathToFile);
-			Scanner					scanner = new Scanner(file);
+			File						file = new File(pathToFile);
+			Scanner						scanner = new Scanner(file);
 
-			int						numberOfIteration;
-			LinkedList<Flyable>		flyables = new LinkedList<>();
+			int							numberOfIteration;
+			LinkedList<Flyable>			flyables = new LinkedList<>();
 
 			if (!scanner.hasNextLine())
 				throw new UsageException("Scenario file is empty");
@@ -43,17 +47,17 @@ public class						ScenarioParser
 		}
 	}
 
-//	------------------------------>	Reading
+//	---------------------------------->	Reading
 
-	private static int				readNumberOfIterations(String line)
+	private static int					readNumberOfIterations(String line)
 	{
 		try
 		{
-			Tokenizer				tokenizer;
-			int						result;
+			Tokenizer					tokenizer;
+			int							result;
 
 			tokenizer = new Tokenizer(line);
-			result = tokenizer.pollInt();
+			result = tokenizer.pollNumberOfIterations();
 
 			tokenizer.assertEmpty();
 
@@ -65,25 +69,25 @@ public class						ScenarioParser
 		}
 	}
 
-	private static Flyable			readAircraft(String line)
+	private static Flyable				readAircraft(String line)
 	{
 		try
 		{
-			Tokenizer				tokenizer;
+			Tokenizer					tokenizer;
 
-			String					type;
-			String					name;
-			int						longitude;
-			int						latitude;
-			int						height;
+			String						type;
+			String						name;
+			int							longitude;
+			int							latitude;
+			int							height;
 
 			tokenizer = new Tokenizer(line);
 
-			type = tokenizer.pollString();
-			name = tokenizer.pollString();
-			longitude = tokenizer.pollInt();
-			latitude = tokenizer.pollInt();
-			height = tokenizer.pollInt();
+			type = tokenizer.pollType();
+			name = tokenizer.pollName();
+			longitude = tokenizer.pollLongitude();
+			latitude = tokenizer.pollLatitude();
+			height = tokenizer.pollHeight();
 
 			tokenizer.assertEmpty();
 
@@ -95,42 +99,123 @@ public class						ScenarioParser
 		}
 	}
 
-//	------------------------------>	Tokenizer
+//	---------------------------------->	Tokenizer
 
-	private static class			Tokenizer
+	private static class				Tokenizer
 	{
-		public static class			BadFormat extends UsageException {}
-		public static class			BadInt extends UsageException {}
-		public static class			TokensAreLeft extends UsageException {}
 
-		Queue<String>				tokenQueue;
+		public static class				BadFormat extends UsageException {}
+		public static class				BadInt extends UsageException {}
+		public static class				TokensAreLeft extends UsageException {}
 
-		public						Tokenizer(String line)
+		public static final int			numberOfIterationsMin = 1;
+		public static final int			numberOfIterationsMax = 100000;
+		public static final String[]	namePrefixes = {"B", "H", "J"};
+		public static final int			nameNumberMin = 1;
+		public static final int			nameNumberMax = 100000;
+		public static final int			longitudeMin = 0;
+		public static final int			longitudeMax = 100000;
+		public static final int			latitudeMin = 0;
+		public static final int			latitudeMax = 100000;
+		public static final int			heightMin = 0;
+		public static final int			heightMax = 100;
+
+		Queue<String>					tokenQueue;
+
+		public							Tokenizer(String line)
 		{
-			String[]				tokenArray;
+			String[]					tokenArray;
 
 			tokenArray = line.split("\\s+");
 			tokenQueue = new LinkedList<>(Arrays.asList(tokenArray));
 		}
 
-		public String				pollString()
+		public int						pollNumberOfIterations()
 		{
-			return pollToken();
+			return pollNumber(numberOfIterationsMin, numberOfIterationsMax);
 		}
 
-		public int					pollInt()
+		public String					pollType()
 		{
-			try
+			String						string = pollToken();
+
+			if (MD5.isHash(string))
 			{
-				return Integer.parseInt(pollToken());
+				if (MD5.tryDecode(string, "Baloon"))
+					return "Baloon";
+				else if (MD5.tryDecode(string, "Helicopter"))
+					return "Helicopter";
+				else if (MD5.tryDecode(string, "JetPlane"))
+					return "JetPlane";
+				else
+					throw new UsageException("Can't decode type of aircraft");
 			}
-			catch (NumberFormatException exception)
+			else
+				return string;
+		}
+
+		public String					pollName()
+		{
+			String						string = pollToken();
+
+			if (MD5.isHash(string))
 			{
-				throw new BadInt();
+				for (String prefix : namePrefixes)
+					for (int i = nameNumberMin; i <= nameNumberMax; i++)
+					{
+						String			test = prefix + i;
+
+						if (MD5.tryDecode(string, test))
+							return test;
+					}
+
+				throw new UsageException("Can't decode name of aircraft");
+			}
+			else
+				return string;
+		}
+
+		public int						pollLongitude()
+		{
+			return pollNumber(longitudeMin, longitudeMax);
+		}
+
+		public int						pollLatitude()
+		{
+			return pollNumber(latitudeMin, latitudeMax);
+		}
+
+		public int						pollHeight()
+		{
+			return pollNumber(heightMin, heightMax);
+		}
+
+		private int						pollNumber(int min, int max)
+		{
+			String						token = pollToken();
+
+			if (MD5.isHash(token))
+			{
+				for (int i = min; i <= max; i++)
+					if (MD5.tryDecode(token, String.valueOf(i)))
+						return i;
+
+				throw new UsageException("Can't decode name of aircraft");
+			}
+			else
+			{
+				try
+				{
+					return Integer.parseInt(token);
+				}
+				catch (NumberFormatException exception)
+				{
+					throw new BadInt();
+				}
 			}
 		}
 
-		private String				pollToken()
+		private String					pollToken()
 		{
 			if (tokenQueue.isEmpty())
 				throw new BadFormat();
@@ -138,10 +223,55 @@ public class						ScenarioParser
 			return tokenQueue.poll();
 		}
 
-		public void 				assertEmpty()
+		public void 					assertEmpty()
 		{
 			if (!tokenQueue.isEmpty())
 				throw new TokensAreLeft();
+		}
+	}
+
+//	---------------------------------->	MD5
+
+	private static class				MD5
+	{
+		private static final MD5		instance = new MD5();
+
+		private final MessageDigest		messageDigest;
+
+		private							MD5()
+		{
+			try
+			{
+				messageDigest = MessageDigest.getInstance("MD5");
+			}
+			catch (NoSuchAlgorithmException exception)
+			{
+				throw new InternalException("[ScenarioParser, MD5] Can't initialize instance");
+			}
+		}
+
+		public static boolean			isHash(String string)
+		{
+			return string.length() == 32 && string.matches("-?[0-9a-fA-F]+");
+		}
+
+		public static String			encode(String string)
+		{
+			byte[]						digest;
+			BigInteger					bigInt;
+
+			instance.messageDigest.reset();
+			instance.messageDigest.update(string.getBytes());
+
+			digest = instance.messageDigest.digest();
+			bigInt = new BigInteger(1, digest);
+
+			return bigInt.toString(16);
+		}
+
+		public static boolean			tryDecode(String hashed, String assumed)
+		{
+			return hashed.equals(encode(assumed));
 		}
 	}
 }

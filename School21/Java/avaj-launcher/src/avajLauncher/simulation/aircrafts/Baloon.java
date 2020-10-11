@@ -4,11 +4,11 @@ import avajLauncher.simulation.common.Coordinates;
 import avajLauncher.simulation.common.InternalException;
 import avajLauncher.simulation.weather.WeatherTower;
 
-public class				Balloon extends Aircraft implements Flyable
+public class Baloon extends Aircraft implements Flyable
 {
 	private WeatherTower	weatherTower;
 
-	public					Balloon(String name, Coordinates coordinates)
+	public Baloon(String name, Coordinates coordinates)
 	{
 		super(name, coordinates);
 	}
@@ -51,8 +51,8 @@ public class				Balloon extends Aircraft implements Flyable
 
 		if (coordinates.getHeight() == 0)
 		{
-			weatherTower.unregister(this);
 			logLanding();
+			weatherTower.unregister(this);
 		}
 	}
 

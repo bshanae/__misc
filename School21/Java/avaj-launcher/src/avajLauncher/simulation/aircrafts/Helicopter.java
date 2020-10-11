@@ -51,8 +51,8 @@ public class				Helicopter extends Aircraft implements Flyable
 
 		if (coordinates.getHeight() == 0)
 		{
-			weatherTower.unregister(this);
 			logLanding();
+			weatherTower.unregister(this);
 		}
 	}
 

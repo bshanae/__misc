@@ -23,6 +23,8 @@ public class				JetPlane extends Aircraft implements Flyable
 		if (weatherTower == null)
 			throw new InternalException("[JetPlane] Can't update conditions, weather tower is null");
 
+		logCoordinates();
+
 		switch (weatherTower.getWeather(this.coordinates))
 		{
 			case "SUN" :
@@ -51,9 +53,11 @@ public class				JetPlane extends Aircraft implements Flyable
 
 		if (coordinates.getHeight() == 0)
 		{
-			weatherTower.unregister(this);
 			logLanding();
+			weatherTower.unregister(this);
 		}
+
+		logCoordinates();
 	}
 
 	public void				registerTower(WeatherTower weatherTower)

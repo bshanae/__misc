@@ -19,7 +19,7 @@ public class					Tower
 		(
 			"Tower says : "
 			+ getAircraftFromFlyable(flyable).getDescription()
-			+ "registered to weather tower"
+			+ " registered to weather tower"
 		);
 	}
 
@@ -30,7 +30,7 @@ public class					Tower
 		(
 			"Tower says : "
 			+ getAircraftFromFlyable(flyable).getDescription()
-			+ "unregistered from weather tower"
+			+ " unregistered from weather tower"
 		);
 	}
 

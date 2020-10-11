@@ -47,4 +47,9 @@ public abstract class			Aircraft
 	{
 		logMessage("Landing at " + coordinates);
 	}
+
+	protected void				logCoordinates()
+	{
+		logMessage("I'm on " + coordinates);
+	}
 }
