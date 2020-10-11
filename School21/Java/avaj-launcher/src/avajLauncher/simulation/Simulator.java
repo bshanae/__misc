@@ -19,7 +19,11 @@ public class					Simulator
 			flyable.registerTower(weatherTower);
 
 		for (int i = 0; i < scenario.getNumberOfIteration(); i++)
+		{
+			Logger.WriteLine("Simulation no. " + i);
 			weatherTower.changeWeather();
+			Logger.WriteLine("");
+		}
 
 		Logger.Close();
 	}
