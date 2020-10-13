@@ -1,20 +1,26 @@
 .DS_Store
-.object
-.depend
-*.o
-*.d
-*.class
-.idea
-cmake-build-debug
-venv
 
-School 21/Graphics/Scop/build/scop
+# Algorithms
 
+School 21/Algorithms/ComputorV1/.idea
 School 21/Algorithms/ComputorV1/obj
 School 21/Algorithms/ComputorV1/bin
+
+# Java
+
+School 21/Java/avaj-launcher/out.txt
+School 21/Java/avaj-launcher/simulation.txt
+
+# Graphics
+
+School 21/Graphics/Scop/build/scop
+School 21/Graphics/Scop/cmake-build-debug
+
+# Unity
 
 Unity/Asteroids/Project/Library
 Unity/Asteroids/Project/Temp
 
+Unity/Cubic/Project/.idea
 Unity/Cubic/Project/Library
 Unity/Cubic/Project/Temp
