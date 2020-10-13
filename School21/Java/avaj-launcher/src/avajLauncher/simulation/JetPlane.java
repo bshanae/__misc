@@ -1,14 +1,10 @@
-package avajLauncher.simulation.aircrafts;
-
-import avajLauncher.simulation.common.Coordinates;
-import avajLauncher.simulation.common.InternalException;
-import avajLauncher.simulation.weather.WeatherTower;
+package avajLauncher.simulation;
 
 public class				JetPlane extends Aircraft implements Flyable
 {
 	private WeatherTower	weatherTower;
 
-	public					JetPlane(String name, Coordinates coordinates)
+							JetPlane(String name, Coordinates coordinates)
 	{
 		super(name, coordinates);
 	}
@@ -22,8 +18,6 @@ public class				JetPlane extends Aircraft implements Flyable
 	{
 		if (weatherTower == null)
 			throw new InternalException("[JetPlane] Can't update conditions, weather tower is null");
-
-		logCoordinates();
 
 		switch (weatherTower.getWeather(this.coordinates))
 		{
@@ -56,8 +50,6 @@ public class				JetPlane extends Aircraft implements Flyable
 			logLanding();
 			weatherTower.unregister(this);
 		}
-
-		logCoordinates();
 	}
 
 	public void				registerTower(WeatherTower weatherTower)

@@ -1,15 +1,11 @@
-package avajLauncher.simulation.scenario;
-
-import avajLauncher.simulation.aircrafts.AircraftFactory;
-import avajLauncher.simulation.aircrafts.Flyable;
-import avajLauncher.simulation.common.InternalException;
-import avajLauncher.simulation.common.UsageException;
+package avajLauncher.simulation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.util.*;
 
 public class							ScenarioParser
@@ -177,12 +173,22 @@ public class							ScenarioParser
 
 		public int						pollLongitude()
 		{
-			return pollNumber(longitudeMin, longitudeMax);
+			final int					value = pollNumber(longitudeMin, longitudeMax);
+
+			if (value < 1)
+				throw new UsageException("Bad longitude value");
+			else
+				return value;
 		}
 
 		public int						pollLatitude()
 		{
-			return pollNumber(latitudeMin, latitudeMax);
+			final int					value = pollNumber(latitudeMin, latitudeMax);
+
+			if (value < 1)
+				throw new UsageException("Bad latitude value");
+			else
+				return value;
 		}
 
 		public int						pollHeight()

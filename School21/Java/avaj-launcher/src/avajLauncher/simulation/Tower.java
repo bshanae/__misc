@@ -1,14 +1,9 @@
-package avajLauncher.simulation.weather;
-
-import avajLauncher.simulation.aircrafts.Aircraft;
-import avajLauncher.simulation.aircrafts.Flyable;
-import avajLauncher.simulation.common.InternalException;
-import avajLauncher.simulation.common.Logger;
+package avajLauncher.simulation;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class					Tower
+public abstract class			Tower
 {
 	private final List<Flyable>	observers = new LinkedList<>();
 

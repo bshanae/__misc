@@ -1,7 +1,7 @@
 package avajLauncher;
 
 import avajLauncher.simulation.Simulator;
-import avajLauncher.simulation.common.UsageException;
+import avajLauncher.simulation.UsageException;
 
 public class			AvajLauncher
 {

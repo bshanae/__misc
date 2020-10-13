@@ -1,4 +1,4 @@
-package avajLauncher.simulation.common;
+package avajLauncher.simulation;
 
 public class UsageException extends RuntimeException
 {

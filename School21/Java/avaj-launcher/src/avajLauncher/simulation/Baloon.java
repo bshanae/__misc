@@ -1,14 +1,10 @@
-package avajLauncher.simulation.aircrafts;
+package avajLauncher.simulation;
 
-import avajLauncher.simulation.common.Coordinates;
-import avajLauncher.simulation.common.InternalException;
-import avajLauncher.simulation.weather.WeatherTower;
-
-public class Baloon extends Aircraft implements Flyable
+public class				Baloon extends Aircraft implements Flyable
 {
 	private WeatherTower	weatherTower;
 
-	public Baloon(String name, Coordinates coordinates)
+							Baloon(String name, Coordinates coordinates)
 	{
 		super(name, coordinates);
 	}

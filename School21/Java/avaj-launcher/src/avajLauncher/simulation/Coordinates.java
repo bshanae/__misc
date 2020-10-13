@@ -1,4 +1,4 @@
-package avajLauncher.simulation.common;
+package avajLauncher.simulation;
 
 public class			Coordinates
 {
@@ -6,16 +6,26 @@ public class			Coordinates
 	private final int	latitude;
 	private final int	height;
 
-	public				Coordinates
+						Coordinates
 						(
 							int longitude,
 							int latitude,
 							int height
 						)
 	{
-		this.longitude = Integer.max(0, longitude);
-		this.latitude = Integer.max(0, latitude);
-		this.height = Integer.max(0, Integer.min(100, height));
+		this.longitude = limit(longitude, 0, null);
+		this.latitude = limit(latitude, 0, null);
+		this.height = limit(height, 0, 100);
+	}
+
+	private int			limit(int value, Integer min, Integer max)
+	{
+		if (min != null && value < min)
+			return min;
+		if (max != null && value > max)
+			return max;
+
+		return value;
 	}
 
 	public int			getLongitude()

@@ -1,4 +1,4 @@
-package avajLauncher.simulation.common;
+package avajLauncher.simulation;
 
 import java.io.FileWriter;
 import java.io.IOException;

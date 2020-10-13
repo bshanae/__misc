@@ -1,7 +1,4 @@
-package avajLauncher.simulation.scenario;
-
-import avajLauncher.simulation.aircrafts.Flyable;
-import avajLauncher.simulation.common.UsageException;
+package avajLauncher.simulation;
 
 import java.util.List;
 

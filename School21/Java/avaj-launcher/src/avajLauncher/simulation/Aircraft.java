@@ -1,7 +1,4 @@
-package avajLauncher.simulation.aircrafts;
-
-import avajLauncher.simulation.common.Coordinates;
-import avajLauncher.simulation.common.Logger;
+package avajLauncher.simulation;
 
 public abstract class			Aircraft
 {
@@ -46,10 +43,5 @@ public abstract class			Aircraft
 	protected void 				logLanding()
 	{
 		logMessage("Landing at " + coordinates);
-	}
-
-	protected void				logCoordinates()
-	{
-		logMessage("I'm on " + coordinates);
 	}
 }

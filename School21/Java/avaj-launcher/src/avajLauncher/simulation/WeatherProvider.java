@@ -1,6 +1,4 @@
-package avajLauncher.simulation.weather;
-
-import avajLauncher.simulation.common.Coordinates;
+package avajLauncher.simulation;
 
 public class								WeatherProvider
 {
@@ -10,7 +8,7 @@ public class								WeatherProvider
 	private									WeatherProvider()
 	{ }
 
-	public static WeatherProvider			getWeatherProvider()
+	public static WeatherProvider			getProvider()
 	{
 		return weatherProvider;
 	}

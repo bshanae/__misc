@@ -1,9 +1,6 @@
-package avajLauncher.simulation.aircrafts;
+package avajLauncher.simulation;
 
-import avajLauncher.simulation.common.Coordinates;
-import avajLauncher.simulation.common.UsageException;
-
-public class				AircraftFactory
+public abstract class		AircraftFactory
 {
 	public static class		UnknownAircraftType extends UsageException
 	{
