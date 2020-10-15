@@ -11,7 +11,7 @@ namespace						Computor
 
 		public override string	ToString()
 		{
-			return $"[{String}]";
+			return String;
 		}
 	}
 }

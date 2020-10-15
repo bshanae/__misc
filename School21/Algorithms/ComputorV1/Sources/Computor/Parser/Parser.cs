@@ -31,7 +31,8 @@ namespace							Computor
 			_expressionQueue = new Queue<char>(Workspace.Expression);
 
 			while (_expressionQueue.Count > 0)
-				if (TryExtractToken(typeof(Constant))) ;
+				if (TryExtractToken(typeof(Bracket))) ;
+				else if (TryExtractToken(typeof(Constant))) ;
 				else if (TryExtractToken(typeof(Variable))) ;
 				else if (TryExtractToken(typeof(Operator))) ;
 				else if (IgnoredCharacters.Contains(_expressionQueue.Peek()))
@@ -44,7 +45,7 @@ namespace							Computor
 		{
 			bool					IsSubtractionOperator(int i)
 			{
-				return Workspace.Tokens[i] is Operator @operator && @operator.ThisType == Operator.Type.Subtraction;
+				return Workspace.Tokens[i] is Operator @operator && @operator.Type == Operator.Types.Subtraction;
 			}
 
 			for (var i = 0; i < Workspace.Tokens.Count - 1; i++)
