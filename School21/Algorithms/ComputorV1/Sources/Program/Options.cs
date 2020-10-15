@@ -2,14 +2,14 @@ public static partial class			Program
 {
 	public static class				Options
 	{
-		public enum					ReportFormat
+		public enum					ReportFormats
 		{
 			Standard,
 			Internal,
 			Test
 		}
 
-		public static ReportFormat	Report = ReportFormat.Standard;
+		public static ReportFormats	Report = ReportFormats.Standard;
 	
 		public static void			Parse()
 		{
@@ -21,17 +21,17 @@ public static partial class			Program
 				{
 					case "standard" :
 					case "Standard" :
-						Report = ReportFormat.Standard;
+						Report = ReportFormats.Standard;
 						break ;
 					
 					case "internal" :
 					case "Internal" :
-						Report = ReportFormat.Internal;
+						Report = ReportFormats.Internal;
 						break ;
 					
 					case "test" :
 					case "Test" :
-						Report = ReportFormat.Test;
+						Report = ReportFormats.Test;
 						break ;
 					
 					default :
