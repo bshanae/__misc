@@ -43,16 +43,21 @@ namespace							Computor
 		
 		public static void			ProcessUnaryMinus()
 		{
-			bool					IsSubtractionOperator(int i)
+			static bool				IsUnaryMinus(int i)
 			{
-				return Workspace.Tokens[i] is Operator @operator && @operator.Type == Operator.Types.Subtraction;
+				return
+					Workspace.Tokens[i] is Operator @operator &&
+					@operator.Type == Operator.Types.Subtraction &&
+					!(Workspace.Tokens[i - 1] is Operand) &&
+					Workspace.Tokens[i + 1] is Operand;
 			}
 
 			for (var i = 0; i < Workspace.Tokens.Count - 1; i++)
-				if (IsSubtractionOperator(i) && Workspace.Tokens[i + 1] is Operand operand)
+				if (IsUnaryMinus(i))
 				{
+					var				operand = Workspace.Tokens[i + 1] as Operand;
+					
 					operand.Factor *= -1f;
-
 					if (i > 0 && Workspace.Tokens[i - 1] is Operand)
 					{
 						Workspace.Tokens.RemoveAt(i);
