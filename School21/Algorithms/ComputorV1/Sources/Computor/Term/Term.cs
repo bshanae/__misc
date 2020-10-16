@@ -2,12 +2,12 @@ using System;
 
 namespace						Computor
 {
-	public class				Term
+	public class				Term_
 	{
 		public float			Factor;
 		public float			Power;
 
-		public					Term(float factor = 1f, float power = 1f)
+		public					Term_(float factor = 1f, float power = 1f)
 		{
 			Factor = factor;
 			Power = power;
