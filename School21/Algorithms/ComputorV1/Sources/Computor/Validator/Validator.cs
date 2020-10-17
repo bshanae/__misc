@@ -77,7 +77,7 @@ namespace					Computor
 			
 			void			CollectEqualityInfo()
 			{
-				if (currentToken is Operator maybeEquality && maybeEquality.Type == Operator.Types.Equality)
+				if (currentToken is Operator maybeEquality && maybeEquality.ThisType == Operator.Type.Equality)
 					equalitySignCount++;
 			}
 
@@ -89,7 +89,7 @@ namespace					Computor
 
 			void			CheckPower()
 			{
-				if (previousToken is Operator maybePower && maybePower.Type == Operator.Types.Power)
+				if (previousToken is Operator maybePower && maybePower.ThisType == Operator.Type.Power)
 				{
 					if (currentToken is Constant constant)
 					{

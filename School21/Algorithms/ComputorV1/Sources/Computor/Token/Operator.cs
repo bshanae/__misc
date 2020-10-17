@@ -8,7 +8,7 @@ namespace						Computor
 		public static string	AssociatedCharacters => "+-*/^=";
 		public static int		LengthLimit => 1;
 		
-		public enum 			Types
+		public enum 			Type
 		{
 			Addition,
 			Subtraction,
@@ -18,34 +18,34 @@ namespace						Computor
 			Equality
 		}
 
-		public readonly Types	Type;
+		public readonly Type	ThisType;
 		
 		public					Operator(string @string) : base(@string)
 		{
 			switch (@string[0])
 			{
 				case '+' :
-					Type = Types.Addition;
+					ThisType = Type.Addition;
 					break ;
 					
 				case '-' :
-					Type = Types.Subtraction;
+					ThisType = Type.Subtraction;
 					break ;
 					
 				case '*' :
-					Type = Types.Multiplication;
+					ThisType = Type.Multiplication;
 					break ;
 					
 				case '/' :
-					Type = Types.Division;
+					ThisType = Type.Division;
 					break ;
 					
 				case '^' :
-					Type = Types.Power;
+					ThisType = Type.Power;
 					break ;
 					
 				case '=' :
-					Type = Types.Equality;
+					ThisType = Type.Equality;
 					break ;
 				
 				default :
@@ -53,20 +53,6 @@ namespace						Computor
 			}
 		}
 
-		public bool				IsAnyOf(params Types[] types) => types.Contains(Type);
-	}
-	
-	public static class			OperatorTypeExtensions
-	{
-		public static int		GetPriority(this Operator.Types types) =>
-			types switch
-			{
-				Operator.Types.Power => 3,
-				Operator.Types.Multiplication => 2,
-				Operator.Types.Division => 2,
-				Operator.Types.Addition => 1,
-				Operator.Types.Subtraction => 1,
-				Operator.Types.Equality => 0
-			};
+		public bool				IsAnyOf(params Type[] types) => types.Contains(ThisType);
 	}
 }

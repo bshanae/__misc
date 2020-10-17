@@ -31,8 +31,7 @@ namespace							Computor
 			_expressionQueue = new Queue<char>(Workspace.Expression);
 
 			while (_expressionQueue.Count > 0)
-				if (TryExtractToken(typeof(Bracket))) ;
-				else if (TryExtractToken(typeof(Constant))) ;
+				if (TryExtractToken(typeof(Constant))) ;
 				else if (TryExtractToken(typeof(Variable))) ;
 				else if (TryExtractToken(typeof(Operator))) ;
 				else if (IgnoredCharacters.Contains(_expressionQueue.Peek()))

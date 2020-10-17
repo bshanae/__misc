@@ -54,15 +54,11 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Sources\Common\Error.cs" />
         <Compile Include="Sources\Common\Utilities.cs" />
-        <Compile Include="Sources\Computor\Analyzer\Analyzer.cs" />
-        <Compile Include="Sources\Computor\Analyzer\Nodes\Node.cs" />
-        <Compile Include="Sources\Computor\Analyzer\Nodes\NodeWithExpression.cs" />
-        <Compile Include="Sources\Computor\Analyzer\Nodes\NodeWithToken.cs" />
         <Compile Include="Sources\Computor\Parser\Parser.cs" />
+        <Compile Include="Sources\Computor\Analyzer\Analyzer.cs" />
         <Compile Include="Sources\Computor\Reporter\Reporter.cs" />
         <Compile Include="Sources\Computor\Solver\Solver.cs" />
         <Compile Include="Sources\Computor\Term\Term.cs" />
-        <Compile Include="Sources\Computor\Token\Bracket.cs" />
         <Compile Include="Sources\Computor\Token\Constant.cs" />
         <Compile Include="Sources\Computor\Token\Operand.cs" />
         <Compile Include="Sources\Computor\Token\Operator.cs" />

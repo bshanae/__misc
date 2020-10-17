@@ -16,7 +16,7 @@ public static partial class		Program
 
 			ExecuteParser();
 			ExecuteAnalyzer();
-			// ExecuteSolver();
+			ExecuteSolver();
 		}
 		catch (Error.Exception exception)
 		{
@@ -61,15 +61,13 @@ public static partial class		Program
 
 	private static void			ExecuteAnalyzer()
 	{
-		// _Analyzer.BuildTerms();
-		// Reporter.Report(Reporter.Event.BuiltTerms);
-		// Validator.ValidateTerms();
-		//
-		// _Analyzer.SortTerms();
-		// Reporter.Report(Reporter.Event.SortedTerms);
-		// Validator.ValidateSortedTerms();
+		Analyzer.BuildTerms();
+		Reporter.Report(Reporter.Event.BuiltTerms);
+		Validator.ValidateTerms();
 		
-		Analyzer.CollectTerms();
+		Analyzer.SortTerms();
+		Reporter.Report(Reporter.Event.SortedTerms);
+		Validator.ValidateSortedTerms();
 	}
 
 	private static void			ExecuteSolver()
