@@ -27,24 +27,6 @@
         <e p="Computor" t="Include">
           <e p="Analyzer" t="Include">
             <e p="Analyzer.cs" t="Include" />
-            <e p="Nodes" t="Include">
-              <e p="Node.cs" t="Include" />
-              <e p="NodeWithExpression.cs" t="Include" />
-              <e p="NodeWithTerm.cs" t="Include" />
-              <e p="NodeWithToken.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Common" t="Include">
-            <e p="Term.cs" t="Include" />
-            <e p="Tokens" t="Include">
-              <e p="Bracket.cs" t="Include" />
-              <e p="Constant.cs" t="Include" />
-              <e p="Operand.cs" t="Include" />
-              <e p="Operator.cs" t="Include" />
-              <e p="Token.cs" t="Include" />
-              <e p="Variable.cs" t="Include" />
-            </e>
-            <e p="Workspace.cs" t="Include" />
           </e>
           <e p="Parser" t="Include">
             <e p="Parser.cs" t="Include" />
@@ -55,8 +37,21 @@
           <e p="Solver" t="Include">
             <e p="Solver.cs" t="Include" />
           </e>
+          <e p="Term" t="Include">
+            <e p="Term.cs" t="Include" />
+          </e>
+          <e p="Token" t="Include">
+            <e p="Constant.cs" t="Include" />
+            <e p="Operand.cs" t="Include" />
+            <e p="Operator.cs" t="Include" />
+            <e p="Token.cs" t="Include" />
+            <e p="Variable.cs" t="Include" />
+          </e>
           <e p="Validator" t="Include">
             <e p="Validator.cs" t="Include" />
+          </e>
+          <e p="Workspace" t="Include">
+            <e p="Workspace.cs" t="Include" />
           </e>
         </e>
         <e p="Math" t="Include">

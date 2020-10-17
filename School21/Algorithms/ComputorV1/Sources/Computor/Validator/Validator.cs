@@ -10,7 +10,7 @@ namespace					Computor
 		public static void	ValidateArguments(List<string> arguments)
 		{
 			if (arguments.Count < 1)
-				throw new Error.Exception(Error.Code.ExpressionIsNotGiven);
+				throw new Error.Exception(Error.Codes.ExpressionIsNotGiven);
 		}
 		
 		public static void	ValidateExpression()
@@ -31,13 +31,13 @@ namespace					Computor
 			
 			foreach (var character in Workspace.Expression)
 				if (!IsCharacterValid(character))
-					throw new Error.Exception(Error.Code.InvalidCharacter);
+					throw new Error.Exception(Error.Codes.InvalidCharacter);
 		}
 
 		public static void	ValidateFloat(string @string)
 		{
 			if (!float.TryParse(@string, out _))
-				throw new Error.Exception(Error.Code.BadFloat);
+				throw new Error.Exception(Error.Codes.BadFloat);
 		}
 
 		public static void	ValidateTokens()
@@ -61,43 +61,43 @@ namespace					Computor
 			void			CheckMissingOperator()
 			{
 				if (currentToken is Operand && previousToken is Operand)
-					throw new Error.Exception(Error.Code.MissingOperator);
+					throw new Error.Exception(Error.Codes.MissingOperator);
 			}
 			
 			void			CheckMissingOperand()
 			{
 				if (currentToken is Operator && previousToken is Operator)
-					throw new Error.Exception(Error.Code.MissingOperand);
+					throw new Error.Exception(Error.Codes.MissingOperand);
 				
 				if (currentToken is Operator && previousToken == null)
-					throw new Error.Exception(Error.Code.MissingOperand);
+					throw new Error.Exception(Error.Codes.MissingOperand);
 				if (currentToken is Operator && nextToken == null)
-					throw new Error.Exception(Error.Code.MissingOperand);
+					throw new Error.Exception(Error.Codes.MissingOperand);
 			}
 			
 			void			CollectEqualityInfo()
 			{
-				if (currentToken is Operator maybeEquality && maybeEquality.ThisType == Operator.Type.Equality)
+				if (currentToken is Operator maybeEquality && maybeEquality.Type == Operator.Types.Equality)
 					equalitySignCount++;
 			}
 
 			void			CheckEquality()
 			{
 				if (equalitySignCount != 1)
-					throw new Error.Exception(Error.Code.MoreThanOneEqualitySign);
+					throw new Error.Exception(Error.Codes.MoreThanOneEqualitySign);
 			}
 
 			void			CheckPower()
 			{
-				if (previousToken is Operator maybePower && maybePower.ThisType == Operator.Type.Power)
+				if (previousToken is Operator maybePower && maybePower.Type == Operator.Types.Power)
 				{
 					if (currentToken is Constant constant)
 					{
 						if (!Math.IsWhole(constant.Value))
-							throw new Error.Exception(Error.Code.PowerIsNotInteger);
+							throw new Error.Exception(Error.Codes.PowerIsNotInteger);
 					}
 					else
-						throw new Error.Exception(Error.Code.PowerIsNotConstant);
+						throw new Error.Exception(Error.Codes.PowerIsNotConstant);
 				}
 			}
 
@@ -124,7 +124,7 @@ namespace					Computor
 		{
 			foreach (var kvp in Workspace.SortedTerms)
 				if (kvp.Key < 0 || kvp.Key > 2)
-					throw new Error.Exception(Error.Code.InvalidPower);
+					throw new Error.Exception(Error.Codes.InvalidPower);
 		}
 	}
 }

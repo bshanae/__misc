@@ -5,7 +5,7 @@ namespace					Computor
 {
 	public static class		Reporter
 	{
-		public enum			Event
+		public enum			Events
 		{
 			ParsedExpression,
 			ProcessedUnaryMinus,
@@ -15,48 +15,48 @@ namespace					Computor
 			SolvedEquation
 		}
 
-		public enum			Request
+		public enum			Requests
 		{
 			EquationInfo
 		}
 
 		#region				Report interface
 
-		public static void	Report(Event @event)
+		public static void	Report(Events @event)
 		{
 			switch (@event)
 			{
-				case Event.ParsedExpression:
+				case Events.ParsedExpression:
 					ReportWhenParsedTokens();
 					break;
 
-				case Event.ProcessedUnaryMinus:
+				case Events.ProcessedUnaryMinus:
 					ReportWhenProcessedUnaryMinus();
 					break;
 
-				case Event.ProcessedImplicitMultiplication:
+				case Events.ProcessedImplicitMultiplication:
 					ReportWhenProcessedImplicitMultiplication();
 					break;
 
-				case Event.BuiltTerms:
+				case Events.BuiltTerms:
 					ReportWhenBuiltTerms();
 					break;
 
-				case Event.SortedTerms:
+				case Events.SortedTerms:
 					ReportWhenSortedTerms();
 					break;
 
-				case Event.SolvedEquation:
+				case Events.SolvedEquation:
 					ReportWhenSolvedEquation();
 					break;
 			}
 		}
 
-		public static void	Report(Request request)
+		public static void	Report(Requests requests)
 		{
-			switch (request)
+			switch (requests)
 			{
-				case Request.EquationInfo:
+				case Requests.EquationInfo:
 					ReportEquationInfo();
 					break;
 			}
@@ -68,7 +68,7 @@ namespace					Computor
 
 		private static void ReportWhenParsedTokens()
 		{
-			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
+			if (Program.Options.Report == Program.Options.Modes.Internal)
 				PrintTokensWithMessage("Parsed tokens");
 		}
 
@@ -77,7 +77,7 @@ namespace					Computor
 			if (!Parser.UnaryMinusProcessingHadEffect)
 				return;
 
-			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
+			if (Program.Options.Report == Program.Options.Modes.Internal)
 				PrintTokensWithMessage("Processed unary minus");
 		}
 
@@ -86,13 +86,13 @@ namespace					Computor
 			if (!Parser.ImplicitMultiplicationProcessingHadEffect)
 				return;
 
-			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
+			if (Program.Options.Report == Program.Options.Modes.Internal)
 				PrintTokensWithMessage("Processed implicit multiplication");
 		}
 
 		private static void ReportWhenBuiltTerms()
 		{
-			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
+			if (Program.Options.Report == Program.Options.Modes.Internal)
 			{
 				Console.WriteLine();
 				Console.Write("Built terms : ");
@@ -119,7 +119,7 @@ namespace					Computor
 				return false;
 			}
 			
-			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
+			if (Program.Options.Report == Program.Options.Modes.Internal)
 			{
 				bool		didPrintPreviousPower;
 				
@@ -135,7 +135,7 @@ namespace					Computor
 
 		private static void ReportWhenSolvedEquation()
 		{
-			if (Program.Options.Report == Program.Options.ReportFormat.Internal)
+			if (Program.Options.Report == Program.Options.Modes.Internal)
 				PrintEquationRoots
 				(
 					"Solved equation, there are no roots",
@@ -143,13 +143,13 @@ namespace					Computor
 					"Solved equation, roots : ",
 					"Solved equation, roots : Any number"
 				);
-			else if (Program.Options.Report == Program.Options.ReportFormat.Test)
+			else if (Program.Options.Report == Program.Options.Modes.Test)
 				PrintEquationRoots("", "", "", "Any");
 		}
 
 		private static void ReportEquationInfo()
 		{
-			if (Program.Options.Report == Program.Options.ReportFormat.Standard)
+			if (Program.Options.Report == Program.Options.Modes.Standard)
 			{
 				PrintReducedEquation();
 				PrintEquationDegree();
@@ -272,8 +272,8 @@ namespace					Computor
 		{
 			if
 			(
-				Program.Options.Report == Program.Options.ReportFormat.Standard ||
-				Program.Options.Report == Program.Options.ReportFormat.Internal
+				Program.Options.Report == Program.Options.Modes.Standard ||
+				Program.Options.Report == Program.Options.Modes.Internal
 			)
 			{
 				if (Workspace.AreRootsInfinite)
@@ -285,7 +285,7 @@ namespace					Computor
 				else if (Workspace.EquationRoots.Count == 0)
 					Console.Write(messageForNoRoots);
 			}
-			else if (Program.Options.Report == Program.Options.ReportFormat.Test)
+			else if (Program.Options.Report == Program.Options.Modes.Test)
 			{
 				if (Workspace.AreRootsInfinite)
 					Console.Write(messageForInfiniteRoots);
@@ -302,8 +302,8 @@ namespace					Computor
 
 			if
 			(
-				Program.Options.Report == Program.Options.ReportFormat.Standard ||
-				Program.Options.Report == Program.Options.ReportFormat.Internal
+				Program.Options.Report == Program.Options.Modes.Standard ||
+				Program.Options.Report == Program.Options.Modes.Internal
 			)
 				Console.WriteLine();
 		}

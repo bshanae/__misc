@@ -64,43 +64,43 @@ public static class			Tester
 		Assert.AreEqual(expected, _output);
 	}
 
-	[TestCase(null, Error.Code.ExpressionIsNotGiven)]
+	[TestCase(null, Error.Codes.ExpressionIsNotGiven)]
 	
-	[TestCase("ajnakak", Error.Code.InvalidCharacter)]
-	[TestCase("y = 0", Error.Code.InvalidCharacter)]
+	[TestCase("ajnakak", Error.Codes.InvalidCharacter)]
+	[TestCase("y = 0", Error.Codes.InvalidCharacter)]
 
-	[TestCase("x = 1.3.3.3", Error.Code.BadFloat)]
-	[TestCase("x = ..0101", Error.Code.BadFloat)]
+	[TestCase("x = 1.3.3.3", Error.Codes.BadFloat)]
+	[TestCase("x = ..0101", Error.Codes.BadFloat)]
 	
-	[TestCase("xx = 0", Error.Code.MissingOperator)]
-	[TestCase("xxxxx = 0", Error.Code.MissingOperator)]
-	[TestCase("x3 = 0", Error.Code.MissingOperator)]
+	[TestCase("xx = 0", Error.Codes.MissingOperator)]
+	[TestCase("xxxxx = 0", Error.Codes.MissingOperator)]
+	[TestCase("x3 = 0", Error.Codes.MissingOperator)]
 
-	[TestCase("x++ = 0", Error.Code.MissingOperand)]
-	[TestCase("1-+2 = 0", Error.Code.MissingOperand)]
-	[TestCase("1---2 = 0", Error.Code.MissingOperand)]
-	[TestCase(" = ", Error.Code.MissingOperand)]
-	[TestCase("= ", Error.Code.MissingOperand)]
-	[TestCase(" = 0", Error.Code.MissingOperand)]
-	[TestCase("1 = ", Error.Code.MissingOperand)]
-	[TestCase("x + 5 = ", Error.Code.MissingOperand)]
-	[TestCase("x * x * x = ", Error.Code.MissingOperand)]
-	[TestCase("+2 = 0", Error.Code.MissingOperand)]
-	[TestCase("*1 = 0", Error.Code.MissingOperand)]
-	[TestCase("^8 = 0", Error.Code.MissingOperand)]
-	[TestCase("x = 0*", Error.Code.MissingOperand)]
+	[TestCase("x++ = 0", Error.Codes.MissingOperand)]
+	[TestCase("1-+2 = 0", Error.Codes.MissingOperand)]
+	[TestCase("1---2 = 0", Error.Codes.MissingOperand)]
+	[TestCase(" = ", Error.Codes.MissingOperand)]
+	[TestCase("= ", Error.Codes.MissingOperand)]
+	[TestCase(" = 0", Error.Codes.MissingOperand)]
+	[TestCase("1 = ", Error.Codes.MissingOperand)]
+	[TestCase("x + 5 = ", Error.Codes.MissingOperand)]
+	[TestCase("x * x * x = ", Error.Codes.MissingOperand)]
+	[TestCase("+2 = 0", Error.Codes.MissingOperand)]
+	[TestCase("*1 = 0", Error.Codes.MissingOperand)]
+	[TestCase("^8 = 0", Error.Codes.MissingOperand)]
+	[TestCase("x = 0*", Error.Codes.MissingOperand)]
 	
-	[TestCase("x^x = 0", Error.Code.PowerIsNotConstant)]
-	[TestCase("2^x = 0", Error.Code.PowerIsNotConstant)]
+	[TestCase("x^x = 0", Error.Codes.PowerIsNotConstant)]
+	[TestCase("2^x = 0", Error.Codes.PowerIsNotConstant)]
 	
-	[TestCase("x^1.1 = 0", Error.Code.PowerIsNotInteger)]
-	[TestCase("x^.11 * x^1.2 = 0", Error.Code.PowerIsNotInteger)]
+	[TestCase("x^1.1 = 0", Error.Codes.PowerIsNotInteger)]
+	[TestCase("x^.11 * x^1.2 = 0", Error.Codes.PowerIsNotInteger)]
 
-	[TestCase("1 = 0 = 1", Error.Code.MoreThanOneEqualitySign)]
-	[TestCase("1 = 0 = 1 = x", Error.Code.MoreThanOneEqualitySign)]
+	[TestCase("1 = 0 = 1", Error.Codes.MoreThanOneEqualitySign)]
+	[TestCase("1 = 0 = 1 = x", Error.Codes.MoreThanOneEqualitySign)]
 
-	[TestCase("x ^ 3 = 0", Error.Code.InvalidPower)]
-	public static void		ErrorCases(string input, Error.Code code)
+	[TestCase("x ^ 3 = 0", Error.Codes.InvalidPower)]
+	public static void		ErrorCases(string input, Error.Codes code)
 	{
 		Error.Exception		exception;
 			
