@@ -4,18 +4,18 @@ namespace						Computor
 	{
 		public class			Exception : System.Exception
 		{
-			public Codes			Code
+			public Code			Code
 			{
 				get;
 			}
 			
-			public				Exception(Codes code) : base(code.GetDescription())
+			public				Exception(Code code) : base(code.GetDescription())
 			{
 				Code = code;
 			}
 		}
 		
-		public enum				Codes
+		public enum				Code
 		{
 			ExpressionIsNotGiven,
 			InvalidCharacter,
@@ -28,18 +28,18 @@ namespace						Computor
 			InvalidPower
 		}
 
-		public static string	GetDescription(this Codes code) =>
+		public static string	GetDescription(this Code code) =>
 			code switch
 			{
-				Codes.ExpressionIsNotGiven => "Expression is not given, pass it as argument to executable",
-				Codes.InvalidCharacter => "Invalid character in given expression",
-				Codes.BadFloat => "Invalid floating point number",
-				Codes.MissingOperator => "Missing operator",
-				Codes.MissingOperand => "Missing operand",
-				Codes.PowerIsNotConstant => "Power should be followed by constant",
-				Codes.PowerIsNotInteger => "Power should be followed by whole number",
-				Codes.MoreThanOneEqualitySign => "There should be one equality sign",
-				Codes.InvalidPower => "Invalid degree of equation",
+				Code.ExpressionIsNotGiven => "Expression is not given, pass it as argument to executable",
+				Code.InvalidCharacter => "Invalid character in given expression",
+				Code.BadFloat => "Invalid floating point number",
+				Code.MissingOperator => "Missing operator",
+				Code.MissingOperand => "Missing operand",
+				Code.PowerIsNotConstant => "Power should be followed by constant",
+				Code.PowerIsNotInteger => "Power should be followed by whole number",
+				Code.MoreThanOneEqualitySign => "There should be one equality sign",
+				Code.InvalidPower => "Invalid degree of equation",
 				_ => "Unknown error"
 			};
 	}

@@ -10,7 +10,7 @@ namespace					Computor
 		public static void	ValidateArguments(List<string> arguments)
 		{
 			if (arguments.Count < 1)
-				throw new Error.Exception(Error.Codes.ExpressionIsNotGiven);
+				throw new Error.Exception(Error.Code.ExpressionIsNotGiven);
 		}
 		
 		public static void	ValidateExpression()
@@ -31,13 +31,13 @@ namespace					Computor
 			
 			foreach (var character in Workspace.Expression)
 				if (!IsCharacterValid(character))
-					throw new Error.Exception(Error.Codes.InvalidCharacter);
+					throw new Error.Exception(Error.Code.InvalidCharacter);
 		}
 
 		public static void	ValidateFloat(string @string)
 		{
 			if (!float.TryParse(@string, out _))
-				throw new Error.Exception(Error.Codes.BadFloat);
+				throw new Error.Exception(Error.Code.BadFloat);
 		}
 
 		public static void	ValidateTokens()
@@ -61,18 +61,18 @@ namespace					Computor
 			void			CheckMissingOperator()
 			{
 				if (currentToken is Operand && previousToken is Operand)
-					throw new Error.Exception(Error.Codes.MissingOperator);
+					throw new Error.Exception(Error.Code.MissingOperator);
 			}
 			
 			void			CheckMissingOperand()
 			{
 				if (currentToken is Operator && previousToken is Operator)
-					throw new Error.Exception(Error.Codes.MissingOperand);
+					throw new Error.Exception(Error.Code.MissingOperand);
 				
 				if (currentToken is Operator && previousToken == null)
-					throw new Error.Exception(Error.Codes.MissingOperand);
+					throw new Error.Exception(Error.Code.MissingOperand);
 				if (currentToken is Operator && nextToken == null)
-					throw new Error.Exception(Error.Codes.MissingOperand);
+					throw new Error.Exception(Error.Code.MissingOperand);
 			}
 			
 			void			CollectEqualityInfo()
@@ -84,7 +84,7 @@ namespace					Computor
 			void			CheckEquality()
 			{
 				if (equalitySignCount != 1)
-					throw new Error.Exception(Error.Codes.MoreThanOneEqualitySign);
+					throw new Error.Exception(Error.Code.MoreThanOneEqualitySign);
 			}
 
 			void			CheckPower()
@@ -94,10 +94,10 @@ namespace					Computor
 					if (currentToken is Constant constant)
 					{
 						if (!Math.IsWhole(constant.Value))
-							throw new Error.Exception(Error.Codes.PowerIsNotInteger);
+							throw new Error.Exception(Error.Code.PowerIsNotInteger);
 					}
 					else
-						throw new Error.Exception(Error.Codes.PowerIsNotConstant);
+						throw new Error.Exception(Error.Code.PowerIsNotConstant);
 				}
 			}
 
@@ -124,7 +124,7 @@ namespace					Computor
 		{
 			foreach (var kvp in Workspace.SortedTerms)
 				if (kvp.Key < 0 || kvp.Key > 2)
-					throw new Error.Exception(Error.Codes.InvalidPower);
+					throw new Error.Exception(Error.Code.InvalidPower);
 		}
 	}
 }

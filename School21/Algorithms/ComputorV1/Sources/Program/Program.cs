@@ -22,7 +22,7 @@ public static partial class		Program
 		{
 			Console.WriteLine("Computor error : " + exception.Message);
 
-			if (Options.Report == Options.ReportFormats.Test)
+			if (Options.Report == Options.ReportFormat.Test)
 				throw;
 		}
 		catch (Exception exception)
@@ -48,13 +48,13 @@ public static partial class		Program
 	private static void			ExecuteParser()
 	{
 		Parser.Parse();
-		Reporter.Report(Reporter.Events.ParsedExpression);
+		Reporter.Report(Reporter.Event.ParsedExpression);
 		
 		Parser.ProcessUnaryMinus();
-		Reporter.Report(Reporter.Events.ProcessedUnaryMinus);
+		Reporter.Report(Reporter.Event.ProcessedUnaryMinus);
 		
 		Parser.ProcessImplicitMultiplication();
-		Reporter.Report(Reporter.Events.ProcessedImplicitMultiplication);
+		Reporter.Report(Reporter.Event.ProcessedImplicitMultiplication);
 		
 		Validator.ValidateTokens();
 	}
@@ -75,8 +75,8 @@ public static partial class		Program
 	private static void			ExecuteSolver()
 	{
 		Solver.Solve();
-		Reporter.Report(Reporter.Events.SolvedEquation);
+		Reporter.Report(Reporter.Event.SolvedEquation);
 		
-		Reporter.Report(Reporter.Requests.EquationInfo);
+		Reporter.Report(Reporter.Request.EquationInfo);
 	}
 }
