@@ -16,7 +16,7 @@ public static partial class		Program
 
 			ExecuteParser();
 			ExecuteAnalyzer();
-			// ExecuteSolver();
+			ExecuteSolver();
 		}
 		catch (Error.UsageException exception)
 		{
@@ -66,14 +66,21 @@ public static partial class		Program
 	private static void			ExecuteAnalyzer()
 	{
 		Analyzer.BuildElements();
-		// Reporter.Report(Reporter.Events.BuiltTerms);
-		// Validator.ValidateTerms();
-		
+		// TODO Report and validation
+
 		Analyzer.GroupElements();
-		// Reporter.Report(Reporter.Events.SortedTerms);
-		// Validator.ValidateSortedTerms();
+		// TODO Report and validation
 		
 		Analyzer.ReduceElements();
+		// TODO Report and validation
+		
+		Analyzer.ExtractTerms();
+		Reporter.Report(Reporter.Events.BuiltTerms);
+		Validator.ValidateTerms();
+		
+		Analyzer.SortTerms();
+		Reporter.Report(Reporter.Events.SortedTerms);
+		Validator.ValidateSortedTerms();
 	}
 
 	private static void			ExecuteSolver()

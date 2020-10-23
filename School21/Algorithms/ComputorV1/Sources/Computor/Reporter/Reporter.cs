@@ -243,9 +243,11 @@ namespace					Computor
 
 		private static void PrintEquationDegree()
 		{
-			int				maximumDegree;
+			int				maximumDegree = 0;
 
-			maximumDegree = Workspace.SortedTerms.Select(powerAndTerm => powerAndTerm.Key).Max();
+			if (Workspace.SortedTerms.Count > 0)
+				maximumDegree = Workspace.SortedTerms.Select(powerAndTerm => powerAndTerm.Key).Max();
+			
 			Console.WriteLine($"Polynomial degree : {maximumDegree}");
 		}
 

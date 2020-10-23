@@ -113,5 +113,44 @@ namespace										Computor
 			}
 		}
 
+		public static void						ExtractTerms()
+		{
+			Error.Assert(Workspace.FinalGroup.Count == 1);
+			
+			if (Workspace.FinalGroup[0].Element is ElementWithTerm elementWithTerm)
+				Workspace.Terms.Add(elementWithTerm.Term);
+			else if (Workspace.FinalGroup[0].Element is Group group)
+			{
+				float							nextElementSign = 1f;
+				
+				foreach (var holder in group)
+					if (holder.Element is ElementWithTerm childElementWithTerm)
+					{
+						childElementWithTerm.Term.Factor *= nextElementSign;
+						Workspace.Terms.Add(childElementWithTerm.Term);
+					}
+					else if (holder.Element is ElementWithOperator elementWithOperator)
+					{
+						if (elementWithOperator.Operator.Type == Operator.Types.Addition)
+							nextElementSign = 1f;
+						else if (elementWithOperator.Operator.Type == Operator.Types.Subtraction)
+							nextElementSign = -1f;
+						else
+							Error.RaiseInternalError();
+					}
+					else
+						Error.RaiseInternalError();
+			}
+			else
+				Error.RaiseInternalError();
+		}
+
+		public static void						SortTerms()
+		{
+			// TODO check if term of a power is only one 
+			
+			foreach (var term in Workspace.Terms)
+				Workspace.SortedTerms[(int) term.Power] = term;
+		}
 	}
 }

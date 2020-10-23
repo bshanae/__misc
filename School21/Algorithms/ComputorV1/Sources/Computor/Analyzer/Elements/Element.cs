@@ -12,6 +12,8 @@ namespace						Computor
 
 		public void				Place(Holder holder)
 		{
+			Error.Assert(Holder == null);
+			
 			Holder = holder;
 			holder.Element = this;
 		}

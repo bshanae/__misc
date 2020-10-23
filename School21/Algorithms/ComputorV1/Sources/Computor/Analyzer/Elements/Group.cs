@@ -206,8 +206,9 @@ namespace									Computor
 					else
 						Error.RaiseInternalError();
 				
-				rightGroup.ClearHolders();
-				RemoveHolders(1, 2);
+				ClearHolders();
+				foreach (var holder in leftGroup)
+					holder.Element.Replace(AddHolder());
 
 				Group						WrapInGroupIfNeeded(Element element)
 				{
@@ -218,8 +219,7 @@ namespace									Computor
 						Group				newGroup;
 						
 						newGroup = new Group(Operator.Priorities.AdditionAndSubtraction);
-						newGroup.Place(element.Drop());
-						element.Place(newGroup.AddHolder());
+						element.Replace(newGroup.AddHolder());
 
 						return newGroup;
 					}
