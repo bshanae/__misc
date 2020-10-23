@@ -16,18 +16,22 @@ public static partial class		Program
 
 			ExecuteParser();
 			ExecuteAnalyzer();
-			ExecuteSolver();
+			// ExecuteSolver();
 		}
-		catch (Error.Exception exception)
+		catch (Error.UsageException exception)
 		{
-			Console.WriteLine("Computor error : " + exception.Message);
+			Console.WriteLine("Computor usage error : " + exception.Message);
 
 			if (Options.Report == Options.Modes.Test)
 				throw;
 		}
-		catch (Exception exception)
+		catch (Error.InternalException exception)
 		{
 			Console.WriteLine("Computor internal error : " + exception.Message);
+		}
+		catch (Exception exception)
+		{
+			Console.WriteLine("Computor unknown error : " + exception.Message);
 		}
 	}
 
@@ -61,13 +65,15 @@ public static partial class		Program
 
 	private static void			ExecuteAnalyzer()
 	{
-		Analyzer.BuildTerms();
-		Reporter.Report(Reporter.Events.BuiltTerms);
-		Validator.ValidateTerms();
+		Analyzer.BuildElements();
+		// Reporter.Report(Reporter.Events.BuiltTerms);
+		// Validator.ValidateTerms();
 		
-		Analyzer.SortTerms();
-		Reporter.Report(Reporter.Events.SortedTerms);
-		Validator.ValidateSortedTerms();
+		Analyzer.GroupElements();
+		// Reporter.Report(Reporter.Events.SortedTerms);
+		// Validator.ValidateSortedTerms();
+		
+		Analyzer.ReduceElements();
 	}
 
 	private static void			ExecuteSolver()

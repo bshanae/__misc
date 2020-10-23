@@ -1,3 +1,6 @@
+using Computor;
+using NUnit.Framework;
+
 public static partial class	Math
 {
 	private const float		Epsilon = 0.00000000001f;
@@ -44,6 +47,26 @@ public static partial class	Math
 	public static bool		IsWhole(float value)
 	{
 		return AlmostEqual(Floor(value), value);
+	}
+
+	public static float		WholePower(float a, float b)
+	{
+		Error.Assert(IsWhole(a) && IsWhole(b));
+
+		float				result = 1;
+		
+		if (b < 0)
+		{
+			for (int i = (int)b; i < 0; i++)
+				result /= a;
+		}
+		else if (b > 0)
+		{
+			for (int i = (int)b; i > 0; i--)
+				result *= a;
+		}
+
+		return result;
 	}
 	
 	public static int		GreatestCommonDivisor(int a, int b)

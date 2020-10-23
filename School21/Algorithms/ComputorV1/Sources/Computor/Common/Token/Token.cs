@@ -9,9 +9,6 @@ namespace						Computor
 			String = @string;
 		}
 
-		public override string	ToString()
-		{
-			return $"[{String}]";
-		}
+		public override string	ToString() => String;
 	}
 }

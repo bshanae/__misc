@@ -17,7 +17,7 @@ namespace						Computor
 			}
 			catch (Exception exception)
 			{
-				throw new Exception($"[Constant] Can't build instance + {exception}");
+				Error.RaiseInternalError();
 			}
 		}
 

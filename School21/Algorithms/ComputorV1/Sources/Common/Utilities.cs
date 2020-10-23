@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Reflection;
+using Computor;
 
 public static class		Utilities
 {
@@ -8,15 +10,20 @@ public static class		Utilities
 		PropertyInfo	propertyInfo;
 		object			propertyObject;
 
-		if ((propertyInfo = classType.GetProperty(propertyName)) == null)
-			throw new Exception($"[Utilities] Can't get property of class {classType}");
-			
-		if ((propertyObject = propertyInfo.GetValue(null, null)) == null)
-			throw new Exception($"[Utilities] Can't get value of property for class {classType}");
-			
-		if (!(propertyObject is T))
-			throw new Exception($"[Utilities] Can't cast property to target type");
+		propertyInfo = classType.GetProperty(propertyName);
+		Error.Assert(propertyInfo != null);
+
+		propertyObject = propertyInfo.GetValue(null, null);
+		Error.Assert(propertyObject != null);
+
+		Error.Assert(propertyObject is T);
 
 		return (T)propertyObject;
+	}
+
+	public static void	ValidateIndex(this ICollection container, int index)
+	{
+		Error.Assert(index >= 0);
+		Error.Assert(index < container.Count);
 	}
 }

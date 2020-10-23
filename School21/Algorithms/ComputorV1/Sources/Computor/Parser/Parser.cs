@@ -37,7 +37,7 @@ namespace							Computor
 				else if (IgnoredCharacters.Contains(_expressionQueue.Peek()))
 					_expressionQueue.Dequeue();
 				else
-					throw new Exception("[Parser] Unexpected character");
+					Error.RaiseInternalError();
 		}
 		
 		public static void			ProcessUnaryMinus()

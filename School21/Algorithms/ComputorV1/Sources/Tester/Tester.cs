@@ -5,7 +5,7 @@ using Computor;
 using NUnit.Framework;
 
 [TestFixture]  
-public static class			Tester
+public static class				Tester
 {
 	#region					Fields
 
@@ -14,7 +14,7 @@ public static class			Tester
 	#endregion
 
 	[SetUp]
-	public static void		RestoreWorkspace()
+	public static void			RestoreWorkspace()
 	{
 		Workspace.Expression = null;
 		Workspace.Tokens = new List<Token>();
@@ -39,7 +39,7 @@ public static class			Tester
 	[TestCase("x ^ 2 / 2 / 2 = 0", "0")]
 	[TestCase("2x^2 + 4x - 2 = 0", "-2.414214, 0.414214")]
 	[TestCase("x * x = 0", "0")]
-	public static void		ValidCases(string input, string expected)
+	public static void			ValidCases(string input, string expected)
 	{
 		RunProgram(input);
 		Assert.AreEqual(expected, _output);
@@ -48,8 +48,18 @@ public static class			Tester
 	[TestCase("-x ^ 2 = -4", "-2, 2")]
 	[TestCase("x = 5", "5")]
 	[TestCase("x * x = 5", "-2.236068, 2.236068")]
-	[TestCase("2 * x = 7", "7 / 2")] 
-	public static void		IncompleteFormCases(string input, string expected)
+	[TestCase("2 * x = 7", "7 / 2")]
+	public static void			IncompleteFormCases(string input, string expected)
+	{
+		RunProgram(input);
+		Assert.AreEqual(expected, _output);
+	}
+	
+	[TestCase("x^2/x^2 = 1", "Any")]
+	[TestCase("x^2^2 = 16", "2")]
+	[TestCase("x*2^2 = 16", "4")]
+	[TestCase("x*2/2-1-2-3 = 0", "6")]
+	public static void			ComplexCases(string input, string expected)
 	{
 		RunProgram(input);
 		Assert.AreEqual(expected, _output);
@@ -58,59 +68,59 @@ public static class			Tester
 	[TestCase("0 = 4", "")]
 	[TestCase("4 = 4", "Any")]
 	[TestCase("x = x", "Any")]
-	public static void		SpecialCases(string input, string expected)
+	public static void			SpecialCases(string input, string expected)
 	{
 		RunProgram(input);
 		Assert.AreEqual(expected, _output);
 	}
 
-	[TestCase(null, Error.Codes.ExpressionIsNotGiven)]
+	[TestCase(null, Error.UsageErrors.ExpressionIsNotGiven)]
 	
-	[TestCase("ajnakak", Error.Codes.InvalidCharacter)]
-	[TestCase("y = 0", Error.Codes.InvalidCharacter)]
+	[TestCase("ajnakak", Error.UsageErrors.InvalidCharacter)]
+	[TestCase("y = 0", Error.UsageErrors.InvalidCharacter)]
 
-	[TestCase("x = 1.3.3.3", Error.Codes.BadFloat)]
-	[TestCase("x = ..0101", Error.Codes.BadFloat)]
+	[TestCase("x = 1.3.3.3", Error.UsageErrors.BadFloat)]
+	[TestCase("x = ..0101", Error.UsageErrors.BadFloat)]
 	
-	[TestCase("xx = 0", Error.Codes.MissingOperator)]
-	[TestCase("xxxxx = 0", Error.Codes.MissingOperator)]
-	[TestCase("x3 = 0", Error.Codes.MissingOperator)]
+	[TestCase("xx = 0", Error.UsageErrors.MissingOperator)]
+	[TestCase("xxxxx = 0", Error.UsageErrors.MissingOperator)]
+	[TestCase("x3 = 0", Error.UsageErrors.MissingOperator)]
 
-	[TestCase("x++ = 0", Error.Codes.MissingOperand)]
-	[TestCase("1-+2 = 0", Error.Codes.MissingOperand)]
-	[TestCase("1---2 = 0", Error.Codes.MissingOperand)]
-	[TestCase(" = ", Error.Codes.MissingOperand)]
-	[TestCase("= ", Error.Codes.MissingOperand)]
-	[TestCase(" = 0", Error.Codes.MissingOperand)]
-	[TestCase("1 = ", Error.Codes.MissingOperand)]
-	[TestCase("x + 5 = ", Error.Codes.MissingOperand)]
-	[TestCase("x * x * x = ", Error.Codes.MissingOperand)]
-	[TestCase("+2 = 0", Error.Codes.MissingOperand)]
-	[TestCase("*1 = 0", Error.Codes.MissingOperand)]
-	[TestCase("^8 = 0", Error.Codes.MissingOperand)]
-	[TestCase("x = 0*", Error.Codes.MissingOperand)]
+	[TestCase("x++ = 0", Error.UsageErrors.MissingOperand)]
+	[TestCase("1-+2 = 0", Error.UsageErrors.MissingOperand)]
+	[TestCase("1---2 = 0", Error.UsageErrors.MissingOperand)]
+	[TestCase(" = ", Error.UsageErrors.MissingOperand)]
+	[TestCase("= ", Error.UsageErrors.MissingOperand)]
+	[TestCase(" = 0", Error.UsageErrors.MissingOperand)]
+	[TestCase("1 = ", Error.UsageErrors.MissingOperand)]
+	[TestCase("x + 5 = ", Error.UsageErrors.MissingOperand)]
+	[TestCase("x * x * x = ", Error.UsageErrors.MissingOperand)]
+	[TestCase("+2 = 0", Error.UsageErrors.MissingOperand)]
+	[TestCase("*1 = 0", Error.UsageErrors.MissingOperand)]
+	[TestCase("^8 = 0", Error.UsageErrors.MissingOperand)]
+	[TestCase("x = 0*", Error.UsageErrors.MissingOperand)]
 	
-	[TestCase("x^x = 0", Error.Codes.PowerIsNotConstant)]
-	[TestCase("2^x = 0", Error.Codes.PowerIsNotConstant)]
+	[TestCase("x^x = 0", Error.UsageErrors.PowerIsNotConstant)]
+	[TestCase("2^x = 0", Error.UsageErrors.PowerIsNotConstant)]
 	
-	[TestCase("x^1.1 = 0", Error.Codes.PowerIsNotInteger)]
-	[TestCase("x^.11 * x^1.2 = 0", Error.Codes.PowerIsNotInteger)]
+	[TestCase("x^1.1 = 0", Error.UsageErrors.PowerIsNotInteger)]
+	[TestCase("x^.11 * x^1.2 = 0", Error.UsageErrors.PowerIsNotInteger)]
 
-	[TestCase("1 = 0 = 1", Error.Codes.MoreThanOneEqualitySign)]
-	[TestCase("1 = 0 = 1 = x", Error.Codes.MoreThanOneEqualitySign)]
+	[TestCase("1 = 0 = 1", Error.UsageErrors.MoreThanOneEqualitySign)]
+	[TestCase("1 = 0 = 1 = x", Error.UsageErrors.MoreThanOneEqualitySign)]
 
-	[TestCase("x ^ 3 = 0", Error.Codes.InvalidPower)]
-	public static void		ErrorCases(string input, Error.Codes code)
+	[TestCase("x ^ 3 = 0", Error.UsageErrors.InvalidPower)]
+	public static void			ErrorCases(string input, Error.UsageErrors usageError)
 	{
-		Error.Exception		exception;
+		Error.UsageException	exception;
 			
-		exception = Assert.Throws<Error.Exception>(() => RunProgram(input));
-		Assert.AreEqual(code, exception.Code);
+		exception = Assert.Throws<Error.UsageException>(() => RunProgram(input));
+		Assert.AreEqual(usageError, exception.Error);
 	}
 	
-	private static void		RunProgram(string input = null)
+	private static void			RunProgram(string input = null)
 	{
-		using var			stringWriter = new StringWriter();
+		using var				stringWriter = new StringWriter();
 		
 		Console.SetOut(stringWriter);
 		Program.Main(input != null ? new[] {input, "test"} : new[] {"test"});

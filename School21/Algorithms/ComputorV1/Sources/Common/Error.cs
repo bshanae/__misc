@@ -1,21 +1,25 @@
-namespace						Computor
+using System;
+
+namespace								Computor
 {
-	public static class			Error
+	public static class					Error
 	{
-		public class			Exception : System.Exception
+		public class					InternalException : Exception
 		{
-			public Codes			Code
-			{
-				get;
-			}
+			public						InternalException() : base("Assertion failed") {}
+		}
+
+		public class					UsageException : Exception
+		{
+			public readonly UsageErrors	Error;
 			
-			public				Exception(Codes code) : base(code.GetDescription())
+			public						UsageException(UsageErrors usageError) : base(usageError.GetDescription())
 			{
-				Code = code;
+				Error = usageError;
 			}
 		}
 		
-		public enum				Codes
+		public enum						UsageErrors
 		{
 			ExpressionIsNotGiven,
 			InvalidCharacter,
@@ -28,19 +32,35 @@ namespace						Computor
 			InvalidPower
 		}
 
-		public static string	GetDescription(this Codes code) =>
-			code switch
+		private static string			GetDescription(this UsageErrors usageError) =>
+			usageError switch
 			{
-				Codes.ExpressionIsNotGiven => "Expression is not given, pass it as argument to executable",
-				Codes.InvalidCharacter => "Invalid character in given expression",
-				Codes.BadFloat => "Invalid floating point number",
-				Codes.MissingOperator => "Missing operator",
-				Codes.MissingOperand => "Missing operand",
-				Codes.PowerIsNotConstant => "Power should be followed by constant",
-				Codes.PowerIsNotInteger => "Power should be followed by whole number",
-				Codes.MoreThanOneEqualitySign => "There should be one equality sign",
-				Codes.InvalidPower => "Invalid degree of equation",
+				UsageErrors.ExpressionIsNotGiven => "Expression is not given, pass it as argument to executable",
+				UsageErrors.InvalidCharacter => "Invalid character in given expression",
+				UsageErrors.BadFloat => "Invalid floating point number",
+				UsageErrors.MissingOperator => "Missing operator",
+				UsageErrors.MissingOperand => "Missing operand",
+				UsageErrors.PowerIsNotConstant => "Power should be followed by constant",
+				UsageErrors.PowerIsNotInteger => "Power should be followed by whole number",
+				UsageErrors.MoreThanOneEqualitySign => "There should be one equality sign",
+				UsageErrors.InvalidPower => "Invalid degree of equation",
 				_ => "Unknown error"
 			};
+
+		public static void				RaiseUsageError(UsageErrors error)
+		{
+			throw new UsageException(error);
+		}
+		
+		public static void				RaiseInternalError()
+		{
+			throw new InternalException();
+		}
+		
+		public static void				Assert(bool condition)
+		{
+			if (!condition)
+				throw new InternalException();
+		}
 	}
 }

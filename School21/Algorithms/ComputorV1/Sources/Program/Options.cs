@@ -9,7 +9,7 @@ public static partial class			Program
 			Test
 		}
 
-		public static Modes	Report = Modes.Standard;
+		public static				Modes	Report = Modes.Standard;
 	
 		public static void			Parse()
 		{
