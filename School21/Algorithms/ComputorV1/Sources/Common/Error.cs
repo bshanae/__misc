@@ -4,11 +4,6 @@ namespace								Computor
 {
 	public static class					Error
 	{
-		public class					InternalException : Exception
-		{
-			public						InternalException() : base("Assertion failed") {}
-		}
-
 		public class					UsageException : Exception
 		{
 			public readonly UsageErrors	Error;
@@ -18,6 +13,11 @@ namespace								Computor
 				Error = usageError;
 			}
 		}
+		
+		public class					InternalException : Exception { }
+		
+		public class					InternalAssertionException : Exception { }
+
 		
 		public enum						UsageErrors
 		{
@@ -60,7 +60,7 @@ namespace								Computor
 		public static void				Assert(bool condition)
 		{
 			if (!condition)
-				throw new InternalException();
+				throw new InternalAssertionException();
 		}
 	}
 }

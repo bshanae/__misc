@@ -13,11 +13,11 @@ public static partial class			Program
 	
 		public static void			Parse()
 		{
-			for (int i = 0; i < arguments.Count; i++)
+			for (int i = 0; i < Arguments.Count; i++)
 			{
 				bool				deleteFlag = true;
 				
-				switch (arguments[i])
+				switch (Arguments[i])
 				{
 					case "standard" :
 					case "Standard" :
@@ -40,7 +40,7 @@ public static partial class			Program
 				}
 				
 				if (deleteFlag)
-					arguments.RemoveAt(i--);
+					Arguments.RemoveAt(i--);
 			}
 		}
 	}

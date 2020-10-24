@@ -5,49 +5,55 @@ namespace					Computor
 {
 	public static class		Reporter
 	{
-		public enum			Events
-		{
-			ParsedExpression,
-			ProcessedUnaryMinus,
-			ProcessedImplicitMultiplication,
-			BuiltTerms,
-			SortedTerms,
-			SolvedEquation
-		}
-
 		public enum			Requests
 		{
 			EquationInfo
 		}
 
-		#region				Report interface
+		#region				Interfaces
 
 		public static void	Report(Events @event)
 		{
 			switch (@event)
 			{
-				case Events.ParsedExpression:
-					ReportWhenParsedTokens();
+				case Events.ReceivedExpression:
+					OnParsedTokens();
 					break;
 
 				case Events.ProcessedUnaryMinus:
-					ReportWhenProcessedUnaryMinus();
+					OnProcessedUnaryMinus();
 					break;
 
 				case Events.ProcessedImplicitMultiplication:
-					ReportWhenProcessedImplicitMultiplication();
+					OnProcessedImplicitMultiplication();
 					break;
 
-				case Events.BuiltTerms:
-					ReportWhenBuiltTerms();
+				case Events.BuiltElements :
+					OnBuiltElements();
+					break;
+
+				case Events.GroupedElements :
+					OnGroupedElements();
+					break;
+
+				case Events.ReducedElements :
+					OnReducedElements();
+					break;
+				
+				case Events.ExtractedTerms:
+					OnExtractedTerms();
 					break;
 
 				case Events.SortedTerms:
-					ReportWhenSortedTerms();
+					OnSortedTerms();
 					break;
 
 				case Events.SolvedEquation:
-					ReportWhenSolvedEquation();
+					OnSolvedEquation();
+					break;
+				
+				default :
+					Error.RaiseInternalError();
 					break;
 			}
 		}
@@ -64,15 +70,15 @@ namespace					Computor
 
 		#endregion
 
-		#region				Report implementations
+		#region				Implementations
 
-		private static void ReportWhenParsedTokens()
+		private static void OnParsedTokens()
 		{
 			if (Program.Options.Report == Program.Options.Modes.Internal)
 				PrintTokensWithMessage("Parsed tokens");
 		}
 
-		private static void ReportWhenProcessedUnaryMinus()
+		private static void OnProcessedUnaryMinus()
 		{
 			if (!Parser.UnaryMinusProcessingHadEffect)
 				return;
@@ -81,7 +87,7 @@ namespace					Computor
 				PrintTokensWithMessage("Processed unary minus");
 		}
 
-		private static void ReportWhenProcessedImplicitMultiplication()
+		private static void OnProcessedImplicitMultiplication()
 		{
 			if (!Parser.ImplicitMultiplicationProcessingHadEffect)
 				return;
@@ -90,7 +96,22 @@ namespace					Computor
 				PrintTokensWithMessage("Processed implicit multiplication");
 		}
 
-		private static void ReportWhenBuiltTerms()
+		private static void OnBuiltElements()
+		{
+			PrintElementsWithMessage("Built elements : ");
+		}
+		
+		private static void OnGroupedElements()
+		{
+			PrintElementsWithMessage("Grouped elements : ");
+		}
+		
+		private static void OnReducedElements()
+		{
+			PrintElementsWithMessage("Reduced elements : ");
+		}
+
+		private static void OnExtractedTerms()
 		{
 			if (Program.Options.Report == Program.Options.Modes.Internal)
 			{
@@ -103,7 +124,7 @@ namespace					Computor
 			}
 		}
 
-		private static void ReportWhenSortedTerms()
+		private static void OnSortedTerms()
 		{
 			bool			PrintIfPowerPresent(int power, bool printComma = false)
 			{
@@ -133,7 +154,7 @@ namespace					Computor
 			}
 		}
 
-		private static void ReportWhenSolvedEquation()
+		private static void OnSolvedEquation()
 		{
 			if (Program.Options.Report == Program.Options.Modes.Internal)
 				PrintEquationRoots
@@ -176,6 +197,13 @@ namespace					Computor
 			Console.WriteLine();
 		}
 
+		private static void PrintElementsWithMessage(string message)
+		{
+			Console.Write(message + " : ");
+			Workspace.FinalGroup.ForEach(holder => Console.Write($"{holder} "));
+			Console.WriteLine();
+		}
+		
 		private static void PrintReducedEquation()
 		{
 			static void		PrintTerm(Term term, bool printPlusSign = false)

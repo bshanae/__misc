@@ -23,11 +23,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf8bffa5-1dc7-4dac-92df-5c3211b0786f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Sources/Common/Events.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ComputorV1/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ComputorV1/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ComputorV1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ComputorV1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ComputorV1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ComputorV1.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Computor/Analyzer/Analyzer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Computor/Analyzer/Analyzer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/Element.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/Element.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/Group.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/Group.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Computor/Common/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Computor/Common/Workspace.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Computor/Reporter/Reporter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Computor/Reporter/Reporter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Computor/Validator/Validator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Computor/Validator/Validator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Program/Options.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Program/Options.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Program/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Program/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,6 +54,7 @@
     <setting file="file://$PROJECT_DIR$/Sources/Computor/Analyzer/Nodes/NodeWithTerm.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/Sources/Computor/Analyzer/Analyzer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/obj/Debug/.NETFramework,Version=v4.8.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/Sources/Computor/Analyzer/Elements/Element.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/belchenkovova/Workspace/Various/School21/Algorithms/ComputorV1/Sources/Computor/Analyzer/Analyzer.cs" root0="SKIP_HIGHLIGHTING" />
@@ -61,26 +66,28 @@
         <option value="$PROJECT_DIR$/Sources/Computor/Token/Operator.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Analyzer/Group.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Common/Token/Token.cs" />
-        <option value="$PROJECT_DIR$/Sources/Program/Options.cs" />
         <option value="$PROJECT_DIR$/Sources/Math/Math.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Common/Term.cs" />
         <option value="$PROJECT_DIR$/Sources/Tester/Tester.cs" />
         <option value="$PROJECT_DIR$/Sources/Common/Error.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Common/Token/Constant.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Parser/Parser.cs" />
-        <option value="$PROJECT_DIR$/Sources/Computor/Validator/Validator.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Common/Token/Operator.cs" />
         <option value="$PROJECT_DIR$/Sources/Common/Utilities.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/ElementWithTerm.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/ElementWithOperator.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/Holder.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Common/Workspace.cs" />
-        <option value="$PROJECT_DIR$/Sources/Computor/Reporter/Reporter.cs" />
-        <option value="$PROJECT_DIR$/Sources/Program/Program.cs" />
-        <option value="$PROJECT_DIR$/Sources/Computor/Analyzer/Analyzer.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/Element.cs" />
         <option value="$PROJECT_DIR$/Sources/Computor/Analyzer/Elements/Group.cs" />
         <option value="$PROJECT_DIR$/../../../.git/info/exclude" />
+        <option value="$PROJECT_DIR$/Sources/Common/Workspace.cs" />
+        <option value="$PROJECT_DIR$/Sources/Program/Options.cs" />
+        <option value="$PROJECT_DIR$/Sources/Computor/Validator/Validator.cs" />
+        <option value="$PROJECT_DIR$/Sources/Common/Events.cs" />
+        <option value="$PROJECT_DIR$/Sources/Computor/Reporter/Reporter.cs" />
+        <option value="$PROJECT_DIR$/Sources/Program/Program.cs" />
+        <option value="$PROJECT_DIR$/Sources/Computor/Analyzer/Analyzer.cs" />
       </list>
     </option>
   </component>
@@ -105,7 +112,7 @@
   <component name="RunManager">
     <configuration name="ComputorV1" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/bin/Debug/ComputorV1.exe" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;x*x*x/x = 4&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;x + 2x + 3x = 0&quot;" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin/Debug" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -149,7 +156,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602941813532</updated>
       <workItem from="1602941816853" duration="7592000" />
-      <workItem from="1603084917498" duration="33624000" />
+      <workItem from="1603084917498" duration="37369000" />
     </task>
     <task id="LOCAL-00001" summary="ComputorV1 : Project files">
       <created>1602942198743</created>
@@ -200,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603437591185</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ComputorV1 : Term extraction and sorting">
+      <created>1603472397704</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603472397704</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,13 +242,14 @@
     <MESSAGE value="ComputorV1 : Reset working solution" />
     <MESSAGE value="ComputorV1 : New analyzer system with group hierarchy" />
     <MESSAGE value="ComputorV1 : Some project files" />
-    <option name="LAST_COMMIT_MESSAGE" value="ComputorV1 : Some project files" />
+    <MESSAGE value="ComputorV1 : Term extraction and sorting" />
+    <option name="LAST_COMMIT_MESSAGE" value="ComputorV1 : Term extraction and sorting" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="184" y="112" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603471532438">
+    <state x="184" y="112" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603550605422">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="184" y="112" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1603471532438" />
+    <state x="184" y="112" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1603550605422" />
     <state x="483" y="161" key="#xdebugger.evaluate" timestamp="1603437027850">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -243,25 +258,25 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="280" y="31" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1602944906074" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1603472085220">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1603550591391">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603472085220" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603550591391" />
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1603437274705" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1603472085218">
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1603550591389">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603472085218" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603550591389" />
     <state width="1398" height="245" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1603437274703" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1603472085217">
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1603550591385">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603472085217" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603550591385" />
     <state width="1398" height="245" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1603437274702" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1603472085219">
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1603550591390">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603472085219" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603550591390" />
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1603437274704" />
     <state width="1398" height="331" key="GridCell.Tab.1.bottom" timestamp="1603471936428">
       <screen x="0" y="0" width="1440" height="900" />
@@ -339,18 +354,18 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="424" y="178" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1603437600894" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1603437615217">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1603472400777">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1603437615217" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1603472400777" />
     <state x="271" y="187" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1603085361558">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="271" y="187" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1440.900@0.0.1440.900" timestamp="1603085361558" />
-    <state x="210" y="24" width="1127" height="815" key="find.popup" timestamp="1603395776304">
+    <state x="210" y="24" width="1127" height="815" key="find.popup" timestamp="1603550341960">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="210" y="24" width="1127" height="815" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1603395776304" />
+    <state x="210" y="24" width="1127" height="815" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1603550341960" />
     <state x="383" y="194" width="672" height="678" key="search.everywhere.popup" timestamp="1603437066475">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

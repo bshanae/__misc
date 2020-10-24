@@ -22,6 +22,7 @@
       <e p="Sources" t="Include">
         <e p="Common" t="Include">
           <e p="Error.cs" t="Include" />
+          <e p="Events.cs" t="Include" />
           <e p="Utilities.cs" t="Include" />
         </e>
         <e p="Computor" t="Include">

@@ -147,10 +147,11 @@ namespace										Computor
 
 		public static void						SortTerms()
 		{
-			// TODO check if term of a power is only one 
-			
 			foreach (var term in Workspace.Terms)
-				Workspace.SortedTerms[(int) term.Power] = term;
+			{
+				Error.Assert(!Workspace.SortedTerms.ContainsKey((int)term.Power));
+				Workspace.SortedTerms[(int)term.Power] = term;
+			}
 		}
 	}
 }

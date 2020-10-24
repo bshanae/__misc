@@ -1,20 +1,50 @@
-using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 
-namespace					Computor
+namespace						Computor
 {
-	public static class		Validator
+	public static class			Validator
 	{
-		public static void	ValidateArguments(List<string> arguments)
+		#region					Interface
+		
+		public static void		Validate(Events @event)
 		{
-			if (arguments.Count != 1)
+			switch (@event)
+			{
+				case Events.ParsedCommandLineArguments :
+					OnParsedCommandLineArguments();
+					break;
+				
+				case Events.ReceivedExpression :
+					OnParsedExpression();
+					break;
+					
+				case Events.ParsedTokens :
+					OnParsedTokens();
+					break;
+
+				case Events.SortedTerms :
+					OnSortedTerms();
+					break;
+
+				default :
+					Error.RaiseInternalError();
+					break;
+			}
+		}
+		
+		#endregion
+
+		#region					Implementations
+		
+		private static void		OnParsedCommandLineArguments()
+		{
+			if (Program.Arguments.Count != 1)
 				Error.RaiseUsageError(Error.UsageErrors.ExpressionIsNotGiven);
 		}
 		
-		public static void	ValidateExpression()
+		private static void		OnParsedExpression()
 		{
-			static bool		IsCharacterValid(char character)
+			static bool			IsCharacterValid(char character)
 			{
 				if (Constant.AssociatedCharacters.Contains(character))
 					return true;
@@ -33,72 +63,13 @@ namespace					Computor
 					Error.RaiseUsageError(Error.UsageErrors.InvalidCharacter);
 		}
 
-		public static void	ValidateFloat(string @string)
+		private static void		OnParsedTokens()
 		{
-			if (!float.TryParse(@string, out _))
-				Error.RaiseUsageError(Error.UsageErrors.BadFloat);
-		}
-
-		public static void	ValidateTokens()
-		{
-			Token			previousToken = null;
-			Token			currentToken = null;
-			Token			nextToken = null;
+			Token				previousToken = null;
+			Token				currentToken = null;
+			Token				nextToken = null;
 			
-			int				equalitySignCount = 0;
-
-			Token			GetTokenOrNull(int index)
-			{
-				if (index < 0)
-					return null;
-				if (index >= Workspace.Tokens.Count)
-					return null;
-
-				return Workspace.Tokens[index];
-			}
-
-			void			CheckMissingOperator()
-			{
-				if (currentToken is Operand && previousToken is Operand)
-					Error.RaiseUsageError(Error.UsageErrors.MissingOperator);
-			}
-			
-			void			CheckMissingOperand()
-			{
-				if (currentToken is Operator && previousToken is Operator)
-					Error.RaiseUsageError(Error.UsageErrors.MissingOperand);
-				
-				if (currentToken is Operator && previousToken == null)
-					Error.RaiseUsageError(Error.UsageErrors.MissingOperand);
-				if (currentToken is Operator && nextToken == null)
-					Error.RaiseUsageError(Error.UsageErrors.MissingOperand);
-			}
-			
-			void			CollectEqualityInfo()
-			{
-				if (currentToken is Operator maybeEquality && maybeEquality.Type == Operator.Types.Equality)
-					equalitySignCount++;
-			}
-
-			void			CheckEquality()
-			{
-				if (equalitySignCount != 1)
-					Error.RaiseUsageError(Error.UsageErrors.MoreThanOneEqualitySign);
-			}
-
-			void			CheckPower()
-			{
-				if (previousToken is Operator maybePower && maybePower.Type == Operator.Types.Power)
-				{
-					if (currentToken is Constant constant)
-					{
-						if (!Math.IsWhole(constant.Value))
-							Error.RaiseUsageError(Error.UsageErrors.PowerIsNotInteger);
-					}
-					else
-						Error.RaiseUsageError(Error.UsageErrors.PowerIsNotConstant);
-				}
-			}
+			int					equalitySignCount = 0;
 
 			for (int i = 0; i < Workspace.Tokens.Count; i++)
 			{
@@ -114,16 +85,78 @@ namespace					Computor
 			}
 			
 			CheckEquality();
+			
+			Token				GetTokenOrNull(int index)
+			{
+				if (index < 0)
+					return null;
+				if (index >= Workspace.Tokens.Count)
+					return null;
+
+				return Workspace.Tokens[index];
+			}
+
+			void				CheckMissingOperator()
+			{
+				if (currentToken is Operand && previousToken is Operand)
+					Error.RaiseUsageError(Error.UsageErrors.MissingOperator);
+			}
+			
+			void				CheckMissingOperand()
+			{
+				if (currentToken is Operator && previousToken is Operator)
+					Error.RaiseUsageError(Error.UsageErrors.MissingOperand);
+				
+				if (currentToken is Operator && previousToken == null)
+					Error.RaiseUsageError(Error.UsageErrors.MissingOperand);
+				if (currentToken is Operator && nextToken == null)
+					Error.RaiseUsageError(Error.UsageErrors.MissingOperand);
+			}
+			
+			void				CollectEqualityInfo()
+			{
+				if (currentToken is Operator maybeEquality && maybeEquality.Type == Operator.Types.Equality)
+					equalitySignCount++;
+			}
+
+			void				CheckEquality()
+			{
+				if (equalitySignCount != 1)
+					Error.RaiseUsageError(Error.UsageErrors.MoreThanOneEqualitySign);
+			}
+
+			void				CheckPower()
+			{
+				if (previousToken is Operator maybePower && maybePower.Type == Operator.Types.Power)
+				{
+					if (currentToken is Constant constant)
+					{
+						if (!Math.IsWhole(constant.Value))
+							Error.RaiseUsageError(Error.UsageErrors.PowerIsNotInteger);
+					}
+					else
+						Error.RaiseUsageError(Error.UsageErrors.PowerIsNotConstant);
+				}
+			}
 		}
-
-		public static void	ValidateTerms()
-		{}
-
-		public static void	ValidateSortedTerms()
+		
+		private static void		OnSortedTerms()
 		{
 			foreach (var kvp in Workspace.SortedTerms)
 				if (kvp.Key < 0 || kvp.Key > 2)
 					Error.RaiseUsageError(Error.UsageErrors.InvalidPower);
 		}
+		
+		#endregion
+
+		#region 				Additional methods
+
+		public static void		ValidateFloat(string @string)
+		{
+			if (!float.TryParse(@string, out _))
+				Error.RaiseUsageError(Error.UsageErrors.BadFloat);
+		}
+
+		#endregion
 	}
 }

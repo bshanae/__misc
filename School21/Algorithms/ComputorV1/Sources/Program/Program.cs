@@ -5,14 +5,14 @@ using Computor;
 
 public static partial class		Program
 {
-	private static List<string> arguments;
-	
+	public static List<string>	Arguments;
+		
 	public static void			Main(string[] arguments)
 	{
 		try
 		{
-			WorkWithArguments(arguments);
-			WorkWithExpression();
+			ProcessArguments(arguments);
+			ProcessExpression();
 
 			ExecuteParser();
 			ExecuteAnalyzer();
@@ -25,9 +25,13 @@ public static partial class		Program
 			if (Options.Report == Options.Modes.Test)
 				throw;
 		}
-		catch (Error.InternalException exception)
+		catch (Error.InternalException)
 		{
-			Console.WriteLine("Computor internal error : " + exception.Message);
+			Console.WriteLine("Computor internal error");
+		}
+		catch (Error.InternalAssertionException)
+		{
+			Console.WriteLine("Computor internal assertion error");
 		}
 		catch (Exception exception)
 		{
@@ -35,58 +39,57 @@ public static partial class		Program
 		}
 	}
 
-	private static void			WorkWithArguments(string[] arguments)
+	private static void			ProcessArguments(string[] arguments)
 	{
-		Program.arguments = arguments.ToList();
-		
+		Arguments = arguments.ToList();
+
 		Options.Parse();
-		Validator.ValidateArguments(Program.arguments);
+		Validator.Validate(Events.ParsedCommandLineArguments);
 	}
 
-	private static void			WorkWithExpression()
+	private static void			ProcessExpression()
 	{
-		Workspace.Expression = arguments[0];
-		Validator.ValidateExpression();
+		Workspace.Expression = Arguments[0];
+		Validator.Validate(Events.ReceivedExpression);
 	}
 
 	private static void			ExecuteParser()
 	{
 		Parser.Parse();
-		Reporter.Report(Reporter.Events.ParsedExpression);
+		Reporter.Report(Events.ReceivedExpression);
 		
 		Parser.ProcessUnaryMinus();
-		Reporter.Report(Reporter.Events.ProcessedUnaryMinus);
+		Reporter.Report(Events.ProcessedUnaryMinus);
 		
 		Parser.ProcessImplicitMultiplication();
-		Reporter.Report(Reporter.Events.ProcessedImplicitMultiplication);
+		Reporter.Report(Events.ProcessedImplicitMultiplication);
 		
-		Validator.ValidateTokens();
+		Validator.Validate(Events.ParsedTokens);
 	}
 
 	private static void			ExecuteAnalyzer()
 	{
 		Analyzer.BuildElements();
-		// TODO Report and validation
+		Reporter.Report(Events.BuiltElements);
 
 		Analyzer.GroupElements();
-		// TODO Report and validation
+		Reporter.Report(Events.GroupedElements);
 		
 		Analyzer.ReduceElements();
-		// TODO Report and validation
+		Reporter.Report(Events.ReducedElements);
 		
 		Analyzer.ExtractTerms();
-		Reporter.Report(Reporter.Events.BuiltTerms);
-		Validator.ValidateTerms();
+		Reporter.Report(Events.ExtractedTerms);
 		
 		Analyzer.SortTerms();
-		Reporter.Report(Reporter.Events.SortedTerms);
-		Validator.ValidateSortedTerms();
+		Reporter.Report(Events.SortedTerms);
+		Validator.Validate(Events.SortedTerms);
 	}
 
 	private static void			ExecuteSolver()
 	{
 		Solver.Solve();
-		Reporter.Report(Reporter.Events.SolvedEquation);
+		Reporter.Report(Events.SolvedEquation);
 		
 		Reporter.Report(Reporter.Requests.EquationInfo);
 	}
