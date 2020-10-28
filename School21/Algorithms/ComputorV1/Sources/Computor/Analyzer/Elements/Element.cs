@@ -1,48 +1,23 @@
-using NUnit.Framework;
-
 namespace						Computor
 {
 	public class				Element
 	{
-		public Holder			Holder
-		{
-			get;
-			private set;
-		}
+		public Holder			Holder;
+		
+		public bool				HasHolder => Holder == null;
 
-		public void				Place(Holder holder)
+		public void				ConnectHolder(Holder newHolder)
 		{
-			Error.Assert(Holder == null);
-			
-			Holder = holder;
-			holder.Element = this;
+			Holder?.DisconnectElement();
+			newHolder.ConnectElement(this);
 		}
 		
-		public void				Replace(Holder newHolder)
+		public Holder			DisconnectHolder()
 		{
-			Error.Assert(Holder != null);
+			Holder				oldHolder = Holder;
 			
-			Holder.Element = null;
-			Holder = newHolder;
-			newHolder.Element = this;
-		}
-		
-		public void				Replace(Element newElement)
-		{
-			Error.Assert(Holder != null);
-			
-			Holder.Element = null;
-			Holder.Element = newElement;
-		}
-
-		public Holder			Drop()
-		{
-			Holder				holder = Holder;
-			
-			Holder.Drop();
-			Holder = null;
-
-			return holder;
+			Holder.DisconnectElement();
+			return oldHolder;
 		}
 	}
 }

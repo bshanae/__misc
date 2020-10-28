@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
+using System.Text;
 
 namespace									Computor
 {
 	public class							Group : Element, IEnumerable<Holder>, ICollection
 	{
+		private const bool					FlatRepresentation = true;
+		
 		public readonly Operator.Priorities	Priority;
 		private readonly List<Holder>		_holders = new List<Holder>();
 		
@@ -109,7 +111,7 @@ namespace									Computor
 				}
 				
 				ClearHolders();
-				new ElementWithTerm(rightTerm).Place(AddHolder());
+				new ElementWithTerm(rightTerm).ConnectHolder(AddHolder());
 			}
 
 			void							ReduceMultiplicationAndDivision()
@@ -137,7 +139,7 @@ namespace									Computor
 				}
 					
 				ClearHolders();
-				new ElementWithTerm(leftTerm).Place(AddHolder());
+				new ElementWithTerm(leftTerm).ConnectHolder(AddHolder());
 			}
 			
 			void							ReduceAdditionAndSubtraction()
@@ -168,7 +170,7 @@ namespace									Computor
 							);
 
 							RemoveHolders(j, 2);
-							this[i].Element.Replace(new ElementWithTerm(targetTerm));
+							this[i].ConnectElement(new ElementWithTerm(targetTerm));
 						}
 						else
 							j += 2;
@@ -189,26 +191,25 @@ namespace									Computor
 				var							rightGroup = WrapInGroupIfNeeded(this[2].Element);
 
 				if (rightGroup.Count > 0)
-					new ElementWithOperator(new Operator("-")).Place(leftGroup.AddHolder());
+					new ElementWithOperator(new Operator("-")).ConnectHolder(leftGroup.AddHolder());
 
 				foreach (var holder in rightGroup)
 					if (holder.Element is ElementWithOperator elementWithOperator)
 					{
 						if (elementWithOperator.Operator.Type == Operator.Types.Addition)
-							new ElementWithOperator(new Operator("-")).Place(leftGroup.AddHolder());
+							leftGroup.AddHolder().ConnectElement(new ElementWithOperator(new Operator("-")));
 						else if (elementWithOperator.Operator.Type == Operator.Types.Subtraction)
-							new ElementWithOperator(new Operator("+")).Place(leftGroup.AddHolder());
+							leftGroup.AddHolder().ConnectElement(new ElementWithOperator(new Operator("+")));
 						else
 							Error.RaiseInternalError();
 					}
 					else if (holder.Element is ElementWithTerm)
-						holder.Element.Replace(leftGroup.AddHolder());
+						leftGroup.AddHolder().ConnectElement(holder.Element);
 					else
 						Error.RaiseInternalError();
 				
 				ClearHolders();
-				foreach (var holder in leftGroup)
-					holder.Element.Replace(AddHolder());
+				Refresh();
 
 				Group						WrapInGroupIfNeeded(Element element)
 				{
@@ -219,7 +220,7 @@ namespace									Computor
 						Group				newGroup;
 						
 						newGroup = new Group(Operator.Priorities.AdditionAndSubtraction);
-						element.Replace(newGroup.AddHolder());
+						newGroup.AddHolder().ConnectElement(element);
 
 						return newGroup;
 					}
@@ -233,16 +234,56 @@ namespace									Computor
 		public void							Refresh()
 		{
 			for (int i = 0; i < Count; i++)
-				if (this[i].IsEmpty)
+				if (this[i].HasElement)
 					RemoveHolder(i--);
 
-			if (Count == 0)
-				Replace((Element) null);
-			else if (Count == 1)
-				Replace(this[0].Element);
+			if (Holder != null)
+			{
+				if (Count == 0)
+					DisconnectHolder();
+				else if (Count == 1)
+					DisconnectHolder().ConnectElement(this[0].Element);
+			}
 		}
 
-		public override string				ToString() => $"{{{string.Join(", ", this.ToList())}}}";
+		public override string				ToString()
+		{
+			if (FlatRepresentation)
+				return $"{{{string.Join(", ", this.ToList())}}}";
+			else
+			{
+				var							stringBuilder = new StringBuilder();
+				
+				WriteRecursively(this, 0);
+				return stringBuilder.ToString();
+	
+				void						WriteRecursively(Group group, int indentCount)
+				{
+					string					bracketsIndentation = MultiplyIndents(indentCount);
+					string					bodyIndentation = MultiplyIndents(indentCount + 1);
+					
+					stringBuilder.Append(bracketsIndentation + "{" + "\n");
+	
+					foreach (var holder in group._holders)
+						if (holder.Element is Group childGroup)
+							WriteRecursively(childGroup, indentCount + 1);
+						else
+							stringBuilder.Append(bodyIndentation + holder.Element + "\n");
+	
+					stringBuilder.Append(bracketsIndentation + "}" + "\n");
+				}
+	
+				static string				MultiplyIndents(int number)
+				{
+					var						tabBuilder = new StringBuilder();
+	
+					for (int i = 0; i < number; i++)
+						tabBuilder.Append("  ");
+	
+					return tabBuilder.ToString();
+				}
+			}
+		}
 
 		public IEnumerator<Holder>			GetEnumerator() => _holders.GetEnumerator();
 		IEnumerator							IEnumerable.GetEnumerator() => _holders.GetEnumerator();

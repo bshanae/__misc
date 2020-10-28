@@ -7,7 +7,7 @@ namespace										Computor
 		private static void						Log(string message)
 		{
 			Console.WriteLine(message);
-			Console.WriteLine(string.Join(", ", Workspace.FinalGroup));
+			Console.WriteLine(Workspace.FinalHolder);
 		}
 		
 		public static void						BuildElements()
@@ -16,15 +16,15 @@ namespace										Computor
 				switch (token)
 				{
 					case Constant constant :
-						new ElementWithTerm(Term.FromConstant(constant)).Place(Workspace.FinalGroup.AddHolder());
+						Workspace.FinalGroup.AddHolder().ConnectElement(new ElementWithTerm(Term.FromConstant(constant)));
 						break;
 					
 					case Variable variable :
-						new ElementWithTerm(Term.FromVariable(variable)).Place(Workspace.FinalGroup.AddHolder());
+						Workspace.FinalGroup.AddHolder().ConnectElement(new ElementWithTerm(Term.FromVariable(variable)));
 						break;
 					
 					case Operator @operator :
-						new ElementWithOperator(@operator).Place(Workspace.FinalGroup.AddHolder());
+						Workspace.FinalGroup.AddHolder().ConnectElement(new ElementWithOperator(@operator));
 						break;
 				}
 			
@@ -42,9 +42,6 @@ namespace										Computor
 			GroupElementsByPriority(Operator.Priorities.AdditionAndSubtraction);
 			Log("Grouped elements C : ");
 			
-			GroupElementsByPriority(Operator.Priorities.Equality);
-			Log("Grouped elements D : ");
-
 			static void							GroupElementsByPriority(Operator.Priorities priority)
 			{
 				Group							group;
@@ -64,14 +61,14 @@ namespace										Computor
 							{
 								group = new Group(priority);
 								
-								Workspace.FinalGroup.AddHolder(i - 1).Place(group);
-								Workspace.FinalGroup[i].Element.Replace(group.AddHolder());
+								Workspace.FinalGroup.AddHolder(i - 1).ConnectElement(group);
+								group.AddHolder().ConnectElement(Workspace.FinalGroup[i].Element);
+
 								Workspace.FinalGroup.Refresh();
 							}
 							
-							Workspace.FinalGroup[i + 0].Element.Replace(group.AddHolder());
-							Workspace.FinalGroup[i + 1].Element.Replace(group.AddHolder());
-								
+							group.AddHolder().ConnectElement(Workspace.FinalGroup[i + 0].Element);
+							group.AddHolder().ConnectElement(Workspace.FinalGroup[i + 1].Element);
 							Workspace.FinalGroup.Refresh();
 							i--;
 						}

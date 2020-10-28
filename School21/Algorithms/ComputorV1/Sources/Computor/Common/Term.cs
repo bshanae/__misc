@@ -1,5 +1,3 @@
-using System;
-
 namespace						Computor
 {
 	public class				Term
@@ -29,7 +27,7 @@ namespace						Computor
 			Power = otherTerm.Power;
 		}
 
-		public static Term Aggregate(Term left, Term right, Operator.Types type)
+		public static Term		Aggregate(Term left, Term right, Operator.Types type)
 		{
 			switch (type)
 			{

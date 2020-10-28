@@ -2,33 +2,39 @@ namespace						Computor
 {
 	public class				Holder
 	{
-		private Element			_element;
-		
 		public Element			Element
 		{
-			get => _element;
-			set
-			{
-				Error.Assert(_element == null || value == null);
-				_element = value;
-			}
+			get;
+			private set;
 		}
 
-		public bool				IsEmpty => Element == null; 
+		public bool				HasElement => Element == null; 
 		
 		public					Holder(Element element = null)
 		{
-			Element = element;
+			if (element != null)
+				ConnectElement(element);		
 		}
 
-		public void				Place(Element element)
+		public void				ConnectElement(Element newElement)
 		{
-			element.Place(this);
+			if (!HasElement)
+				DisconnectElement();
+			if (!newElement.HasHolder)
+				newElement.DisconnectHolder();
+
+			newElement.Holder = this;
+			Element = newElement;
 		}
 
-		public void				Drop()
+		public Element			DisconnectElement()
 		{
+			Element				oldElement = Element;
+			
+			Element.Holder = null;
 			Element = null;
+			
+			return oldElement;
 		}
 
 		public override string	ToString()
