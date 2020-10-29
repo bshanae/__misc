@@ -112,7 +112,7 @@ namespace										Computor
 
 		public static void						ExtractTerms()
 		{
-			Error.Assert(Workspace.FinalGroup.Count == 1);
+			Error.Assert(Workspace.FinalGroup.Count == 3);
 			
 			if (Workspace.FinalGroup[0].Element is ElementWithTerm elementWithTerm)
 				Workspace.Terms.Add(elementWithTerm.Term);

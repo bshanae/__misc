@@ -8,7 +8,7 @@ namespace									Computor
 {
 	public class							Group : Element, IEnumerable<Holder>, ICollection
 	{
-		private const bool					FlatRepresentation = true;
+		private const bool					FlatRepresentation = false;
 		
 		public readonly Operator.Priorities	Priority;
 		private readonly List<Holder>		_holders = new List<Holder>();

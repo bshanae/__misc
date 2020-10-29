@@ -44,11 +44,11 @@ namespace							Computor
 		{
 			static bool				IsUnaryMinus(int i)
 			{
-				return
-					Workspace.Tokens[i] is Operator @operator &&
-					@operator.Type == Operator.Types.Subtraction &&
-					!(Workspace.Tokens[i - 1] is Operand) &&
-					Workspace.Tokens[i + 1] is Operand;
+				return IsOperatorGood() && IsPreviousTokenGood() && IsNextTokenGood();
+
+				bool				IsOperatorGood() => Workspace.Tokens[i] is Operator @operator && @operator.Type == Operator.Types.Subtraction;
+				bool				IsPreviousTokenGood() => i == 0 || !(Workspace.Tokens[i - 1] is Operand);
+				bool				IsNextTokenGood() => Workspace.Tokens[i + 1] is Operand;
 			}
 
 			for (var i = 0; i < Workspace.Tokens.Count - 1; i++)

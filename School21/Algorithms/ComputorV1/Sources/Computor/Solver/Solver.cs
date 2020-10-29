@@ -37,6 +37,8 @@ namespace								Computor
 				Workspace.Solutions.Add(new Math.Fraction(-b, 2 * a));
 				Workspace.SolutionKind = SolutionKinds.OneSolution;
 			}
+			else
+				Workspace.SolutionKind = SolutionKinds.NoSolutions;
 
 			Workspace.Discriminant = discriminant;
 		}
