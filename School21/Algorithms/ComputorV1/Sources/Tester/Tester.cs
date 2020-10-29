@@ -7,9 +7,10 @@ using NUnit.Framework;
 [TestFixture]  
 public static class				Tester
 {
-	#region					Fields
+	#region						Data
 
-	private static string	_output;
+	private const float			PrecisionEpsilon = 0.00001f;
+	private static string		_output;
 	
 	#endregion
 
@@ -18,31 +19,34 @@ public static class				Tester
 	{
 		Workspace.Expression = null;
 		Workspace.Tokens = new List<Token>();
+		Workspace.FinalHolder.ConnectElement(new Group(Operator.Priorities.Final));
 		Workspace.Terms = new List<Term>();
 		Workspace.SortedTerms = new Dictionary<int, Term>();
-		Workspace.EquationRoots = new List<Math.Fraction>();
-		Workspace.AreRootsInfinite = false;
+		Workspace.Solutions = new List<Math.Fraction>();
+		Workspace.SolutionKind = SolutionKinds.Undefined;
 
 		_output = null;
 	}
 
-	[TestCase("2 * x ^ 2 - 4 * x - 2 = 0", "-0.414214, 2.414214")]
-	[TestCase("6 * x ^ 2 + 11 * x - 35 = 0", "-7 / 2, 5 / 3")]
-	[TestCase("-4 * x ^ 2 - 7 * x + 12 = 0", "-2.815522, 1.065522")]
-	[TestCase("20 * x ^ 2 -15 * x - 10 = 0", "-0.425391, 1.175390")]
-	[TestCase("x ^ 2 - x - 3 = 0", "-1.302776, 2.302776")]
-	[TestCase("5 * x ^ 2 - 2 * x - 9 = 0", "-1.156466, 1.556466")]
-	[TestCase("3 * x ^ 2 + 4 * x + 2 = 0", "")]
-	[TestCase("-x ^ 2 + 6 * x + 18 = 0", "-2.196153, 8.196153")]
-	[TestCase("x + x ^ 2 + x * x ^ 1 = 0", "-1 / 2, 0")]
-	[TestCase("x ^ 1 * x = 0", "0")]
-	[TestCase("x ^ 2 / 2 / 2 = 0", "0")]
-	[TestCase("2x^2 + 4x - 2 = 0", "-2.414214, 0.414214")]
-	[TestCase("x * x = 0", "0")]
-	public static void			ValidCases(string input, string expected)
+	// [TestCase("-4 * x ^ 2 - 7 * x + 12 = 0", "-2.815522, 1.065522")]
+	// [TestCase("20 * x ^ 2 -15 * x - 10 = 0", "-0.425391, 1.175390")]
+	// [TestCase("x ^ 2 - x - 3 = 0", "-1.302776, 2.302776")]
+	// [TestCase("5 * x ^ 2 - 2 * x - 9 = 0", "-1.156466, 1.556466")]
+	// [TestCase("3 * x ^ 2 + 4 * x + 2 = 0", "")]
+	// [TestCase("-x ^ 2 + 6 * x + 18 = 0", "-2.196153, 8.196153")]
+	// [TestCase("x + x ^ 2 + x * x ^ 1 = 0", "-1 / 2, 0")]
+	// [TestCase("x ^ 1 * x = 0", "0")]
+	// [TestCase("x ^ 2 / 2 / 2 = 0", "0")]
+	// [TestCase("2x^2 + 4x - 2 = 0", "-2.414214, 0.414214")]
+	// [TestCase("x * x = 0", "0")]
+	[Test]
+	public static void			ValidCases()
 	{
-		RunProgram(input);
-		Assert.AreEqual(expected, _output);
+		RunProgram("2 * x ^ 2 - 4 * x - 2 = 0");
+		Assert.IsTrue(CheckTwoSolutions(-0.414214f, 2.414214f));
+		
+		RunProgram("6 * x ^ 2 + 11 * x - 35 = 0");
+		Assert.IsTrue(CheckTwoSolutions(new Math.Fraction(-7f, 2f), new Math.Fraction(5f, 3f)));
 	}
 
 	[TestCase("-x ^ 2 = -4", "-2, 2")]
@@ -126,5 +130,43 @@ public static class				Tester
 		Program.Main(input != null ? new[] {input, "test"} : new[] {"test"});
 
 		_output = stringWriter.ToString();
+	}
+
+	private static bool			CheckNoSolutions()
+	{
+		return Workspace.SolutionKind == SolutionKinds.NoSolutions;
+	}
+
+	private static bool			CheckOneSolution(float x)
+	{
+		return
+			Workspace.SolutionKind == SolutionKinds.OneSolution &&
+			Math.AlmostEqual(Workspace.Solutions[0].Value, x, PrecisionEpsilon);
+	}
+	
+	private static bool			CheckOneSolution(Math.Fraction fraction)
+	{
+		return Workspace.SolutionKind == SolutionKinds.OneSolution && Workspace.Solutions[0] == fraction;
+	}
+
+	private static bool			CheckTwoSolutions(float x1, float x2)
+	{
+		return
+			Workspace.SolutionKind == SolutionKinds.TwoSolutions &&
+			Math.AlmostEqual(Workspace.Solutions[0].Value, x1) &&
+			Math.AlmostEqual(Workspace.Solutions[1].Value, x2);
+	}
+	
+	private static bool			CheckTwoSolutions(Math.Fraction x1, Math.Fraction x2)
+	{
+		return
+			Workspace.SolutionKind == SolutionKinds.TwoSolutions &&
+			Workspace.Solutions[0] == x1 &&
+			Workspace.Solutions[1] == x2;
+	}
+
+	private static bool			CheckInfiniteRoots()
+	{
+		return Workspace.SolutionKind == SolutionKinds.InfiniteSolutions;
 	}
 }

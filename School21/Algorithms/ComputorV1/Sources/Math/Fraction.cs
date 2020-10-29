@@ -22,16 +22,8 @@ public static partial class		Math
 			
 			Reduce();
 		}
-
-		public override string	ToString()
-		{
-			if (IsWhole())
-				return Denominator != 1f ? $"{Numerator} / {Denominator}" : $"{Numerator}";
-			else
-				return Value.ToString("0.000000");
-		}
-
-		private bool			IsWhole()
+		
+		public bool				IsWhole()
 		{
 			return Math.IsWhole(Numerator) && Math.IsWhole(Denominator);
 		}
@@ -51,6 +43,28 @@ public static partial class		Math
 				Numerator *= -1f;
 				Denominator *= -1f;
 			}
+		}
+
+		public static bool		operator == (Fraction left, Fraction right)
+		{
+			return
+				left.Denominator == right.Denominator &&
+				left.Numerator == right.Numerator;
+		}
+		
+		public static bool		operator != (Fraction left, Fraction right)
+		{
+			return
+				left.Denominator != right.Denominator ||
+				left.Numerator != right.Numerator;
+		}
+		
+		public override string	ToString()
+		{
+			if (IsWhole())
+				return Denominator != 1f ? $"{Numerator} / {Denominator}" : $"{Numerator}";
+			else
+				return Value.ToString("0.000000");
 		}
 	}
 }

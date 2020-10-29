@@ -26,13 +26,17 @@ namespace								Computor
 	
 			if (discriminant > 0)
 			{
-				Workspace.EquationRoots.Add(new Math.Fraction(-b - Math.SquareRoot(discriminant), 2 * a));
-				Workspace.EquationRoots.Add(new Math.Fraction(-b + Math.SquareRoot(discriminant), 2 * a));
+				Workspace.Solutions.Add(new Math.Fraction(-b - Math.SquareRoot(discriminant), 2 * a));
+				Workspace.Solutions.Add(new Math.Fraction(-b + Math.SquareRoot(discriminant), 2 * a));
 				
-				Workspace.EquationRoots = Workspace.EquationRoots.OrderBy(fraction => fraction.Value).ToList();
+				Workspace.Solutions = Workspace.Solutions.OrderBy(fraction => fraction.Value).ToList();
+				Workspace.SolutionKind = SolutionKinds.TwoSolutions;
 			}
 			else if (discriminant == 0)
-				Workspace.EquationRoots.Add(new Math.Fraction(-b, 2 * a));
+			{
+				Workspace.Solutions.Add(new Math.Fraction(-b, 2 * a));
+				Workspace.SolutionKind = SolutionKinds.OneSolution;
+			}
 
 			Workspace.Discriminant = discriminant;
 		}
@@ -40,18 +44,22 @@ namespace								Computor
 		private static void				SolveIncompleteQuadraticEquation(float a, float b, float c)
 		{
 			if (a == 0)
-				Workspace.EquationRoots.Add(new Math.Fraction(c, -b));
+			{
+				Workspace.Solutions.Add(new Math.Fraction(c, -b));
+				Workspace.SolutionKind = SolutionKinds.OneSolution;
+			}
 			else if (b == 0)
 			{
-				Workspace.EquationRoots.Add(new Math.Fraction(-Math.SquareRoot(c / -a)));
-				Workspace.EquationRoots.Add(new Math.Fraction(+Math.SquareRoot(c / -a)));
+				Workspace.Solutions.Add(new Math.Fraction(-Math.SquareRoot(c / -a)));
+				Workspace.Solutions.Add(new Math.Fraction(+Math.SquareRoot(c / -a)));
+				Workspace.SolutionKind = SolutionKinds.TwoSolutions;
 			}
 		}
 
 		private static void				SolveSpecialCases(float c)
 		{
 			if (c == 0)
-				Workspace.AreRootsInfinite = true;
+				Workspace.SolutionKind = SolutionKinds.InfiniteSolutions;
 		}
 	
 		private static float			GetFactorByPower(int power)
@@ -66,10 +74,13 @@ namespace								Computor
 		{
 			if
 			(
-				Workspace.EquationRoots.Count == 2
-				&& Math.AlmostEqual(Workspace.EquationRoots[0].Value, Workspace.EquationRoots[1].Value)
+				Workspace.Solutions.Count == 2
+				&& Math.AlmostEqual(Workspace.Solutions[0].Value, Workspace.Solutions[1].Value)
 			)
-				Workspace.EquationRoots.RemoveAt(1);
+			{
+				Workspace.Solutions.RemoveAt(1);
+				Workspace.SolutionKind = SolutionKinds.OneSolution;
+			}
 		}
 	}
 }

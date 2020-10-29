@@ -22,8 +22,9 @@ public static class						Workspace
 	public static Dictionary<int, Term>	SortedTerms = new Dictionary<int, Term>();
 
 	public static float					Discriminant;
-	public static List<Math.Fraction>	EquationRoots = new List<Math.Fraction>();
-	public static bool					AreRootsInfinite = false;
+	
+	public static SolutionKinds			SolutionKind = SolutionKinds.Undefined;
+	public static List<Math.Fraction>	Solutions = new List<Math.Fraction>();
 
 	static								Workspace()
 	{

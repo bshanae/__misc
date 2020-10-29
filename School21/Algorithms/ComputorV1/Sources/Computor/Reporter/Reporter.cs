@@ -281,7 +281,7 @@ namespace					Computor
 
 		private static void PrintDiscriminantSign()
 		{
-			if (Workspace.AreRootsInfinite)
+			if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
 				return;
 
 			if (Workspace.Discriminant > 0f)
@@ -306,28 +306,28 @@ namespace					Computor
 				Program.Options.Report == Program.Options.Modes.Internal
 			)
 			{
-				if (Workspace.AreRootsInfinite)
+				if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
 					Console.Write(messageForInfiniteRoots);
-				else if (Workspace.EquationRoots.Count == 2)
+				else if (Workspace.SolutionKind == SolutionKinds.TwoSolutions)
 					Console.Write($"{messageForTwoRoots} : ");
-				else if (Workspace.EquationRoots.Count == 1)
+				else if (Workspace.SolutionKind == SolutionKinds.OneSolution)
 					Console.Write($"{messageForOneRoot} : ");
-				else if (Workspace.EquationRoots.Count == 0)
+				else if (Workspace.SolutionKind == SolutionKinds.NoSolutions)
 					Console.Write(messageForNoRoots);
 			}
 			else if (Program.Options.Report == Program.Options.Modes.Test)
 			{
-				if (Workspace.AreRootsInfinite)
+				if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
 					Console.Write(messageForInfiniteRoots);
 			}
 
-			if (Workspace.AreRootsInfinite)
+			if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
 				;
-			else if (Workspace.EquationRoots.Count == 2)
-				Console.Write($"{Workspace.EquationRoots[0]}, {Workspace.EquationRoots[1]}");
-			else if (Workspace.EquationRoots.Count == 1)
-				Console.Write($"{Workspace.EquationRoots[0]}");
-			else if (Workspace.EquationRoots.Count == 0)
+			else if (Workspace.Solutions.Count == 2)
+				Console.Write($"{Workspace.Solutions[0]}, {Workspace.Solutions[1]}");
+			else if (Workspace.Solutions.Count == 1)
+				Console.Write($"{Workspace.Solutions[0]}");
+			else if (Workspace.Solutions.Count == 0)
 				Console.Write("");
 
 			if
