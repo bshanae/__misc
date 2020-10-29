@@ -66,15 +66,23 @@ public static class				Tester
 		}
 	}
 	
-		
-	[TestCase("x^2/x^2 = 1", "Any")]
-	[TestCase("x^2^2 = 16", "2")]
-	[TestCase("x*2^2 = 16", "4")]
-	[TestCase("x*2/2-1-2-3 = 0", "6")]
-	public static void			ComplexCases(string input, string expected)
+	[Test]
+	public static void			ComplexCases()
 	{
-		RunProgram(input);
-		Assert.AreEqual(expected, _output);
+		RunProgram("2 * x ^ 2 - 4 * x - 2 = 0");
+		Assert.IsTrue(CheckTwoSolutions(-0.414214f, 2.414214f));
+
+		RunProgram("x^2/x^2 = 1");
+		Assert.IsTrue(CheckInfiniteSolutions());
+
+		RunProgram("x^2^2/x = 27");
+		Assert.IsTrue(CheckOneSolution(3f));
+
+		RunProgram("x*2^2 = 16");
+		Assert.IsTrue(CheckOneSolution(4f));
+
+		RunProgram("x*2/2-1-2-3 = 0");
+		Assert.IsTrue(CheckOneSolution(6f));
 	}
 	
 	[Test]
@@ -109,50 +117,65 @@ public static class				Tester
 		Assert.IsTrue(CheckInfiniteSolutions());
 	}
 
-	[TestCase(null, Error.UsageErrors.ExpressionIsNotGiven)]
-	
-	[TestCase("ajnakak", Error.UsageErrors.InvalidCharacter)]
-	[TestCase("y = 0", Error.UsageErrors.InvalidCharacter)]
-
-	[TestCase("x = 1.3.3.3", Error.UsageErrors.BadFloat)]
-	[TestCase("x = ..0101", Error.UsageErrors.BadFloat)]
-	
-	[TestCase("xx = 0", Error.UsageErrors.MissingOperator)]
-	[TestCase("xxxxx = 0", Error.UsageErrors.MissingOperator)]
-	[TestCase("x3 = 0", Error.UsageErrors.MissingOperator)]
-
-	[TestCase("x++ = 0", Error.UsageErrors.MissingOperand)]
-	[TestCase("1-+2 = 0", Error.UsageErrors.MissingOperand)]
-	[TestCase("1---2 = 0", Error.UsageErrors.MissingOperand)]
-	[TestCase(" = ", Error.UsageErrors.MissingOperand)]
-	[TestCase("= ", Error.UsageErrors.MissingOperand)]
-	[TestCase(" = 0", Error.UsageErrors.MissingOperand)]
-	[TestCase("1 = ", Error.UsageErrors.MissingOperand)]
-	[TestCase("x + 5 = ", Error.UsageErrors.MissingOperand)]
-	[TestCase("x * x * x = ", Error.UsageErrors.MissingOperand)]
-	[TestCase("+2 = 0", Error.UsageErrors.MissingOperand)]
-	[TestCase("*1 = 0", Error.UsageErrors.MissingOperand)]
-	[TestCase("^8 = 0", Error.UsageErrors.MissingOperand)]
-	[TestCase("x = 0*", Error.UsageErrors.MissingOperand)]
-	
-	[TestCase("x^x = 0", Error.UsageErrors.PowerIsNotConstant)]
-	[TestCase("2^x = 0", Error.UsageErrors.PowerIsNotConstant)]
-	
-	[TestCase("x^1.1 = 0", Error.UsageErrors.PowerIsNotInteger)]
-	[TestCase("x^.11 * x^1.2 = 0", Error.UsageErrors.PowerIsNotInteger)]
-
-	[TestCase("1 = 0 = 1", Error.UsageErrors.MoreThanOneEqualitySign)]
-	[TestCase("1 = 0 = 1 = x", Error.UsageErrors.MoreThanOneEqualitySign)]
-
-	[TestCase("x ^ 3 = 0", Error.UsageErrors.InvalidPower)]
-	public static void			ErrorCases(string input, Error.UsageErrors usageError)
+	[Test]
+	public static void			ErrorCases()
 	{
-		Error.UsageException	exception;
-			
-		exception = Assert.Throws<Error.UsageException>(() => RunProgram(input));
-		Assert.AreEqual(usageError, exception.Error);
+		{
+			RunProgramAndCheckError(null, Error.UsageErrors.ExpressionIsNotGiven);
+		}
+
+		{
+			RunProgramAndCheckError("ajnakak", Error.UsageErrors.InvalidCharacter);
+			RunProgramAndCheckError("y = 0", Error.UsageErrors.InvalidCharacter);
+		}
+
+		{
+			RunProgramAndCheckError("x = 1.3.3.3", Error.UsageErrors.BadFloat);
+			RunProgramAndCheckError("x = ..0101", Error.UsageErrors.BadFloat);
+		}
+
+		{
+			RunProgramAndCheckError("xx = 0", Error.UsageErrors.MissingOperator);
+			RunProgramAndCheckError("xxxxx = 0", Error.UsageErrors.MissingOperator);
+			RunProgramAndCheckError("x3 = 0", Error.UsageErrors.MissingOperator);
+		}
+
+		{
+			RunProgramAndCheckError("x++ = 0", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("1-+2 = 0", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("1---2 = 0", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError(" = ", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("= ", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError(" = 0", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("1 = ", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("x + 5 = ", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("x * x * x = ", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("+2 = 0", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("*1 = 0", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("^8 = 0", Error.UsageErrors.MissingOperand);
+			RunProgramAndCheckError("x = 0*", Error.UsageErrors.MissingOperand);
+		}
+
+		{
+			RunProgramAndCheckError("x^x = 0", Error.UsageErrors.PowerIsNotConstant);
+			RunProgramAndCheckError("2^x = 0", Error.UsageErrors.PowerIsNotConstant);
+		}
+
+		{
+			RunProgramAndCheckError("x^1.1 = 0", Error.UsageErrors.PowerIsNotInteger);
+			RunProgramAndCheckError("x^.11 * x^1.2 = 0", Error.UsageErrors.PowerIsNotInteger);
+		}
+
+		{
+			RunProgramAndCheckError("1 = 0 = 1", Error.UsageErrors.MoreThanOneEqualitySign);
+			RunProgramAndCheckError("1 = 0 = 1 = x", Error.UsageErrors.MoreThanOneEqualitySign);
+		}
+
+		{
+			RunProgramAndCheckError("x ^ 3 = 0", Error.UsageErrors.InvalidPower);
+		}
 	}
-	
+
 	#endregion
 
 	#region 					Service methods
@@ -179,6 +202,19 @@ public static class				Tester
 			Workspace.SolutionKind = SolutionKinds.Undefined;
 
 			_output = null;
+		}
+	}
+
+	private static bool			RunProgramAndCheckError(string input, Error.UsageErrors error)
+	{
+		try
+		{
+			RunProgram(input);
+			return false;
+		}
+		catch (Error.UsageException exception)
+		{
+			return exception.Error == error;
 		}
 	}
 
@@ -219,6 +255,6 @@ public static class				Tester
 	{
 		return Workspace.SolutionKind == SolutionKinds.InfiniteSolutions;
 	}
-	
+
 	#endregion
 }
