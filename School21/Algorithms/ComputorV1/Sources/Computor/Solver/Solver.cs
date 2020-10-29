@@ -60,8 +60,7 @@ namespace								Computor
 
 		private static void				SolveSpecialCases(float c)
 		{
-			if (c == 0)
-				Workspace.SolutionKind = SolutionKinds.InfiniteSolutions;
+			Workspace.SolutionKind = c == 0 ? SolutionKinds.InfiniteSolutions : SolutionKinds.NoSolutions;
 		}
 	
 		private static float			GetFactorByPower(int power)

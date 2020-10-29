@@ -15,6 +15,8 @@ public static class				Tester
 	
 	#endregion
 
+	#region 					Tests
+	
 	[Test]
 	public static void			ValidCases()
 	{
@@ -63,7 +65,18 @@ public static class				Tester
 			Assert.IsTrue(CheckNoSolutions());
 		}
 	}
-
+	
+		
+	[TestCase("x^2/x^2 = 1", "Any")]
+	[TestCase("x^2^2 = 16", "2")]
+	[TestCase("x*2^2 = 16", "4")]
+	[TestCase("x*2/2-1-2-3 = 0", "6")]
+	public static void			ComplexCases(string input, string expected)
+	{
+		RunProgram(input);
+		Assert.AreEqual(expected, _output);
+	}
+	
 	[Test]
 	public static void			IncompleteFormCases()
 	{
@@ -82,24 +95,18 @@ public static class				Tester
 		RunProgram("2 * x = 7");
 		Assert.IsTrue(CheckOneSolution(new Math.Fraction(7f, 2f)));
 	}
-	
-	[TestCase("x^2/x^2 = 1", "Any")]
-	[TestCase("x^2^2 = 16", "2")]
-	[TestCase("x*2^2 = 16", "4")]
-	[TestCase("x*2/2-1-2-3 = 0", "6")]
-	public static void			ComplexCases(string input, string expected)
+
+	[Test]
+	public static void			SpecialCases()
 	{
-		RunProgram(input);
-		Assert.AreEqual(expected, _output);
-	}
-	
-	[TestCase("0 = 4", "")]
-	[TestCase("4 = 4", "Any")]
-	[TestCase("x = x", "Any")]
-	public static void			SpecialCases(string input, string expected)
-	{
-		RunProgram(input);
-		Assert.AreEqual(expected, _output);
+		RunProgram("0 = 4");
+		Assert.IsTrue(CheckNoSolutions());
+			
+		RunProgram("4 = 4");
+		Assert.IsTrue(CheckInfiniteSolutions());
+		
+		RunProgram("x = x");
+		Assert.IsTrue(CheckInfiniteSolutions());
 	}
 
 	[TestCase(null, Error.UsageErrors.ExpressionIsNotGiven)]
@@ -145,6 +152,10 @@ public static class				Tester
 		exception = Assert.Throws<Error.UsageException>(() => RunProgram(input));
 		Assert.AreEqual(usageError, exception.Error);
 	}
+	
+	#endregion
+
+	#region 					Service methods
 	
 	private static void			RunProgram(string input = null)
 	{
@@ -204,8 +215,10 @@ public static class				Tester
 			Workspace.Solutions[1] == x2;
 	}
 
-	private static bool			CheckInfiniteRoots()
+	private static bool			CheckInfiniteSolutions()
 	{
 		return Workspace.SolutionKind == SolutionKinds.InfiniteSolutions;
 	}
+	
+	#endregion
 }
