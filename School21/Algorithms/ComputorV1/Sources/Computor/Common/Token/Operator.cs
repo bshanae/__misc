@@ -10,6 +10,7 @@ namespace									Computor
 		
 		public enum 						Types
 		{
+			Undefined,
 			Addition,
 			Subtraction,
 			Multiplication,

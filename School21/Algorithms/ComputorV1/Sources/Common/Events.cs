@@ -1,17 +1,14 @@
-namespace			Computor
+public enum		Events
 {
-	public enum		Events
-	{
-		ParsedCommandLineArguments,
-		ReceivedExpression,
-		ParsedTokens,
-		ProcessedUnaryMinus,
-		ProcessedImplicitMultiplication,
-		BuiltElements,
-		GroupedElements,
-		ReducedElements,
-		ExtractedTerms,
-		SortedTerms,
-		SolvedEquation
-	}
+	ParsedCommandLineArguments,
+	ReceivedExpression,
+	ParsedTokens,
+	ProcessedUnaryMinus,
+	ProcessedImplicitMultiplication,
+	BuiltElements,
+	GroupedElements,
+	ReducedElements,
+	ExtractedTerms,
+	SortedTerms,
+	SolvedEquation
 }

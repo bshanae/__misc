@@ -45,8 +45,9 @@ namespace										Computor
 			static void							GroupElementsByPriority(Operator.Priorities priority)
 			{
 				Group							group;
-				
+
 				for (int i = 0; i < Workspace.FinalGroup.Count; i++)
+				{
 					if (Workspace.FinalGroup[i].Element is ElementWithOperator elementWithOperator)
 						if (elementWithOperator.Operator.TypePriority == priority)
 						{
@@ -72,6 +73,8 @@ namespace										Computor
 							Workspace.FinalGroup.Refresh();
 							i--;
 						}
+					
+				}
 			}
 		}
 
@@ -112,42 +115,61 @@ namespace										Computor
 
 		public static void						ExtractTerms()
 		{
-			Error.Assert(Workspace.FinalGroup.Count == 3);
-			
-			if (Workspace.FinalGroup[0].Element is ElementWithTerm elementWithTerm)
-				Workspace.Terms.Add(elementWithTerm.Term);
-			else if (Workspace.FinalGroup[0].Element is Group group)
+			bool								didEncounterEquality = false;
+			Operator.Types						lastOperatorType = Operator.Types.Undefined;
+
+			Workspace.FinalGroup.ForEach(holder => ProcessElement(holder.Element));
+
+			void								ProcessElement(Element element)
 			{
-				float							nextElementSign = 1f;
-				
-				foreach (var holder in group)
-					if (holder.Element is ElementWithTerm childElementWithTerm)
-					{
-						childElementWithTerm.Term.Factor *= nextElementSign;
-						Workspace.Terms.Add(childElementWithTerm.Term);
-					}
-					else if (holder.Element is ElementWithOperator elementWithOperator)
-					{
-						if (elementWithOperator.Operator.Type == Operator.Types.Addition)
-							nextElementSign = 1f;
-						else if (elementWithOperator.Operator.Type == Operator.Types.Subtraction)
-							nextElementSign = -1f;
-						else
-							Error.RaiseInternalError();
-					}
-					else
-						Error.RaiseInternalError();
+				if (element is ElementWithTerm elementWithTerm)
+				{
+					elementWithTerm.Term.Factor *= GetMultiplier();
+					Workspace.Terms.Add(elementWithTerm.Term);
+				}
+				else if (element is ElementWithOperator elementWithOperator)
+				{
+					Error.Assert
+					(
+						elementWithOperator.Operator.IsAnyOf
+						(
+							Operator.Types.Addition,
+							Operator.Types.Subtraction,
+							Operator.Types.Equality
+						)
+					);
+					
+					lastOperatorType = elementWithOperator.Operator.Type;
+					didEncounterEquality = didEncounterEquality || lastOperatorType == Operator.Types.Equality;
+				}
+				else if (element is Group group)
+				{
+					Error.Assert(group.Priority == Operator.Priorities.AdditionAndSubtraction);
+					group.ForEach(holder => ProcessElement(holder.Element));
+				}
+				else
+					Error.RaiseInternalError();
 			}
-			else
-				Error.RaiseInternalError();
+
+			float								GetMultiplier()
+			{
+				return
+					(lastOperatorType == Operator.Types.Subtraction ? -1f : 1f)
+					*
+					(didEncounterEquality ? -1f : 1f);
+			}
 		}
 
 		public static void						SortTerms()
 		{
 			foreach (var term in Workspace.Terms)
 			{
-				Error.Assert(!Workspace.SortedTerms.ContainsKey((int)term.Power));
-				Workspace.SortedTerms[(int)term.Power] = term;
+				var								power = (int)term.Power;
+
+				if (!Workspace.SortedTerms.ContainsKey(power))
+					Workspace.SortedTerms[(int) term.Power] = term;
+				else
+					Workspace.SortedTerms[(int) term.Power] = Workspace.SortedTerms[(int) term.Power] + term;
 			}
 		}
 	}

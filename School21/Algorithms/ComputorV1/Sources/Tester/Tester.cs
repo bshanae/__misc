@@ -64,14 +64,23 @@ public static class				Tester
 		}
 	}
 
-	[TestCase("-x ^ 2 = -4", "-2, 2")]
-	[TestCase("x = 5", "5")]
-	[TestCase("x * x = 5", "-2.236068, 2.236068")]
-	[TestCase("2 * x = 7", "7 / 2")]
-	public static void			IncompleteFormCases(string input, string expected)
+	[Test]
+	public static void			IncompleteFormCases()
 	{
-		RunProgram(input);
-		Assert.AreEqual(expected, _output);
+		RunProgram("-x ^ 2 = -4");
+		Assert.IsTrue(CheckTwoSolutions(-2f, 2f));
+		
+		RunProgram("x = 5");
+		Assert.IsTrue(CheckOneSolution(5f));
+		
+		RunProgram("x + 3 = 5");
+		Assert.IsTrue(CheckOneSolution(2f));
+		
+		RunProgram("x * x = 5");
+		Assert.IsTrue(CheckTwoSolutions(-2.236068f, 2.236068f));
+		
+		RunProgram("2 * x = 7");
+		Assert.IsTrue(CheckOneSolution(new Math.Fraction(7f, 2f)));
 	}
 	
 	[TestCase("x^2/x^2 = 1", "Any")]
