@@ -4,15 +4,12 @@ namespace						Computor
 {
 	public static class			Extensions
 	{
-		public static ValyeType	GetValue<KeyType, ValyeType>
-		(
-			this IDictionary<KeyType, ValyeType> dictionary,
-			KeyType key, ValyeType defaultValue = default(ValyeType)
-		)
+		public static T			ExtractAt<T>(this List<T> list, int index)
 		{
-		    ValyeType			value;
+			T					item = list[index];
 			
-		    return dictionary.TryGetValue(key, out value) ? value : defaultValue;
+			list.RemoveAt(index);
+			return item;
 		}
 	}
 }

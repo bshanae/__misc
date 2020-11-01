@@ -8,8 +8,6 @@ namespace									Computor
 {
 	public class							Group : Element, IEnumerable<Holder>, ICollection
 	{
-		private const bool					FlatRepresentation = true;
-		
 		public readonly Operator.Priorities	Priority;
 		private readonly List<Holder>		_holders = new List<Holder>();
 		
@@ -248,7 +246,7 @@ namespace									Computor
 
 		public override string				ToString()
 		{
-			if (FlatRepresentation)
+			if (!Program.Options.TreeView)
 				return $"{{{string.Join(", ", this.ToList())}}}";
 			else
 			{

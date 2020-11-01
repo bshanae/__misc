@@ -21,6 +21,7 @@ namespace									Computor
 		
 		public enum							Priorities
 		{
+			Undefined,
 			Power,
 			MultiplicationAndDivision,
 			AdditionAndSubtraction,
@@ -71,15 +72,28 @@ namespace									Computor
 
 	public static class						OperatorExtensions
 	{
-		public static Operator.Priorities	GetPriority(this Operator.Types type) =>
-			type switch
+		public static Operator.Priorities	GetPriority(this Operator.Types type)
+		{
+			switch (type)
 			{
-				Operator.Types.Addition => Operator.Priorities.AdditionAndSubtraction,
-				Operator.Types.Subtraction => Operator.Priorities.AdditionAndSubtraction,
-				Operator.Types.Multiplication => Operator.Priorities.MultiplicationAndDivision,
-				Operator.Types.Division => Operator.Priorities.MultiplicationAndDivision,
-				Operator.Types.Power => Operator.Priorities.Power,
-				Operator.Types.Equality => Operator.Priorities.Equality
-			};
+				case Operator.Types.Addition:
+				case Operator.Types.Subtraction:
+					return Operator.Priorities.AdditionAndSubtraction;
+				
+				case Operator.Types.Multiplication:
+				case Operator.Types.Division:
+					return Operator.Priorities.MultiplicationAndDivision;
+				
+				case Operator.Types.Power:
+					return Operator.Priorities.Power;
+				
+				case Operator.Types.Equality:
+					return Operator.Priorities.Equality;
+				
+				default :
+					Error.RaiseInternalError();
+					return Operator.Priorities.Undefined;
+			}
+		}
 	}
 }

@@ -74,7 +74,7 @@ namespace					Computor
 
 		private static void OnParsedTokens()
 		{
-			if (Program.Options.Report == Program.Options.Modes.Internal)
+			if (Program.Options.Report)
 				PrintTokensWithMessage("Parsed tokens");
 		}
 
@@ -83,7 +83,7 @@ namespace					Computor
 			if (!Parser.UnaryMinusProcessingHadEffect)
 				return;
 
-			if (Program.Options.Report == Program.Options.Modes.Internal)
+			if (Program.Options.Report)
 				PrintTokensWithMessage("Processed unary minus");
 		}
 
@@ -92,7 +92,7 @@ namespace					Computor
 			if (!Parser.ImplicitMultiplicationProcessingHadEffect)
 				return;
 
-			if (Program.Options.Report == Program.Options.Modes.Internal)
+			if (Program.Options.Report)
 				PrintTokensWithMessage("Processed implicit multiplication");
 		}
 
@@ -113,7 +113,7 @@ namespace					Computor
 
 		private static void OnExtractedTerms()
 		{
-			if (Program.Options.Report == Program.Options.Modes.Internal)
+			if (Program.Options.Report)
 			{
 				Console.WriteLine();
 				Console.Write("Built terms : ");
@@ -140,7 +140,7 @@ namespace					Computor
 				return false;
 			}
 			
-			if (Program.Options.Report == Program.Options.Modes.Internal)
+			if (Program.Options.Report)
 			{
 				bool		didPrintPreviousPower;
 				
@@ -156,7 +156,7 @@ namespace					Computor
 
 		private static void OnSolvedEquation()
 		{
-			if (Program.Options.Report == Program.Options.Modes.Internal)
+			if (Program.Options.Report)
 				PrintEquationRoots
 				(
 					"Solved equation, there are no roots",
@@ -164,13 +164,11 @@ namespace					Computor
 					"Solved equation, roots : ",
 					"Solved equation, roots : Any number"
 				);
-			else if (Program.Options.Report == Program.Options.Modes.Test)
-				PrintEquationRoots("", "", "", "Any");
 		}
 
 		private static void ReportEquationInfo()
 		{
-			if (Program.Options.Report == Program.Options.Modes.Standard)
+			if (!Program.Options.Report)
 			{
 				PrintReducedEquation();
 				PrintEquationDegree();
@@ -300,42 +298,23 @@ namespace					Computor
 			string messageForInfiniteRoots
 		)
 		{
-			if
-			(
-				Program.Options.Report == Program.Options.Modes.Standard ||
-				Program.Options.Report == Program.Options.Modes.Internal
-			)
-			{
-				if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
-					Console.Write(messageForInfiniteRoots);
-				else if (Workspace.SolutionKind == SolutionKinds.TwoSolutions)
-					Console.Write($"{messageForTwoRoots} : ");
-				else if (Workspace.SolutionKind == SolutionKinds.OneSolution)
-					Console.Write($"{messageForOneRoot} : ");
-				else if (Workspace.SolutionKind == SolutionKinds.NoSolutions)
-					Console.Write(messageForNoRoots);
-			}
-			else if (Program.Options.Report == Program.Options.Modes.Test)
-			{
-				if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
-					Console.Write(messageForInfiniteRoots);
-			}
-
 			if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
-				;
-			else if (Workspace.Solutions.Count == 2)
+				Console.Write(messageForInfiniteRoots);
+			else if (Workspace.SolutionKind == SolutionKinds.TwoSolutions)
+				Console.Write($"{messageForTwoRoots} : ");
+			else if (Workspace.SolutionKind == SolutionKinds.OneSolution)
+				Console.Write($"{messageForOneRoot} : ");
+			else if (Workspace.SolutionKind == SolutionKinds.NoSolutions)
+				Console.Write(messageForNoRoots);
+
+			if (Workspace.SolutionKind == SolutionKinds.TwoSolutions)
 				Console.Write($"{Workspace.Solutions[0]}, {Workspace.Solutions[1]}");
-			else if (Workspace.Solutions.Count == 1)
+			else if (Workspace.SolutionKind == SolutionKinds.OneSolution)
 				Console.Write($"{Workspace.Solutions[0]}");
-			else if (Workspace.Solutions.Count == 0)
+			else if (Workspace.SolutionKind == SolutionKinds.NoSolutions)
 				Console.Write("");
 
-			if
-			(
-				Program.Options.Report == Program.Options.Modes.Standard ||
-				Program.Options.Report == Program.Options.Modes.Internal
-			)
-				Console.WriteLine();
+			Console.WriteLine();
 		}
 
 		#endregion

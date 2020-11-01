@@ -30,6 +30,7 @@ namespace							Computor
 			
 			_expressionQueue = new Queue<char>(Workspace.Expression);
 
+#pragma warning disable 642
 			while (_expressionQueue.Count > 0)
 				if (TryExtractToken(typeof(Constant))) ;
 				else if (TryExtractToken(typeof(Variable))) ;
@@ -39,6 +40,8 @@ namespace							Computor
 				else
 					Error.RaiseInternalError();
 		}
+#pragma warning restore 642
+
 		
 		public static void			ProcessUnaryMinus()
 		{

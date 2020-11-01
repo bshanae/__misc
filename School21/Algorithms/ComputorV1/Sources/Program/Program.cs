@@ -1,55 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Computor;
 
 public static partial class		Program
 {
-	public static List<string>	Arguments;
-		
 	public static void			Main(string[] arguments)
 	{
 		try
 		{
 			ProcessArguments(arguments);
-			ProcessExpression();
 
 			ExecuteParser();
 			ExecuteAnalyzer();
 			ExecuteSolver();
 		}
-		catch (Error.UsageException exception)
-		{
-			Console.WriteLine("Computor usage error : " + exception.Message);
-
-			if (Options.Report == Options.Modes.Test)
-				throw;
-		}
-		catch (Error.InternalException)
-		{
-			Console.WriteLine("Computor internal error");
-		}
-		catch (Error.InternalAssertionException)
-		{
-			Console.WriteLine("Computor internal assertion error");
-		}
 		catch (Exception exception)
 		{
-			Console.WriteLine("Computor unknown error : " + exception.Message);
+			exception.GetReaction().Invoke();
+			
+			if (exception is Error.UsageException && Options.Test)
+				throw;
 		}
 	}
 
 	private static void			ProcessArguments(string[] arguments)
 	{
-		Arguments = arguments.ToList();
+		Workspace.CommandLineArguments = arguments.ToList();
+		Validator.Validate(Events.ReceivedArguments);
 
+		Workspace.Expression = Workspace.CommandLineArguments.ExtractAt(0);
 		Options.Parse();
-		Validator.Validate(Events.ParsedCommandLineArguments);
-	}
-
-	private static void			ProcessExpression()
-	{
-		Workspace.Expression = Arguments[0];
+		
 		Validator.Validate(Events.ReceivedExpression);
 	}
 

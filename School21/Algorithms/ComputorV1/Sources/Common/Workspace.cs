@@ -3,6 +3,7 @@ using Computor;
 
 public static class						Workspace
 {
+	public static List<string>			CommandLineArguments;
 	
 	public static string				Expression;
 	public static List<Token>			Tokens = new List<Token>();

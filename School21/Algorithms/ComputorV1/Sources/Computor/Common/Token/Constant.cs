@@ -15,7 +15,7 @@ namespace						Computor
 			{
 				Value = float.Parse(@string);
 			}
-			catch (Exception exception)
+			catch (Exception)
 			{
 				Error.RaiseInternalError();
 			}

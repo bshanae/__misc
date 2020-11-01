@@ -10,12 +10,12 @@ namespace						Computor
 		{
 			switch (@event)
 			{
-				case Events.ParsedCommandLineArguments :
-					OnParsedCommandLineArguments();
+				case Events.ReceivedArguments :
+					OnReceivedArguments();
 					break;
 				
 				case Events.ReceivedExpression :
-					OnParsedExpression();
+					OnReceivedExpression();
 					break;
 					
 				case Events.ParsedTokens :
@@ -35,15 +35,22 @@ namespace						Computor
 		#endregion
 
 		#region					Implementations
-		
-		private static void		OnParsedCommandLineArguments()
+
+		private static void		OnReceivedArguments()
 		{
-			if (Program.Arguments.Count != 1)
-				Error.RaiseUsageError(Error.UsageErrors.ExpressionIsNotGiven);
+			if (Workspace.CommandLineArguments.Count < 1 || Workspace.CommandLineArguments[0].StartsWith("--"))
+				Error.RaiseUsageError(Error.UsageErrors.InvalidCommandLineArguments);
+			
+			for (int i = 1; i < Workspace.CommandLineArguments.Count; i++)
+				if (!Workspace.CommandLineArguments[i].StartsWith("--"))
+					Error.RaiseUsageError(Error.UsageErrors.InvalidCommandLineArguments);
 		}
-		
-		private static void		OnParsedExpression()
+
+		private static void		OnReceivedExpression()
 		{
+			if (Workspace.Expression.Length == 0)
+				Error.RaiseUsageError(Error.UsageErrors.EmptyExpression);
+			
 			static bool			IsCharacterValid(char character)
 			{
 				if (Constant.AssociatedCharacters.Contains(character))

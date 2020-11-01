@@ -37,6 +37,10 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="CommandLine, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379">
+          <HintPath>packages\CommandLineParser.2.8.0\lib\net461\CommandLine.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
           <HintPath>packages\Microsoft.CodeCoverage.16.7.1\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
           <Private>True</Private>
@@ -56,6 +60,7 @@
         <Compile Include="Sources\Common\Events.cs" />
         <Compile Include="Sources\Common\Extensions.cs" />
         <Compile Include="Sources\Common\Utilities.cs" />
+        <Compile Include="Sources\Common\Workspace.cs" />
         <Compile Include="Sources\Computor\Analyzer\Elements\Element.cs" />
         <Compile Include="Sources\Computor\Analyzer\Elements\ElementWithOperator.cs" />
         <Compile Include="Sources\Computor\Analyzer\Elements\ElementWithTerm.cs" />
@@ -67,11 +72,10 @@
         <Compile Include="Sources\Computor\Common\Token\Operator.cs" />
         <Compile Include="Sources\Computor\Common\Token\Token.cs" />
         <Compile Include="Sources\Computor\Common\Token\Variable.cs" />
-        <Compile Include="Sources\Computor\Common\Workspace.cs" />
         <Compile Include="Sources\Computor\Parser\Parser.cs" />
         <Compile Include="Sources\Computor\Analyzer\Analyzer.cs" />
         <Compile Include="Sources\Computor\Reporter\Reporter.cs" />
-        <Compile Include="Sources\Computor\SolutionKinds.cs" />
+        <Compile Include="Sources\Computor\Solver\SolutionKinds.cs" />
         <Compile Include="Sources\Computor\Solver\Solver.cs" />
         <Compile Include="Sources\Computor\Validator\Validator.cs" />
         <Compile Include="Sources\Math\Fraction.cs" />

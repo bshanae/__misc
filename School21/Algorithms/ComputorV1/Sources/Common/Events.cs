@@ -1,6 +1,6 @@
 public enum		Events
 {
-	ParsedCommandLineArguments,
+	ReceivedArguments,
 	ReceivedExpression,
 	ParsedTokens,
 	ProcessedUnaryMinus,
