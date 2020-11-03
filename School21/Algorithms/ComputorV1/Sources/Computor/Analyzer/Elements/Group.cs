@@ -142,6 +142,20 @@ namespace									Computor
 			
 			void							ReduceAdditionAndSubtraction()
 			{
+				for (int i = 1; i < Count; i += 2)
+				{
+					if
+					(
+						this[i].Element is ElementWithOperator elementWithOperator &&
+						elementWithOperator.Operator.Type == Operator.Types.Subtraction &&
+						this[i + 1].Element is ElementWithTerm
+					)
+					{
+						this[i].ConnectElement(new ElementWithOperator(new Operator("+")));
+						(this[i + 1].Element as ElementWithTerm).Term.Factor *= -1f;
+					}
+				}
+				
 				for (int i = 0; i < Count; i += 2)
 				{
 					Error.Assert(this[i].Element is ElementWithTerm);

@@ -74,8 +74,8 @@ public static class				Tester
 		RunProgram("x^2/x^2 = 1", "--test");
 		Assert.IsTrue(CheckInfiniteSolutions());
 
-		RunProgram("x^2^2/x/x = 27", "--test");
-		Assert.IsTrue(CheckOneSolution(3f));
+		RunProgram("x^2^2/x/x = 9", "--test");
+		Assert.IsTrue(CheckTwoSolutions(-3f, 3f));
 
 		RunProgram("x*2^2 = 16", "--test");
 		Assert.IsTrue(CheckOneSolution(4f));
