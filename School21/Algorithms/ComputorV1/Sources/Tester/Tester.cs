@@ -71,25 +71,49 @@ public static class				Tester
 		RunProgram("2 * x ^ 2 - 4 * x - 2 = 0", "--test");
 		Assert.IsTrue(CheckTwoSolutions(-0.414214f, 2.414214f));
 
-		RunProgram("x^2/x^2 = 1", "--test");
+		RunProgram("x ^ 2 / x ^ 2 = 1", "--test");
 		Assert.IsTrue(CheckInfiniteSolutions());
 
-		RunProgram("x^2^2/x/x = 9", "--test");
+		RunProgram("x ^ 2 ^ 2 / x / x = 9", "--test");
 		Assert.IsTrue(CheckTwoSolutions(-3f, 3f));
 
-		RunProgram("x*2^2 = 16", "--test");
+		RunProgram("x * 2 ^ 2 = 16", "--test");
 		Assert.IsTrue(CheckOneSolution(4f));
 
-		RunProgram("x*2/2-1-2-3 = 0", "--test");
+		RunProgram("x * 2 / 2 - 1 - 2 - 3 = 0", "--test");
 		Assert.IsTrue(CheckOneSolution(6f));
+		
+		RunProgram("5 * x ^ 2 = 20", "--test");
+		Assert.IsTrue(CheckTwoSolutions(-2f, 2f));
+
+		RunProgram("1 * 5 * x ^ 2 = 20", "--test");
+		Assert.IsTrue(CheckTwoSolutions(-2f, 2f));
+		
+		RunProgram("2 * 5 * x ^ 2 / 2 = 20", "--test");
+		Assert.IsTrue(CheckTwoSolutions(-2f, 2f));
+		
+		RunProgram("x ^ 2 * 1 * 5 = 20", "--test");
+		Assert.IsTrue(CheckTwoSolutions(-2f, 2f));
+		
+		RunProgram("X - 5 + 5 = 0", "--test");
+		Assert.IsTrue(CheckOneSolution(0f));
+		
+		RunProgram("x ^ 3 - x ^ 3 = 0", "--test");
+		Assert.IsTrue(CheckInfiniteSolutions());
+		
+		RunProgram("x ^ 2 / x ^ 2 = 1", "--test");
+		Assert.IsTrue(CheckInfiniteSolutions());
 	}
 	
 	[Test]
 	public static void			IncompleteFormCases()
 	{
+		RunProgram("x ^ 2 = 4", "--test");
+		Assert.IsTrue(CheckTwoSolutions(-2f, 2f));
+
 		RunProgram("-x ^ 2 = -4", "--test");
 		Assert.IsTrue(CheckTwoSolutions(-2f, 2f));
-		
+
 		RunProgram("x = 5", "--test");
 		Assert.IsTrue(CheckOneSolution(5f));
 		

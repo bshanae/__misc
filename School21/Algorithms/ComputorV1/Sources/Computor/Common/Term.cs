@@ -18,7 +18,7 @@ namespace						Computor
 		private					Term(float factor, float power)
 		{
 			Factor = factor;
-			Power = power;
+			Power = factor != 0f ? power : 0f;
 		}
 		
 		public					Term(Term otherTerm)
@@ -90,7 +90,7 @@ namespace						Computor
 			bool				shouldShowPower;
 
 			shouldShowVariable = Factor != 0f && Power != 0f;
-			shouldShowPower = Power != 0f && Power != 1f;
+			shouldShowPower =  Factor != 0f && Power != 0f && Power != 1f;
 			shouldShowFactor = Factor != 1f || !shouldShowVariable;
 
 			string				result = "";
