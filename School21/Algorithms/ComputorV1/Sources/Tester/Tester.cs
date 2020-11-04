@@ -60,20 +60,108 @@ public static class				Tester
 	[Test]
 	public static void			ImaginarySolution()
 	{
-		{
-			RunProgram("3 * x ^ 2 + 4 * x + 2 = 0", "--test");
-			Assert.IsTrue
+		RunProgram("3 * x ^ 2 + 4 * x + 2 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
 			(
-				CheckTwoSolutions
-				(
-					new Math.Complex(-0.666666f, -0.471404f),
-					new Math.Complex(-0.666666f, +0.471404f)
-				)
-			);
-			
-			RunProgram("x ^ 2 = -16", "--test");
-			Assert.IsTrue(CheckOneSolution(new Math.Complex(0f, 4f)));
-		}
+				new Math.Complex(-0.666666f, -0.471404f),
+				new Math.Complex(-0.666666f, +0.471404f)
+			)
+		);
+
+		RunProgram("1 * x ^ 2 - 6 * x + 12 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(3f, -1.732050f),
+				new Math.Complex(3f, +1.732050f)
+			)
+		);
+				
+		RunProgram("5 * x ^ 2 - 2 * x + 5 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(0.2f, -0.979795f),
+				new Math.Complex(0.2f, +0.979795f)
+			)
+		);
+		
+		RunProgram("4 * x ^ 2 - 3 * x + 2 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(0.375f, -0.599478f),
+				new Math.Complex(0.375f, +0.599478f)
+			)
+		);
+
+		RunProgram("7 * x ^ 2 + 2 * x + 8 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(-0.142857f, -1.059456f),
+				new Math.Complex(-0.142857f, +1.059456f)
+			)
+		);
+
+		RunProgram("6 * x ^ 2 - 8 * x + 6 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(0.666667f, -0.745355f),
+				new Math.Complex(0.666667f, +0.745355f)
+			)
+		);
+
+		RunProgram("9 * x ^ 2 - 4 * x + 2 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(0.222222f, -0.415739f),
+				new Math.Complex(0.222222f, +0.415739f)
+			)
+		);
+
+		RunProgram("12 * x ^ 2 - 6 * x + 10 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(0.25f, -0.877971f),
+				new Math.Complex(0.25f, +0.877971f)
+			)
+		);
+
+		RunProgram("5 * x ^ 2 - 4 * x + 6 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(0.4f, -1.019803f),
+				new Math.Complex(0.4f, +1.019803f)
+			)
+		);
+
+		RunProgram("6 * x ^ 2 + 3 * x + 2 = 0", "--test");
+		Assert.IsTrue
+		(
+			CheckTwoSolutions
+			(
+				new Math.Complex(-0.25f, -0.520416f),
+				new Math.Complex(-0.25f, +0.520416f)
+			)
+		);
+		
+		RunProgram("x ^ 2 = -16", "--test");
+		Assert.IsTrue(CheckOneSolution(new Math.Complex(0f, 4f)));
 	}
 	
 	[Test]

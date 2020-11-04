@@ -53,10 +53,6 @@ namespace								Computor
 					Workspace.ComplexSolutions.Add((-b - Math.ComplexSquareRoot(discriminant)) / (2 * a));
 					Workspace.ComplexSolutions.Add((-b + Math.ComplexSquareRoot(discriminant)) / (2 * a));
 					
-					Workspace.ComplexSolutions = Workspace.ComplexSolutions
-						.OrderBy(complex => complex.RealPart)
-						.ToList();
-					
 					Workspace.SolutionKind = SolutionKinds.TwoImaginarySolutions;
 				}
 
