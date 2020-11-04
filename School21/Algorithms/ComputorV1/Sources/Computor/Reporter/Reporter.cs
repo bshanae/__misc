@@ -304,14 +304,14 @@ namespace					Computor
 				Console.Write($"{messageForTwoRoots} : ");
 			else if (Workspace.SolutionKind == SolutionKinds.OneSolution)
 				Console.Write($"{messageForOneRoot} : ");
-			else if (Workspace.SolutionKind == SolutionKinds.NoSolutions)
+			else if (Workspace.SolutionKind == SolutionKinds.ImaginarySolutions)
 				Console.Write(messageForNoRoots);
 
 			if (Workspace.SolutionKind == SolutionKinds.TwoSolutions)
 				Console.Write($"{Workspace.Solutions[0]}, {Workspace.Solutions[1]}");
 			else if (Workspace.SolutionKind == SolutionKinds.OneSolution)
 				Console.Write($"{Workspace.Solutions[0]}");
-			else if (Workspace.SolutionKind == SolutionKinds.NoSolutions)
+			else if (Workspace.SolutionKind == SolutionKinds.ImaginarySolutions)
 				Console.Write("");
 
 			Console.WriteLine();

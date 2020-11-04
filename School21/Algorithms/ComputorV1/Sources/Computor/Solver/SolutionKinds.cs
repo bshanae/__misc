@@ -6,6 +6,7 @@ namespace			Computor
 		NoSolutions,
 		OneSolution,
 		TwoSolutions,
+		ImaginarySolutions,
 		InfiniteSolutions
 	}
 }

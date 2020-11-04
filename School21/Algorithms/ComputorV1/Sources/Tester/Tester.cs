@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Computor;
 using NUnit.Framework;
 
@@ -10,14 +7,14 @@ public static class				Tester
 {
 	#region						Data
 
-	private const float			PrecisionEpsilon = 0.00001f;
+	private const float			PrecisionEpsilon = 0.0001f;
 	
 	#endregion
 
 	#region 					Tests
 	
 	[Test]
-	public static void			ValidCases()
+	public static void			Normal()
 	{
 		{
 			RunProgram("2 * x ^ 2 - 4 * x - 2 = 0", "--test");
@@ -58,15 +55,36 @@ public static class				Tester
 			RunProgram("x*x = 0", "--test");
 			Assert.IsTrue(CheckOneSolution(0f));
 		}
-
+	}
+	
+	[Test]
+	public static void			ImaginarySolution()
+	{
 		{
 			RunProgram("3 * x ^ 2 + 4 * x + 2 = 0", "--test");
-			Assert.IsTrue(CheckNoSolutions());
+			Assert.IsTrue
+			(
+				CheckImaginarySolutions
+				(
+					new Math.Complex(-0.666666f, +0.471404f),
+					new Math.Complex(-0.666666f, -0.471404f)
+				)
+			);
+			
+			RunProgram("x ^ 2 = -16", "--test");
+			Assert.IsTrue
+			(
+				CheckImaginarySolutions
+				(
+					new Math.Complex(-4f, 1f),
+					new Math.Complex(+4f, 1f)
+				)
+			);
 		}
 	}
 	
 	[Test]
-	public static void			ComplexCases()
+	public static void			Evaluation()
 	{
 		RunProgram("2 * x ^ 2 - 4 * x - 2 = 0", "--test");
 		Assert.IsTrue(CheckTwoSolutions(-0.414214f, 2.414214f));
@@ -127,7 +145,7 @@ public static class				Tester
 	}
 	
 	[Test]
-	public static void			IncompleteFormCases()
+	public static void			IncompleteForm()
 	{
 		RunProgram("x ^ 2 = 4", "--test");
 		Assert.IsTrue(CheckTwoSolutions(-2f, 2f));
@@ -146,13 +164,10 @@ public static class				Tester
 		
 		RunProgram("2 * x = 7", "--test");
 		Assert.IsTrue(CheckOneSolution(new Math.Fraction(7f, 2f)));
-		
-		RunProgram("x ^ 2 = -16", "--test");
-		Assert.IsTrue(CheckNoSolutions());
 	}
 
 	[Test]
-	public static void			SpecialCases()
+	public static void			Special()
 	{
 		RunProgram("0 = 4", "--test");
 		Assert.IsTrue(CheckNoSolutions());
@@ -165,68 +180,68 @@ public static class				Tester
 	}
 
 	[Test]
-	public static void			ErrorCases()
+	public static void			Error()
 	{
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.InvalidCommandLineArguments));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.InvalidCommandLineArguments, "--hi", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.InvalidCommandLineArguments, "--report=hi", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.InvalidCommandLineArguments, "abc", "abc", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.InvalidCommandLineArguments));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.InvalidCommandLineArguments, "--hi", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.InvalidCommandLineArguments, "--report=hi", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.InvalidCommandLineArguments, "abc", "abc", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.EmptyExpression, "", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.EmptyExpression, "", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.InvalidCharacter, "ajnakak", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.InvalidCharacter, "y = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.InvalidCharacter, "ajnakak", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.InvalidCharacter, "y = 0", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.BadFloat, "x = 1.3.3.3", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.BadFloat, "x = ..0101", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.BadFloat, "x = 1.3.3.3", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.BadFloat, "x = ..0101", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperator, "xx = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperator, "xxxxx = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperator, "x3 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperator, "xx = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperator, "xxxxx = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperator, "x3 = 0", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "x++ = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "1-+2 = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "1---2 = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, " = ", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "= ", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, " = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "1 = ", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "x + 5 = ", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "x * x * x = ", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "+2 = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "*1 = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "^8 = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MissingOperand, "x = 0*", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "x++ = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "1-+2 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "1---2 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, " = ", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "= ", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, " = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "1 = ", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "x + 5 = ", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "x * x * x = ", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "+2 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "*1 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "^8 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MissingOperand, "x = 0*", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.PowerIsNotConstant, "x^x = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.PowerIsNotConstant, "2^x = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.PowerIsNotConstant, "x^x = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.PowerIsNotConstant, "2^x = 0", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.PowerIsNotInteger, "x^1.1 = 0", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.PowerIsNotInteger, "x^.11 * x^1.2 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.PowerIsNotInteger, "x^1.1 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.PowerIsNotInteger, "x^.11 * x^1.2 = 0", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MoreThanOneEqualitySign, "1 = 0 = 1", "--test"));
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.MoreThanOneEqualitySign, "1 = 0 = 1 = x", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MoreThanOneEqualitySign, "1 = 0 = 1", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.MoreThanOneEqualitySign, "1 = 0 = 1 = x", "--test"));
 		}
 
 		{
-			Assert.IsTrue(RunProgramAndCheckError(Error.UsageErrors.InvalidPower, "x ^ 3 = 0", "--test"));
+			Assert.IsTrue(RunProgramAndCheckError(global::Error.UsageErrors.InvalidPower, "x ^ 3 = 0", "--test"));
 		}
 	}
 
@@ -277,7 +292,7 @@ public static class				Tester
 			Workspace.SolutionKind == SolutionKinds.OneSolution &&
 			Math.AlmostEqual(Workspace.Solutions[0].Value, x, PrecisionEpsilon);
 	}
-	
+
 	private static bool			CheckOneSolution(Math.Fraction fraction)
 	{
 		return Workspace.SolutionKind == SolutionKinds.OneSolution && Workspace.Solutions[0] == fraction;
@@ -297,6 +312,14 @@ public static class				Tester
 			Workspace.SolutionKind == SolutionKinds.TwoSolutions &&
 			Workspace.Solutions[0] == x1 &&
 			Workspace.Solutions[1] == x2;
+	}
+
+	private static bool			CheckImaginarySolutions(Math.Complex x1, Math.Complex x2)
+	{
+		return
+			Workspace.SolutionKind == SolutionKinds.ImaginarySolutions &&
+			Math.AlmostEqual(Workspace.ComplexSolutions[0], x1, PrecisionEpsilon) &&
+			Math.AlmostEqual(Workspace.ComplexSolutions[1], x2, PrecisionEpsilon);
 	}
 
 	private static bool			CheckInfiniteSolutions()

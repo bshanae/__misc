@@ -1,6 +1,3 @@
-using Computor;
-using NUnit.Framework;
-
 public static partial class	Math
 {
 	private const float		Epsilon = 0.00000000001f;
@@ -13,7 +10,7 @@ public static partial class	Math
 		float				high = value;
 		float				middle = 0f;
 		
-		for(int i = 0 ; i < 1000 ; i++)
+		for (int i = 0 ; i < 1000 ; i++)
 		{
 		    middle = (low + high) / 2f;
 			
@@ -24,12 +21,26 @@ public static partial class	Math
 		    else
 				low = middle;
 		}
+
 		return middle;
 	}
 
+	public static Complex	ComplexSquareRoot(float value)
+	{
+		if (value < 0f)
+			return new Complex(0f, SquareRoot(-1f * value));
+		else
+			return new Complex(SquareRoot(value));
+	}
+	
 	public static bool		AlmostEqual(float a, float b, float epsilon = Epsilon)
 	{
 		return Absolute(a - b) < epsilon;
+	}
+	
+	public static bool		AlmostEqual(Complex a, Complex b, float epsilon = Epsilon)
+	{
+		return Absolute(a.RealPart - b.RealPart) < epsilon && Absolute(a.ImaginaryPart - b.ImaginaryPart) < epsilon;
 	}
 	
 	public static float		Absolute(float value)

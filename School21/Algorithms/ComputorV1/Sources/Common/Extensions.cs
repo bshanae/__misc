@@ -11,5 +11,10 @@ namespace						Computor
 			list.RemoveAt(index);
 			return item;
 		}
+
+		public static string	ToStandardString(this float value)
+		{
+			return System.Math.Round(value, 10).ToString();
+		}
 	}
 }

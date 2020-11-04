@@ -26,6 +26,7 @@ public static class						Workspace
 	
 	public static SolutionKinds			SolutionKind = SolutionKinds.Undefined;
 	public static List<Math.Fraction>	Solutions = new List<Math.Fraction>();
+	public static List<Math.Complex>	ComplexSolutions = new List<Math.Complex>();
 
 	static								Workspace()
 	{
