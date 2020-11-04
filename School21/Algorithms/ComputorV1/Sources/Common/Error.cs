@@ -114,14 +114,15 @@ public static class					Error
 
 	private static string			UsageDescription =>
 		"Format : " + Environment.NewLine +
-		"	./ComputorV1 [expression] (options)" + Environment.NewLine +
+		"  ComputorV1 [expression] (options)" + Environment.NewLine +
 		Environment.NewLine +
 		"Example : " + Environment.NewLine +
-		"	./ComputorV1 \"x ^ 2 + x - 1 = 4\" --report --treeview" + Environment.NewLine +
+		"  ComputorV1 \"x ^ 2 + x - 1 = 4\" --report --treeview" + Environment.NewLine +
 		Environment.NewLine +
 		"Options : " + Environment.NewLine +
-		"	--report    :  Info about internal computations" + Environment.NewLine +
-		"	--treeview  :  Print token groups vertically (Only in report mode)";
+		"  --report        :  Info about internal computations" + Environment.NewLine +
+		"  --treeView      :  Print token groups vertically (Only in report mode)" + Environment.NewLine +
+		"  --forcePattern  :  Print equation degree and discriminant even if it doesn't make sense";
 
 	#endregion
 	

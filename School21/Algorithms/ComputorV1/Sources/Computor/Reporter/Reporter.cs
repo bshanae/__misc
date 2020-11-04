@@ -327,7 +327,12 @@ namespace					Computor
 
 		private static void PrintEquationDegree()
 		{
-			if (Workspace.EquationKind == EquationKinds.Complete || Workspace.EquationKind == EquationKinds.Incomplete)
+			if
+			(
+				Workspace.EquationKind == EquationKinds.Complete ||
+				Workspace.EquationKind == EquationKinds.Incomplete ||
+				Program.Options.ForcePattern
+			)
 			{
 				int			maximumDegree = 0;
 
@@ -340,7 +345,7 @@ namespace					Computor
 
 		private static void PrintDiscriminantSign()
 		{
-			if (Workspace.EquationKind == EquationKinds.Complete)
+			if (Workspace.EquationKind == EquationKinds.Complete || Program.Options.ForcePattern)
 			{
 				if (Workspace.Discriminant > 0f)
 					Console.WriteLine("Discriminant is strictly positive, equation has two roots");

@@ -8,10 +8,18 @@ public static partial class			Program
 	{
 		private class 				Sample
 		{
-			public					Sample(bool report, bool treeView, bool debug, bool test)
+			public					Sample
+									(
+										bool report,
+										bool treeView,
+										bool forcePattern,
+										bool debug,
+										bool test
+									)
 			{
 				Report = report;
 				TreeView = treeView;
+				ForcePattern = forcePattern;
 				Debug = debug;
 				Test = test;
 			}
@@ -22,6 +30,9 @@ public static partial class			Program
 			[Option("treeView", Default = false)]
 			public bool				TreeView { get; }
 			
+			[Option("forcePattern", Default = false)]
+			public bool				ForcePattern { get; }
+			
 			[Option("debug", Default = false)]
 			public bool				Debug { get; }
 			
@@ -31,6 +42,7 @@ public static partial class			Program
 		
 		public static bool			Report { get ; private set ; }
 		public static bool			TreeView { get ; private set ; }
+		public static bool			ForcePattern { get; private set; }
 		
 		public static bool			Debug { get ; private set ; }
 		public static bool			Test { get ; set ; }
@@ -39,6 +51,7 @@ public static partial class			Program
 		{
 			Report = true;
 			TreeView = false;
+			ForcePattern = false;
 			Debug = false;
 			Test = false;
 		}
@@ -63,6 +76,7 @@ public static partial class			Program
 			{
 				Report = sample.Report;
 				TreeView = sample.TreeView;
+				ForcePattern = sample.ForcePattern;
 				Debug = sample.Debug;
 				Test = sample.Test;
 			}
