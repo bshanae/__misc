@@ -103,6 +103,27 @@ public static class				Tester
 		
 		RunProgram("x ^ 2 / x ^ 2 = 1", "--test");
 		Assert.IsTrue(CheckInfiniteSolutions());
+		
+		RunProgram("x^2^2/2*x/x^4 = 5", "--test");
+		Assert.IsTrue(CheckOneSolution(10f));
+		
+		RunProgram("x/x/x^2*x^3 = 5", "--test");
+		Assert.IsTrue(CheckOneSolution(5f));
+		
+		RunProgram("x = x - 5 + 2x - 3x + 1x - 10x", "--test");
+		Assert.IsTrue(CheckOneSolution(new Math.Fraction(-1f, 2f)));
+		
+		RunProgram("x ^ 2 + 6 x ^ 2 - 9 * 6 = 19 + 4", "--test");
+		Assert.IsTrue(CheckTwoSolutions(-3.316625f, 3.316625f));
+		
+		RunProgram("18x - 250x ^ 2 + x ^ 3 / x / x = 500x", "--test");
+		Assert.IsTrue(CheckTwoSolutions(-1.924f, 0f));
+		
+		RunProgram("x/x * x/x * x/x * x*x/x = 5", "--test");
+		Assert.IsTrue(CheckOneSolution(5f));
+		
+		RunProgram("x ^ 1 = x ^ 0", "--test");
+		Assert.IsTrue(CheckOneSolution(1f));
 	}
 	
 	[Test]
@@ -125,6 +146,9 @@ public static class				Tester
 		
 		RunProgram("2 * x = 7", "--test");
 		Assert.IsTrue(CheckOneSolution(new Math.Fraction(7f, 2f)));
+		
+		RunProgram("x ^ 2 = -16", "--test");
+		Assert.IsTrue(CheckNoSolutions());
 	}
 
 	[Test]
