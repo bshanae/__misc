@@ -344,9 +344,10 @@ public static class				Tester
 			Workspace.FinalHolder.ConnectElement(new Group(Operator.Priorities.Final));
 			Workspace.Terms = new List<Term>();
 			Workspace.SortedTerms = new Dictionary<int, Term>();
-			Workspace.Solutions = new List<Math.Fraction>();
-			Workspace.ComplexSolutions = new List<Math.Complex>();
+			Workspace.EquationKind = EquationKinds.Undefined;
 			Workspace.SolutionKind = SolutionKinds.Undefined;
+			Workspace.Solutions = new List<Math.Fraction>();
+			Workspace.ImaginarySolutions = new List<Math.Complex>();
 		}
 	}
 
@@ -384,7 +385,7 @@ public static class				Tester
 	{
 		return
 			Workspace.SolutionKind == SolutionKinds.OneImaginarySolution &&
-			Math.AlmostEqual(Workspace.ComplexSolutions[0], x, PrecisionEpsilon);
+			Math.AlmostEqual(Workspace.ImaginarySolutions[0], x, PrecisionEpsilon);
 	}
 
 	private static bool			CheckTwoSolutions(float x1, float x2)
@@ -407,8 +408,8 @@ public static class				Tester
 	{
 		return
 			Workspace.SolutionKind == SolutionKinds.TwoImaginarySolutions &&
-			Math.AlmostEqual(Workspace.ComplexSolutions[0], x1, PrecisionEpsilon) &&
-			Math.AlmostEqual(Workspace.ComplexSolutions[1], x2, PrecisionEpsilon);
+			Math.AlmostEqual(Workspace.ImaginarySolutions[0], x1, PrecisionEpsilon) &&
+			Math.AlmostEqual(Workspace.ImaginarySolutions[1], x2, PrecisionEpsilon);
 	}
 
 	private static bool			CheckInfiniteSolutions()

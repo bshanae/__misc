@@ -32,14 +32,34 @@ namespace					Computor
 					OnBuiltElements();
 					break;
 
-				case Events.GroupedElements :
-					OnGroupedElements();
+				case Events.GroupedPower :
+					OnGroupedPower();
+					break;
+					
+				case Events.GroupedMultiplicationAndDivision :
+					OnGroupedMultiplicationAndDivision();
+					break;
+					
+				case Events.GroupedAdditionAndSubtraction :
+					OnGroupedAdditionAndSubtraction();
+					break;
+					
+				case Events.ReducedPower :
+					OnReducedPower();
+					break;
+					
+				case Events.ReducedMultiplicationAndDivision :
+					OnReducedMultiplicationAndDivision();
+					break;
+					
+				case Events.ReducedEquality :
+					OnReducedEquality();
+					break;
+					
+				case Events.ReducedAdditionAndSubtraction :
+					OnReducedAdditionAndSubtraction();
 					break;
 
-				case Events.ReducedElements :
-					OnReducedElements();
-					break;
-				
 				case Events.ExtractedTerms:
 					OnExtractedTerms();
 					break;
@@ -58,7 +78,7 @@ namespace					Computor
 			}
 		}
 
-		public static void	Report(Requests requests)
+		public static void	Info(Requests requests)
 		{
 			switch (requests)
 			{
@@ -98,25 +118,57 @@ namespace					Computor
 
 		private static void OnBuiltElements()
 		{
-			PrintElementsWithMessage("Built elements : ");
+			if (Program.Options.Report)
+				PrintElementsWithMessage("Built elements");
 		}
 		
-		private static void OnGroupedElements()
+		private static void OnGroupedPower()
 		{
-			PrintElementsWithMessage("Grouped elements : ");
+			if (Program.Options.Report)
+				PrintElementsWithMessage("Grouped power operations");
 		}
 		
-		private static void OnReducedElements()
+		private static void OnGroupedMultiplicationAndDivision()
 		{
-			PrintElementsWithMessage("Reduced elements : ");
+			if (Program.Options.Report)
+				PrintElementsWithMessage("Grouped multiplication and division operations");
 		}
-
+		
+		private static void OnGroupedAdditionAndSubtraction()
+		{
+			if (Program.Options.Report)
+				PrintElementsWithMessage("Grouped addition and subtraction operations");
+		}
+		
+		private static void OnReducedPower()
+		{
+			if (Program.Options.Report)
+				PrintElementsWithMessage("Reduced power operations");
+		}
+		
+		private static void OnReducedMultiplicationAndDivision()
+		{
+			if (Program.Options.Report)
+				PrintElementsWithMessage("Reduced multiplication and division operations");
+		}
+		
+		private static void OnReducedEquality()
+		{
+			if (Program.Options.Report)
+				PrintElementsWithMessage("Reduced equality operations");
+		}
+		
+		private static void OnReducedAdditionAndSubtraction()
+		{
+			if (Program.Options.Report)
+				PrintElementsWithMessage("Reduced addition and subtraction operations");
+		}
+		
 		private static void OnExtractedTerms()
 		{
 			if (Program.Options.Report)
 			{
-				Console.WriteLine();
-				Console.Write("Built terms : ");
+				Console.Write("Extracted terms : ");
 
 				Console.Write(string.Join(", ", Workspace.Terms));
 
@@ -126,44 +178,47 @@ namespace					Computor
 
 		private static void OnSortedTerms()
 		{
-			bool			PrintIfPowerPresent(int power, bool printComma = false)
-			{
-				if (Workspace.SortedTerms.ContainsKey(power))
-				{
-					if (printComma)
-						Console.Write(", ");
-					
-					Console.Write(Workspace.SortedTerms[power]);
-					return true;
-				}
-
-				return false;
-			}
-			
 			if (Program.Options.Report)
 			{
-				bool		didPrintPreviousPower;
+				bool		didPrintPreviousPower = false;
 				
 				Console.Write("Sorted terms : ");
 
-				didPrintPreviousPower = PrintIfPowerPresent(2);
-				didPrintPreviousPower = PrintIfPowerPresent(1, didPrintPreviousPower);
-				PrintIfPowerPresent(0, didPrintPreviousPower);
+				PrintIfPowerPresent(2, ref didPrintPreviousPower);
+				PrintIfPowerPresent(1, ref didPrintPreviousPower);
+				PrintIfPowerPresent(0, ref didPrintPreviousPower);
 
 				Console.WriteLine();
+			}
+			
+			void			PrintIfPowerPresent(int power, ref bool didPrint)
+			{
+				if (Workspace.SortedTerms.ContainsKey(power))
+				{
+					if (didPrint)
+						Console.Write(", ");
+					
+					Console.Write(Workspace.SortedTerms[power]);
+					didPrint = true;
+				}
 			}
 		}
 
 		private static void OnSolvedEquation()
 		{
 			if (Program.Options.Report)
-				PrintEquationRoots
+			{
+				Console.WriteLine();
+				PrintEquationSolutions
 				(
 					"Solved equation, there are no roots",
 					"Solved equation, root : ",
+					"Solved equation, imaginary root : ",
 					"Solved equation, roots : ",
-					"Solved equation, roots : Any number"
+					"Solved equation, imaginary roots : ",
+					"Solved equation, any number is a root"
 				);
+			}
 		}
 
 		private static void ReportEquationInfo()
@@ -174,12 +229,14 @@ namespace					Computor
 				PrintEquationDegree();
 				PrintDiscriminantSign();
 
-				PrintEquationRoots
+				PrintEquationSolutions
 				(
 					"Equation has no roots",
-					"Equation root",
-					"Equations roots",
-					"Any number if solution for equation"
+					"Equation root : ",
+					"Equation imaginary root : ",
+					"Equations roots : ",
+					"Equation imaginary roots : ",
+					"Any number is solution of equation"
 				);
 			}
 		}
@@ -190,15 +247,16 @@ namespace					Computor
 
 		private static void PrintTokensWithMessage(string message)
 		{
-			Console.Write(message + " : ");
+			Console.WriteLine(message + " : ");
 			Workspace.Tokens.ForEach(token => Console.Write($"{token} "));
+			Console.WriteLine();
 			Console.WriteLine();
 		}
 
 		private static void PrintElementsWithMessage(string message)
 		{
-			Console.Write(message + " : ");
-			Workspace.FinalGroup.ForEach(holder => Console.Write($"{holder} "));
+			Console.WriteLine(message + " : ");
+			Console.WriteLine(Workspace.FinalGroup);
 			Console.WriteLine();
 		}
 		
@@ -269,50 +327,85 @@ namespace					Computor
 
 		private static void PrintEquationDegree()
 		{
-			int				maximumDegree = 0;
+			if (Workspace.EquationKind == EquationKinds.Complete || Workspace.EquationKind == EquationKinds.Incomplete)
+			{
+				int			maximumDegree = 0;
 
-			if (Workspace.SortedTerms.Count > 0)
-				maximumDegree = Workspace.SortedTerms.Select(powerAndTerm => powerAndTerm.Key).Max();
-			
-			Console.WriteLine($"Polynomial degree : {maximumDegree}");
+				if (Workspace.SortedTerms.Count > 0)
+					maximumDegree = Workspace.SortedTerms.Select(powerAndTerm => powerAndTerm.Key).Max();
+
+				Console.WriteLine($"Polynomial degree : {maximumDegree}");
+			}
 		}
 
 		private static void PrintDiscriminantSign()
 		{
-			if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
-				return;
-
-			if (Workspace.Discriminant > 0f)
-				Console.WriteLine("Discriminant is strictly positive, equation has two roots");
-			if (Workspace.Discriminant == 0f)
-				Console.WriteLine("Discriminant is zero, equation has one root");
-			if (Workspace.Discriminant < 0f)
-				Console.WriteLine("Discriminant is strictly negative, equation doesn't have roots");
+			if (Workspace.EquationKind == EquationKinds.Complete)
+			{
+				if (Workspace.Discriminant > 0f)
+					Console.WriteLine("Discriminant is strictly positive, equation has two roots");
+				if (Workspace.Discriminant == 0f)
+					Console.WriteLine("Discriminant is zero, equation has one root");
+				if (Workspace.Discriminant < 0f)
+					Console.WriteLine("Discriminant is strictly negative, equation doesn't have real roots");
+			}
 		}
 
-		private static void PrintEquationRoots
+		private static void PrintEquationSolutions
 		(
-			string messageForNoRoots,
-			string messageForOneRoot,
-			string messageForTwoRoots,
-			string messageForInfiniteRoots
+			string messageForNoSolutions,
+			string messageForOneSolution,
+			string messageForOneImaginarySolution,
+			string messageForTwoSolutions,
+			string messageForTwoImaginarySolutions,
+			string messageForInfiniteSolutions
 		)
 		{
-			if (Workspace.SolutionKind == SolutionKinds.InfiniteSolutions)
-				Console.Write(messageForInfiniteRoots);
-			else if (Workspace.SolutionKind == SolutionKinds.TwoSolutions)
-				Console.Write($"{messageForTwoRoots} : ");
-			else if (Workspace.SolutionKind == SolutionKinds.OneSolution)
-				Console.Write($"{messageForOneRoot} : ");
-			else if (Workspace.SolutionKind == SolutionKinds.TwoImaginarySolutions)
-				Console.Write(messageForNoRoots);
+			switch (Workspace.SolutionKind)
+			{
+				case SolutionKinds.NoSolutions :
+					Console.Write(messageForNoSolutions);
+					break;
 
-			if (Workspace.SolutionKind == SolutionKinds.TwoSolutions)
-				Console.Write($"{Workspace.Solutions[0]}, {Workspace.Solutions[1]}");
-			else if (Workspace.SolutionKind == SolutionKinds.OneSolution)
-				Console.Write($"{Workspace.Solutions[0]}");
-			else if (Workspace.SolutionKind == SolutionKinds.TwoImaginarySolutions)
-				Console.Write("");
+				case SolutionKinds.OneSolution :
+					Console.Write(messageForOneSolution);
+					break;
+
+				case SolutionKinds.OneImaginarySolution :
+					Console.Write(messageForOneImaginarySolution);
+					break;
+
+				case SolutionKinds.TwoSolutions :
+					Console.Write(messageForTwoSolutions);
+					break;
+
+				case SolutionKinds.TwoImaginarySolutions :
+					Console.Write(messageForTwoImaginarySolutions);
+					break;
+
+				case SolutionKinds.InfiniteSolutions :
+					Console.Write(messageForInfiniteSolutions);
+					break;
+			}
+			
+			switch (Workspace.SolutionKind)
+			{
+				case SolutionKinds.OneSolution :
+					Console.Write($"{Workspace.Solutions[0]}");
+					break;
+				
+				case SolutionKinds.OneImaginarySolution :
+					Console.Write($"{Workspace.ImaginarySolutions[0]}");
+					break;
+				
+				case SolutionKinds.TwoSolutions :
+					Console.Write($"{Workspace.Solutions[0]}, {Workspace.Solutions[1]}");
+					break;
+
+				case SolutionKinds.TwoImaginarySolutions :
+					Console.Write($"{Workspace.ImaginarySolutions[0]}, {Workspace.ImaginarySolutions[1]}");
+					break;
+			}
 
 			Console.WriteLine();
 		}

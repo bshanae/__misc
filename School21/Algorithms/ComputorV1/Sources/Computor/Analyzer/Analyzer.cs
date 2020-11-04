@@ -1,15 +1,7 @@
-using System;
-
 namespace										Computor
 {
 	public static class							Analyzer
 	{
-		private static void						Log(string message)
-		{
-			Console.WriteLine(message);
-			Console.WriteLine(Workspace.FinalHolder);
-		}
-		
 		public static void						BuildElements()
 		{
 			foreach (var token in Workspace.Tokens)
@@ -27,87 +19,59 @@ namespace										Computor
 						Workspace.FinalGroup.AddHolder().ConnectElement(new ElementWithOperator(@operator));
 						break;
 				}
-			
-			Log("Built elements");
 		}
 		
-		public static void						GroupElements()
+		public static void						GroupElements(Operator.Priorities priority)
 		{
-			GroupElementsByPriority(Operator.Priorities.Power);
-			Log("Grouped elements A : ");
-			
-			GroupElementsByPriority(Operator.Priorities.MultiplicationAndDivision);
-			Log("Grouped elements B : ");
-			
-			GroupElementsByPriority(Operator.Priorities.AdditionAndSubtraction);
-			Log("Grouped elements C : ");
-			
-			static void							GroupElementsByPriority(Operator.Priorities priority)
+			Group								group;
+
+			for (int i = 0; i < Workspace.FinalGroup.Count; i++)
 			{
-				Group							group;
-
-				for (int i = 0; i < Workspace.FinalGroup.Count; i++)
+				if (Workspace.FinalGroup[i].Element is ElementWithOperator elementWithOperator)
 				{
-					if (Workspace.FinalGroup[i].Element is ElementWithOperator elementWithOperator)
-						if (elementWithOperator.Operator.TypePriority == priority)
-						{
-							Workspace.FinalGroup.ValidateIndex(i - 1);
-							Workspace.FinalGroup.ValidateIndex(i + 1);
-							
-							if (Workspace.FinalGroup[i - 1].Element is Group testGroup && testGroup.Priority == priority)
-							{
-								group = testGroup;
-							}
-							else
-							{
-								group = new Group(priority);
-								
-								Workspace.FinalGroup.AddHolder(i - 1).ConnectElement(group);
-								group.AddHolder().ConnectElement(Workspace.FinalGroup[i].Element);
+					if (elementWithOperator.Operator.TypePriority == priority)
+					{
+						Workspace.FinalGroup.ValidateIndex(i - 1);
+						Workspace.FinalGroup.ValidateIndex(i + 1);
 
-								Workspace.FinalGroup.Refresh();
-							}
-							
-							group.AddHolder().ConnectElement(Workspace.FinalGroup[i + 0].Element);
-							group.AddHolder().ConnectElement(Workspace.FinalGroup[i + 1].Element);
-							Workspace.FinalGroup.Refresh();
-							i--;
+						if (Workspace.FinalGroup[i - 1].Element is Group testGroup && testGroup.Priority == priority)
+						{
+							group = testGroup;
 						}
-					
+						else
+						{
+							group = new Group(priority);
+
+							Workspace.FinalGroup.AddHolder(i - 1).ConnectElement(group);
+							group.AddHolder().ConnectElement(Workspace.FinalGroup[i].Element);
+
+							Workspace.FinalGroup.Refresh();
+						}
+
+						group.AddHolder().ConnectElement(Workspace.FinalGroup[i + 0].Element);
+						group.AddHolder().ConnectElement(Workspace.FinalGroup[i + 1].Element);
+						Workspace.FinalGroup.Refresh();
+						i--;
+					}
 				}
 			}
 		}
 
-		public static void						ReduceElements()
+		public static void						ReduceElements(Operator.Priorities priority)
 		{
-			ReduceGroupsOfPriority(Operator.Priorities.Power);
-			Log("Reduced elements A : ");
+			foreach (var holder in Workspace.FinalGroup)
+				ReduceRecursively(holder);
 			
-			ReduceGroupsOfPriority(Operator.Priorities.MultiplicationAndDivision);
-			Log("Reduced elements B : ");
-			
-			ReduceGroupsOfPriority(Operator.Priorities.Equality);
-			Log("Reduced elements D : ");
-			
-			ReduceGroupsOfPriority(Operator.Priorities.AdditionAndSubtraction);
-			Log("Reduced elements C : ");
-
-			static void							ReduceGroupsOfPriority(Operator.Priorities priority)
+			void								ReduceRecursively(Holder holder)
 			{
-				foreach (var holder in Workspace.FinalGroup)
-					ReduceRecursively(holder);
-				
-				void							ReduceRecursively(Holder holder)
+				if (holder.Element is Group group)
 				{
-					if (holder.Element is Group group)
-					{
-						group.ForEach(ReduceRecursively);
+					group.ForEach(ReduceRecursively);
 
-						if (group.Priority == priority)
-						{
-							group.TryReduce();
-							group.Refresh();
-						}
+					if (group.Priority == priority)
+					{
+						group.TryReduce();
+						group.Refresh();
 					}
 				}
 			}

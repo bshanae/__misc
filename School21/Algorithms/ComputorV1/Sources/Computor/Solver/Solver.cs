@@ -31,7 +31,9 @@ namespace								Computor
 			static void					SolveCompleteQuadraticEquation(float a, float b, float c)
 			{
 				float					discriminant = b * b - 4 * a * c;
-	
+
+				Workspace.EquationKind = EquationKinds.Complete;
+				
 				if (discriminant > 0)
 				{
 					Workspace.Solutions.Add(new Math.Fraction(-b - Math.SquareRoot(discriminant), 2 * a));
@@ -50,8 +52,8 @@ namespace								Computor
 				}
 				else
 				{
-					Workspace.ComplexSolutions.Add((-b - Math.ComplexSquareRoot(discriminant)) / (2 * a));
-					Workspace.ComplexSolutions.Add((-b + Math.ComplexSquareRoot(discriminant)) / (2 * a));
+					Workspace.ImaginarySolutions.Add((-b - Math.ComplexSquareRoot(discriminant)) / (2 * a));
+					Workspace.ImaginarySolutions.Add((-b + Math.ComplexSquareRoot(discriminant)) / (2 * a));
 					
 					Workspace.SolutionKind = SolutionKinds.TwoImaginarySolutions;
 				}
@@ -61,6 +63,8 @@ namespace								Computor
 		
 			static void					SolveIncompleteQuadraticEquation(float a, float b, float c)
 			{
+				Workspace.EquationKind = EquationKinds.Incomplete;
+
 				if (a == 0)
 				{
 					Workspace.Solutions.Add(new Math.Fraction(c, -b));
@@ -79,7 +83,7 @@ namespace								Computor
 					}
 					else
 					{
-						Workspace.ComplexSolutions.Add(Math.ComplexSquareRoot(valueUnderRoot));
+						Workspace.ImaginarySolutions.Add(Math.ComplexSquareRoot(valueUnderRoot));
 						Workspace.SolutionKind = SolutionKinds.OneImaginarySolution;
 					}
 
@@ -88,6 +92,7 @@ namespace								Computor
 
 			static void					SolveSpecialCases(float c)
 			{
+				Workspace.EquationKind = EquationKinds.Special;
 				Workspace.SolutionKind = c == 0 ? SolutionKinds.InfiniteSolutions : SolutionKinds.NoSolutions;
 			}
 

@@ -23,10 +23,11 @@ public static class						Workspace
 	public static Dictionary<int, Term>	SortedTerms = new Dictionary<int, Term>();
 
 	public static float					Discriminant;
-	
+
+	public static EquationKinds			EquationKind = EquationKinds.Undefined;
 	public static SolutionKinds			SolutionKind = SolutionKinds.Undefined;
 	public static List<Math.Fraction>	Solutions = new List<Math.Fraction>();
-	public static List<Math.Complex>	ComplexSolutions = new List<Math.Complex>();
+	public static List<Math.Complex>	ImaginarySolutions = new List<Math.Complex>();
 
 	static								Workspace()
 	{

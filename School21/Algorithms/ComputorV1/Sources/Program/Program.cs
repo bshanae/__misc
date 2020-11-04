@@ -53,12 +53,27 @@ public static partial class		Program
 		Analyzer.BuildElements();
 		Reporter.Report(Events.BuiltElements);
 
-		Analyzer.GroupElements();
-		Reporter.Report(Events.GroupedElements);
-		
-		Analyzer.ReduceElements();
-		Reporter.Report(Events.ReducedElements);
-		
+		Analyzer.GroupElements(Operator.Priorities.Power);
+		Reporter.Report(Events.GroupedPower);
+
+		Analyzer.GroupElements(Operator.Priorities.MultiplicationAndDivision);
+		Reporter.Report(Events.GroupedMultiplicationAndDivision);
+
+		Analyzer.GroupElements(Operator.Priorities.AdditionAndSubtraction);
+		Reporter.Report(Events.GroupedAdditionAndSubtraction);
+
+		Analyzer.ReduceElements(Operator.Priorities.Power);
+		Reporter.Report(Events.ReducedPower);
+
+		Analyzer.ReduceElements(Operator.Priorities.MultiplicationAndDivision);
+		Reporter.Report(Events.ReducedMultiplicationAndDivision);
+
+		Analyzer.ReduceElements(Operator.Priorities.Equality);
+		Reporter.Report(Events.ReducedEquality);
+
+		Analyzer.ReduceElements(Operator.Priorities.AdditionAndSubtraction);
+		Reporter.Report(Events.ReducedAdditionAndSubtraction);
+
 		Analyzer.ExtractTerms();
 		Reporter.Report(Events.ExtractedTerms);
 		
@@ -72,6 +87,6 @@ public static partial class		Program
 		Solver.Solve();
 		Reporter.Report(Events.SolvedEquation);
 		
-		Reporter.Report(Reporter.Requests.EquationInfo);
+		Reporter.Info(Reporter.Requests.EquationInfo);
 	}
 }

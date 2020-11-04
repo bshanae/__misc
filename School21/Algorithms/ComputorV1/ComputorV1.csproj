@@ -75,6 +75,7 @@
         <Compile Include="Sources\Computor\Parser\Parser.cs" />
         <Compile Include="Sources\Computor\Analyzer\Analyzer.cs" />
         <Compile Include="Sources\Computor\Reporter\Reporter.cs" />
+        <Compile Include="Sources\Computor\Solver\EquationKinds.cs" />
         <Compile Include="Sources\Computor\Solver\SolutionKinds.cs" />
         <Compile Include="Sources\Computor\Solver\Solver.cs" />
         <Compile Include="Sources\Computor\Validator\Validator.cs" />
