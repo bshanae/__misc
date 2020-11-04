@@ -5,8 +5,9 @@ namespace			Computor
 		Undefined,
 		NoSolutions,
 		OneSolution,
+		OneImaginarySolution,
 		TwoSolutions,
-		ImaginarySolutions,
+		TwoImaginarySolutions,
 		InfiniteSolutions
 	}
 }

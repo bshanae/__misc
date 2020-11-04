@@ -1,3 +1,4 @@
+using System.Text;
 using Computor;
 
 public static partial class				Math
@@ -63,12 +64,33 @@ public static partial class				Math
 
 		public override string			ToString()
 		{
-			if (ImaginaryPart > 0f)
-				return RealPart.ToStandardString() + " + " + ImaginaryPart.ToStandardString() + "i";
-			else if (ImaginaryPart < 0f)
-				return RealPart.ToStandardString() + " - " + (-1f * ImaginaryPart).ToStandardString() + "i";
-			else
-				return RealPart.ToStandardString();
+			bool						hasRealPart = RealPart != 0f;
+			bool						hasImaginaryPart = ImaginaryPart != 0f;
+
+			bool						showRealPart = hasRealPart || !hasImaginaryPart;
+			bool						showImaginaryPart = hasImaginaryPart;
+			
+			var							stringBuilder = new StringBuilder();
+
+			if (showRealPart)
+				stringBuilder.Append(RealPart.ToStandardString());
+	
+			if (showRealPart && showImaginaryPart)
+			{
+				if (ImaginaryPart > 0f)
+					stringBuilder.Append(" + " + ImaginaryPart.ToStandardString());
+				else if (ImaginaryPart < 0f)
+					stringBuilder.Append(" - " + (-1f * ImaginaryPart).ToStandardString());
+
+				stringBuilder.Append("i");
+			}
+			else if (!showRealPart && showImaginaryPart)
+			{
+				stringBuilder.Append(ImaginaryPart.ToStandardString());
+				stringBuilder.Append("i");
+			}
+
+			return stringBuilder.ToString();
 		}
 	}
 }

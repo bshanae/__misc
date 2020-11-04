@@ -14,7 +14,7 @@ namespace						Computor
 
 		public static string	ToStandardString(this float value)
 		{
-			return System.Math.Round(value, 10).ToString();
+			return System.Math.Round(value, 6).ToString();
 		}
 	}
 }

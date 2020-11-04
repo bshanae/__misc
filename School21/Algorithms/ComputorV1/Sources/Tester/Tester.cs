@@ -64,22 +64,15 @@ public static class				Tester
 			RunProgram("3 * x ^ 2 + 4 * x + 2 = 0", "--test");
 			Assert.IsTrue
 			(
-				CheckImaginarySolutions
+				CheckTwoSolutions
 				(
-					new Math.Complex(-0.666666f, +0.471404f),
-					new Math.Complex(-0.666666f, -0.471404f)
+					new Math.Complex(-0.666666f, -0.471404f),
+					new Math.Complex(-0.666666f, +0.471404f)
 				)
 			);
 			
 			RunProgram("x ^ 2 = -16", "--test");
-			Assert.IsTrue
-			(
-				CheckImaginarySolutions
-				(
-					new Math.Complex(-4f, 1f),
-					new Math.Complex(+4f, 1f)
-				)
-			);
+			Assert.IsTrue(CheckOneSolution(new Math.Complex(0f, 4f)));
 		}
 	}
 	
@@ -264,6 +257,7 @@ public static class				Tester
 			Workspace.Terms = new List<Term>();
 			Workspace.SortedTerms = new Dictionary<int, Term>();
 			Workspace.Solutions = new List<Math.Fraction>();
+			Workspace.ComplexSolutions = new List<Math.Complex>();
 			Workspace.SolutionKind = SolutionKinds.Undefined;
 		}
 	}
@@ -297,6 +291,13 @@ public static class				Tester
 	{
 		return Workspace.SolutionKind == SolutionKinds.OneSolution && Workspace.Solutions[0] == fraction;
 	}
+	
+	private static bool			CheckOneSolution(Math.Complex x)
+	{
+		return
+			Workspace.SolutionKind == SolutionKinds.OneImaginarySolution &&
+			Math.AlmostEqual(Workspace.ComplexSolutions[0], x, PrecisionEpsilon);
+	}
 
 	private static bool			CheckTwoSolutions(float x1, float x2)
 	{
@@ -314,10 +315,10 @@ public static class				Tester
 			Workspace.Solutions[1] == x2;
 	}
 
-	private static bool			CheckImaginarySolutions(Math.Complex x1, Math.Complex x2)
+	private static bool			CheckTwoSolutions(Math.Complex x1, Math.Complex x2)
 	{
 		return
-			Workspace.SolutionKind == SolutionKinds.ImaginarySolutions &&
+			Workspace.SolutionKind == SolutionKinds.TwoImaginarySolutions &&
 			Math.AlmostEqual(Workspace.ComplexSolutions[0], x1, PrecisionEpsilon) &&
 			Math.AlmostEqual(Workspace.ComplexSolutions[1], x2, PrecisionEpsilon);
 	}

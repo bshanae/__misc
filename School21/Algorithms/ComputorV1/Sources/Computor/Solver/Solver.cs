@@ -53,14 +53,11 @@ namespace								Computor
 					Workspace.ComplexSolutions.Add((-b - Math.ComplexSquareRoot(discriminant)) / (2 * a));
 					Workspace.ComplexSolutions.Add((-b + Math.ComplexSquareRoot(discriminant)) / (2 * a));
 					
-					Console.WriteLine(Workspace.ComplexSolutions[0]);
-					Console.WriteLine(Workspace.ComplexSolutions[1]);
-					
 					Workspace.ComplexSolutions = Workspace.ComplexSolutions
 						.OrderBy(complex => complex.RealPart)
 						.ToList();
 					
-					Workspace.SolutionKind = SolutionKinds.ImaginarySolutions;
+					Workspace.SolutionKind = SolutionKinds.TwoImaginarySolutions;
 				}
 
 				Workspace.Discriminant = discriminant;
@@ -81,14 +78,15 @@ namespace								Computor
 					{
 						Workspace.Solutions.Add(-Math.SquareRoot(valueUnderRoot));
 						Workspace.Solutions.Add(+Math.SquareRoot(valueUnderRoot));
+
+						Workspace.SolutionKind = SolutionKinds.TwoSolutions;
 					}
 					else
 					{
-						Workspace.ComplexSolutions.Add(-Math.ComplexSquareRoot(valueUnderRoot));
-						Workspace.ComplexSolutions.Add(+Math.ComplexSquareRoot(valueUnderRoot));
+						Workspace.ComplexSolutions.Add(Math.ComplexSquareRoot(valueUnderRoot));
+						Workspace.SolutionKind = SolutionKinds.OneImaginarySolution;
 					}
 
-					Workspace.SolutionKind = SolutionKinds.TwoSolutions;
 				}
 			}
 
