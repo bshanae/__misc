@@ -258,6 +258,12 @@ public static class				Tester
 		
 		RunProgram("x = x", "--test");
 		Assert.IsTrue(CheckInfiniteSolutions());
+		
+		RunProgram("x^3 = x^3", "--test");
+		Assert.IsTrue(CheckInfiniteSolutions());
+		
+		RunProgram("x^4 = x^4", "--test");
+		Assert.IsTrue(CheckInfiniteSolutions());
 	}
 
 	[Test]

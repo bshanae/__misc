@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace										Computor
 {
 	public static class							Analyzer
@@ -133,8 +135,12 @@ namespace										Computor
 				if (!Workspace.SortedTerms.ContainsKey(power))
 					Workspace.SortedTerms[(int) term.Power] = term;
 				else
-					Workspace.SortedTerms[(int) term.Power] = Workspace.SortedTerms[(int) term.Power] + term;
+					Workspace.SortedTerms[(int) term.Power] = Workspace.SortedTerms[(int)term.Power] + term;
 			}
-		}
+
+			Workspace.SortedTerms = Workspace.SortedTerms
+				.Where(kv => kv.Value.Factor != 0f)
+				.ToDictionary(kv => kv.Key, kv => kv.Value);
+		}		
 	}
 }
