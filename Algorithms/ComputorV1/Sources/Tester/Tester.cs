@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Computor;
 using NUnit.Framework;
+using NUnit.Framework.Internal.Execution;
 
 [TestFixture]  
 public static class				Tester
@@ -160,8 +161,8 @@ public static class				Tester
 			)
 		);
 		
-		RunProgram("x ^ 2 = -16", "--test");
-		Assert.IsTrue(CheckOneSolution(new Math.Complex(0f, 4f)));
+		RunProgram("x^2 = -16", "--test");
+		Assert.IsTrue(CheckTwoSolutions(new Math.Complex(0f, -4f), new Math.Complex(0f, +4f)));
 	}
 	
 	[Test]
@@ -264,6 +265,15 @@ public static class				Tester
 		
 		RunProgram("x^4 = x^4", "--test");
 		Assert.IsTrue(CheckInfiniteSolutions());
+		
+		RunProgram("x = x^2/x^2", "--test");
+		Assert.IsTrue(CheckOneSolution(1f));
+		
+		RunProgram("x = x^3 - x^3", "--test");
+		Assert.IsTrue(CheckOneSolution(0f));
+		
+		RunProgram("x = x^4 - x^4", "--test");
+		Assert.IsTrue(CheckOneSolution(0f));
 	}
 
 	[Test]

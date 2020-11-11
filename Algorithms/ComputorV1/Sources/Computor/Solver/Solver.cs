@@ -83,8 +83,10 @@ namespace								Computor
 					}
 					else
 					{
-						Workspace.ImaginarySolutions.Add(Math.ComplexSquareRoot(valueUnderRoot));
-						Workspace.SolutionKind = SolutionKinds.OneImaginarySolution;
+						Workspace.ImaginarySolutions.Add(-Math.ComplexSquareRoot(valueUnderRoot));
+						Workspace.ImaginarySolutions.Add(+Math.ComplexSquareRoot(valueUnderRoot));
+
+						Workspace.SolutionKind = SolutionKinds.TwoImaginarySolutions;
 					}
 
 				}
