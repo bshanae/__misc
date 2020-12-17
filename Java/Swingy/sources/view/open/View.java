@@ -22,13 +22,13 @@ public class				View
 	@Override
 	public void				listen(Requests.Abstract request)
 	{
-		if (request instanceof Requests.NonUi)
-			reactOnNonUiRequest((Requests.NonUi)request);
+		if (request instanceof Requests.System)
+			reactOnNonUiRequest((Requests.System)request);
 		else if (request instanceof Requests.Ui)
 			reactOnUiRequest((Requests.Ui)request);
 	}
 
-	private void			reactOnNonUiRequest(Requests.NonUi request)
+	private void			reactOnNonUiRequest(Requests.System request)
 	{
 		if (request instanceof Requests.SwitchToConsole)
 			ModeController.switchMode(Mode.CONSOLE);
@@ -45,7 +45,7 @@ public class				View
 		Screen				screen;
 		Signals.Abstract	signal;
 
-		screen = ScreenBuilder.buildScreenUpon(request);
+		screen = ScreenBuilder.build(request);
 		assert screen != null;
 
 		screen.buildUi(request);
@@ -57,7 +57,7 @@ public class				View
 
 		try
 		{
-			signal = SignalBuilder.buildSignalUpon(request, screen);
+			signal = SignalBuilder.build(request, screen);
 		}
 		catch (SignalBuilder.UnknownRequestException unknownRequest)
 		{

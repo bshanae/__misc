@@ -1,5 +1,7 @@
 package view.closed.screens.gui.implementations;
 
+import model.closed.gameObjects.creatures.hero.Hero;
+import model.open.Pockets;
 import model.open.Requests;
 import view.closed.mode.modeController.GuiModeController;
 import view.closed.screens.gui.GuiScreen;
@@ -8,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.util.List;
 
 public class					GuiHeroSelectorScreen extends GuiScreen
 {
@@ -18,9 +21,14 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 	private static final int	LEFT_TAB_IN_HERO_PANEL = 15;
 	private static final int	RIGHT_TAB_IN_HERO_PANEL = 15;
 
+	private List<Pockets.Hero> heroes;
+
+// ---------------------------> UI
+
 	@Override
 	public void					buildGui(Requests.Ui request)
 	{
+		parseRequest(request);
 		setContent(addHorizontalTabs(buildMainPanel()));
 	}
 
@@ -38,16 +46,16 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 			panel.add(buildTitle());
 			panel.add(Box.createRigidArea(new Dimension(0, GAP_FROM_TITLE_TO_HERO_PANELS)));
 
-			panel.add(buildHeroPanel());
+			panel.add(buildHeroPanel(getHeroAt(0)));
 			panel.add(Box.createRigidArea(new Dimension(0, GAP_BETWEEN_HERO_PANELS)));
 
-			panel.add(buildHeroPanel());
+			panel.add(buildHeroPanel(getHeroAt(1)));
 			panel.add(Box.createRigidArea(new Dimension(0, GAP_BETWEEN_HERO_PANELS)));
 
-			panel.add(buildHeroPanel());
+			panel.add(buildHeroPanel(getHeroAt(2)));
 			panel.add(Box.createRigidArea(new Dimension(0, GAP_BETWEEN_HERO_PANELS)));
 
-			panel.add(buildHeroPanel());
+			panel.add(buildHeroPanel(getHeroAt(3)));
 			panel.add(Box.createVerticalGlue());
 		}
 
@@ -68,7 +76,7 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		return label;
 	}
 
-	private JPanel				buildHeroPanel()
+	private JPanel				buildHeroPanel(Pockets.Hero hero)
 	{
 		JPanel					panel;
 
@@ -77,14 +85,14 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		panel.add(Box.createVerticalStrut(5));
-		panel.add(buildHeroName());
+		panel.add(buildHeroName(hero != null ? hero.getName() : "Empty"));
 		panel.add(buildHeroInfoAndActions());
 		panel.add(Box.createVerticalStrut(5));
 
 		return panel;
 	}
 
-	private JComponent			buildHeroName()
+	private JComponent			buildHeroName(String name)
 	{
 		JPanel					panel;
 		JLabel					label;
@@ -92,7 +100,7 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
-		label = new JLabel("Petr");
+		label = new JLabel(name);
 		label.setFont(buildFont(Font.BOLD, 25));
 
 		panel.add(Box.createHorizontalStrut(LEFT_TAB_IN_HERO_PANEL));
@@ -147,5 +155,25 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		panel.add(new JButton("Select"));
 
 		return panel;
+	}
+
+// ---------------------------> Service
+
+	private void				parseRequest(Requests.Ui request)
+	{
+		Requests.HeroSelector	heroSelectorRequest;
+
+		assert request instanceof Requests.HeroSelector;
+		heroSelectorRequest = (Requests.HeroSelector)request;
+
+		heroes = heroSelectorRequest.getHeroes();
+	}
+
+	private Pockets.Hero		getHeroAt(int index)
+	{
+		if (index < heroes.size())
+			return heroes.get(index);
+
+		return null;
 	}
 }

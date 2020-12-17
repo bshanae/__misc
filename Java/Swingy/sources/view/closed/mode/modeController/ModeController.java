@@ -4,7 +4,13 @@ import view.closed.mode.Mode;
 
 public abstract class				ModeController
 {
+	private static Mode				currentMode;
 	private static ModeController	currentController;
+
+	public static Mode				getCurrentMode()
+	{
+		return currentMode;
+	}
 
 	public static ModeController	getCurrentController()
 	{
@@ -15,13 +21,15 @@ public abstract class				ModeController
 	{
 		ModeController				newModeController;
 
-		newModeController = getControllerForMode(mode);
-
-		if (currentController == newModeController)
+		if (mode == currentMode)
 			return ;
+
+		currentMode = mode;
 
 		if (currentController != null)
 			currentController.disable();
+
+		newModeController = getControllerForMode(mode);
 
 		newModeController.enable();
 		currentController = newModeController;

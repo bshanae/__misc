@@ -10,7 +10,7 @@ public abstract class				SignalBuilder
 {
 	public static class				UnknownRequestException extends Exception { }
 
-	public static Signals.Abstract	buildSignalUpon(Requests.Ui request, Screen screen)
+	public static Signals.Abstract	build(Requests.Ui request, Screen screen)
 									throws UnknownRequestException
 	{
 		if (screen instanceof ConsoleScreen)

@@ -8,15 +8,17 @@ public abstract class						Requests
 {
 	public interface						Abstract {}
 
-	public interface						NonUi {}
+	public interface						System {}
 
 	public interface						Ui {}
 
 // --------------------------------------->	Empty
 
-	public static class						SwitchToConsole implements Abstract, NonUi {}
+	public static class						SwitchToConsole implements Abstract, System
+	{}
 
-	public static class						SwitchToGui implements Abstract, NonUi {}
+	public static class						SwitchToGui implements Abstract, System
+	{}
 
 	public static class						HeroSelector implements Abstract, Ui
 	{
