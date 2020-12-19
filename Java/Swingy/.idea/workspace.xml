@@ -23,16 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5c13bad-ffa3-44d3-9f43-cb897855962f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sources/view/closed/mode/ModeDependantUnion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/open/Requests.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Requests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/builders/ScreenBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/builders/ScreenBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/builders/SignalBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/builders/SignalBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ModeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ModeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/open/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +49,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -66,6 +59,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -100,7 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608150783413</updated>
-      <workItem from="1608150785307" duration="2254000" />
+      <workItem from="1608150785307" duration="6874000" />
     </task>
     <task id="LOCAL-00001" summary="Swingy : Transported project from its repository">
       <created>1608151059015</created>
@@ -109,7 +103,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608151059015</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Swingy : Added ModeDependantUnion class. Renamed NonUi request to System request.">
+      <created>1608218440203</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608218440203</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Swingy : gitignore update">
+      <created>1608218569467</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608218569467</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,8 +135,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Swingy : Transported project from its repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="Swingy : Transported project from its repository" />
+    <MESSAGE value="Swingy : Added ModeDependantUnion class. Renamed NonUi request to System request." />
+    <MESSAGE value="Swingy : gitignore update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Swingy : gitignore update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="109" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608151168565">
@@ -139,29 +150,41 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="457" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1608151124705" />
-    <state width="1398" height="118" key="GridCell.Tab.0.bottom" timestamp="1608153327686">
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1608218603551">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="118" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608153327686" />
-    <state width="1398" height="118" key="GridCell.Tab.0.center" timestamp="1608153327683">
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1608218603551" />
+    <state width="1398" height="263" key="GridCell.Tab.0.bottom" timestamp="1608370957554">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="118" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608153327683" />
-    <state width="1398" height="118" key="GridCell.Tab.0.left" timestamp="1608153327682">
+    <state width="1398" height="263" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608370957554" />
+    <state width="1398" height="263" key="GridCell.Tab.0.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608370684869" />
+    <state width="1398" height="263" key="GridCell.Tab.0.center" timestamp="1608370957552">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="118" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608153327682" />
-    <state width="1398" height="118" key="GridCell.Tab.0.right" timestamp="1608153327684">
+    <state width="1398" height="263" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608370957552" />
+    <state width="1398" height="263" key="GridCell.Tab.0.center/0.25.1440.791@0.25.1440.791" timestamp="1608370684866" />
+    <state width="1398" height="263" key="GridCell.Tab.0.left" timestamp="1608370957551">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="118" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608153327684" />
+    <state width="1398" height="263" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608370957551" />
+    <state width="1398" height="263" key="GridCell.Tab.0.left/0.25.1440.791@0.25.1440.791" timestamp="1608370684865" />
+    <state width="1398" height="263" key="GridCell.Tab.0.right" timestamp="1608370957553">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="263" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608370957553" />
+    <state width="1398" height="263" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608370684868" />
     <state x="208" y="28" key="SettingsEditor" timestamp="1608152541176">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="208" y="28" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1608152541176" />
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1608151064093">
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1608218572212">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1608151064093" />
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1608218572212" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1608218676403">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1608218676403" />
   </component>
 </project>
