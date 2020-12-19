@@ -1,10 +1,10 @@
-package model.closed.gameConcepts.delegates.core;
+package model.closed.gameManagers.delegates.core;
 
 import model.closed.gameObjects.creatures.hero.Hero;
-import model.closed.gameConcepts.heroStorage.HeroStorage;
-import model.closed.gameConcepts.delegates.Delegate;
-import model.closed.gameConcepts.delegates.game.LevelDelegate;
-import model.closed.gameConcepts.delegates.heroSelection.HeroSelectionDelegate;
+import model.closed.gameManagers.heroStorage.HeroStorage;
+import model.closed.gameManagers.delegates.Delegate;
+import model.closed.gameManagers.delegates.game.LevelDelegate;
+import model.closed.gameManagers.delegates.heroSelection.HeroSelectionDelegate;
 import model.open.Requests;
 
 public class					CoreDelegate extends Delegate

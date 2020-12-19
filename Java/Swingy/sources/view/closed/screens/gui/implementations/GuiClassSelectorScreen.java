@@ -15,9 +15,9 @@ public class					GuiClassSelectorScreen extends GuiScreen
 	private static final int	GAP_BETWEEN_CLASSES = 20;
 
 	@Override
-	public void					buildGui(Requests.Ui request)
+	public JPanel				getContent(Requests.Ui request)
 	{
-		setContent(addHorizontalTabs(buildMainPanel()));
+		return buildMainPanel();
 	}
 
 	private JPanel				buildMainPanel()

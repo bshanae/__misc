@@ -6,7 +6,7 @@ import view.open.Signals;
 
 import java.util.*;
 
-public class							ConsoleSignalTranslator
+public class							ConsoleSignalTranslator extends SignalTranslator
 {
 	private enum						Keyword
 	{
@@ -203,12 +203,12 @@ public class							ConsoleSignalTranslator
 			Context.HERO_SELECTOR,
 			new Pattern[]
 			{
-				new Pattern(Commands.Select.class, Keyword.VALUE),
+				new Pattern(Commands.SelectHero.class, Keyword.VALUE),
 
-				new Pattern(Commands.Create.class, Keyword.CREATE),
-				new Pattern(Commands.Select.class, Keyword.SELECT, Keyword.VALUE),
-				new Pattern(Commands.Delete.class, Keyword.DELETE, Keyword.VALUE),
-				new Pattern(Commands.Delete.class, Keyword.INFO, Keyword.VALUE)
+				new Pattern(Commands.CreateHero.class, Keyword.CREATE),
+				new Pattern(Commands.SelectHero.class, Keyword.SELECT, Keyword.VALUE),
+				new Pattern(Commands.DeleteHero.class, Keyword.DELETE, Keyword.VALUE),
+				new Pattern(Commands.DeleteHero.class, Keyword.INFO, Keyword.VALUE)
 			}
 		);
 
@@ -223,8 +223,8 @@ public class							ConsoleSignalTranslator
 			Context.CLASS_SELECTOR,
 			new Pattern[]
 			{
-				new Pattern(Commands.Select.class, Keyword.VALUE),
-				new Pattern(Commands.Select.class, Keyword.SELECT, Keyword.VALUE)
+				new Pattern(Commands.SelectHero.class, Keyword.VALUE),
+				new Pattern(Commands.SelectHero.class, Keyword.SELECT, Keyword.VALUE)
 			}
 		);
 
@@ -247,20 +247,23 @@ public class							ConsoleSignalTranslator
 		new Pattern(Commands.Exit.class, Keyword.EXIT)
 	};
 
-	public static Commands.Abstract		translate(Signals.Console signal)
+	@Override
+	public Commands.Abstract			translateImplementation(Signals.Abstract signal)
 	{
+		Signals.Console					consoleSignal;
 		List<Pattern>					possiblePatterns;
 		CommandParser					commandParser;
 		Pattern							resultPattern;
 
-		assert contextToPatterns.containsKey(signal.context);
+		consoleSignal = (Signals.Console)signal;
+		assert contextToPatterns.containsKey(consoleSignal.context);
 
 		possiblePatterns = new LinkedList<>();
 
-		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(signal.context)));
+		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(consoleSignal.context)));
 		possiblePatterns.addAll(Arrays.asList(commonPatterns));
 
-		commandParser = new CommandParser(signal.input);
+		commandParser = new CommandParser(consoleSignal.input);
 		resultPattern = null;
 
 		for (Pattern pattern : possiblePatterns)

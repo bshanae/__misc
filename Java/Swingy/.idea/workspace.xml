@@ -23,20 +23,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5c13bad-ffa3-44d3-9f43-cb897855962f" name="Temporary" comment="">
+      <change afterPath="$PROJECT_DIR$/sources/controller/closed/GuiSignalTranslator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/application/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/controller/closed/ConsoleSignalTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/closed/ConsoleSignalTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/controller/closed/SignalTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/closed/SignalTranslator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/controller/open/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/open/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroCreationDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroCreationDelegate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroSelectionDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroSelectionDelegate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/open/Pockets.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Pockets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/open/Requests.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Requests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/Delegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/Delegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/common/ErrorDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/common/ErrorDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/core/CoreDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/core/CoreDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/game/LevelDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/game/LevelDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/game/MapDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/game/MapDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroCreationDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/heroSelection/HeroCreationDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroSelectionDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/heroSelection/HeroSelectionDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/heroStorage/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/heroStorage/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/heroStorage/HeroStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/heroStorage/HeroStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/builders/SignalBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ConsoleModeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ConsoleModeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/mode/modeController/GuiModeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/mode/modeController/GuiModeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ModeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ModeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/ConsoleScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/ConsoleScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleClassSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleClassSelectorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleErrorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleErrorScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleHeroSelectorScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleNameEntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleNameEntryScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/GuiScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/GuiScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiClassSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiClassSelectorScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiMapScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiNameEntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiNameEntryScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/open/Signals.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/Signals.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/open/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/View.java" afterDir="false" />
     </list>
     <list id="61165069-1240-45f7-80c7-483508439926" name="Ignore" comment="" />
     <list id="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" name="Use" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/open/Signals.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/Signals.java" afterDir="false" />
     </list>
@@ -58,28 +80,25 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java">
       <ranges>
-        <range start1="93" end1="93" start2="93" end2="95" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
-        <range start1="98" end1="99" start2="100" end2="101" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="103" end1="103" start2="105" end2="107" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="6" end1="6" start2="6" end2="7" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="24" end1="25" start2="25" end2="26" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="27" end1="28" start2="28" end2="29" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="93" end1="93" start2="94" end2="96" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="104" end1="104" start2="107" end2="113" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="106" end1="108" start2="115" end2="117" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="116" end1="116" start2="125" end2="126" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="123" end1="123" start2="133" end2="136" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="125" end1="126" start2="138" end2="139" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+    <file path="$PROJECT_DIR$/sources/view/open/Signals.java">
       <ranges>
-        <range start1="24" end1="25" start2="24" end2="30" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="27" end1="27" start2="32" end2="33" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="32" end1="32" start2="38" end2="45" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="36" end1="36" start2="49" end2="69" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="92" end1="92" start2="125" end2="127" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="96" end1="97" start2="131" end2="132" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="119" end1="120" start2="154" end2="162" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
-        <range start1="141" end1="142" start2="183" end2="185" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
-        <range start1="156" end1="157" start2="199" end2="200" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
-        <range start1="159" end1="162" start2="202" end2="205" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
-        <range start1="164" end1="167" start2="207" end2="210" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
-        <range start1="169" end1="172" start2="212" end2="215" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
-        <range start1="174" end1="176" start2="217" end2="223" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="180" end1="181" start2="227" end2="232" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
-        <range start1="183" end1="184" start2="234" end2="235" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="2" end1="3" start2="2" end2="5" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="4" end1="5" start2="6" end2="7" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="6" end1="7" start2="8" end2="11" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="8" end1="20" start2="12" end2="14" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="21" end1="22" start2="15" end2="16" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="27" end1="27" start2="21" end2="52" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
       </ranges>
     </file>
   </component>
@@ -145,7 +164,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608150783413</updated>
-      <workItem from="1608150785307" duration="9935000" />
+      <workItem from="1608150785307" duration="18354000" />
     </task>
     <task id="LOCAL-00001" summary="Swingy : Transported project from its repository">
       <created>1608151059015</created>
@@ -168,7 +187,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608218569467</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Swingy : Redone GuiHeroSelectorScreen with MigLayout">
+      <created>1608371049352</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608371049352</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Swingy : Requests, Pockets, Command and Signal use final members instead of getters">
+      <created>1608393749308</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608393749308</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,41 +223,71 @@
     <MESSAGE value="Swingy : Transported project from its repository" />
     <MESSAGE value="Swingy : Added ModeDependantUnion class. Renamed NonUi request to System request." />
     <MESSAGE value="Swingy : gitignore update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Swingy : gitignore update" />
+    <MESSAGE value="Swingy : Redone GuiHeroSelectorScreen with MigLayout" />
+    <MESSAGE value="Swingy : Requests, Pockets, Command and Signal use final members instead of getters" />
+    <option name="LAST_COMMIT_MESSAGE" value="Swingy : Requests, Pockets, Command and Signal use final members instead of getters" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="109" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608151168565">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="109" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608151168565" />
+    <state x="533" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1608395831543">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="533" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1608395831543" />
     <state x="457" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608151124705">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="457" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1608151124705" />
+    <state x="483" y="157" width="944" height="613" key="#xdebugger.evaluate" timestamp="1608403604522">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="483" y="157" width="944" height="613" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1608403604522" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1608218603551">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1608218603551" />
-    <state width="1398" height="263" key="GridCell.Tab.0.bottom" timestamp="1608370957554">
+    <state width="1398" height="403" key="GridCell.Tab.0.bottom" timestamp="1608405957023">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="263" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608370957554" />
-    <state width="1398" height="263" key="GridCell.Tab.0.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608370684869" />
-    <state width="1398" height="263" key="GridCell.Tab.0.center" timestamp="1608370957552">
+    <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608405957023" />
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608405353926" />
+    <state width="1398" height="403" key="GridCell.Tab.0.center" timestamp="1608405957020">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="263" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608370957552" />
-    <state width="1398" height="263" key="GridCell.Tab.0.center/0.25.1440.791@0.25.1440.791" timestamp="1608370684866" />
-    <state width="1398" height="263" key="GridCell.Tab.0.left" timestamp="1608370957551">
+    <state width="1398" height="403" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608405957020" />
+    <state width="1398" height="304" key="GridCell.Tab.0.center/0.25.1440.791@0.25.1440.791" timestamp="1608405353918" />
+    <state width="1398" height="403" key="GridCell.Tab.0.left" timestamp="1608405957018">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="263" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608370957551" />
-    <state width="1398" height="263" key="GridCell.Tab.0.left/0.25.1440.791@0.25.1440.791" timestamp="1608370684865" />
-    <state width="1398" height="263" key="GridCell.Tab.0.right" timestamp="1608370957553">
+    <state width="1398" height="403" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608405957018" />
+    <state width="1398" height="304" key="GridCell.Tab.0.left/0.25.1440.791@0.25.1440.791" timestamp="1608405353897" />
+    <state width="1398" height="403" key="GridCell.Tab.0.right" timestamp="1608405957021">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="263" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608371033552" />
-    <state width="1398" height="263" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608371017311" />
+    <state width="1398" height="403" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608405957021" />
+    <state width="1398" height="304" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608405353920" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1608405495335">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608405495335" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608405355395" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1608405495327">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1608405495327" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.25.1440.791@0.25.1440.791" timestamp="1608405355393" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1608405495326">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1608405495326" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.25.1440.791@0.25.1440.791" timestamp="1608405355392" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1608405495328">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1608405495328" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.25.1440.791@0.25.1440.791" timestamp="1608405355394" />
     <state x="513" y="156" key="RollbackChangesDialog" timestamp="1608392475576">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -237,13 +300,17 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="558" y="323" key="VCS.EditChangelistDialog/0.0.1440.900@0.0.1440.900" timestamp="1608392735301" />
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1608371052859">
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1608393751720">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1608218572212" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1608218676403">
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1608393751720" />
+    <state width="720" height="450" key="XDebugger.FullValuePopup" timestamp="1608404904851">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1608218676403" />
+    <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900@0.0.1440.900" timestamp="1608404904851" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1608397749588">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1608397749588" />
   </component>
 </project>

@@ -1,28 +1,53 @@
 package view.open;
 
-public abstract class			Signals
+import model.open.Pockets;
+
+public abstract class					Signals
 {
-	public interface			Abstract {}
+	public interface					Abstract {}
 
-	public static class			Console implements Abstract
+// -----------------------------------> Console
+
+	public static class					Console implements Abstract
 	{
-		private final String	input;
-		private final Context	context;
+		public final String				input;
+		public final Context			context;
 
-		public String			getInput()
-		{
-			return input;
-		}
-
-		public Context			getContext()
-		{
-			return context;
-		}
-
-		public					Console(String input, Context context)
+		public							Console(String input, Context context)
 		{
 			this.input = input;
 			this.context = context;
+		}
+	}
+
+// -----------------------------------> GUI
+
+	public static abstract class		Gui
+	{
+		public interface				Abstract extends Signals.Abstract { }
+
+		public static class				CreateHero implements Abstract
+		{ }
+
+		public static class				SelectHero implements Abstract
+		{
+			public final Pockets.Hero	hero;
+
+			public						SelectHero(Pockets.Hero hero)
+			{
+				this.hero = hero;
+			}
+		}
+
+
+		public static class				DeleteHero implements Abstract
+		{
+			public final Pockets.Hero	hero;
+
+			public						DeleteHero(Pockets.Hero hero)
+			{
+				this.hero = hero;
+			}
 		}
 	}
 }

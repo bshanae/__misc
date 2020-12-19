@@ -8,9 +8,9 @@ public abstract class				Commands
 
 	public static class				Empty implements Abstract {}
 
-	public static class				Create implements Abstract {}
-
 	public static class				Exit implements Abstract {}
+
+	public static class				CreateHero implements Abstract {}
 
 	public static class				GoNorth implements Abstract {}
 	public static class				GoEast implements Abstract {}
@@ -37,25 +37,25 @@ public abstract class				Commands
 		}
 	}
 
-	public static class				Select extends CommandWithValue
+	public static class				SelectHero extends CommandWithValue
 	{
-		public						Select(String value)
+		public						SelectHero(String value)
 		{
 			super(value);
 		}
 	}
 
-	public static class				Delete extends CommandWithValue
+	public static class				DeleteHero extends CommandWithValue
 	{
-		public						Delete(String value)
+		public						DeleteHero(String value)
 		{
 			super(value);
 		}
 	}
 
-	public static class				Info extends CommandWithValue
+	public static class				InfoAboutHero extends CommandWithValue
 	{
-		public						Info(String value)
+		public						InfoAboutHero(String value)
 		{
 			super(value);
 		}

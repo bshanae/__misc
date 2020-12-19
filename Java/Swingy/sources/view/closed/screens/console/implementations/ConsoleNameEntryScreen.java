@@ -7,8 +7,8 @@ import view.closed.utils.common.ResourceManager;
 public class		ConsoleNameEntryScreen extends ConsoleScreen
 {
 	@Override
-	public void		buildUi(Requests.Ui request)
+	public String	getContent(Requests.Ui request)
 	{
-		setContent(ResourceManager.getText("/console/templates/HeroNameEntry.txt"));
+		return ResourceManager.getText("/console/templates/HeroNameEntry.txt");
 	}
 }

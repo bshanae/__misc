@@ -1,4 +1,4 @@
-package model.closed.gameConcepts.heroStorage;
+package model.closed.gameManagers.heroStorage;
 
 import application.common.SingletonMap;
 import model.closed.gameObjects.creatures.hero.Hero;

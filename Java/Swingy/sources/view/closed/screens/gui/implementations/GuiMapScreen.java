@@ -13,7 +13,7 @@ public class					GuiMapScreen extends GuiScreen
 	private static final Point	CANVAS_SIZE = new Point(20, 20);
 
 	@Override
-	protected void				buildGui(Requests.Ui request)
+	public JPanel				getContent(Requests.Ui request)
 	{
 		String					layoutConfig;
 		JPanel					panel;
@@ -28,10 +28,7 @@ public class					GuiMapScreen extends GuiScreen
 			for (int row = 0; row < CANVAS_SIZE.y; row++)
 				panel.add(buildCell(), "al center");
 
-		panel = addVerticalTabs(panel);
-		panel = addHorizontalTabs(panel);
-
-		setContent(panel);
+		return panel;
 	}
 
 	private JComponent			buildCell()

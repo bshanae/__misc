@@ -1,10 +1,10 @@
-package model.closed.gameConcepts.delegates.heroSelection;
+package model.closed.gameManagers.delegates.heroSelection;
 
 import controller.open.Commands;
 import model.closed.gameObjects.creatures.hero.Hero;
-import model.closed.gameConcepts.heroStorage.HeroStorage;
-import model.closed.gameConcepts.delegates.Delegate;
-import model.closed.gameConcepts.delegates.common.ErrorDelegate;
+import model.closed.gameManagers.heroStorage.HeroStorage;
+import model.closed.gameManagers.delegates.Delegate;
+import model.closed.gameManagers.delegates.common.ErrorDelegate;
 import model.open.Pockets;
 import model.open.Requests;
 
@@ -32,26 +32,15 @@ public class				HeroSelectionDelegate extends Delegate
 		if (tryRespondToCommonCommands(command))
 			return ;
 
-		if (command instanceof Commands.Create)
+		if (command instanceof Commands.CreateHero)
 		{
 			linkChild(new HeroCreationDelegate());
 			isWaitingForNewHero = true;
 		}
-		else if (command instanceof Commands.Select)
-		{
-			try
-			{
-				selectHero((Commands.Select)command);
-			}
-			catch (InvalidCommandException exception)
-			{
-				linkChild(new ErrorDelegate("Hero not found"));
-			}
-		}
-		else if (command instanceof Commands.Delete)
-		{
-
-		}
+		else if (command instanceof Commands.SelectHero)
+			trySelectHero((Commands.SelectHero)command);
+		else if (command instanceof Commands.DeleteHero)
+			tryDeleteHero((Commands.DeleteHero)command);
 	}
 
 	@Override
@@ -80,7 +69,7 @@ public class				HeroSelectionDelegate extends Delegate
 		sendRequest(new Requests.HeroSelector(heroes));
 	}
 
-	private void			selectHero(Commands.Select command) throws InvalidCommandException
+	private void			trySelectHero(Commands.SelectHero command)
 	{
 		try
 		{
@@ -88,7 +77,24 @@ public class				HeroSelectionDelegate extends Delegate
 		}
 		catch (HeroStorage.HeroNotFoundException exception)
 		{
-			throw new InvalidCommandException();
+			linkChild(new ErrorDelegate("Hero not found"));
+		}
+	}
+
+	private void			tryDeleteHero(Commands.DeleteHero command)
+	{
+		try
+		{
+			Hero			targetHero;
+
+			targetHero = HeroStorage.getInstance().find(command.value);
+			HeroStorage.getInstance().delete(targetHero);
+
+			showHeroSelectionScreen();
+		}
+		catch (HeroStorage.HeroNotFoundException exception)
+		{
+			linkChild(new ErrorDelegate("Hero not found"));
 		}
 	}
 }

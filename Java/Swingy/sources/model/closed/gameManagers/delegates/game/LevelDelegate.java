@@ -1,7 +1,7 @@
-package model.closed.gameConcepts.delegates.game;
+package model.closed.gameManagers.delegates.game;
 
 import controller.open.Commands;
-import model.closed.gameConcepts.delegates.Delegate;
+import model.closed.gameManagers.delegates.Delegate;
 import model.closed.gameObjects.creatures.hero.Hero;
 
 public class				LevelDelegate extends Delegate

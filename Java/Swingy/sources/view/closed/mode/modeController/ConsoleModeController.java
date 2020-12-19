@@ -1,10 +1,16 @@
 package view.closed.mode.modeController;
 
 import application.common.SingletonMap;
+import view.open.Context;
+import view.open.Signals;
+import view.open.View;
+
+import java.util.Scanner;
 
 public class							ConsoleModeController extends ModeController
 {
-	private String						text;
+	private String						output;
+	private Context						context;
 
 	public static ConsoleModeController	getInstance()
 	{
@@ -14,36 +20,45 @@ public class							ConsoleModeController extends ModeController
 // -----------------------------------> Overrides
 
 	@Override
-	public void							show()
+	public void							updateUi()
 	{
-		writeToConsole(text);
+		//cleanConsole();
+		writeToConsole(output);
 	}
 
 	@Override
-	public void							clean()
+	public void							requestInput()
 	{
-		cleanConsole();
+		String							input;
+
+		input = new Scanner(System.in).nextLine();
+		View.getInstance().sendSignal(new Signals.Console(input, context));
 	}
 
 	@Override
-	protected void						enable() {}
+	protected void						enableUi() { }
 
 	@Override
-	protected void						disable()
+	protected void						disableUi()
 	{
 		cleanConsole();
 	}
 
 // -----------------------------------> Own methods
 
-	public void							setContent(String text)
+	public void							setContent(String content)
 	{
-		this.text = text;
+		output = content;
+	}
+
+	public void 						setContext(Context context)
+	{
+		this.context = context;
 	}
 
 	private void						writeToConsole(String string)
 	{
-		System.out.println(string);
+		System.out.print(string);
 		System.out.flush();
 	}
 

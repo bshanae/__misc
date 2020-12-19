@@ -1,7 +1,7 @@
-package model.closed.gameConcepts.delegates.common;
+package model.closed.gameManagers.delegates.common;
 
 import controller.open.Commands;
-import model.closed.gameConcepts.delegates.Delegate;
+import model.closed.gameManagers.delegates.Delegate;
 import model.open.Requests;
 
 public class        		ErrorDelegate extends Delegate

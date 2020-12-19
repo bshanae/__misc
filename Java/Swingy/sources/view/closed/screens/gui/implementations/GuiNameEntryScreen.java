@@ -16,9 +16,9 @@ public class					GuiNameEntryScreen extends GuiScreen
 	private static final int	GAP_FROM_TITLE_TO_CONTENT = 75;
 
 	@Override
-	public void					buildGui(Requests.Ui request)
+	public JPanel				getContent(Requests.Ui request)
 	{
-		setContent(addHorizontalTabs(buildMainPanel()));
+		return buildMainPanel();
 	}
 
 	private JPanel				buildMainPanel()

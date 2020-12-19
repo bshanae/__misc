@@ -1,26 +1,19 @@
 package view.closed.screens.console;
 
+import model.open.Requests;
 import view.closed.mode.modeController.ConsoleModeController;
 import view.closed.screens.Screen;
+import view.open.Context;
 
 import java.util.Scanner;
 
-public abstract class		ConsoleScreen implements Screen
+public abstract class			ConsoleScreen implements Screen
 {
-	private String			input;
-
-	public String			getInput()
+	public final void			buildUi(Requests.Ui request)
 	{
-		return input;
+		ConsoleModeController.getInstance().setContext(Context.getContext(request));
+		ConsoleModeController.getInstance().setContent(getContent(request));
 	}
 
-	protected static void	setContent(String text)
-	{
-		ConsoleModeController.getInstance().setContent(text);
-	}
-
-	public void				waitForInput()
-	{
-		input = new Scanner(System.in).nextLine();
-	}
+	protected abstract String	getContent(Requests.Ui request);
 }

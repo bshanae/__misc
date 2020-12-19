@@ -11,7 +11,7 @@ import java.util.List;
 public class					ConsoleHeroSelectorScreen extends ConsoleScreen
 {
 	@Override
-	public void					buildUi(Requests.Ui request)
+	public String				getContent(Requests.Ui request)
 	{
 		Requests.HeroSelector	heroSelectorRequest;
 		String					rawTemplate;
@@ -35,6 +35,6 @@ public class					ConsoleHeroSelectorScreen extends ConsoleScreen
 			);
 		}
 
-		setContent(template.toString());
+		return template.toString();
 	}
 }

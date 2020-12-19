@@ -2,77 +2,65 @@ package view.closed.screens.gui;
 
 import model.open.Requests;
 import view.closed.mode.modeController.GuiModeController;
+import view.closed.mode.modeController.ModeController;
 import view.closed.screens.Screen;
+import view.open.Signals;
+import view.open.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public abstract class			GuiScreen implements Screen
+public abstract class				GuiScreen implements Screen
 {
-	private static final int	VERTICAL_TAB = 20;
-	private static final int	HORIZONTAL_TAB = 30;
-
-	private class				BuildGuiCaller implements Runnable
+	private class					GuiBuilder implements Runnable
 	{
-		Requests.Ui				request;
+		Requests.Ui					request;
 
-		public 					BuildGuiCaller(Requests.Ui request)
+		public 						GuiBuilder(Requests.Ui request)
 		{
 			this.request = request;
 		}
 
 		@Override
-		public void				run()
+		public void					run()
 		{
-			buildGui(request);
+			GuiModeController.getInstance().setContent(getContent(request));
+		}
+	}
+
+	public class					GuiSignalSender implements ActionListener
+	{
+		Signals.Gui.Abstract		signal;
+
+		public Signals.Gui.Abstract	getSignal()
+		{
+			return signal;
+		}
+
+		public 						GuiSignalSender(Signals.Gui.Abstract signal)
+		{
+			this.signal = signal;
+		}
+
+		@Override
+		public void					actionPerformed(ActionEvent event)
+		{
+			View.getInstance().sendSignal(signal);
 		}
 	}
 
 	@Override
-	public void					buildUi(Requests.Ui request)
+	public void						buildUi(Requests.Ui request)
 	{
-		EventQueue.invokeLater(new BuildGuiCaller(request));
+		EventQueue.invokeLater(new GuiBuilder(request));
 	}
 
-	protected static void		setContent(JPanel panel)
-	{
-		GuiModeController.getInstance().setContent(panel);
-	}
+	protected abstract JPanel		getContent(Requests.Ui request);
 
-	protected abstract void		buildGui(Requests.Ui request);
-
-	protected Font				buildFont(int style, int size)
+	protected static Font			buildFont(int style, int size)
 	{
 		return new Font(GuiModeController.FONT_NAME, style, size);
-	}
-
-	protected JPanel			addVerticalTabs(JPanel panel)
-	{
-		JPanel					resultPanel;
-
-		resultPanel = new JPanel();
-
-		resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
-
-		resultPanel.add(Box.createVerticalStrut(HORIZONTAL_TAB));
-		resultPanel.add(panel);
-		resultPanel.add(Box.createVerticalStrut(HORIZONTAL_TAB));
-
-		return resultPanel;
-	}
-
-	protected JPanel			addHorizontalTabs(JPanel panel)
-	{
-		JPanel					resultPanel;
-
-		resultPanel = new JPanel();
-
-		resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.X_AXIS));
-
-		resultPanel.add(Box.createHorizontalStrut(HORIZONTAL_TAB));
-		resultPanel.add(panel);
-		resultPanel.add(Box.createHorizontalStrut(HORIZONTAL_TAB));
-
-		return resultPanel;
 	}
 }

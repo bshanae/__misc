@@ -4,6 +4,7 @@ import model.open.Pockets;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.screens.gui.GuiScreen;
+import view.open.Signals;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -22,10 +23,10 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 // ---------------------------> UI
 
 	@Override
-	public void					buildGui(Requests.Ui request)
+	public JPanel				getContent(Requests.Ui request)
 	{
 		parseRequest(request);
-		setContent(addHorizontalTabs(buildMainPanel()));
+		return buildMainPanel();
 	}
 
 	private JPanel				buildMainPanel()
@@ -91,6 +92,8 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		JPanel					panel;
 		JLabel					nameLabel;
 		JLabel					levelLabel;
+		JButton					deleteButton;
+		JButton					selectButton;
 
 		panel = new JPanel();
 		panel.setLayout(new MigLayout("insets 2 10 2 10"));
@@ -102,10 +105,16 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		levelLabel = new JLabel("Level 5");
 		levelLabel.setFont(buildFont(Font.PLAIN, 15));
 
+		deleteButton = new JButton("Delete");
+		deleteButton.addActionListener(new GuiSignalSender(new Signals.Gui.DeleteHero(hero)));
+
+		selectButton = new JButton("Select");
+		selectButton.addActionListener(new GuiSignalSender(new Signals.Gui.SelectHero(hero)));
+
 		panel.add(nameLabel, "wrap");
 		panel.add(levelLabel, "push, aligny 50%");
-		panel.add(new JButton("Delete"));
-		panel.add(new JButton("Select"));
+		panel.add(deleteButton);
+		panel.add(selectButton);
 
 		return panel;
 	}
@@ -114,6 +123,7 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 	{
 		JPanel					panel;
 		JLabel					nameLabel;
+		JButton					button;
 
 		panel = new JPanel();
 		panel.setLayout(new MigLayout("insets 2 10 2 10"));
@@ -122,8 +132,11 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		nameLabel = new JLabel("Empty");
 		nameLabel.setFont(buildFont(Font.BOLD, 25));
 
+		button = new JButton("Create");
+		button.addActionListener(new GuiSignalSender(new Signals.Gui.CreateHero()));
+
 		panel.add(nameLabel, "push");
-		panel.add(new JButton("Create"));
+		panel.add(button);
 
 		return panel;
 	}

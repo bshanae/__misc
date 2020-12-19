@@ -1,11 +1,11 @@
-package model.closed.gameConcepts.delegates.heroSelection;
+package model.closed.gameManagers.delegates.heroSelection;
 
 import controller.open.Commands;
 import model.closed.gameObjects.creatures.hero.Hero;
 import model.closed.gameObjects.creatures.hero.HeroClass;
-import model.closed.gameConcepts.heroStorage.HeroStorage;
-import model.closed.gameConcepts.delegates.Delegate;
-import model.closed.gameConcepts.delegates.common.ErrorDelegate;
+import model.closed.gameManagers.heroStorage.HeroStorage;
+import model.closed.gameManagers.delegates.Delegate;
+import model.closed.gameManagers.delegates.common.ErrorDelegate;
 import model.open.Requests;
 
 public class			HeroCreationDelegate extends Delegate
@@ -108,9 +108,9 @@ public class			HeroCreationDelegate extends Delegate
 	{
 		String			classString;
 
-		if (validateCommand(command, Commands.Select.class))
+		if (validateCommand(command, Commands.SelectHero.class))
 		{
-			classString = ((Commands.Select)command).value;
+			classString = ((Commands.SelectHero)command).value;
 
 			heroClass = HeroClass.fromString(classString);
 			state = State.RECEIVED_CLASS;

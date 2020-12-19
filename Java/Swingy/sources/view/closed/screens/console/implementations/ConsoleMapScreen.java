@@ -31,7 +31,7 @@ public class						ConsoleMapScreen extends ConsoleScreen
 	private String[]				mapLines;
 
 	@Override
-	public void						buildUi(Requests.Ui request)
+	public String					getContent(Requests.Ui request)
 	{
 		loadInfo(request);
 		calculateOffset();
@@ -41,7 +41,7 @@ public class						ConsoleMapScreen extends ConsoleScreen
 		writeMapToLines();
 		writeMapToTemplate();
 
-		setContent(mapTemplate.toString());
+		return mapTemplate.toString();
 	}
 
 	private void					loadInfo(Requests.Ui request)

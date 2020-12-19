@@ -29,22 +29,22 @@ public class							GuiModeController extends ModeController
 // -----------------------------------> Overrides
 
 	@Override
-	public void							show()
+	public void							updateUi()
 	{
-		EventQueue.invokeLater(new ShowImplementation());
+		EventQueue.invokeLater(new UpdateUiImplementation());
 	}
 
 	@Override
-	public void							clean() {}
+	public void							requestInput() { }
 
 	@Override
-	protected void						enable()
+	protected void						enableUi()
 	{
 		EventQueue.invokeLater(new EnableImplementation());
 	}
 
 	@Override
-	protected void						disable()
+	protected void						disableUi()
 	{
 		EventQueue.invokeLater(new DisableImplementation());
 	}
@@ -76,12 +76,14 @@ public class							GuiModeController extends ModeController
 		}
 	}
 
-	private class						ShowImplementation implements Runnable
+	private class						UpdateUiImplementation implements Runnable
 	{
 		@Override
 		public void						run()
 		{
 			frame.setContentPane(panel);
+
+			frame.revalidate();
 			frame.repaint();
 		}
 	}

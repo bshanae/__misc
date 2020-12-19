@@ -27,19 +27,19 @@ public abstract class				ModeController
 		currentMode = mode;
 
 		if (currentController != null)
-			currentController.disable();
+			currentController.disableUi();
 
 		newModeController = getControllerForMode(mode);
 
-		newModeController.enable();
+		newModeController.enableUi();
 		currentController = newModeController;
 	}
 
-	public abstract void			show();
-	public abstract void			clean();
+	public abstract void			updateUi();
+	public abstract void			requestInput();
 
-	protected abstract void			enable();
-	protected abstract void			disable();
+	protected abstract void			enableUi();
+	protected abstract void			disableUi();
 
 	private static ModeController	getControllerForMode(Mode mode)
 	{

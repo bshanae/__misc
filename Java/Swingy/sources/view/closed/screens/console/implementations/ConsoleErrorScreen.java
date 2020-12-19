@@ -8,7 +8,7 @@ import view.closed.utils.console.Template;
 public class			ConsoleErrorScreen extends ConsoleScreen
 {
 	@Override
-	public void			buildUi(Requests.Ui request)
+	public String		getContent(Requests.Ui request)
 	{
 		Requests.Error	errorRequest;
 		String			rawTemplate;
@@ -21,6 +21,6 @@ public class			ConsoleErrorScreen extends ConsoleScreen
 		template = new Template(rawTemplate);
 
 		template.replace("MESSAGE", errorRequest.message);
-		setContent(template.toString());
+		return template.toString();
 	}
 }

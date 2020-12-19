@@ -1,17 +1,13 @@
-package model.closed.gameConcepts.delegates;
+package model.closed.gameManagers.delegates;
 
 import controller.open.Commands;
 import model.closed.Game;
-import model.closed.gameConcepts.delegates.common.ErrorDelegate;
+import model.closed.gameManagers.delegates.common.ErrorDelegate;
 import model.open.Model;
 import model.open.Requests;
 
 public abstract class			Delegate
 {
-// ---------------------------> Exceptions
-
-	public static class			InvalidCommandException extends Exception {}
-
 // ---------------------------> Fields
 
 	private boolean				isActivated;

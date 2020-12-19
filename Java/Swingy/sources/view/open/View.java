@@ -5,10 +5,8 @@ import application.common.uniqueNotifier.UniqueListener;
 import application.common.uniqueNotifier.UniqueNotifier;
 import model.open.Requests;
 import view.closed.builders.ScreenBuilder;
-import view.closed.builders.SignalBuilder;
 import view.closed.mode.Mode;
 import view.closed.mode.modeController.ModeController;
-import view.closed.screens.Screen;
 
 public class				View
 							extends UniqueNotifier<Signals.Abstract>
@@ -23,12 +21,17 @@ public class				View
 	public void				listen(Requests.Abstract request)
 	{
 		if (request instanceof Requests.System)
-			reactOnNonUiRequest((Requests.System)request);
+			reactOnSystemRequest((Requests.System)request);
 		else if (request instanceof Requests.Ui)
 			reactOnUiRequest((Requests.Ui)request);
 	}
 
-	private void			reactOnNonUiRequest(Requests.System request)
+	public void 			sendSignal(Signals.Abstract signal)
+	{
+		notifyListener(signal);
+	}
+
+	private void			reactOnSystemRequest(Requests.System request)
 	{
 		if (request instanceof Requests.SwitchToConsole)
 			ModeController.switchMode(Mode.CONSOLE);
@@ -36,35 +39,20 @@ public class				View
 			ModeController.switchMode(Mode.GUI);
 
 		notifyListener(null);
-
 		// TODO Error
 	}
 
 	private void			reactOnUiRequest(Requests.Ui request)
 	{
-		Screen				screen;
-		Signals.Abstract	signal;
-
-		screen = ScreenBuilder.build(request);
-		assert screen != null;
-
-		screen.buildUi(request);
-
-		ModeController.getCurrentController().clean();
-		ModeController.getCurrentController().show();
-
-//		screen.waitForInput();
-
 		try
 		{
-			signal = SignalBuilder.build(request, screen);
+			ScreenBuilder.build(request).buildUi(request);
+			ModeController.getCurrentController().updateUi();
+			ModeController.getCurrentController().requestInput();
 		}
-		catch (SignalBuilder.UnknownRequestException unknownRequest)
+		catch (NullPointerException exception)
 		{
-			unknownRequest.printStackTrace();
-			return ;
+			// TODO Error
 		}
-
-		notifyListener(signal);
 	}
 }
