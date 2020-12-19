@@ -96,7 +96,7 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		panel.setLayout(new MigLayout("insets 2 10 2 10"));
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
-		nameLabel = new JLabel(hero.getName());
+		nameLabel = new JLabel(hero.name);
 		nameLabel.setFont(buildFont(Font.BOLD, 25));
 
 		levelLabel = new JLabel("Level 5");
@@ -137,7 +137,7 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		assert request instanceof Requests.HeroSelector;
 		heroSelectorRequest = (Requests.HeroSelector)request;
 
-		heroes = heroSelectorRequest.getHeroes();
+		heroes = heroSelectorRequest.heroes;
 	}
 
 	private Pockets.Hero		getHeroAt(int index)

@@ -22,17 +22,66 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5c13bad-ffa3-44d3-9f43-cb897855962f" name="Default Changelist" comment="">
+    <list default="true" id="d5c13bad-ffa3-44d3-9f43-cb897855962f" name="Temporary" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/controller/closed/ConsoleSignalTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/closed/ConsoleSignalTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/controller/open/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/open/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroCreationDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroCreationDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroSelectionDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameConcepts/delegates/heroSelection/HeroSelectionDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/open/Pockets.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Pockets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/open/Requests.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Requests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleHeroSelectorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" afterDir="false" />
+    </list>
+    <list id="61165069-1240-45f7-80c7-483508439926" name="Ignore" comment="" />
+    <list id="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" name="Use" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/open/Signals.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/Signals.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java">
+      <ranges>
+        <range start1="93" end1="93" start2="93" end2="95" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="98" end1="99" start2="100" end2="101" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="103" end1="103" start2="105" end2="107" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="24" end1="25" start2="24" end2="30" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="27" end1="27" start2="32" end2="33" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="32" end1="32" start2="38" end2="45" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="36" end1="36" start2="49" end2="69" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="92" end1="92" start2="125" end2="127" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="96" end1="97" start2="131" end2="132" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="119" end1="120" start2="154" end2="162" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="141" end1="142" start2="183" end2="185" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="156" end1="157" start2="199" end2="200" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="159" end1="162" start2="202" end2="205" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="164" end1="167" start2="207" end2="210" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="169" end1="172" start2="212" end2="215" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+        <range start1="174" end1="176" start2="217" end2="223" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="180" end1="181" start2="227" end2="232" changelist="d5c13bad-ffa3-44d3-9f43-cb897855962f" />
+        <range start1="183" end1="184" start2="234" end2="235" changelist="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -90,11 +139,13 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d5c13bad-ffa3-44d3-9f43-cb897855962f" name="Default Changelist" comment="" />
+      <changelist id="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" name="Use" comment="" />
+      <changelist id="61165069-1240-45f7-80c7-483508439926" name="Ignore" comment="" />
       <created>1608150783413</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608150783413</updated>
-      <workItem from="1608150785307" duration="6874000" />
+      <workItem from="1608150785307" duration="9935000" />
     </task>
     <task id="LOCAL-00001" summary="Swingy : Transported project from its repository">
       <created>1608151059015</created>
@@ -172,13 +223,21 @@
     <state width="1398" height="263" key="GridCell.Tab.0.right" timestamp="1608370957553">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="263" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608370957553" />
-    <state width="1398" height="263" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608370684868" />
+    <state width="1398" height="263" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608371033552" />
+    <state width="1398" height="263" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608371017311" />
+    <state x="513" y="156" key="RollbackChangesDialog" timestamp="1608392475576">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="513" y="156" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1608392475576" />
     <state x="208" y="28" key="SettingsEditor" timestamp="1608152541176">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="208" y="28" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1608152541176" />
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1608218572212">
+    <state x="558" y="323" key="VCS.EditChangelistDialog" timestamp="1608392735301">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="558" y="323" key="VCS.EditChangelistDialog/0.0.1440.900@0.0.1440.900" timestamp="1608392735301" />
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1608371052859">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1608218572212" />

@@ -51,10 +51,10 @@ public class						ConsoleMapScreen extends ConsoleScreen
 		assert request instanceof Requests.Map;
 		mapRequest = (Requests.Map)request;
 
-		mapSize = mapRequest.getMap().getSize();
-		mapCreatures = mapRequest.getMap().getCreatures();
+		mapSize = mapRequest.map.size;
+		mapCreatures = mapRequest.map.creatures;
 
-		pivot = mapRequest.getPivot();
+		pivot = mapRequest.pivot;
 	}
 
 	private void					calculateOffset()
@@ -124,7 +124,7 @@ public class						ConsoleMapScreen extends ConsoleScreen
 	private Pockets.Creature		getCreatureForCoordinate(Point coordinate)
 	{
 		for (Pockets.Creature creature : mapCreatures)
-			if (creature.getPosition().equals(coordinate))
+			if (creature.position.equals(coordinate))
 				return creature;
 
 		return null;

@@ -20,7 +20,7 @@ public class			ConsoleErrorScreen extends ConsoleScreen
 		rawTemplate = ResourceManager.getText("/console/templates/Error.txt");
 		template = new Template(rawTemplate);
 
-		template.replace("MESSAGE", errorRequest.getMessage());
+		template.replace("MESSAGE", errorRequest.message);
 		setContent(template.toString());
 	}
 }

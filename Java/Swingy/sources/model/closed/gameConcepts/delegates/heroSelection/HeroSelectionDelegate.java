@@ -84,7 +84,7 @@ public class				HeroSelectionDelegate extends Delegate
 	{
 		try
 		{
-			resolve(HeroStorage.getInstance().find(command.getValue()));
+			resolve(HeroStorage.getInstance().find(command.value));
 		}
 		catch (HeroStorage.HeroNotFoundException exception)
 		{

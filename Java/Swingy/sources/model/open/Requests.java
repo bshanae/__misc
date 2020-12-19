@@ -22,12 +22,7 @@ public abstract class						Requests
 
 	public static class						HeroSelector implements Abstract, Ui
 	{
-		private final List<Pockets.Hero>	heroes;
-
-		public List<Pockets.Hero>			getHeroes()
-		{
-			return heroes;
-		}
+		public final List<Pockets.Hero>		heroes;
 
 		public 								HeroSelector(List<Pockets.Hero> heroes)
 		{
@@ -44,12 +39,7 @@ public abstract class						Requests
 
 	private static abstract class			WithMessage implements Abstract, Ui
 	{
-		private final String				message;
-
-		public String						getMessage()
-		{
-			return  message;
-		}
+		public final String					message;
 
 		public								WithMessage(String message)
 		{
@@ -69,18 +59,8 @@ public abstract class						Requests
 
 	public static class						Map implements Abstract, Ui
 	{
-		private final Pockets.Map			map;
-		private final Point					pivot;
-
-		public Pockets.Map					getMap()
-		{
-			return map;
-		}
-
-		public Point						getPivot()
-		{
-			return pivot;
-		}
+		public final Pockets.Map			map;
+		public final Point					pivot;
 
 		public								Map(model.closed.gameObjects.Map map, Point pivot)
 		{

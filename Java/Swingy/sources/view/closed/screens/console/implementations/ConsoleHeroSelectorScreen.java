@@ -23,15 +23,15 @@ public class					ConsoleHeroSelectorScreen extends ConsoleScreen
 		rawTemplate = ResourceManager.getText("/console/templates/HeroSelector.txt");
 		template = new Template(rawTemplate);
 
-		List<Pockets.Hero>	heroes = heroSelectorRequest.getHeroes();
-		int					numberOfHeroes = heroes.size();
+		List<Pockets.Hero>		heroes = heroSelectorRequest.heroes;
+		int						numberOfHeroes = heroes.size();
 
 		for (int i = 0; i < 4; i++)
 		{
 			template.replace
 			(
 				"HERO" + i,
-				i < numberOfHeroes ? heroes.get(i).getName() : "Empty"
+				i < numberOfHeroes ? heroes.get(i).name : "Empty"
 			);
 		}
 

@@ -21,12 +21,7 @@ public abstract class				Commands
 
 	private static abstract class	CommandWithValue implements Abstract
 	{
-		final String				value;
-
-		public String				getValue()
-		{
-			return value;
-		}
+		public final String			value;
 
 		public						CommandWithValue(String value)
 		{

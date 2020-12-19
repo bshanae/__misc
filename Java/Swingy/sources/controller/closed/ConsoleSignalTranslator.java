@@ -253,14 +253,14 @@ public class							ConsoleSignalTranslator
 		CommandParser					commandParser;
 		Pattern							resultPattern;
 
-		assert contextToPatterns.containsKey(signal.getContext());
+		assert contextToPatterns.containsKey(signal.context);
 
 		possiblePatterns = new LinkedList<>();
 
-		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(signal.getContext())));
+		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(signal.context)));
 		possiblePatterns.addAll(Arrays.asList(commonPatterns));
 
-		commandParser = new CommandParser(signal.getInput());
+		commandParser = new CommandParser(signal.input);
 		resultPattern = null;
 
 		for (Pattern pattern : possiblePatterns)

@@ -34,12 +34,7 @@ public abstract class					Pockets
 
 	public static class					Creature implements Abstract
 	{
-		private final Point				position;
-
-		public Point					getPosition()
-		{
-			return position;
-		}
+		public final Point				position;
 
 		public							Creature(Point position)
 		{
@@ -57,12 +52,7 @@ public abstract class					Pockets
 
 	public static class					Hero extends Creature
 	{
-		private final String			name;
-
-		public String					getName()
-		{
-			return name;
-		}
+		public final String				name;
 
 		public 							Hero(model.closed.gameObjects.creatures.hero.Hero hero)
 		{
@@ -73,18 +63,8 @@ public abstract class					Pockets
 
 	public static class					Map implements Abstract
 	{
-		private final Point				size;
-		private final List<Creature>	creatures;
-
-		public Point					getSize()
-		{
-			return size;
-		}
-
-		public List<Creature>			getCreatures()
-		{
-			return Collections.unmodifiableList(creatures);
-		}
+		public final Point				size;
+		public final List<Creature>		creatures;
 
 		public							Map(model.closed.gameObjects.Map map)
 		{
