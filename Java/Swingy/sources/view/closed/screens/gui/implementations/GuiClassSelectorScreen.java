@@ -12,7 +12,6 @@ public class					GuiClassSelectorScreen extends GuiScreen
 {
 	private static final int	GAP_FROM_TOP_TO_TITLE = 60;
 	private static final int	GAP_FROM_TITLE_TO_CONTENT = 75;
-	private static final int	GAP_BETWEEN_CLASSES = 20;
 
 	@Override
 	public JPanel				getContent(Requests.Ui request)

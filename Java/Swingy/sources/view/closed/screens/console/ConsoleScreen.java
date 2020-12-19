@@ -11,7 +11,6 @@ public abstract class			ConsoleScreen implements Screen
 {
 	public final void			buildUi(Requests.Ui request)
 	{
-		ConsoleModeController.getInstance().setContext(Context.getContext(request));
 		ConsoleModeController.getInstance().setContent(getContent(request));
 	}
 

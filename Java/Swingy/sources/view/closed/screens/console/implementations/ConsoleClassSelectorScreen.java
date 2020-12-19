@@ -2,7 +2,7 @@ package view.closed.screens.console.implementations;
 
 import model.open.Requests;
 import view.closed.screens.console.ConsoleScreen;
-import view.closed.utils.common.ResourceManager;
+import view.closed.utils.console.ResourceManager;
 
 public class		ConsoleClassSelectorScreen extends ConsoleScreen
 {

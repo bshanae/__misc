@@ -34,11 +34,6 @@ public abstract class				GuiScreen implements Screen
 	{
 		Signals.Gui.Abstract		signal;
 
-		public Signals.Gui.Abstract	getSignal()
-		{
-			return signal;
-		}
-
 		public 						GuiSignalSender(Signals.Gui.Abstract signal)
 		{
 			this.signal = signal;

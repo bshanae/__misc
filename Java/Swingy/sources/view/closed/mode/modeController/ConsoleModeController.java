@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class							ConsoleModeController extends ModeController
 {
 	private String						output;
-	private Context						context;
 
 	public static ConsoleModeController	getInstance()
 	{
@@ -32,7 +31,7 @@ public class							ConsoleModeController extends ModeController
 		String							input;
 
 		input = new Scanner(System.in).nextLine();
-		View.getInstance().sendSignal(new Signals.Console(input, context));
+		View.getInstance().sendSignal(new Signals.Console(input));
 	}
 
 	@Override
@@ -49,11 +48,6 @@ public class							ConsoleModeController extends ModeController
 	public void							setContent(String content)
 	{
 		output = content;
-	}
-
-	public void 						setContext(Context context)
-	{
-		this.context = context;
 	}
 
 	private void						writeToConsole(String string)

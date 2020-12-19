@@ -8,30 +8,40 @@ import view.closed.builders.ScreenBuilder;
 import view.closed.mode.Mode;
 import view.closed.mode.modeController.ModeController;
 
-public class				View
-							extends UniqueNotifier<Signals.Abstract>
-							implements UniqueListener<Requests.Abstract>
+public class					View
+								extends UniqueNotifier<Signals.Abstract>
+								implements UniqueListener<Requests.Abstract>
 {
-	public static View		getInstance()
+	private Requests.Abstract	currentRequest;
+
+	public static View			getInstance()
 	{
 		return SingletonMap.getInstanceOf(View.class);
 	}
 
 	@Override
-	public void				listen(Requests.Abstract request)
+	public void					listen(Requests.Abstract request)
 	{
+		assert currentRequest == null;
+		currentRequest = request;
+
 		if (request instanceof Requests.System)
 			reactOnSystemRequest((Requests.System)request);
 		else if (request instanceof Requests.Ui)
 			reactOnUiRequest((Requests.Ui)request);
 	}
 
-	public void 			sendSignal(Signals.Abstract signal)
+	public void 				sendSignal(Signals.Abstract signal)
 	{
+		assert currentRequest != null;
+
+		signal.setContext(Context.getContext((Requests.Ui)currentRequest));
 		notifyListener(signal);
+
+		currentRequest = null;
 	}
 
-	private void			reactOnSystemRequest(Requests.System request)
+	private void				reactOnSystemRequest(Requests.System request)
 	{
 		if (request instanceof Requests.SwitchToConsole)
 			ModeController.switchMode(Mode.CONSOLE);
@@ -42,7 +52,7 @@ public class				View
 		// TODO Error
 	}
 
-	private void			reactOnUiRequest(Requests.Ui request)
+	private void				reactOnUiRequest(Requests.Ui request)
 	{
 		try
 		{

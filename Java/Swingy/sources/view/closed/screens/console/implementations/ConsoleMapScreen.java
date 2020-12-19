@@ -5,7 +5,7 @@ import application.common.PointRange;
 import model.open.Pockets;
 import model.open.Requests;
 import view.closed.screens.console.ConsoleScreen;
-import view.closed.utils.common.ResourceManager;
+import view.closed.utils.console.ResourceManager;
 import view.closed.utils.console.Template;
 
 import java.util.List;
