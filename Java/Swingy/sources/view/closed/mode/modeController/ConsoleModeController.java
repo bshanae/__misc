@@ -35,7 +35,7 @@ public class							ConsoleModeController extends ModeController
 	}
 
 	@Override
-	protected void						enableUi() { }
+	protected void						enableUi() {}
 
 	@Override
 	protected void						disableUi()

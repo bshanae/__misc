@@ -39,7 +39,7 @@ public abstract class			ScreenBuilder
 		put(Requests.Map.class, new ModeDependantClass(ConsoleMapScreen.class, GuiMapScreen.class));
 	}};
 
-	public static Screen		build(Requests.Ui request)
+	public static Screen		getScreen(Requests.Ui request)
 	{
 		final Class<?>			requestClass = request.getClass();
 

@@ -15,7 +15,7 @@ public abstract class						SignalTranslator
 			instance = SingletonMap.getInstanceOf(ConsoleSignalTranslator.class);
 			return instance.translateImplementation(signal);
 		}
-		else if (signal instanceof Signals.Gui.Abstract)
+		else if (signal instanceof Signals.Gui)
 		{
 			instance = SingletonMap.getInstanceOf(GuiSignalTranslator.class);
 			return instance.translateImplementation(signal);

@@ -8,14 +8,47 @@ public class					GuiSignalTranslator extends SignalTranslator
 	@Override
 	protected Commands.Abstract	translateImplementation(Signals.Abstract signal)
 	{
-		if (signal instanceof Signals.Gui.CreateHero)
-			return new Commands.CreateHero();
-		else if (signal instanceof Signals.Gui.SelectHero)
-			return new Commands.SelectHero(((Signals.Gui.SelectHero)signal).hero.name);
-		else if (signal instanceof Signals.Gui.DeleteHero)
-			return new Commands.DeleteHero(((Signals.Gui.DeleteHero)signal).hero.name);
+		Signals.Gui				guiSignal;
 
-		// TODO Error
-		return null;
+		guiSignal = (Signals.Gui)signal;
+		switch (guiSignal.buttonId)
+		{
+			case HERO_SELECTOR_CREATE_0:
+				return new Commands.Create(0);
+			case HERO_SELECTOR_CREATE_1:
+				return new Commands.Create(1);
+			case HERO_SELECTOR_CREATE_2:
+				return new Commands.Create(2);
+			case HERO_SELECTOR_CREATE_3:
+				return new Commands.Create(3);
+
+			case HERO_SELECTOR_SELECT_0:
+				return new Commands.Select(0);
+			case HERO_SELECTOR_SELECT_1:
+				return new Commands.Select(1);
+			case HERO_SELECTOR_SELECT_2:
+				return new Commands.Select(2);
+			case HERO_SELECTOR_SELECT_3:
+				return new Commands.Select(3);
+
+			case HERO_SELECTOR_DELETE_0:
+				return new Commands.Delete(0);
+			case HERO_SELECTOR_DELETE_1:
+				return new Commands.Delete(1);
+			case HERO_SELECTOR_DELETE_2:
+				return new Commands.Delete(2);
+			case HERO_SELECTOR_DELETE_3:
+				return new Commands.Delete(3);
+
+			case NAME_ENTRY_ENTER:
+				String			name;
+
+				name = (String)guiSignal.linkedData;
+				return new Commands.Enter(name);
+
+			default:
+				// TODO Error
+				return null;
+		}
 	}
 }

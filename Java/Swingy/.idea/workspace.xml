@@ -23,15 +23,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5c13bad-ffa3-44d3-9f43-cb897855962f" name="Temporary" comment="">
+      <change afterPath="$PROJECT_DIR$/sources/view/open/ButtonId.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleClassSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleClassSelectorScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleErrorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleErrorScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleHeroSelectorScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleNameEntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleNameEntryScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/controller/closed/ConsoleSignalTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/closed/ConsoleSignalTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/controller/closed/GuiSignalTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/closed/GuiSignalTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/controller/closed/SignalTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/closed/SignalTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/controller/open/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/open/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/core/CoreDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/core/CoreDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/heroSelection/HeroCreationDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/heroSelection/HeroCreationDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/heroSelection/HeroSelectionDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/heroSelection/HeroSelectionDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameManagers/heroStorage/HeroStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/heroStorage/HeroStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/builders/ScreenBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/builders/ScreenBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ConsoleModeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ConsoleModeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/GuiScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/GuiScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiClassSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiClassSelectorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiHeroSelectorScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiNameEntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiNameEntryScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/utils/common/ResourceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/utils/console/ResourceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/open/Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/Context.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/open/Signals.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/Signals.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/open/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/View.java" afterDir="false" />
     </list>
     <list id="61165069-1240-45f7-80c7-483508439926" name="Ignore" comment="" />
     <list id="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" name="Use" comment="" />
@@ -73,7 +83,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
@@ -112,7 +122,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608150783413</updated>
-      <workItem from="1608150785307" duration="19455000" />
+      <workItem from="1608150785307" duration="29393000" />
     </task>
     <task id="LOCAL-00001" summary="Swingy : Transported project from its repository">
       <created>1608151059015</created>
@@ -156,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608406258501</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Swingy : View controls Context in Singal instance.">
+      <created>1608408126834</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608408126834</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,9 +198,14 @@
     <MESSAGE value="Swingy : Redone GuiHeroSelectorScreen with MigLayout" />
     <MESSAGE value="Swingy : Requests, Pockets, Command and Signal use final members instead of getters" />
     <MESSAGE value="Swingy : GUI signals, many structure changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Swingy : GUI signals, many structure changes" />
+    <MESSAGE value="Swingy : View controls Context in Singal instance." />
+    <option name="LAST_COMMIT_MESSAGE" value="Swingy : View controls Context in Singal instance." />
   </component>
   <component name="WindowStateProjectService">
+    <state x="496" y="0" key="#Auto_Import" timestamp="1608408366323">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="496" y="0" key="#Auto_Import/0.0.1440.900@0.0.1440.900" timestamp="1608408366323" />
     <state x="184" y="109" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608151168565">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -196,6 +218,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="457" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1608151124705" />
+    <state x="432" y="241" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1608407695116">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="432" y="241" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608407695115" />
     <state x="483" y="157" width="944" height="613" key="#xdebugger.evaluate" timestamp="1608403604522">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -204,54 +230,54 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1608218603551" />
-    <state width="1398" height="403" key="GridCell.Tab.0.bottom" timestamp="1608407123071">
+    <state width="1398" height="566" key="GridCell.Tab.0.bottom" timestamp="1608575920700">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608407123071" />
-    <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608406620426" />
-    <state width="1398" height="403" key="GridCell.Tab.0.center" timestamp="1608407123069">
+    <state width="1398" height="566" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608575920700" />
+    <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608408512651" />
+    <state width="1398" height="566" key="GridCell.Tab.0.center" timestamp="1608575920698">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="403" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608407123069" />
-    <state width="1398" height="403" key="GridCell.Tab.0.center/0.25.1440.791@0.25.1440.791" timestamp="1608406620422" />
-    <state width="1398" height="403" key="GridCell.Tab.0.left" timestamp="1608407123067">
+    <state width="1398" height="566" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608575920698" />
+    <state width="1398" height="403" key="GridCell.Tab.0.center/0.25.1440.791@0.25.1440.791" timestamp="1608408512649" />
+    <state width="1398" height="566" key="GridCell.Tab.0.left" timestamp="1608575920697">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="403" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608407123067" />
-    <state width="1398" height="403" key="GridCell.Tab.0.left/0.25.1440.791@0.25.1440.791" timestamp="1608406620421" />
-    <state width="1398" height="403" key="GridCell.Tab.0.right" timestamp="1608407123070">
+    <state width="1398" height="566" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608575920697" />
+    <state width="1398" height="403" key="GridCell.Tab.0.left/0.25.1440.791@0.25.1440.791" timestamp="1608408512643" />
+    <state width="1398" height="566" key="GridCell.Tab.0.right" timestamp="1608575920699">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="403" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608407123070" />
-    <state width="1398" height="403" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608406620424" />
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1608405495335">
+    <state width="1398" height="566" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608575920699" />
+    <state width="1398" height="403" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608408512650" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1608408687435">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608405495335" />
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608405355395" />
-    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1608405495327">
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608408687435" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608408672368" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1608408687433">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1608405495327" />
-    <state width="1398" height="304" key="GridCell.Tab.1.center/0.25.1440.791@0.25.1440.791" timestamp="1608405355393" />
-    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1608405495326">
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1608408687433" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.25.1440.791@0.25.1440.791" timestamp="1608408672366" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1608408687431">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1608405495326" />
-    <state width="1398" height="304" key="GridCell.Tab.1.left/0.25.1440.791@0.25.1440.791" timestamp="1608405355392" />
-    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1608405495328">
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1608408687431" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.25.1440.791@0.25.1440.791" timestamp="1608408672365" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1608408687434">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1608405495328" />
-    <state width="1398" height="304" key="GridCell.Tab.1.right/0.25.1440.791@0.25.1440.791" timestamp="1608405355394" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1608408687434" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.25.1440.791@0.25.1440.791" timestamp="1608408672367" />
     <state x="513" y="156" key="RollbackChangesDialog" timestamp="1608392475576">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="513" y="156" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1608392475576" />
-    <state x="208" y="28" key="SettingsEditor" timestamp="1608152541176">
+    <state x="208" y="28" key="SettingsEditor" timestamp="1608407778544">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="208" y="28" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1608152541176" />
+    <state x="208" y="28" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1608407778544" />
     <state x="558" y="323" key="VCS.EditChangelistDialog" timestamp="1608392735301">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

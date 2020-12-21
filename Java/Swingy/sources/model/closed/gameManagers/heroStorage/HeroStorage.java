@@ -31,10 +31,22 @@ public class					HeroStorage
 		heroes = null;
 	}
 
+	public Hero					get(int index)
+	{
+		checkIfLoaded();
+		return heroes.get(index);
+	}
+
 	public void					add(Hero hero)
 	{
 		checkIfLoaded();
 		heroes.add(hero);
+	}
+
+	public void					delete(int index)
+	{
+		checkIfLoaded();
+		heroes.remove(index);
 	}
 
 	public void					delete(Hero hero)

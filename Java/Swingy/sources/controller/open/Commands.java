@@ -21,11 +21,41 @@ public abstract class				Commands
 
 	private static abstract class	CommandWithValue implements Abstract
 	{
-		public final String			value;
+		private final Object		value;
 
-		public						CommandWithValue(String value)
+		private boolean				isCached;
+		private Integer				valueAsInteger;
+		private String				valueAsString;
+
+		public Integer				getValueAsInteger()
+		{
+			if (!isCached)
+				cache();
+
+			assert valueAsInteger != null;
+			return valueAsInteger;
+		}
+
+		public String				getValueAsString()
+		{
+			if (!isCached)
+				cache();
+
+			assert valueAsString != null;
+			return valueAsString;
+		}
+
+		public						CommandWithValue(Object value)
 		{
 			this.value = value;
+		}
+
+		private void				cache()
+		{
+			valueAsInteger = value instanceof Integer ? (Integer)value : null;
+			valueAsString = value instanceof String ? (String)value : null;
+
+			isCached = true;
 		}
 	}
 
@@ -37,25 +67,33 @@ public abstract class				Commands
 		}
 	}
 
-	public static class				SelectHero extends CommandWithValue
+	public static class				Create extends CommandWithValue
 	{
-		public						SelectHero(String value)
+		public						Create(Object value)
 		{
 			super(value);
 		}
 	}
 
-	public static class				DeleteHero extends CommandWithValue
+	public static class				Select extends CommandWithValue
 	{
-		public						DeleteHero(String value)
+		public						Select(Object value)
 		{
 			super(value);
 		}
 	}
 
-	public static class				InfoAboutHero extends CommandWithValue
+	public static class				Delete extends CommandWithValue
 	{
-		public						InfoAboutHero(String value)
+		public						Delete(Object value)
+		{
+			super(value);
+		}
+	}
+
+	public static class				Info extends CommandWithValue
+	{
+		public						Info(Object value)
 		{
 			super(value);
 		}

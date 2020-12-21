@@ -23,7 +23,7 @@ public enum					Context
 		put(Requests.Map.class, MAP);
 	}};
 
-	public static Context	getContext(Requests.Ui request)
+	public static Context	parseContext(Requests.Abstract request)
 	{
 		assert requestToContext.containsKey(request.getClass());
 		return requestToContext.get(request.getClass());

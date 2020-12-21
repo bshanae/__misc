@@ -3,10 +3,15 @@ package view.closed.screens.gui.implementations;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.screens.gui.GuiScreen;
+import view.open.ButtonId;
+import view.open.Signals;
+import view.open.View;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class					GuiNameEntryScreen extends GuiScreen
 {
@@ -48,6 +53,7 @@ public class					GuiNameEntryScreen extends GuiScreen
 	{
 		JPanel					panel;
 		JTextField				textField;
+		JButton					button;
 
 		panel = new JPanel();
 		panel.setLayout(new MigLayout("fill, insets 25 15 25 15", "", "[]rel:push[]"));
@@ -64,8 +70,24 @@ public class					GuiNameEntryScreen extends GuiScreen
 			)
 		);
 
+		button = new JButton("Enter");
+		button.addActionListener
+		(
+			new					ActionListener()
+			{
+				@Override
+				public void		actionPerformed(ActionEvent event)
+				{
+					Signals.Gui	signal;
+
+					signal = new Signals.Gui(ButtonId.NAME_ENTRY_ENTER, textField.getText());
+					View.getInstance().sendSignal(signal);
+				}
+			}
+		);
+
 		panel.add(textField, "growx, height 45px!, wrap");
-		panel.add(new JButton("Enter"), "al right");
+		panel.add(button, "al right");
 
 		return panel;
 	}

@@ -4,6 +4,7 @@ import model.open.Pockets;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.screens.gui.GuiScreen;
+import view.open.ButtonId;
 import view.open.Signals;
 
 import javax.swing.*;
@@ -59,10 +60,10 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 
 		{
 			panel.add(buildTitle());
-			panel.add(buildHeroPanel(getHeroAt(0)), heroPanelConfig);
-			panel.add(buildHeroPanel(getHeroAt(1)), heroPanelConfig);
-			panel.add(buildHeroPanel(getHeroAt(2)), heroPanelConfig);
-			panel.add(buildHeroPanel(getHeroAt(3)), heroPanelConfig);
+			panel.add(buildHeroPanel(0), heroPanelConfig);
+			panel.add(buildHeroPanel(1), heroPanelConfig);
+			panel.add(buildHeroPanel(2), heroPanelConfig);
+			panel.add(buildHeroPanel(3), heroPanelConfig);
 		}
 
 		return panel;
@@ -82,17 +83,24 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		return label;
 	}
 
-	private JPanel				buildHeroPanel(Pockets.Hero hero)
+	private JPanel				buildHeroPanel(int heroIndex)
 	{
-		return hero != null ? buildExistingHeroPanel(hero) : buildEmptyHeroPanel();
+		Pockets.Hero			hero;
+
+		hero = getHeroAt(heroIndex);
+		return hero != null ? buildExistingHeroPanel(hero, heroIndex) : buildEmptyHeroPanel(heroIndex);
 	}
 
-	private JPanel				buildExistingHeroPanel(Pockets.Hero hero)
+	private JPanel				buildExistingHeroPanel(Pockets.Hero hero, int heroIndex)
 	{
 		JPanel					panel;
 		JLabel					nameLabel;
 		JLabel					levelLabel;
+
+		ButtonId				deleteButtonId;
 		JButton					deleteButton;
+
+		ButtonId				selectButtonId;
 		JButton					selectButton;
 
 		panel = new JPanel();
@@ -105,11 +113,13 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		levelLabel = new JLabel("Level 5");
 		levelLabel.setFont(buildFont(Font.PLAIN, 15));
 
+		deleteButtonId = ButtonId.HERO_SELECTOR_DELETE_0.applyOffset(heroIndex);
 		deleteButton = new JButton("Delete");
-		deleteButton.addActionListener(new GuiSignalSender(new Signals.Gui.DeleteHero(hero)));
+		deleteButton.addActionListener(new GuiSignalSender(deleteButtonId));
 
+		selectButtonId = ButtonId.HERO_SELECTOR_SELECT_0.applyOffset(heroIndex);
 		selectButton = new JButton("Select");
-		selectButton.addActionListener(new GuiSignalSender(new Signals.Gui.SelectHero(hero)));
+		selectButton.addActionListener(new GuiSignalSender(selectButtonId));
 
 		panel.add(nameLabel, "wrap");
 		panel.add(levelLabel, "push, aligny 50%");
@@ -119,10 +129,11 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		return panel;
 	}
 
-	private JPanel				buildEmptyHeroPanel()
+	private JPanel				buildEmptyHeroPanel(int heroIndex)
 	{
 		JPanel					panel;
 		JLabel					nameLabel;
+		ButtonId				buttonId;
 		JButton					button;
 
 		panel = new JPanel();
@@ -132,8 +143,10 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		nameLabel = new JLabel("Empty");
 		nameLabel.setFont(buildFont(Font.BOLD, 25));
 
+		buttonId = ButtonId.HERO_SELECTOR_CREATE_0.applyOffset(heroIndex);
+
 		button = new JButton("Create");
-		button.addActionListener(new GuiSignalSender(new Signals.Gui.CreateHero()));
+		button.addActionListener(new GuiSignalSender(buttonId));
 
 		panel.add(nameLabel, "push");
 		panel.add(button);

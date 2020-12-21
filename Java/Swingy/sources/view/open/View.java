@@ -19,10 +19,14 @@ public class					View
 		return SingletonMap.getInstanceOf(View.class);
 	}
 
+	public Requests.Abstract	getCurrentRequest()
+	{
+		return currentRequest;
+	}
+
 	@Override
 	public void					listen(Requests.Abstract request)
 	{
-		assert currentRequest == null;
 		currentRequest = request;
 
 		if (request instanceof Requests.System)
@@ -33,12 +37,7 @@ public class					View
 
 	public void 				sendSignal(Signals.Abstract signal)
 	{
-		assert currentRequest != null;
-
-		signal.setContext(Context.getContext((Requests.Ui)currentRequest));
 		notifyListener(signal);
-
-		currentRequest = null;
 	}
 
 	private void				reactOnSystemRequest(Requests.System request)
@@ -56,7 +55,8 @@ public class					View
 	{
 		try
 		{
-			ScreenBuilder.build(request).buildUi(request);
+			ScreenBuilder.getScreen(request).buildUi(request);
+
 			ModeController.getCurrentController().updateUi();
 			ModeController.getCurrentController().requestInput();
 		}

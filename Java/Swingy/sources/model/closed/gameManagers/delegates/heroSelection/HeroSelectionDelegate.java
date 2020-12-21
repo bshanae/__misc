@@ -37,10 +37,10 @@ public class				HeroSelectionDelegate extends Delegate
 			linkChild(new HeroCreationDelegate());
 			isWaitingForNewHero = true;
 		}
-		else if (command instanceof Commands.SelectHero)
-			trySelectHero((Commands.SelectHero)command);
-		else if (command instanceof Commands.DeleteHero)
-			tryDeleteHero((Commands.DeleteHero)command);
+		else if (command instanceof Commands.Select)
+			trySelectHero((Commands.Select)command);
+		else if (command instanceof Commands.Delete)
+			tryDeleteHero((Commands.Delete)command);
 	}
 
 	@Override
@@ -69,11 +69,16 @@ public class				HeroSelectionDelegate extends Delegate
 		sendRequest(new Requests.HeroSelector(heroes));
 	}
 
-	private void			trySelectHero(Commands.SelectHero command)
+	private void			trySelectHero(Commands.Select command)
 	{
 		try
 		{
-			resolve(HeroStorage.getInstance().find(command.value));
+			if (command.getValueAsInteger() != null)
+				resolve(HeroStorage.getInstance().get(command.getValueAsInteger()));
+			else if (command.getValueAsString() != null)
+				resolve(HeroStorage.getInstance().find(command.getValueAsString()));
+			else
+				assert false;
 		}
 		catch (HeroStorage.HeroNotFoundException exception)
 		{
@@ -81,14 +86,16 @@ public class				HeroSelectionDelegate extends Delegate
 		}
 	}
 
-	private void			tryDeleteHero(Commands.DeleteHero command)
+	private void			tryDeleteHero(Commands.Delete command)
 	{
 		try
 		{
-			Hero			targetHero;
-
-			targetHero = HeroStorage.getInstance().find(command.value);
-			HeroStorage.getInstance().delete(targetHero);
+			if (command.getValueAsInteger() != null)
+				HeroStorage.getInstance().delete(command.getValueAsInteger());
+			else if (command.getValueAsString() != null)
+				HeroStorage.getInstance().delete(HeroStorage.getInstance().find(command.getValueAsString()));
+			else
+				assert false;
 
 			showHeroSelectionScreen();
 		}

@@ -4,6 +4,7 @@ import model.open.Requests;
 import view.closed.mode.modeController.GuiModeController;
 import view.closed.mode.modeController.ModeController;
 import view.closed.screens.Screen;
+import view.open.ButtonId;
 import view.open.Signals;
 import view.open.View;
 
@@ -32,11 +33,16 @@ public abstract class				GuiScreen implements Screen
 
 	public class					GuiSignalSender implements ActionListener
 	{
-		Signals.Gui.Abstract		signal;
+		Signals.Gui					signal;
 
-		public 						GuiSignalSender(Signals.Gui.Abstract signal)
+		public 						GuiSignalSender(ButtonId buttonId)
 		{
-			this.signal = signal;
+			signal = new Signals.Gui(buttonId);
+		}
+
+		public 						GuiSignalSender(ButtonId buttonId, Object data)
+		{
+			signal = new Signals.Gui(buttonId, data);
 		}
 
 		@Override

@@ -166,7 +166,7 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 		{
 			try
 			{
-				return class_.getConstructor(String.class).newInstance(value);
+				return class_.getConstructors()[0].newInstance(value);
 			}
 			catch (Exception exception)
 			{
@@ -203,12 +203,12 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 			Context.HERO_SELECTOR,
 			new Pattern[]
 			{
-				new Pattern(Commands.SelectHero.class, Keyword.VALUE),
+				new Pattern(Commands.Select.class, Keyword.VALUE),
 
 				new Pattern(Commands.CreateHero.class, Keyword.CREATE),
-				new Pattern(Commands.SelectHero.class, Keyword.SELECT, Keyword.VALUE),
-				new Pattern(Commands.DeleteHero.class, Keyword.DELETE, Keyword.VALUE),
-				new Pattern(Commands.DeleteHero.class, Keyword.INFO, Keyword.VALUE)
+				new Pattern(Commands.Select.class, Keyword.SELECT, Keyword.VALUE),
+				new Pattern(Commands.Delete.class, Keyword.DELETE, Keyword.VALUE),
+				new Pattern(Commands.Delete.class, Keyword.INFO, Keyword.VALUE)
 			}
 		);
 
@@ -223,8 +223,8 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 			Context.CLASS_SELECTOR,
 			new Pattern[]
 			{
-				new Pattern(Commands.SelectHero.class, Keyword.VALUE),
-				new Pattern(Commands.SelectHero.class, Keyword.SELECT, Keyword.VALUE)
+				new Pattern(Commands.Select.class, Keyword.VALUE),
+				new Pattern(Commands.Select.class, Keyword.SELECT, Keyword.VALUE)
 			}
 		);
 
@@ -256,11 +256,11 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 		Pattern							resultPattern;
 
 		consoleSignal = (Signals.Console)signal;
-		assert contextToPatterns.containsKey(consoleSignal.getContext());
+		assert contextToPatterns.containsKey(consoleSignal.context);
 
 		possiblePatterns = new LinkedList<>();
 
-		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(consoleSignal.getContext())));
+		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(consoleSignal.context)));
 		possiblePatterns.addAll(Arrays.asList(commonPatterns));
 
 		commandParser = new CommandParser(consoleSignal.input);

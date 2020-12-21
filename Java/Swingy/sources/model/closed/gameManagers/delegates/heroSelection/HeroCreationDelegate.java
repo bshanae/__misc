@@ -93,7 +93,7 @@ public class			HeroCreationDelegate extends Delegate
 	{
 		if (validateCommand(command, Commands.Enter.class))
 		{
-			heroName = ((Commands.Enter)command).value;
+			heroName = ((Commands.Enter)command).getValueAsString();
 			state = State.RECEIVED_NAME;
 		}
 	}
@@ -108,9 +108,9 @@ public class			HeroCreationDelegate extends Delegate
 	{
 		String			classString;
 
-		if (validateCommand(command, Commands.SelectHero.class))
+		if (validateCommand(command, Commands.Select.class))
 		{
-			classString = ((Commands.SelectHero)command).value;
+			classString = ((Commands.Select)command).getValueAsString();
 
 			heroClass = HeroClass.fromString(classString);
 			state = State.RECEIVED_CLASS;

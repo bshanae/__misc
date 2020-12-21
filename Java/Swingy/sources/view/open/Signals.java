@@ -1,71 +1,40 @@
 package view.open;
 
-import model.open.Pockets;
-
 public abstract class					Signals
 {
-	public static abstract class		Abstract
-	{
-		private Context					context;
-
-		public Context					getContext()
-		{
-			return context;
-		}
-
-		public void						setContext(Context context)
-		{
-			if (this.context != null)
-				throw new RuntimeException("Can't set context more than once");
-
-			this.context = context;
-		}
-	}
+	public interface					Abstract {}
 
 // -----------------------------------> Console
 
-	public static class					Console extends Abstract
+	public static class					Console implements Abstract
 	{
+		public final Context			context;
 		public final String				input;
 
 		public							Console(String input)
 		{
+			this.context = Context.parseContext(View.getInstance().getCurrentRequest());
 			this.input = input;
 		}
 	}
 
 // -----------------------------------> GUI
 
-	public static abstract class		Gui
+	public static class					Gui implements Abstract
 	{
-		public static abstract class	Abstract extends Signals.Abstract {}
+		public final ButtonId			buttonId;
+		public final Object				linkedData;
 
-		public static class				CreateHero extends Abstract {}
-
-		public static class				SelectHero extends Abstract
+		public 							Gui(ButtonId buttonId)
 		{
-			public final Pockets.Hero	hero;
-
-			public						SelectHero(Pockets.Hero hero)
-			{
-				this.hero = hero;
-			}
+			this.buttonId = buttonId;
+			this.linkedData = null;
 		}
 
-		public static class				DeleteHero extends Abstract
+		public 							Gui(ButtonId buttonId, Object linkedData)
 		{
-			public final Pockets.Hero	hero;
-
-			public						DeleteHero(Pockets.Hero hero)
-			{
-				this.hero = hero;
-			}
-		}
-
-		public static class				Enter extends Signals.Abstract
-		{
-			public						Enter(String value)
-			{ }
+			this.buttonId = buttonId;
+			this.linkedData = linkedData;
 		}
 	}
 }
