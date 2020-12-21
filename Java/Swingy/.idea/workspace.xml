@@ -23,13 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5c13bad-ffa3-44d3-9f43-cb897855962f" name="Temporary" comment="">
+      <change afterPath="$PROJECT_DIR$/sources/view/closed/utils/common/MapGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/controller/closed/SignalTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/closed/SignalTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/controller/open/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/open/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/controller/open/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/open/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/open/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/open/Signals.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/Signals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/open/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/game/MapDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/game/MapDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiClassSelectorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiClassSelectorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiMapScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiNameEntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiNameEntryScreen.java" afterDir="false" />
     </list>
     <list id="61165069-1240-45f7-80c7-483508439926" name="Ignore" comment="" />
     <list id="59599d7c-d9bc-41fd-9bbb-a4ecd060c5c9" name="Use" comment="" />
@@ -80,8 +80,16 @@
       <recent name="view.closed.mode" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Application" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Gui">
+    <configuration name="Console" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="application.Application" />
+      <module name="Swingy" />
+      <option name="PROGRAM_PARAMETERS" value="debug console" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Gui" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="application.Application" />
       <module name="Swingy" />
       <option name="PROGRAM_PARAMETERS" value="debug gui" />
@@ -100,6 +108,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Console" />
+      <item itemvalue="Application.Gui" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -111,7 +123,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608150783413</updated>
-      <workItem from="1608150785307" duration="32503000" />
+      <workItem from="1608150785307" duration="35064000" />
     </task>
     <task id="LOCAL-00001" summary="Swingy : Transported project from its repository">
       <created>1608151059015</created>
@@ -183,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608578736381</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Swingy : Fixed Commands.Create">
+      <created>1608579316288</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1608579316288</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,17 +231,18 @@
     <MESSAGE value="Swingy : Improved GuiNameEntryScreen and GuiClassSelectorScreen. GUI signal uses button IDs." />
     <MESSAGE value="Swingy : Added ApplicationDefines and Debug classes" />
     <MESSAGE value="Swingy : Start modes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Swingy : Start modes" />
+    <MESSAGE value="Swingy : Fixed Commands.Create" />
+    <option name="LAST_COMMIT_MESSAGE" value="Swingy : Fixed Commands.Create" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="0" key="#Auto_Import" timestamp="1608408366323">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="496" y="0" key="#Auto_Import/0.0.1440.900@0.0.1440.900" timestamp="1608408366323" />
-    <state x="184" y="109" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608577657526">
+    <state x="184" y="109" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608581306274">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="184" y="109" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608577657526" />
+    <state x="184" y="109" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608581306274" />
     <state x="533" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1608395831543">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -247,45 +267,45 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1608218603551" />
-    <state width="1398" height="254" key="GridCell.Tab.0.bottom" timestamp="1608578880490">
+    <state width="1398" height="629" key="GridCell.Tab.0.bottom" timestamp="1608581442309">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="254" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608578880490" />
+    <state width="1398" height="629" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608581442309" />
     <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608408512651" />
-    <state width="1398" height="254" key="GridCell.Tab.0.center" timestamp="1608578880489">
+    <state width="1398" height="629" key="GridCell.Tab.0.center" timestamp="1608581442307">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="254" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608578880489" />
+    <state width="1398" height="629" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608581442307" />
     <state width="1398" height="403" key="GridCell.Tab.0.center/0.25.1440.791@0.25.1440.791" timestamp="1608408512649" />
-    <state width="1398" height="254" key="GridCell.Tab.0.left" timestamp="1608578880482">
+    <state width="1398" height="629" key="GridCell.Tab.0.left" timestamp="1608581442306">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="254" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608578880482" />
+    <state width="1398" height="629" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608581442306" />
     <state width="1398" height="403" key="GridCell.Tab.0.left/0.25.1440.791@0.25.1440.791" timestamp="1608408512643" />
-    <state width="1398" height="254" key="GridCell.Tab.0.right" timestamp="1608578880490">
+    <state width="1398" height="629" key="GridCell.Tab.0.right" timestamp="1608581442308">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="254" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608578880490" />
+    <state width="1398" height="629" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608581442308" />
     <state width="1398" height="403" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608408512650" />
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1608578778348">
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1608579149626">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608578778348" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608579149626" />
     <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608408672368" />
-    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1608578778339">
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1608579149623">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1608578778339" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1608579149623" />
     <state width="1398" height="304" key="GridCell.Tab.1.center/0.25.1440.791@0.25.1440.791" timestamp="1608408672366" />
-    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1608578778338">
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1608579149623">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1608578778338" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1608579149623" />
     <state width="1398" height="304" key="GridCell.Tab.1.left/0.25.1440.791@0.25.1440.791" timestamp="1608408672365" />
-    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1608578778344">
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1608579149624">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1608578778344" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1608579149624" />
     <state width="1398" height="304" key="GridCell.Tab.1.right/0.25.1440.791@0.25.1440.791" timestamp="1608408672367" />
     <state x="513" y="156" key="RollbackChangesDialog" timestamp="1608392475576">
       <screen x="0" y="0" width="1440" height="900" />
@@ -319,6 +339,11 @@
           <url>file://$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/heroSelection/HeroSelectionDelegate.java</url>
           <line>36</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/sources/model/closed/Game.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

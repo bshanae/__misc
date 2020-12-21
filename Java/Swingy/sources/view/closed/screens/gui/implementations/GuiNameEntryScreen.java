@@ -60,7 +60,7 @@ public class					GuiNameEntryScreen extends GuiScreen
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		textField = new JTextField();
-		textField.setFont(buildFont(Font.PLAIN, 20));
+		textField.setFont(buildFont(Font.PLAIN, 22));
 		textField.setBorder
 		(
 			BorderFactory.createCompoundBorder

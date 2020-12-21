@@ -22,12 +22,12 @@ public class				MapDelegate extends Delegate
 	protected void			whenActivated(boolean isFirstTime)
 	{
 		hero.setPosition(map.getSize().subtract(new Point(1)).divide(2));
+		sendRequest(new Requests.Map(map, hero.getPosition()));
 	}
 
 	@Override
 	protected void			whenUpdated()
 	{
-		sendRequest(new Requests.Map(map, hero.getPosition()));
 	}
 
 	@Override

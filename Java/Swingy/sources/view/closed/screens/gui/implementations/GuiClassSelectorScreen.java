@@ -50,23 +50,27 @@ public class					GuiClassSelectorScreen extends GuiScreen
 		title.setFont(buildFont(Font.BOLD, 40));
 
 		panel.add(title);
-		panel.add(buildHeroClass(), "grow, width ::450, height ::60");
-		panel.add(buildHeroClass(), "grow, width ::450, height ::60");
-		panel.add(buildHeroClass(), "grow, width ::450, height ::60");
-		panel.add(buildHeroClass(), "grow, width ::450, height ::60");
+		panel.add(buildHeroClass("Warrior"), "grow, width ::450, height ::60");
+		panel.add(buildHeroClass("Swordsman"), "grow, width ::450, height ::60");
+		panel.add(buildHeroClass("Assassin"), "grow, width ::450, height ::60");
+		panel.add(buildHeroClass("Mage"), "grow, width ::450, height ::60");
 
 		return panel;
 	}
 
-	private JComponent			buildHeroClass()
+	private JComponent			buildHeroClass(String className)
 	{
 		JPanel					panel;
+		JLabel					label;
 
 		panel = new JPanel();
 		panel.setLayout(new MigLayout("fill, insets 5 10 2 10"));
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
-		panel.add(new JLabel("test"), "push");
+		label = new JLabel(className);
+		label.setFont(buildFont(Font.PLAIN, 22));
+
+		panel.add(label, "push");
 		panel.add(new JButton("Select"));
 
 		return panel;
