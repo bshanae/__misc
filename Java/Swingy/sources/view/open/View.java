@@ -1,8 +1,10 @@
 package view.open;
 
-import application.common.SingletonMap;
-import application.common.uniqueNotifier.UniqueListener;
-import application.common.uniqueNotifier.UniqueNotifier;
+import application.ApplicationDefines;
+import application.utils.Debug;
+import application.utils.SingletonMap;
+import application.utils.uniqueNotifier.UniqueListener;
+import application.utils.uniqueNotifier.UniqueNotifier;
 import model.open.Requests;
 import view.closed.builders.ScreenBuilder;
 import view.closed.mode.Mode;
@@ -27,6 +29,7 @@ public class					View
 	@Override
 	public void					listen(Requests.Abstract request)
 	{
+		Debug.log("View/View : Received request of type " + (request != null ? request.getClass() : null));
 		currentRequest = request;
 
 		if (request instanceof Requests.System)
@@ -37,6 +40,7 @@ public class					View
 
 	public void 				sendSignal(Signals.Abstract signal)
 	{
+		Debug.log("View/View : Sending signal of type " + (signal != null ? signal.getClass() : null));
 		notifyListener(signal);
 	}
 

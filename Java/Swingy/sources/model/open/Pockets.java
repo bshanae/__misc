@@ -1,6 +1,6 @@
 package model.open;
 
-import application.common.Point;
+import application.utils.Point;
 
 import java.util.*;
 

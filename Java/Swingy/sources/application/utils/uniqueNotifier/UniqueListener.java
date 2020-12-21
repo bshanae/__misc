@@ -1,4 +1,4 @@
-package application.common.uniqueNotifier;
+package application.utils.uniqueNotifier;
 
 public interface	UniqueListener<T>
 {

@@ -1,6 +1,6 @@
 package model.closed;
 
-import application.common.SingletonMap;
+import application.utils.SingletonMap;
 import controller.open.Commands;
 import model.closed.gameManagers.heroStorage.HeroStorage;
 import model.closed.gameManagers.delegates.core.CoreDelegate;

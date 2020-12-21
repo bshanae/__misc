@@ -1,6 +1,6 @@
 package view.closed.screens.gui.implementations;
 
-import application.common.Point;
+import application.utils.Point;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.screens.gui.GuiScreen;

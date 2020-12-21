@@ -1,4 +1,4 @@
-package application.common.uniqueNotifier;
+package application.utils.uniqueNotifier;
 
 public class					UniqueNotifier<T>
 {

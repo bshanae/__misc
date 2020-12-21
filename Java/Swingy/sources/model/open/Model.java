@@ -1,8 +1,9 @@
 package model.open;
 
-import application.common.SingletonMap;
-import application.common.uniqueNotifier.UniqueListener;
-import application.common.uniqueNotifier.UniqueNotifier;
+import application.utils.Debug;
+import application.utils.SingletonMap;
+import application.utils.uniqueNotifier.UniqueListener;
+import application.utils.uniqueNotifier.UniqueNotifier;
 import controller.open.Commands;
 import model.closed.Game;
 
@@ -45,12 +46,14 @@ public class								Model
 
 	public void								notifyListener(Requests.Abstract request)
 	{
+		Debug.log("Model/Model : Sending request of type " + (request != null ? request.getClass() : null));
 		requestQueue.add(request);
 	}
 
 	@Override
 	public void								listen(Commands.Abstract command)
 	{
+		Debug.log("Model/Model : Received command of type " + (command != null ? command.getClass() : null));
 		Game.getInstance().respondToCommand(command);
 	}
 }

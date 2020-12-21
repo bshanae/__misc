@@ -1,7 +1,6 @@
 package view.closed.mode.modeController;
 
-import application.common.SingletonMap;
-import view.open.Context;
+import application.utils.SingletonMap;
 import view.open.Signals;
 import view.open.View;
 

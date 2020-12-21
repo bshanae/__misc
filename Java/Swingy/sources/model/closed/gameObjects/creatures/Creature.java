@@ -1,6 +1,6 @@
 package model.closed.gameObjects.creatures;
 
-import application.common.Point;
+import application.utils.Point;
 
 public class		Creature
 {

@@ -1,6 +1,6 @@
 package controller.closed;
 
-import application.common.SingletonMap;
+import application.utils.SingletonMap;
 import controller.open.Commands;
 import view.open.Signals;
 

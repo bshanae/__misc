@@ -1,4 +1,4 @@
-package application.common;
+package application.utils;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;

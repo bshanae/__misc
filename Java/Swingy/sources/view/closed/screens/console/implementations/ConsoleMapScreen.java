@@ -1,7 +1,7 @@
 package view.closed.screens.console.implementations;
 
-import application.common.Point;
-import application.common.PointRange;
+import application.utils.Point;
+import application.utils.PointRange;
 import model.open.Pockets;
 import model.open.Requests;
 import view.closed.screens.console.ConsoleScreen;

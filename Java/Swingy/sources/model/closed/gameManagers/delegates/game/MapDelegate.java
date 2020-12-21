@@ -1,6 +1,6 @@
 package model.closed.gameManagers.delegates.game;
 
-import application.common.Point;
+import application.utils.Point;
 import controller.open.Commands;
 import model.closed.gameManagers.delegates.Delegate;
 import model.closed.gameObjects.Map;

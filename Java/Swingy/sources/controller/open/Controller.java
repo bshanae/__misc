@@ -1,8 +1,9 @@
 package controller.open;
 
-import application.common.SingletonMap;
-import application.common.uniqueNotifier.UniqueListener;
-import application.common.uniqueNotifier.UniqueNotifier;
+import application.utils.Debug;
+import application.utils.SingletonMap;
+import application.utils.uniqueNotifier.UniqueListener;
+import application.utils.uniqueNotifier.UniqueNotifier;
 import controller.closed.SignalTranslator;
 import view.open.Signals;
 
@@ -18,6 +19,11 @@ public class					Controller
 	@Override
 	public void					listen(Signals.Abstract signal)
 	{
-		notifyListener(SignalTranslator.translate(signal));
+		Commands.Abstract		command = SignalTranslator.translate(signal);
+
+		Debug.log("Controller/Controller : Received signal of type " + (signal != null ? signal.getClass() : null));
+		Debug.log("Controller/Controller : Sending command of type " + (command != null ? command.getClass() : null));
+
+		notifyListener(command);
 	}
 }

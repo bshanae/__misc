@@ -1,6 +1,6 @@
 package view.closed.mode.modeController;
 
-import application.common.SingletonMap;
+import application.utils.SingletonMap;
 
 import javax.swing.*;
 import java.awt.*;

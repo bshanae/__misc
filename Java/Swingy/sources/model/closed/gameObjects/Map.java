@@ -1,6 +1,6 @@
 package model.closed.gameObjects;
 
-import application.common.Point;
+import application.utils.Point;
 import model.closed.gameObjects.creatures.Creature;
 import model.closed.gameObjects.creatures.hero.Hero;
 import model.closed.gameObjects.creatures.hero.HeroClass;

@@ -1,4 +1,4 @@
-package application.common;
+package application.utils;
 
 public class			PointRange
 {

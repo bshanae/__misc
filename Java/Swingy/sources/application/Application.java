@@ -6,7 +6,26 @@ import view.open.View;
 
 public class			Application
 {
-	public static void	main(String[] args)
+	public static void	main(String[] arguments)
+	{
+		try
+		{
+			ApplicationDefines.parse(arguments);
+			execute();
+		}
+		catch (Exception exception)
+		{
+			if (!ApplicationDefines.get(ApplicationDefines.Define.DEBUG))
+				System.out.println("Terminating with exception, enable debug mode for more info");
+			else
+			{
+				System.out.println("Terminating with exception :" + exception.toString());
+				exception.printStackTrace();
+			}
+		}
+	}
+
+	private static void	execute()
 	{
 		Model			model;
 		View			view;

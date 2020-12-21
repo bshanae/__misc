@@ -1,6 +1,6 @@
 package model.closed.gameObjects.creatures.hero;
 
-import application.common.Describable;
+import application.utils.Describable;
 import model.closed.gameObjects.creatures.Creature;
 
 public class				Hero
