@@ -10,12 +10,12 @@ public class			Application
 	{
 		try
 		{
-			ApplicationDefines.parse(arguments);
+			ApplicationOptions.parse(arguments);
 			execute();
 		}
 		catch (Exception exception)
 		{
-			if (!ApplicationDefines.get(ApplicationDefines.Define.DEBUG))
+			if (!ApplicationOptions.get(ApplicationOptions.Options.DEBUG))
 				System.out.println("Terminating with exception, enable debug mode for more info");
 			else
 			{

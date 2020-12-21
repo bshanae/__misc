@@ -1,6 +1,5 @@
 package view.open;
 
-import application.ApplicationDefines;
 import application.utils.Debug;
 import application.utils.SingletonMap;
 import application.utils.uniqueNotifier.UniqueListener;

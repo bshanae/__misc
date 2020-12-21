@@ -1,12 +1,12 @@
 package application.utils;
 
-import application.ApplicationDefines;
+import application.ApplicationOptions;
 
 public abstract class		Debug
 {
 	public static void		log(String message)
 	{
-		if (ApplicationDefines.get(ApplicationDefines.Define.DEBUG))
+		if (ApplicationOptions.get(ApplicationOptions.Options.DEBUG))
 			System.out.println(message);
 	}
 }

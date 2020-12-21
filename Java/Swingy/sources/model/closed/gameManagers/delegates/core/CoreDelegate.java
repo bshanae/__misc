@@ -1,5 +1,6 @@
 package model.closed.gameManagers.delegates.core;
 
+import application.ApplicationOptions;
 import model.closed.gameObjects.creatures.hero.Hero;
 import model.closed.gameManagers.heroStorage.HeroStorage;
 import model.closed.gameManagers.delegates.Delegate;
@@ -25,7 +26,10 @@ public class					CoreDelegate extends Delegate
 	{
 		this.activate();
 
-		sendRequest(new Requests.SwitchToGui());
+		if (!ApplicationOptions.get(ApplicationOptions.Options.LAUNCH_GUI))
+			sendRequest(new Requests.SwitchToConsole());
+		else
+			sendRequest(new Requests.SwitchToGui());
 	}
 
 	public void					terminate()
