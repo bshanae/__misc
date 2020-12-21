@@ -4,13 +4,13 @@ public abstract class				Commands
 {
 	public interface				Abstract {}
 
-// ------------------------------->	Without value
+// -------------------------------> Without value
 
-	public static class				Empty implements Abstract {}
+	public static class				Null implements Abstract {}
 
 	public static class				Exit implements Abstract {}
 
-	public static class				CreateHero implements Abstract {}
+	public static class				Create implements Abstract {}
 
 	public static class				GoNorth implements Abstract {}
 	public static class				GoEast implements Abstract {}
@@ -62,14 +62,6 @@ public abstract class				Commands
 	public static class				Enter extends CommandWithValue
 	{
 		public						Enter(String value)
-		{
-			super(value);
-		}
-	}
-
-	public static class				Create extends CommandWithValue
-	{
-		public						Create(Object value)
 		{
 			super(value);
 		}

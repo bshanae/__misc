@@ -23,32 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5c13bad-ffa3-44d3-9f43-cb897855962f" name="Temporary" comment="">
-      <change afterPath="$PROJECT_DIR$/sources/application/ApplicationDefines.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sources/application/utils/Debug.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/application/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/application/common/Describable.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/application/utils/Describable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/application/common/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/application/utils/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/application/common/PointRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/application/utils/PointRange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/application/common/SingletonMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/application/utils/SingletonMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/application/common/uniqueNotifier/UniqueListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/application/utils/uniqueNotifier/UniqueListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/application/common/uniqueNotifier/UniqueNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/application/utils/uniqueNotifier/UniqueNotifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/controller/closed/SignalTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/closed/SignalTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/controller/open/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/open/Commands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/controller/open/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/controller/open/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/game/MapDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/delegates/game/MapDelegate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameManagers/heroStorage/HeroStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameManagers/heroStorage/HeroStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameObjects/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameObjects/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameObjects/creatures/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameObjects/creatures/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameObjects/creatures/hero/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameObjects/creatures/hero/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/closed/gameObjects/creatures/hero/HeroClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/closed/gameObjects/creatures/hero/HeroClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/model/open/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/open/Pockets.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Pockets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/model/open/Requests.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/model/open/Requests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ConsoleModeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/mode/modeController/ConsoleModeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/mode/modeController/GuiModeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/mode/modeController/GuiModeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/console/implementations/ConsoleMapScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/closed/screens/gui/implementations/GuiMapScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/view/open/Signals.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/Signals.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sources/view/open/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/view/open/View.java" afterDir="false" />
     </list>
     <list id="61165069-1240-45f7-80c7-483508439926" name="Ignore" comment="" />
@@ -131,7 +111,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608150783413</updated>
-      <workItem from="1608150785307" duration="31880000" />
+      <workItem from="1608150785307" duration="32503000" />
     </task>
     <task id="LOCAL-00001" summary="Swingy : Transported project from its repository">
       <created>1608151059015</created>
@@ -189,7 +169,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608576128008</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Swingy : Added ApplicationDefines and Debug classes">
+      <created>1608578575215</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608578575215</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Swingy : Start modes">
+      <created>1608578736381</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1608578736381</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +210,9 @@
     <MESSAGE value="Swingy : GUI signals, many structure changes" />
     <MESSAGE value="Swingy : View controls Context in Singal instance." />
     <MESSAGE value="Swingy : Improved GuiNameEntryScreen and GuiClassSelectorScreen. GUI signal uses button IDs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Swingy : Improved GuiNameEntryScreen and GuiClassSelectorScreen. GUI signal uses button IDs." />
+    <MESSAGE value="Swingy : Added ApplicationDefines and Debug classes" />
+    <MESSAGE value="Swingy : Start modes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Swingy : Start modes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="0" key="#Auto_Import" timestamp="1608408366323">
@@ -239,6 +235,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="432" y="241" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608407695115" />
+    <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608578612638">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1608578612636" />
     <state x="483" y="157" width="944" height="613" key="#xdebugger.evaluate" timestamp="1608403604522">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -247,45 +247,45 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1608218603551" />
-    <state width="1398" height="359" key="GridCell.Tab.0.bottom" timestamp="1608578412821">
+    <state width="1398" height="254" key="GridCell.Tab.0.bottom" timestamp="1608578880490">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="359" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608578412821" />
+    <state width="1398" height="254" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608578880490" />
     <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608408512651" />
-    <state width="1398" height="359" key="GridCell.Tab.0.center" timestamp="1608578412819">
+    <state width="1398" height="254" key="GridCell.Tab.0.center" timestamp="1608578880489">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="359" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608578412819" />
+    <state width="1398" height="254" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608578880489" />
     <state width="1398" height="403" key="GridCell.Tab.0.center/0.25.1440.791@0.25.1440.791" timestamp="1608408512649" />
-    <state width="1398" height="359" key="GridCell.Tab.0.left" timestamp="1608578412818">
+    <state width="1398" height="254" key="GridCell.Tab.0.left" timestamp="1608578880482">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="359" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608578412818" />
+    <state width="1398" height="254" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608578880482" />
     <state width="1398" height="403" key="GridCell.Tab.0.left/0.25.1440.791@0.25.1440.791" timestamp="1608408512643" />
-    <state width="1398" height="359" key="GridCell.Tab.0.right" timestamp="1608578412820">
+    <state width="1398" height="254" key="GridCell.Tab.0.right" timestamp="1608578880490">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="359" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608578412820" />
+    <state width="1398" height="254" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608578880490" />
     <state width="1398" height="403" key="GridCell.Tab.0.right/0.25.1440.791@0.25.1440.791" timestamp="1608408512650" />
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1608576413928">
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1608578778348">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608576413928" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608578778348" />
     <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.25.1440.791@0.25.1440.791" timestamp="1608408672368" />
-    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1608576413926">
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1608578778339">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1608576413926" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1608578778339" />
     <state width="1398" height="304" key="GridCell.Tab.1.center/0.25.1440.791@0.25.1440.791" timestamp="1608408672366" />
-    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1608576413925">
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1608578778338">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1608576413925" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1608578778338" />
     <state width="1398" height="304" key="GridCell.Tab.1.left/0.25.1440.791@0.25.1440.791" timestamp="1608408672365" />
-    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1608576413927">
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1608578778344">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1608576413927" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1608578778344" />
     <state width="1398" height="304" key="GridCell.Tab.1.right/0.25.1440.791@0.25.1440.791" timestamp="1608408672367" />
     <state x="513" y="156" key="RollbackChangesDialog" timestamp="1608392475576">
       <screen x="0" y="0" width="1440" height="900" />
@@ -307,10 +307,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900@0.0.1440.900" timestamp="1608404904851" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1608397749588">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1608578743638">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1608397749588" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1608578743638" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

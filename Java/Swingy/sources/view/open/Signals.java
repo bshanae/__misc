@@ -4,6 +4,8 @@ public abstract class					Signals
 {
 	public interface					Abstract {}
 
+	public static class					Null implements Abstract {}
+
 // -----------------------------------> Console
 
 	public static class					Console implements Abstract

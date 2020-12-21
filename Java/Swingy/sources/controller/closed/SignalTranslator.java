@@ -20,9 +20,8 @@ public abstract class						SignalTranslator
 			instance = SingletonMap.getInstanceOf(GuiSignalTranslator.class);
 			return instance.translateImplementation(signal);
 		}
-
-		// TODO error
-		return null;
+		else
+			return new Commands.Null();
 	}
 
 	protected abstract Commands.Abstract	translateImplementation(Signals.Abstract signal);

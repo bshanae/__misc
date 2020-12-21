@@ -28,7 +28,7 @@ public class					View
 	@Override
 	public void					listen(Requests.Abstract request)
 	{
-		Debug.log("View/View : Received request of type " + (request != null ? request.getClass() : null));
+		Debug.log("View/View : Received request of type " + request.getClass());
 		currentRequest = request;
 
 		if (request instanceof Requests.System)
@@ -39,7 +39,7 @@ public class					View
 
 	public void 				sendSignal(Signals.Abstract signal)
 	{
-		Debug.log("View/View : Sending signal of type " + (signal != null ? signal.getClass() : null));
+		Debug.log("View/View : Sending signal of type " + signal.getClass());
 		notifyListener(signal);
 	}
 
@@ -50,8 +50,7 @@ public class					View
 		else if (request instanceof Requests.SwitchToGui)
 			ModeController.switchMode(Mode.GUI);
 
-		notifyListener(null);
-		// TODO Error
+		notifyListener(new Signals.Null());
 	}
 
 	private void				reactOnUiRequest(Requests.Ui request)

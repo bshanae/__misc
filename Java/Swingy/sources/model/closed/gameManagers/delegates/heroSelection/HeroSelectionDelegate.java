@@ -32,7 +32,7 @@ public class				HeroSelectionDelegate extends Delegate
 		if (tryRespondToCommonCommands(command))
 			return ;
 
-		if (command instanceof Commands.CreateHero)
+		if (command instanceof Commands.Create)
 		{
 			linkChild(new HeroCreationDelegate());
 			isWaitingForNewHero = true;

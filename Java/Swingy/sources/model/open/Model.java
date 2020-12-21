@@ -46,14 +46,14 @@ public class								Model
 
 	public void								notifyListener(Requests.Abstract request)
 	{
-		Debug.log("Model/Model : Sending request of type " + (request != null ? request.getClass() : null));
+		Debug.log("Model/Model : Sending request of type " + request.getClass());
 		requestQueue.add(request);
 	}
 
 	@Override
 	public void								listen(Commands.Abstract command)
 	{
-		Debug.log("Model/Model : Received command of type " + (command != null ? command.getClass() : null));
+		Debug.log("Model/Model : Received command of type " + command.getClass());
 		Game.getInstance().respondToCommand(command);
 	}
 }

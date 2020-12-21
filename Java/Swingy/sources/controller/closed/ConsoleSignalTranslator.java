@@ -195,7 +195,7 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 		put
 		(
 			Context.ERROR,
-			new Pattern[]{ new Pattern(Commands.Empty.class) }
+			new Pattern[]{ new Pattern(Commands.Null.class) }
 		);
 
 		put
@@ -205,7 +205,7 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 			{
 				new Pattern(Commands.Select.class, Keyword.VALUE),
 
-				new Pattern(Commands.CreateHero.class, Keyword.CREATE),
+				new Pattern(Commands.Create.class, Keyword.CREATE),
 				new Pattern(Commands.Select.class, Keyword.SELECT, Keyword.VALUE),
 				new Pattern(Commands.Delete.class, Keyword.DELETE, Keyword.VALUE),
 				new Pattern(Commands.Delete.class, Keyword.INFO, Keyword.VALUE)

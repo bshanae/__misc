@@ -14,13 +14,10 @@ public class					GuiSignalTranslator extends SignalTranslator
 		switch (guiSignal.buttonId)
 		{
 			case HERO_SELECTOR_CREATE_0:
-				return new Commands.Create(0);
 			case HERO_SELECTOR_CREATE_1:
-				return new Commands.Create(1);
 			case HERO_SELECTOR_CREATE_2:
-				return new Commands.Create(2);
 			case HERO_SELECTOR_CREATE_3:
-				return new Commands.Create(3);
+				return new Commands.Create();
 
 			case HERO_SELECTOR_SELECT_0:
 				return new Commands.Select(0);
