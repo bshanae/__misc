@@ -22,6 +22,7 @@
     <orderEntry type="library" name="Maven: javax.el:javax.el-api:3.0.1-b06" level="project" />
     <orderEntry type="library" name="Maven: org.codeartisans:org.json:20161124" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.web:javax.el:2.2.6" level="project" />
-    <orderEntry type="library" name="Maven: com.miglayout:miglayout:3.7.4" level="project" />
+    <orderEntry type="library" name="Maven: com.miglayout:miglayout-core:5.0" level="project" />
+    <orderEntry type="library" name="Maven: com.miglayout:miglayout-swing:5.2" level="project" />
   </component>
 </module>
