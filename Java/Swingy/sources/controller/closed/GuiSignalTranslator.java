@@ -38,10 +38,19 @@ public class					GuiSignalTranslator extends SignalTranslator
 				return new Commands.Delete(3);
 
 			case NAME_ENTRY_ENTER:
-				String			name;
+				return new Commands.Enter((String)guiSignal.linkedData);
 
-				name = (String)guiSignal.linkedData;
-				return new Commands.Enter(name);
+			case MAP_ARROW_UP:
+				return new Commands.GoNorth();
+
+			case MAP_ARROW_LEFT:
+				return new Commands.GoWest();
+
+			case MAP_ARROW_RIGHT:
+				return new Commands.GoEast();
+
+			case MAP_ARROW_DOWN:
+				return new Commands.GoSouth();
 
 			default:
 				// TODO Error

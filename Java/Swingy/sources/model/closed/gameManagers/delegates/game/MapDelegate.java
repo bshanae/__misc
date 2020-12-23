@@ -41,5 +41,9 @@ public class				MapDelegate extends Delegate
 			hero.setPosition(hero.getPosition().add(new Point(0, -1)));
 		else if (command instanceof Commands.GoWest)
 			hero.setPosition(hero.getPosition().add(new Point(-1, 0)));
+		else
+			; // TODO error
+
+		sendRequest(new Requests.Map(map, hero.getPosition()));
 	}
 }

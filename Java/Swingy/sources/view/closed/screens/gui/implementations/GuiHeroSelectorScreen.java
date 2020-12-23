@@ -5,7 +5,6 @@ import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.screens.gui.GuiScreen;
 import view.open.ButtonId;
-import view.open.Signals;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -104,7 +103,7 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		JButton					selectButton;
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout("insets 2 10 2 10"));
+		panel.setLayout(new MigLayout("insets 8 10 8 10"));
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		nameLabel = new JLabel(hero.name);
@@ -137,7 +136,7 @@ public class					GuiHeroSelectorScreen extends GuiScreen
 		JButton					button;
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout("insets 2 10 2 10"));
+		panel.setLayout(new MigLayout("insets 8 10 8 10"));
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		nameLabel = new JLabel("Empty");
