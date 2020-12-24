@@ -32,17 +32,17 @@ public class							ConsoleMapScreen extends ConsoleScreen
 		return mapTemplate.toString();
 	}
 
-	private void					prepareTemplate()
+	private void						prepareTemplate()
 	{
-		String						rawTemplate;
+		String							rawTemplate;
 
 		rawTemplate = ResourceManager.getText("/console/templates/Map.txt");
 		mapTemplate = new Template(rawTemplate);
 	}
 
-	private void					writeMapToTemplate(Requests.Ui request)
+	private void						writeMapToTemplate(Requests.Ui request)
 	{
-		char[][]					map;
+		char[][]						map;
 
 		map = mapGenerator.generate((Requests.Map)request);
 		for (int y = 0; y < CANVAS_SIZE.y; y++)

@@ -55,16 +55,9 @@ public class					View
 
 	private void				reactOnUiRequest(Requests.Ui request)
 	{
-		try
-		{
-			ScreenBuilder.getScreen(request).buildUi(request);
+		ScreenBuilder.getScreen(request).buildUi(request);
 
-			ModeController.getCurrentController().updateUi();
-			ModeController.getCurrentController().requestInput();
-		}
-		catch (NullPointerException exception)
-		{
-			// TODO Error
-		}
+		ModeController.getCurrentController().updateUi();
+		ModeController.getCurrentController().requestInput();
 	}
 }

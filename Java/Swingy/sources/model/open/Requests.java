@@ -62,7 +62,7 @@ public abstract class						Requests
 		public final Pockets.Map			map;
 		public final Point					pivot;
 
-		public								Map(model.closed.gameObjects.Map map, Point pivot)
+		public								Map(model.closed.managers.Map map, Point pivot)
 		{
 			this.map = new Pockets.Map(map);
 			this.pivot = pivot;

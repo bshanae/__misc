@@ -9,8 +9,8 @@ public abstract class					Pockets
 	private static final
 	HashMap<Class<?>, Class<?>>			objectToPocket = new HashMap<Class<?>, Class<?>>()
 	{{
-		put(model.closed.gameObjects.creatures.enemies.Enemy.class, Enemy.class);
-		put(model.closed.gameObjects.creatures.hero.Hero.class, Hero.class);
+		put(model.closed.objects.creatures.enemies.Enemy.class, Enemy.class);
+		put(model.closed.objects.creatures.hero.Hero.class, Hero.class);
 	}};
 
 	public static Abstract				build(Object object)
@@ -44,7 +44,7 @@ public abstract class					Pockets
 
 	public static class					Enemy extends Creature
 	{
-		public 							Enemy(model.closed.gameObjects.creatures.enemies.Enemy enemy)
+		public 							Enemy(model.closed.objects.creatures.enemies.Enemy enemy)
 		{
 			super(enemy.getPosition());
 		}
@@ -54,7 +54,7 @@ public abstract class					Pockets
 	{
 		public final String				name;
 
-		public 							Hero(model.closed.gameObjects.creatures.hero.Hero hero)
+		public 							Hero(model.closed.objects.creatures.hero.Hero hero)
 		{
 			super(hero.getPosition());
 			this.name = hero.getName();
@@ -66,17 +66,17 @@ public abstract class					Pockets
 		public final Point				size;
 		public final List<Creature>		creatures;
 
-		public							Map(model.closed.gameObjects.Map map)
+		public							Map(model.closed.managers.Map map)
 		{
 			size = map.getSize();
 			creatures = new LinkedList<>();
 
-			for (model.closed.gameObjects.creatures.Creature creature : map.getCreatures())
+			for (model.closed.objects.creatures.Creature creature : map.getCreatures())
 			{
-				if (creature instanceof model.closed.gameObjects.creatures.hero.Hero)
-					creatures.add(new Hero((model.closed.gameObjects.creatures.hero.Hero)(creature)));
-				else if (creature instanceof model.closed.gameObjects.creatures.enemies.Enemy)
-					creatures.add(new Enemy((model.closed.gameObjects.creatures.enemies.Enemy)(creature)));
+				if (creature instanceof model.closed.objects.creatures.hero.Hero)
+					creatures.add(new Hero((model.closed.objects.creatures.hero.Hero)(creature)));
+				else if (creature instanceof model.closed.objects.creatures.enemies.Enemy)
+					creatures.add(new Enemy((model.closed.objects.creatures.enemies.Enemy)(creature)));
 			}
 		}
 	}

@@ -2,8 +2,8 @@ package model.closed;
 
 import application.utils.SingletonMap;
 import controller.open.Commands;
-import model.closed.gameManagers.heroStorage.HeroStorage;
-import model.closed.gameManagers.delegates.core.CoreDelegate;
+import model.closed.managers.heroStorage.HeroStorage;
+import model.closed.managers.delegates.core.CoreDelegate;
 
 public class						Game
 {

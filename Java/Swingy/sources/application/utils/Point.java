@@ -5,6 +5,17 @@ public class			Point
 	public int			x;
 	public int			y;
 
+	public static Point	random(Point min, Point max)
+	{
+		Point			point;
+
+		point = new Point();
+		point.x = (int)(Math.random() * max.x - min.x) + min.x;
+		point.y = (int)(Math.random() * max.y - min.y) + min.y;
+
+		return point;
+	}
+
 	public 				Point()
 	{
 		this(0, 0);
