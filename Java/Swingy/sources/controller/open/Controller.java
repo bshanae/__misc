@@ -21,8 +21,8 @@ public class					Controller
 	{
 		Commands.Abstract		command = SignalTranslator.translate(signal);
 
-		Debug.log("Controller/Controller : Received signal of type " + signal.getClass());
-		Debug.log("Controller/Controller : Sending command of type " + command.getClass());
+		Debug.logFormat("[Controller/Controller] Received signal of type '%s'", signal.getClass());
+		Debug.logFormat("[Controller/Controller] Sending command of type '%s'", command.getClass());
 
 		notifyListener(command);
 	}

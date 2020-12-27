@@ -1,5 +1,6 @@
 package model.closed.managers.delegates;
 
+import application.utils.Debug;
 import controller.open.Commands;
 import model.closed.Game;
 import model.closed.managers.delegates.common.ErrorDelegate;

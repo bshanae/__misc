@@ -5,8 +5,12 @@ import controller.open.Commands;
 import model.closed.managers.Map;
 import model.closed.managers.delegates.Delegate;
 import model.closed.managers.generators.MapGenerator;
+import model.closed.objects.creatures.Creature;
+import model.closed.objects.creatures.enemies.Enemy;
 import model.closed.objects.creatures.hero.Hero;
 import model.open.Requests;
+
+import java.util.List;
 
 public class				MapDelegate extends Delegate
 {
@@ -22,16 +26,27 @@ public class				MapDelegate extends Delegate
 	@Override
 	protected void			whenActivated(boolean isFirstTime)
 	{
-		sendRequest(new Requests.Map(map, hero.getPosition()));
-	}
-
-	@Override
-	protected void			whenUpdated()
-	{
+		drawMap();
 	}
 
 	@Override
 	public void				whenResponded(Commands.Abstract command)
+	{
+		Enemy				enemy;
+
+		moveHero(command);
+
+		enemy = checkCollision();
+		if (enemy != null)
+			linkChild(new BattleDelegate(enemy));
+	}
+
+	private void			drawMap()
+	{
+		sendRequest(new Requests.Map(map, hero.getPosition()));
+	}
+
+	private void			moveHero(Commands.Abstract command)
 	{
 		if (command instanceof Commands.GoNorth)
 			hero.setPosition(hero.getPosition().add(new Point(0, 1)));
@@ -44,6 +59,21 @@ public class				MapDelegate extends Delegate
 		else
 			; // TODO error
 
-		sendRequest(new Requests.Map(map, hero.getPosition()));
+		drawMap();
+	}
+
+	private Enemy			checkCollision()
+	{
+		List<Creature>		creatures;
+
+		creatures = map.getCreaturesAt(hero.getPosition());
+
+		for (Creature creature : creatures)
+		{
+			if (creature instanceof Enemy)
+				return (Enemy)creature;
+		}
+
+		return null;
 	}
 }

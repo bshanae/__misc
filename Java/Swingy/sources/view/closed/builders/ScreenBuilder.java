@@ -4,10 +4,7 @@ import model.open.Requests;
 import view.closed.mode.ModeDependantUnion;
 import view.closed.screens.Screen;
 import view.closed.screens.console.implementations.*;
-import view.closed.screens.gui.implementations.GuiClassSelectorScreen;
-import view.closed.screens.gui.implementations.GuiHeroSelectorScreen;
-import view.closed.screens.gui.implementations.GuiMapScreen;
-import view.closed.screens.gui.implementations.GuiNameEntryScreen;
+import view.closed.screens.gui.implementations.*;
 
 import java.util.HashMap;
 
@@ -37,6 +34,7 @@ public abstract class			ScreenBuilder
 
 		// Game
 		put(Requests.Map.class, new ModeDependantClass(ConsoleMapScreen.class, GuiMapScreen.class));
+		put(Requests.BattleLog.class, new ModeDependantClass(ConsoleMapScreen.class, GuiBattleLogScreen.class));
 	}};
 
 	public static Screen		getScreen(Requests.Ui request)

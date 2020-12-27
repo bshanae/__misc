@@ -1,7 +1,6 @@
 package view.closed.utils.common;
 
 import application.utils.Point;
-import application.utils.PointRange;
 import model.open.Pockets;
 import model.open.Requests;
 
@@ -22,7 +21,6 @@ public class						MapGenerator
 	private Point					pivot;
 
 	private Point					offset;
-	private PointRange				bounds;
 
 	public							MapGenerator(Point canvasSize)
 	{
@@ -33,7 +31,6 @@ public class						MapGenerator
 	{
 		loadInfo(request);
 		calculateOffset();
-		calculateBounds();
 
 		return generateArray();
 	}
@@ -58,11 +55,6 @@ public class						MapGenerator
 		pivotOverMapOffset.y = pivot.y * -1;
 
 		offset = mapOverCanvasOffset.add(pivotOverMapOffset);
-	}
-
-	private void					calculateBounds()
-	{
-		bounds = new PointRange(new Point(), mapSize);
 	}
 
 	private char[][]				generateArray()
@@ -113,6 +105,6 @@ public class						MapGenerator
 
 	private boolean					isCoordinateInMap(Point coordinate)
 	{
-		return bounds.isInRange(coordinate);
+		return coordinate.isGreaterOrEquals(new Point()) && coordinate.isLess(mapSize);
 	}
 }

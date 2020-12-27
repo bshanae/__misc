@@ -1,11 +1,9 @@
 package model.closed.objects.creatures.hero;
 
-import application.utils.Describable;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public enum						HeroClass implements Describable
+public enum						HeroClass
 {
 	WARRIOR,
 	SWORDSMAN,
@@ -32,18 +30,6 @@ public enum						HeroClass implements Describable
 		put("Assassin", ASSASSIN);
 		put("Mage", MAGE);
 	}};
-
-	@Override
-	public String				getShortDescription()
-	{
-		return toString();
-	}
-
-	@Override
-	public String			getLongDescription()
-	{
-		return "[HeroClass : value = " + toString() + "]";
-	}
 
 	public String				toString()
 	{

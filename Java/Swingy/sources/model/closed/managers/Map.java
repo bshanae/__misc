@@ -32,4 +32,18 @@ public class						Map
 	{
 		creatures.add(creature);
 	}
+
+	public List<Creature>			getCreaturesAt(Point position)
+	{
+		List<Creature>				creatures;
+
+		creatures = new LinkedList<>();
+		for (Creature creature : this.creatures)
+		{
+			if (creature.getPosition().equals(position))
+				creatures.add(creature);
+		}
+
+		return creatures;
+	}
 }

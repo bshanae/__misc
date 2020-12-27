@@ -1,6 +1,7 @@
 package model.open;
 
 import application.utils.Point;
+import model.closed.managers.battle.BattleLogger;
 
 import java.util.*;
 
@@ -78,6 +79,16 @@ public abstract class					Pockets
 				else if (creature instanceof model.closed.objects.creatures.enemies.Enemy)
 					creatures.add(new Enemy((model.closed.objects.creatures.enemies.Enemy)(creature)));
 			}
+		}
+	}
+
+	public static class					BattleLog implements Abstract
+	{
+		public final List<String>		lines;
+
+		public							BattleLog(BattleLogger logger)
+		{
+			lines = logger.getLines();
 		}
 	}
 }

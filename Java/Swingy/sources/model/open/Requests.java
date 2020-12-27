@@ -1,6 +1,7 @@
 package model.open;
 
 import application.utils.Point;
+import model.closed.managers.battle.BattleLogger;
 
 import java.util.List;
 
@@ -8,19 +9,19 @@ public abstract class						Requests
 {
 	public interface						Abstract {}
 
-	public interface						System {}
+	public interface						System extends  Abstract {}
 
-	public interface						Ui {}
+	public interface						Ui extends  Abstract {}
 
 // --------------------------------------->	Empty
 
-	public static class						SwitchToConsole implements Abstract, System
+	public static class						SwitchToConsole implements System
 	{}
 
-	public static class						SwitchToGui implements Abstract, System
+	public static class						SwitchToGui implements System
 	{}
 
-	public static class						HeroSelector implements Abstract, Ui
+	public static class						HeroSelector implements Ui
 	{
 		public final List<Pockets.Hero>		heroes;
 
@@ -30,14 +31,14 @@ public abstract class						Requests
 		}
 	}
 
-	public static class						HeroNameEntry implements Abstract, Ui {}
+	public static class						HeroNameEntry implements Ui {}
 
-	public static class						ClassSelector implements Abstract, Ui {}
+	public static class						ClassSelector implements Ui {}
 
 
 // --------------------------------------->	With string
 
-	private static abstract class			WithMessage implements Abstract, Ui
+	private static abstract class			WithMessage implements Ui
 	{
 		public final String					message;
 
@@ -57,7 +58,7 @@ public abstract class						Requests
 
 // --------------------------------------->	With complex structure
 
-	public static class						Map implements Abstract, Ui
+	public static class						Map implements Ui
 	{
 		public final Pockets.Map			map;
 		public final Point					pivot;
@@ -66,6 +67,16 @@ public abstract class						Requests
 		{
 			this.map = new Pockets.Map(map);
 			this.pivot = pivot;
+		}
+	}
+
+	public static class						BattleLog implements Ui
+	{
+		public final Pockets.BattleLog		log;
+
+		public 								BattleLog(BattleLogger logger)
+		{
+			log = new Pockets.BattleLog(logger);
 		}
 	}
 }

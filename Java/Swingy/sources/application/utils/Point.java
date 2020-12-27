@@ -1,5 +1,7 @@
 package application.utils;
 
+import model.closed.managers.generators.RandomGenerator;
+
 public class			Point
 {
 	public int			x;
@@ -10,8 +12,8 @@ public class			Point
 		Point			point;
 
 		point = new Point();
-		point.x = (int)(Math.random() * max.x - min.x) + min.x;
-		point.y = (int)(Math.random() * max.y - min.y) + min.y;
+		point.x = RandomGenerator.randomBetween(min.x, max.x);
+		point.y = RandomGenerator.randomBetween(min.y, max.y);
 
 		return point;
 	}

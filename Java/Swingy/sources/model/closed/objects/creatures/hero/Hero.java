@@ -1,101 +1,94 @@
 package model.closed.objects.creatures.hero;
 
-import application.utils.Describable;
+import model.closed.objects.Attack;
+import model.closed.objects.artefacts.Armors;
+import model.closed.objects.artefacts.Helms;
+import model.closed.objects.artefacts.Weapons;
 import model.closed.objects.creatures.Creature;
 
-public class				Hero
-							extends Creature
-							implements Describable
+import java.util.LinkedList;
+import java.util.List;
+
+public class					Hero extends Creature
 {
-	private final String	name;
-	private final HeroClass heroClass;
+	private final HeroClass 	heroClass;
+	private int					level;
+	private int					experience;
 
-	private int				level;
-	private int				experience;
-	private int				attack;
-	private int				defense;
-	private int				hp;
+	private Helms.Abstract		helm;
+	private Armors.Abstract		armor;
+	private Weapons.Abstract	weapon;
 
-	@Override
-	public String			getShortDescription()
-	{
-		return name;
-	}
-
-	@Override
-	public String			getLongDescription()
-	{
-		return "[Hero : name = '" + name + "', class = " + heroClass.getShortDescription() + "]";
-	}
-	
-	public					Hero(String name, HeroClass heroClass)
-	{
-		this.name = name;
-		this.heroClass = heroClass;
-		this.level = 0;
-		this.experience = 0;
-		this.attack = 0;
-		this.defense = 0;
-		this.hp = 0;
-	}
-
-	public String			getName()
-	{
-		return name;
-	}
-
-	public HeroClass		getHeroClass()
+	public HeroClass			getHeroClass()
 	{
 		return heroClass;
 	}
 
-	public int				getLevel()
+	public int					getLevel()
 	{
 		return level;
 	}
 
-	public void				setLevel(int level)
+	public void					setLevel(int level)
 	{
 		this.level = level;
 	}
 
-	public int				getExperience()
+	public int					getExperience()
 	{
 		return experience;
 	}
 
-	public void				addExperience(int value)
+	public void					setExperience(int value)
 	{
 		this.experience = value;
 	}
 
-	public int				getAttack()
+	public Helms.Abstract		getHelm()
 	{
-		return attack;
+		return helm;
 	}
 
-	public void				setAttack(int attack)
+	public void					setHelm(Helms.Abstract helm)
 	{
-		this.attack = attack;
+		this.helm = helm;
 	}
 
-	public int				getDefense()
+	public Armors.Abstract		getArmor()
 	{
-		return defense;
+		return armor;
 	}
 
-	public void				setDefense(int defense)
+	public void					setArmor(Armors.Abstract armor)
 	{
-		this.defense = defense;
+		this.armor = armor;
 	}
 
-	public int				getHp()
+	public Weapons.Abstract		getWeapon()
 	{
-		return hp;
+		return weapon;
 	}
 
-	public void				setHp(int hp)
+	public void					setWeapon(Weapons.Abstract weapon)
 	{
-		this.hp = hp;
+		this.weapon = weapon;
 	}
+
+	@Override
+	public List<Attack>			getAttacks()
+	{
+		return weapon != null ? weapon.getAttacks() : new LinkedList<>();
+	}
+
+	public						Hero(String name, HeroClass heroClass)
+	{
+		super(name);
+
+		this.heroClass = heroClass;
+		this.level = 0;
+		this.experience = 0;
+
+		setWeapon(new Weapons.Sword());
+	}
+
 }

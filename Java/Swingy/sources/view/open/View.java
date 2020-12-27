@@ -28,7 +28,7 @@ public class					View
 	@Override
 	public void					listen(Requests.Abstract request)
 	{
-		Debug.log("View/View : Received request of type " + request.getClass());
+		Debug.logFormat("[View/View] Received request of type '%s'", request.getClass());
 		currentRequest = request;
 
 		if (request instanceof Requests.System)
@@ -39,7 +39,7 @@ public class					View
 
 	public void 				sendSignal(Signals.Abstract signal)
 	{
-		Debug.log("View/View : Sending signal of type " + signal.getClass());
+		Debug.logFormat("[View/View] Sending signal of type '%s'", signal.getClass());
 		notifyListener(signal);
 	}
 
