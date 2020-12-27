@@ -1,25 +1,29 @@
 package view.closed.screens.gui.implementations;
 
 import model.open.Requests;
-import view.closed.screens.gui.GuiScreen;
+import view.closed.screens.gui.abstractions.GuiScreenForDialog;
 
 import javax.swing.*;
 
-public class			GuiBattleLogScreen extends GuiScreen
+public class				GuiBattleLogScreen extends GuiScreenForDialog
 {
-	private static int	i = 0;
-
 	@Override
-	protected JPanel	getContent(Requests.Ui request)
+	protected String		getDialogName()
 	{
-		return buildMainPanel();
+		return "Battle";
 	}
 
-	private JPanel		buildMainPanel()
+	@Override
+	protected JPanel		getContent(Requests.Ui request)
 	{
-		JPanel			panel;
-		JScrollPane		scrollPane;
-		JTextArea		textArea;
+		return buildMainPanel(request);
+	}
+
+	private JPanel			buildMainPanel(Requests.Ui request)
+	{
+		JPanel				panel;
+		JScrollPane			scrollPane;
+		JTextArea			textArea;
 
 		textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -27,11 +31,25 @@ public class			GuiBattleLogScreen extends GuiScreen
 		scrollPane = new JScrollPane(textArea);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-		textArea.setText("arc1\narc2 : " + i++);
+		textArea.setText(getLog(request));
 
 		panel = new JPanel();
 		panel.add(scrollPane);
 
 		return panel;
+	}
+
+	private String			getLog(Requests.Ui request)
+	{
+		Requests.BattleLog	log;
+		StringBuilder		stringBuilder;
+
+		log = (Requests.BattleLog)request;
+		stringBuilder = new StringBuilder();
+
+		for (String line : log.log.lines)
+			stringBuilder.append(line).append("\n");
+
+		return stringBuilder.toString();
 	}
 }

@@ -3,7 +3,7 @@ package view.closed.screens.gui.implementations;
 import model.open.Pockets;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
-import view.closed.screens.gui.GuiScreen;
+import view.closed.screens.gui.abstractions.GuiScreenForFrame;
 import view.open.ButtonId;
 
 import javax.swing.*;
@@ -11,7 +11,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.List;
 
-public class					GuiHeroSelectorScreen extends GuiScreen
+public class					GuiHeroSelectorScreen extends GuiScreenForFrame
 {
 	private static final int	GAP_FROM_TOP_TO_TITLE = 60;
 	private static final int	GAP_FROM_TITLE_TO_HERO_PANELS = 60;

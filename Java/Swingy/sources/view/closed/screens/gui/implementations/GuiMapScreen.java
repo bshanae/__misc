@@ -3,14 +3,14 @@ package view.closed.screens.gui.implementations;
 import application.utils.Point;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
-import view.closed.screens.gui.GuiScreen;
+import view.closed.screens.gui.abstractions.GuiScreenForFrame;
 import view.closed.utils.common.MapGenerator;
 import view.open.ButtonId;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-public class							GuiMapScreen extends GuiScreen
+public class							GuiMapScreen extends GuiScreenForFrame
 {
 	private static final Point			CANVAS_SIZE = new Point(20, 15);
 

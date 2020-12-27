@@ -2,7 +2,7 @@ package view.closed.screens.gui.implementations;
 
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
-import view.closed.screens.gui.GuiScreen;
+import view.closed.screens.gui.abstractions.GuiScreenForFrame;
 import view.open.ButtonId;
 import view.open.Signals;
 import view.open.View;
@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class					GuiNameEntryScreen extends GuiScreen
+public class					GuiNameEntryScreen extends GuiScreenForFrame
 {
 	private static final int	GAP_FROM_TOP_TO_TITLE = 90;
 	private static final int	GAP_FROM_TITLE_TO_CONTENT = 90;

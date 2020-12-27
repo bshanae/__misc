@@ -2,13 +2,13 @@ package view.closed.screens.gui.implementations;
 
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
-import view.closed.screens.gui.GuiScreen;
+import view.closed.screens.gui.abstractions.GuiScreenForFrame;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class					GuiClassSelectorScreen extends GuiScreen
+public class					GuiClassSelectorScreen extends GuiScreenForFrame
 {
 	private static final int	GAP_FROM_TOP_TO_TITLE = 90;
 	private static final int	GAP_FROM_TITLE_TO_CONTENT = 90;
