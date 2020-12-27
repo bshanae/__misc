@@ -11,6 +11,8 @@ import java.util.List;
 
 public class					Hero extends Creature
 {
+// ---------------------------> Attributes
+
 	private final HeroClass 	heroClass;
 	private int					level;
 	private int					experience;
@@ -18,6 +20,15 @@ public class					Hero extends Creature
 	private Helms.Abstract		helm;
 	private Armors.Abstract		armor;
 	private Weapons.Abstract	weapon;
+
+// ---------------------------> Properties
+
+	@Override
+	public int					getBaseHealth()
+	{
+		// TODO Implement
+		return 100;
+	}
 
 	public HeroClass			getHeroClass()
 	{
@@ -80,6 +91,8 @@ public class					Hero extends Creature
 		return weapon != null ? weapon.getAttacks() : new LinkedList<>();
 	}
 
+// ---------------------------> Constructor
+
 	public						Hero(String name, HeroClass heroClass)
 	{
 		super(name);
@@ -88,6 +101,7 @@ public class					Hero extends Creature
 		this.level = 0;
 		this.experience = 0;
 
+		// TODO Remove
 		setWeapon(new Weapons.Sword());
 	}
 

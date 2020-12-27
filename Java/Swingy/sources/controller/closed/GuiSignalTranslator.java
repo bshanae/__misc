@@ -52,6 +52,9 @@ public class					GuiSignalTranslator extends SignalTranslator
 			case MAP_ARROW_DOWN:
 				return new Commands.GoSouth();
 
+			case BATTLE_PROCEED:
+				return new Commands.Ok();
+
 			default:
 				// TODO Error
 				return null;

@@ -1,10 +1,11 @@
 package view.closed.mode.modeController;
 
 import application.utils.SingletonMap;
-import view.closed.utils.gui.GuiWayOfDisplayingScreen;
+import view.closed.others.gui.GuiWayOfDisplayingScreen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
 
 public class							GuiModeController extends ModeController
 {
@@ -109,6 +110,8 @@ public class							GuiModeController extends ModeController
 		private void					buildDialog()
 		{
 			dialog = new JDialog(frame, dialogName, Dialog.ModalityType.DOCUMENT_MODAL);
+
+			dialog.setResizable(false);
 			dialog.setLocation(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 			dialog.setSize(DIALOG_WIDTH, DIALOG_HEIGHT);
 		}

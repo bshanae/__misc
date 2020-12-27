@@ -2,22 +2,11 @@ package controller.open;
 
 public abstract class				Commands
 {
+// -------------------------------> Abstract
+
 	public interface				Abstract {}
 
-// -------------------------------> Without value
-
 	public static class				Null implements Abstract {}
-
-	public static class				Exit implements Abstract {}
-
-	public static class				Create implements Abstract {}
-
-	public static class				GoNorth implements Abstract {}
-	public static class				GoEast implements Abstract {}
-	public static class				GoSouth implements Abstract {}
-	public static class				GoWest implements Abstract {}
-
-// ------------------------------->	With value
 
 	private static abstract class	CommandWithValue implements Abstract
 	{
@@ -59,6 +48,17 @@ public abstract class				Commands
 		}
 	}
 
+// -------------------------------> Concrete
+
+	public static class				Exit implements Abstract {}
+
+	public static class				Create implements Abstract {}
+
+	public static class				GoNorth implements Abstract {}
+	public static class				GoEast implements Abstract {}
+	public static class				GoSouth implements Abstract {}
+	public static class				GoWest implements Abstract {}
+
 	public static class				Enter extends CommandWithValue
 	{
 		public						Enter(String value)
@@ -90,4 +90,6 @@ public abstract class				Commands
 			super(value);
 		}
 	}
+
+	public static class				Ok implements Abstract {}
 }

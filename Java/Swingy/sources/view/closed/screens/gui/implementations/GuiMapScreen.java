@@ -4,7 +4,7 @@ import application.utils.Point;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.screens.gui.abstractions.GuiScreenForFrame;
-import view.closed.utils.common.MapGenerator;
+import view.closed.others.common.MapGenerator;
 import view.open.ButtonId;
 
 import javax.swing.*;

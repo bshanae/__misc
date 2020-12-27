@@ -6,6 +6,7 @@ import model.closed.objects.creatures.hero.Hero;
 public class				Session
 {
 	private Hero			hero;
+	private Map				map;
 
 	public static Session	getInstance()
 	{
@@ -25,5 +26,15 @@ public class				Session
 	public int				getLevel()
 	{
 		return hero.getLevel();
+	}
+
+	public Map				getMap()
+	{
+		return map;
+	}
+
+	public void				setMap(Map map)
+	{
+		this.map = map;
 	}
 }

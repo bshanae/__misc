@@ -2,8 +2,8 @@ package view.closed.screens.console.implementations;
 
 import model.open.Requests;
 import view.closed.screens.console.ConsoleScreen;
-import view.closed.utils.console.ResourceManager;
-import view.closed.utils.console.Template;
+import view.closed.others.console.ResourceManager;
+import view.closed.others.console.Template;
 
 public class			ConsoleErrorScreen extends ConsoleScreen
 {

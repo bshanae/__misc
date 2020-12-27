@@ -41,7 +41,7 @@ public class							MapGenerator
 		map = new Map(new Point(getSizeForLevel(level)));
 
 		hero.setPosition(map.getSize().subtract(new Point(1)).divide(2));
-		map.addCreature(hero);
+		map.getCreatures().add(hero);
 
 		numberOfEnemies = getNumberOfEnemies();
 		for (int i = 0; i < numberOfEnemies; i++)
@@ -49,7 +49,7 @@ public class							MapGenerator
 			enemy = EnemyGenerator.generate();
 			enemy.setPosition(getUniqueRandomPosition());
 
-			map.addCreature(enemy);
+			map.getCreatures().add(enemy);
 		}
 
 		return map;
@@ -62,7 +62,8 @@ public class							MapGenerator
 		do
 		{
 			position = Point.random(new Point(0), map.getSize());
-		} while (!isPositionUnique(position));
+		}
+		while (!isPositionUnique(position));
 
 		return position;
 	}

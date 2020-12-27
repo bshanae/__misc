@@ -29,7 +29,10 @@ public enum			ButtonId
 	MAP_ARROW_UP,
 	MAP_ARROW_LEFT,
 	MAP_ARROW_RIGHT,
-	MAP_ARROW_DOWN;
+	MAP_ARROW_DOWN,
+
+	// Battle
+	BATTLE_PROCEED;
 
 	public ButtonId	applyOffset(int offset)
 	{

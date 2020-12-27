@@ -1,4 +1,4 @@
-package view.closed.utils.common;
+package view.closed.others.common;
 
 import application.utils.Point;
 import model.open.Pockets;

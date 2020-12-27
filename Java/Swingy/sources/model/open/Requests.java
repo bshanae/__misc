@@ -70,13 +70,15 @@ public abstract class						Requests
 		}
 	}
 
-	public static class						BattleLog implements Ui
+	public static class						Battle implements Ui
 	{
 		public final Pockets.BattleLog		log;
+		public final boolean				isBattleFinished;
 
-		public 								BattleLog(BattleLogger logger)
+		public								Battle(model.closed.managers.battle.Battle battle)
 		{
-			log = new Pockets.BattleLog(logger);
+			log = new Pockets.BattleLog(battle.getLogger());
+			isBattleFinished = battle.isFinished();
 		}
 	}
 }

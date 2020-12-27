@@ -1,4 +1,4 @@
-package view.closed.utils.gui;
+package view.closed.others.gui;
 
 public enum			GuiWayOfDisplayingScreen
 {

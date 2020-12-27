@@ -7,11 +7,23 @@ import java.util.List;
 
 public abstract class				Creature
 {
+// -------------------------------> Final attributes
+
 	private final String			name;
+
+// -------------------------------> Attributes
 
 	private int						health;
 	private int						defense;
 	private Point					position;
+
+// -------------------------------> Abstract properties
+
+	public abstract int				getBaseHealth();
+
+	public abstract List<Attack>	getAttacks();
+
+// -------------------------------> Properties
 
 	public String					getName()
 	{
@@ -21,11 +33,6 @@ public abstract class				Creature
 	public int						getHealth()
 	{
 		return health;
-	}
-
-	public void						setHealth(int health)
-	{
-		this.health = health;
 	}
 
 	public int						getDefense()
@@ -49,12 +56,14 @@ public abstract class				Creature
 		this.position = position;
 	}
 
-	public							Creature(String name)
+// -------------------------------> Constructor
+
+	protected						Creature(String name)
 	{
 		this.name = name;
 	}
 
-	public abstract List<Attack>	getAttacks();
+// -------------------------------> Public methods
 
 	public boolean					isAlive()
 	{
@@ -63,6 +72,18 @@ public abstract class				Creature
 
 	public boolean					isDead()
 	{
-		return health <= 0;
+		return !isAlive();
+	}
+
+// -------------------------------> Public methods : Health
+
+	public void						resetHealth()
+	{
+		health = getBaseHealth();
+	}
+
+	public void						hit(int damage)
+	{
+		health = Math.max(0, health - damage);
 	}
 }

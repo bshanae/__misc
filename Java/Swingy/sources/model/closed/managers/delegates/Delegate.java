@@ -27,8 +27,8 @@ public abstract class			Delegate
 		isActivated = false;
 		isResolved = false;
 
-		isFirstTimeActivated = false;
-		isFirstTimeDeactivated = false;
+		isFirstTimeActivated = true;
+		isFirstTimeDeactivated = true;
 	}
 
 // ---------------------------> Hierarchy methods

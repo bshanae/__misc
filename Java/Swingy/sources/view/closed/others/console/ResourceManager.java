@@ -1,4 +1,4 @@
-package view.closed.utils.console;
+package view.closed.others.console;
 
 import java.io.*;
 

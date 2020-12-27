@@ -1,10 +1,11 @@
 package model.closed.managers.delegates.core;
 
 import application.ApplicationOptions;
+import model.closed.managers.Session;
 import model.closed.objects.creatures.hero.Hero;
 import model.closed.managers.heroStorage.HeroStorage;
 import model.closed.managers.delegates.Delegate;
-import model.closed.managers.delegates.game.LevelDelegate;
+import model.closed.managers.delegates.game.GameDelegate;
 import model.closed.managers.delegates.heroSelection.HeroSelectionDelegate;
 import model.open.Requests;
 
@@ -20,7 +21,6 @@ public class					CoreDelegate extends Delegate
 	}
 
 	private State				state;
-	private Hero				hero;
 
 	public void					run()
 	{
@@ -43,20 +43,6 @@ public class					CoreDelegate extends Delegate
 	}
 
 	@Override
-	protected void				whenActivated(boolean isFirstTime)
-	{
-		if (isFirstTime)
-			HeroStorage.getInstance().download();
-	}
-
-	@Override
-	protected void				whenDeactivated(boolean isFirstTime)
-	{
-		if (isFirstTime)
-			HeroStorage.getInstance().upload();
-	}
-
-	@Override
 	protected void				whenUpdated()
 	{
 		switch (state)
@@ -68,7 +54,7 @@ public class					CoreDelegate extends Delegate
 
 			case SELECTED_HERO:
 				state = State.PLAYING_GAME;
-				linkChild(new LevelDelegate(hero));
+				linkChild(new GameDelegate());
 				break;
 
 			case PLAYED_GAME:
@@ -86,9 +72,6 @@ public class					CoreDelegate extends Delegate
 		switch (state)
 		{
 			case SELECTING_HERO:
-				assert message instanceof Hero;
-				this.hero = (Hero)message;
-
 				state = State.SELECTED_HERO;
 				break;
 

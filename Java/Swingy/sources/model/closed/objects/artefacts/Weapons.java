@@ -20,7 +20,7 @@ public abstract class		Weapons
 			List<Attack>	attacks;
 
 			attacks = new LinkedList<>();
-			attacks.add(new Attack("regular", 100, new Range<>(1, 2), 0.1f));
+			attacks.add(new Attack("Light blow", 100, new Range<>(50, 60), 0.1f));
 
 			return attacks;
 		}

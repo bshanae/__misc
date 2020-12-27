@@ -12,24 +12,34 @@ import java.util.TimerTask;
 
 public class					BattleDelegate extends Delegate
 {
+	private class				ExecuteBattleTurnTask extends TimerTask
+	{
+		@Override
+		public void				run()
+		{
+			timer = null;
+
+			if (!battle.isFinished())
+			{
+				battle.executeTurn();
+				showLog();
+			}
+		}
+	}
+
 	private static final float	LOG_DELAY = 1.2f;
 	private static final float	MILLISECONDS_IN_A_SECOND = 1000;
 
 	private final Battle		battle;
-	private final BattleLogger	battleLogger;
 
 	private Timer				timer;
-	private boolean				shouldShowLog;
 
 	public						BattleDelegate(Enemy opponent)
 	{
-		battle = new Battle(opponent);
-		battleLogger = new BattleLogger();
-
-		battle.attachLogger(battleLogger);
+		battle = new model.closed.managers.battle.Battle(opponent);
+		battle.setLogger(new BattleLogger());
 
 		timer = null;
-		shouldShowLog = false;
 	}
 
 	@Override
@@ -41,47 +51,22 @@ public class					BattleDelegate extends Delegate
 	@Override
 	protected void				whenUpdated()
 	{
-		updateTimer();
-		showLogIfNeeded();
+		if (timer == null)
+		{
+			timer = new Timer();
+			timer.schedule(new ExecuteBattleTurnTask(), (int)(LOG_DELAY * MILLISECONDS_IN_A_SECOND));
+		}
 	}
 
 	@Override
 	protected void				whenResponded(Commands.Abstract command)
 	{
+		if (command instanceof Commands.Ok)
+			resolve();
 	}
 
 	private void				showLog()
 	{
-		sendRequest(new Requests.BattleLog(battleLogger));
-	}
-
-	private void				showLogIfNeeded()
-	{
-		if (shouldShowLog)
-		{
-			showLog();
-			shouldShowLog = false;
-		}
-	}
-
-	private void				updateTimer()
-	{
-		if (timer == null)
-		{
-			timer = new Timer();
-			timer.schedule
-			(
-				new TimerTask()
-				{
-					@Override
-					public void	run()
-					{
-						timer = null;
-						shouldShowLog = true;
-					}
-				},
-				(int)(LOG_DELAY * MILLISECONDS_IN_A_SECOND)
-			);
-		}
+		sendRequest(new Requests.Battle(battle));
 	}
 }

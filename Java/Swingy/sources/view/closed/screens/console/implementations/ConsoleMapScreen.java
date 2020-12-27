@@ -1,14 +1,11 @@
 package view.closed.screens.console.implementations;
 
 import application.utils.Point;
-import model.open.Pockets;
 import model.open.Requests;
 import view.closed.screens.console.ConsoleScreen;
-import view.closed.utils.common.MapGenerator;
-import view.closed.utils.console.ResourceManager;
-import view.closed.utils.console.Template;
-
-import java.util.List;
+import view.closed.others.common.MapGenerator;
+import view.closed.others.console.ResourceManager;
+import view.closed.others.console.Template;
 
 public class							ConsoleMapScreen extends ConsoleScreen
 {

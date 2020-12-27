@@ -19,18 +19,13 @@ public class						Map
 
 	public List<Creature>			getCreatures()
 	{
-		return Collections.unmodifiableList(creatures);
+		return creatures;
 	}
 
 	public 							Map(Point size)
 	{
 		this.size = size;
 		this.creatures = new LinkedList<>();
-	}
-
-	public void 					addCreature(Creature creature)
-	{
-		creatures.add(creature);
 	}
 
 	public List<Creature>			getCreaturesAt(Point position)

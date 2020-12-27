@@ -3,6 +3,7 @@ package model.closed.managers.delegates.game;
 import application.utils.Point;
 import controller.open.Commands;
 import model.closed.managers.Map;
+import model.closed.managers.Session;
 import model.closed.managers.delegates.Delegate;
 import model.closed.managers.generators.MapGenerator;
 import model.closed.objects.creatures.Creature;
@@ -17,10 +18,12 @@ public class				MapDelegate extends Delegate
 	private final Hero		hero;
 	private final Map		map;
 
-	public					MapDelegate(Hero hero)
+	public					MapDelegate()
 	{
-		this.hero = hero;
-		this.map = MapGenerator.getInstance().generate();
+		hero = Session.getInstance().getHero();
+		map = MapGenerator.getInstance().generate();
+
+		Session.getInstance().setMap(map);
 	}
 
 	@Override
@@ -32,13 +35,9 @@ public class				MapDelegate extends Delegate
 	@Override
 	public void				whenResponded(Commands.Abstract command)
 	{
-		Enemy				enemy;
-
-		moveHero(command);
-
-		enemy = checkCollision();
-		if (enemy != null)
-			linkChild(new BattleDelegate(enemy));
+		tryMoveHero(command);
+		tryResolve();
+		tryStartBattle();
 	}
 
 	private void			drawMap()
@@ -46,7 +45,7 @@ public class				MapDelegate extends Delegate
 		sendRequest(new Requests.Map(map, hero.getPosition()));
 	}
 
-	private void			moveHero(Commands.Abstract command)
+	private void			tryMoveHero(Commands.Abstract command)
 	{
 		if (command instanceof Commands.GoNorth)
 			hero.setPosition(hero.getPosition().add(new Point(0, 1)));
@@ -60,6 +59,24 @@ public class				MapDelegate extends Delegate
 			; // TODO error
 
 		drawMap();
+	}
+
+	private void			tryResolve()
+	{
+		if (map.getCreatures().size() == 1)
+		{
+			Session.getInstance().setMap(null);
+			resolve();
+		}
+	}
+
+	private void			tryStartBattle()
+	{
+		Enemy				enemy;
+
+		enemy = checkCollision();
+		if (enemy != null)
+			linkChild(new BattleDelegate(enemy));
 	}
 
 	private Enemy			checkCollision()

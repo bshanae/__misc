@@ -56,7 +56,7 @@ public class					GuiNameEntryScreen extends GuiScreenForFrame
 		JButton					button;
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout("fill, insets 25 15 25 15", "", "[]rel:push[]"));
+		panel.setLayout(new MigLayout("fill, insets 25 15 25 15", "", "[]push[]"));
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		textField = new JTextField();

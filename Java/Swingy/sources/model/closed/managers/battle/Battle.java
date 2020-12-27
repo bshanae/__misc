@@ -7,14 +7,16 @@ import model.closed.objects.creatures.Creature;
 import model.closed.objects.creatures.enemies.Enemy;
 import model.closed.objects.creatures.hero.Hero;
 
-public class				Battle
+public class					Battle
 {
-	private enum			Turn
+// ---------------------------> Nested classes
+
+	private enum				Turn
 	{
 		HERO,
 		OPPONENT;
 
-		public Turn			next()
+		public Turn				next()
 		{
 			switch (this)
 			{
@@ -29,28 +31,48 @@ public class				Battle
 		}
 	}
 
-	private final Hero		hero;
-	private final Enemy		opponent;
+// ---------------------------> Attributes
 
-	private Turn			turn;
-	private BattleLogger	logger;
+	private final Hero			hero;
+	private final Enemy			opponent;
 
-	public					Battle(Enemy opponent)
+	private Turn				turn;
+	private BattleLogger		logger;
+
+// ---------------------------> Properties
+
+	public BattleLogger			getLogger()
 	{
-		hero = Session.getInstance().getHero();
+		return logger;
+	}
+
+	public void 				setLogger(BattleLogger logger)
+	{
+		if (this.logger != null)
+			throw new RuntimeException("Logger is already set");
+
+		this.logger = logger;
+		this.logger.logAwait();
+	}
+
+// ---------------------------> Constructor
+
+	public						Battle(Enemy opponent)
+	{
+		this.hero = Session.getInstance().getHero();
 		this.opponent = opponent;
+
+		hero.resetHealth();
+		opponent.resetHealth();
 
 		turn = Turn.HERO;
 	}
 
-	public void 			attachLogger(BattleLogger logger)
-	{
-		this.logger = logger;
-	}
+// ---------------------------> Public methods
 
-	public AttackReport		executeTurn()
+	public void					executeTurn()
 	{
-		AttackReport		report = null;
+		BattleTurnReport report = null;
 
 		if (isFinished())
 			throw new RuntimeException();
@@ -70,26 +92,30 @@ public class				Battle
 			logger.logAttack(report);
 
 		turn = turn.next();
-		return report;
 	}
 
-	public boolean			isFinished()
+	public boolean				isFinished()
 	{
 		return hero.isDead() || opponent.isDead();
 	}
 
-	private AttackReport	performAttack(Creature attacker, Creature attackee)
+// ---------------------------> Private methods
+
+	private BattleTurnReport	performAttack(Creature attacker, Creature attackee)
 	{
-		Attack				attack;
-		boolean				isCritical;
-		int					damage;
+		Attack					attack;
+		boolean					isCritical;
+		int						damage;
 
 		attack = AttackGenerator.generateAttack(attacker.getAttacks());
 		isCritical = AttackGenerator.generateIsCritical(attack);
 		damage = AttackGenerator.generateDamage(attack, isCritical);
 
-		attackee.setHealth(attackee.getHealth() - damage);
+		attackee.hit(damage);
 
-		return new AttackReport(attacker, attackee, attack, isCritical, damage);
+		if (attackee.isDead())
+			Session.getInstance().getMap().getCreatures().remove(attackee);
+
+		return new BattleTurnReport(attacker, attackee, attack, isCritical, damage, isFinished());
 	}
 }
