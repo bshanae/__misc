@@ -11,6 +11,12 @@ import java.util.List;
 public class					ConsoleHeroSelectorScreen extends ConsoleScreen
 {
 	@Override
+	public boolean				shouldRequestInput()
+	{
+		return true;
+	}
+
+	@Override
 	public String				getContent(Requests.Ui request)
 	{
 		Requests.HeroSelector	heroSelectorRequest;

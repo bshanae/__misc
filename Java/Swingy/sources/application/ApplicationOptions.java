@@ -9,11 +9,12 @@ public abstract class							ApplicationOptions
 	{
 		LAUNCH_CONSOLE("console"),
 		LAUNCH_GUI("gui"),
-		DEBUG("debug");
+		DEBUG("debug"),
+		IDE("ide");
 
 		public final String						stringRepresentation;
 
-		private Options(String stringRepresentation)
+		private									Options(String stringRepresentation)
 		{
 			this.stringRepresentation = stringRepresentation;
 		}

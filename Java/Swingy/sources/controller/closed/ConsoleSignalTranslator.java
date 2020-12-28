@@ -258,6 +258,9 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 		consoleSignal = (Signals.Console)signal;
 		assert contextToPatterns.containsKey(consoleSignal.context);
 
+		if (consoleSignal.input.isEmpty())
+			return new Commands.Null();
+
 		possiblePatterns = new LinkedList<>();
 
 		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(consoleSignal.context)));
@@ -280,7 +283,7 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 		if (resultPattern != null)
 			return buildCommand(commandParser, resultPattern);
 
-		return null;
+		return new Commands.Null();
 	}
 
 	private static Commands.Abstract	buildCommand(CommandParser commandParser, Pattern pattern)

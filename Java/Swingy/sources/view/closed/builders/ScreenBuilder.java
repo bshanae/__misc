@@ -34,7 +34,7 @@ public abstract class			ScreenBuilder
 
 		// Game
 		put(Requests.Map.class, new ModeDependantClass(ConsoleMapScreen.class, GuiMapScreen.class));
-		put(Requests.Battle.class, new ModeDependantClass(ConsoleMapScreen.class, GuiBattleScreen.class));
+		put(Requests.Battle.class, new ModeDependantClass(ConsoleBattleScreen.class, GuiBattleScreen.class));
 	}};
 
 	public static Screen		getScreen(Requests.Ui request)

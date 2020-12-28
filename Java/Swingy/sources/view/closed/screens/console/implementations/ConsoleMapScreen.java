@@ -20,6 +20,12 @@ public class							ConsoleMapScreen extends ConsoleScreen
 	}
 
 	@Override
+	public boolean						shouldRequestInput()
+	{
+		return true;
+	}
+
+	@Override
 	public String						getContent(Requests.Ui request)
 	{
 		prepareTemplate();

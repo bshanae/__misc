@@ -8,6 +8,12 @@ import view.closed.others.console.Template;
 public class			ConsoleErrorScreen extends ConsoleScreen
 {
 	@Override
+	public boolean		shouldRequestInput()
+	{
+		return true;
+	}
+
+	@Override
 	public String		getContent(Requests.Ui request)
 	{
 		Requests.Error	errorRequest;

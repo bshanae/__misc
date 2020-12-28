@@ -7,6 +7,12 @@ import view.closed.others.console.ResourceManager;
 public class		ConsoleNameEntryScreen extends ConsoleScreen
 {
 	@Override
+	public boolean	shouldRequestInput()
+	{
+		return true;
+	}
+
+	@Override
 	public String	getContent(Requests.Ui request)
 	{
 		return ResourceManager.getText("/console/templates/HeroNameEntry.txt");

@@ -1,5 +1,6 @@
 package view.closed.mode.modeController;
 
+import application.ApplicationOptions;
 import application.utils.SingletonMap;
 import view.open.Signals;
 import view.open.View;
@@ -20,7 +21,7 @@ public class							ConsoleModeController extends ModeController
 	@Override
 	public void							updateUi()
 	{
-		//cleanConsole();
+		cleanConsole();
 		writeToConsole(output);
 	}
 
@@ -57,6 +58,9 @@ public class							ConsoleModeController extends ModeController
 
 	private void						cleanConsole()
 	{
+		if (ApplicationOptions.get(ApplicationOptions.Options.IDE))
+			return ;
+
 		System.out.print("\033\143");
 		System.out.flush();
 	}

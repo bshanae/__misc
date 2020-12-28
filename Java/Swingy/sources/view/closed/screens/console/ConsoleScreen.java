@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public abstract class			ConsoleScreen implements Screen
 {
+	public abstract boolean		shouldRequestInput();
+
 	public final void			buildUi(Requests.Ui request)
 	{
 		ConsoleModeController.getInstance().setContent(getContent(request));
