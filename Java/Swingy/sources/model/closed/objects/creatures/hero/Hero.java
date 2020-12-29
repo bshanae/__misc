@@ -26,8 +26,8 @@ public class					Hero extends Creature
 	@Override
 	public int					getBaseHealth()
 	{
-		// TODO Implement
-		return 100;
+		// TODO
+		return 1000;
 	}
 
 	public HeroClass			getHeroClass()

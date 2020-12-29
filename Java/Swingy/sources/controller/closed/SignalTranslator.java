@@ -1,6 +1,8 @@
 package controller.closed;
 
-import application.utils.SingletonMap;
+import application.patterns.SingletonMap;
+import controller.closed.console.ConsoleSignalTranslator;
+import controller.closed.gui.GuiSignalTranslator;
 import controller.open.Commands;
 import view.open.Signals;
 

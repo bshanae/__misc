@@ -1,6 +1,6 @@
 package model.closed.managers;
 
-import application.utils.SingletonMap;
+import application.patterns.SingletonMap;
 import model.closed.objects.creatures.hero.Hero;
 
 public class				Session

@@ -1,7 +1,7 @@
 package model.closed.managers.generators;
 
 import application.utils.Point;
-import application.utils.SingletonMap;
+import application.patterns.SingletonMap;
 import model.closed.managers.Map;
 import model.closed.managers.Session;
 import model.closed.objects.creatures.Creature;

@@ -1,6 +1,6 @@
 package model.closed.managers.heroStorage;
 
-import application.utils.SingletonMap;
+import application.patterns.SingletonMap;
 import model.closed.objects.creatures.hero.Hero;
 import model.closed.objects.creatures.hero.HeroClass;
 

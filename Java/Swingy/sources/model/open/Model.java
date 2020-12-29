@@ -1,9 +1,9 @@
 package model.open;
 
-import application.utils.Debug;
-import application.utils.SingletonMap;
-import application.utils.uniqueNotifier.UniqueListener;
-import application.utils.uniqueNotifier.UniqueNotifier;
+import application.service.Debug;
+import application.patterns.SingletonMap;
+import application.patterns.uniqueNotifier.UniqueListener;
+import application.patterns.uniqueNotifier.UniqueNotifier;
 import controller.open.Commands;
 import model.closed.Game;
 

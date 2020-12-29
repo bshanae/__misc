@@ -14,17 +14,12 @@ import java.util.List;
 
 public class				HeroSelectionDelegate extends Delegate
 {
-// ----------------------->	Fields
-
-	private boolean			isWaitingForNewHero;
-
 // ----------------------->	Open methods
 
 	@Override
 	public void				whenActivated(boolean isFirstTimeActivated)
 	{
-		if (!isWaitingForNewHero)
-			showHeroSelectionScreen();
+		showHeroSelectionScreen();
 	}
 
 	@Override
@@ -34,10 +29,7 @@ public class				HeroSelectionDelegate extends Delegate
 			return ;
 
 		if (command instanceof Commands.Create)
-		{
 			linkChild(new HeroCreationDelegate());
-			isWaitingForNewHero = true;
-		}
 		else if (command instanceof Commands.Select)
 			trySelectHero((Commands.Select)command);
 		else if (command instanceof Commands.Delete)
@@ -47,13 +39,6 @@ public class				HeroSelectionDelegate extends Delegate
 	@Override
 	protected void			whenChildResolved(Object message)
 	{
-		if (isWaitingForNewHero)
-		{
-			assert message instanceof Hero;
-			resolve(message);
-
-			isWaitingForNewHero = false;
-		}
 	}
 
 // ----------------------->	Closed methods

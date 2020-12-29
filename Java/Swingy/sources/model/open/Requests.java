@@ -31,7 +31,7 @@ public abstract class						Requests
 		}
 	}
 
-	public static class						HeroNameEntry implements Ui {}
+	public static class						NameEntry implements Ui {}
 
 	public static class						ClassSelector implements Ui {}
 
@@ -62,11 +62,18 @@ public abstract class						Requests
 	{
 		public final Pockets.Map			map;
 		public final Point					pivot;
+		public final boolean				allowHeroMovement;
 
-		public								Map(model.closed.managers.Map map, Point pivot)
+		public								Map
+											(
+												model.closed.managers.Map map,
+												Point pivot,
+												boolean allowHeroMovement
+											)
 		{
 			this.map = new Pockets.Map(map);
 			this.pivot = pivot;
+			this.allowHeroMovement = allowHeroMovement;
 		}
 	}
 

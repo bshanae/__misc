@@ -13,9 +13,9 @@ public abstract class					Signals
 		public final Context			context;
 		public final String				input;
 
-		public							Console(String input)
+		public							Console(Context context, String input)
 		{
-			this.context = Context.parseContext(View.getInstance().getCurrentRequest());
+			this.context = context;
 			this.input = input;
 		}
 	}

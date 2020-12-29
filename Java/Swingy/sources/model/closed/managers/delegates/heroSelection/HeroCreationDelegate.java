@@ -86,7 +86,7 @@ public class			HeroCreationDelegate extends Delegate
 	private void		requestName()
 	{
 		state = State.WAITING_FOR_NAME;
-		sendRequest(new Requests.HeroNameEntry());
+		sendRequest(new Requests.NameEntry());
 	}
 
 	private void 		extractName(Commands.Abstract command)

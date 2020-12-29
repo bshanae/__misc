@@ -11,7 +11,7 @@ public class			Hollow extends Enemy
 	@Override
 	public int			getBaseHealth()
 	{
-		return 100;
+		return 1000;
 	}
 
 	public				Hollow()

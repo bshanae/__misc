@@ -1,5 +1,6 @@
 package model.closed.managers.delegates.game;
 
+import application.service.Exceptions;
 import application.utils.Point;
 import controller.open.Commands;
 import model.closed.managers.Map;
@@ -15,16 +16,26 @@ import java.util.List;
 
 public class				MapDelegate extends Delegate
 {
+// -----------------------> Attributes
+
 	private final Hero		hero;
 	private final Map		map;
+
+	private boolean			shouldDrawMap; // Map constraints
+	private Enemy			enemy;
+
+// -----------------------> Public methods
 
 	public					MapDelegate()
 	{
 		hero = Session.getInstance().getHero();
 		map = MapGenerator.getInstance().generate();
+		enemy = null;
 
 		Session.getInstance().setMap(map);
 	}
+
+// -----------------------> Protected methods
 
 	@Override
 	protected void			whenActivated(boolean isFirstTime)
@@ -35,17 +46,18 @@ public class				MapDelegate extends Delegate
 	@Override
 	public void				whenResponded(Commands.Abstract command)
 	{
-		tryMoveHero(command);
+		shouldDrawMap = tryMoveHero(command);
+		enemy = checkCollisionWithEnemy();
+
+		drawMapIfNeeded();
+		startBattleIfNeeded();
+
 		tryResolve();
-		tryStartBattle();
 	}
 
-	private void			drawMap()
-	{
-		sendRequest(new Requests.Map(map, hero.getPosition()));
-	}
+// -----------------------> Private methods
 
-	private void			tryMoveHero(Commands.Abstract command)
+	private boolean			tryMoveHero(Commands.Abstract command)
 	{
 		if (command instanceof Commands.GoNorth)
 			hero.setPosition(hero.getPosition().add(new Point(0, 1)));
@@ -56,30 +68,12 @@ public class				MapDelegate extends Delegate
 		else if (command instanceof Commands.GoWest)
 			hero.setPosition(hero.getPosition().add(new Point(-1, 0)));
 		else
-			; // TODO error
+			throw new Exceptions.UnexpectedCodeBranch();
 
-		drawMap();
+		return true;
 	}
 
-	private void			tryResolve()
-	{
-		if (map.getCreatures().size() == 1)
-		{
-			Session.getInstance().setMap(null);
-			resolve();
-		}
-	}
-
-	private void			tryStartBattle()
-	{
-		Enemy				enemy;
-
-		enemy = checkCollision();
-		if (enemy != null)
-			linkChild(new BattleDelegate(enemy));
-	}
-
-	private Enemy			checkCollision()
+	private Enemy			checkCollisionWithEnemy()
 	{
 		List<Creature>		creatures;
 
@@ -92,5 +86,31 @@ public class				MapDelegate extends Delegate
 		}
 
 		return null;
+	}
+
+	private void			tryResolve()
+	{
+		if (map.getCreatures().size() == 1)
+		{
+			Session.getInstance().setMap(null);
+			resolve();
+		}
+	}
+
+	private void			drawMap()
+	{
+		sendRequest(new Requests.Map(map, hero.getPosition(), true));
+	}
+
+	private void			drawMapIfNeeded()
+	{
+		if (shouldDrawMap)
+			sendRequest(new Requests.Map(map, hero.getPosition(), enemy == null));
+	}
+
+	private void			startBattleIfNeeded()
+	{
+		if (enemy != null)
+			linkChild(new BattleDelegate(enemy));
 	}
 }
