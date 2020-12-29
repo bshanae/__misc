@@ -27,7 +27,7 @@ public class					BattleDelegate extends Delegate
 		}
 	}
 
-	private static final float	LOG_DELAY = 1.2f;
+	private static final float	LOG_DELAY = 1.f;
 	private static final float	MILLISECONDS_IN_A_SECOND = 1000;
 
 	private final Battle		battle;
@@ -62,7 +62,7 @@ public class					BattleDelegate extends Delegate
 	protected void				whenResponded(Commands.Abstract command)
 	{
 		if (command instanceof Commands.Ok)
-			resolve();
+			requestResolution();
 	}
 
 	private void				showLog()

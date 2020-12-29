@@ -34,6 +34,12 @@ public class			Point
 		this.y = y;
 	}
 
+	@Override
+	public String		toString()
+	{
+		return String.format("{%d, %d}", x, y);
+	}
+
 	public boolean		equals(Point other)
 	{
 		return this.x == other.x && this.y == other.y;

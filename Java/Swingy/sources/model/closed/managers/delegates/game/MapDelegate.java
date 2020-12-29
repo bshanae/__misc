@@ -1,6 +1,5 @@
 package model.closed.managers.delegates.game;
 
-import application.service.Exceptions;
 import application.utils.Point;
 import controller.open.Commands;
 import model.closed.managers.Map;
@@ -21,7 +20,6 @@ public class				MapDelegate extends Delegate
 	private final Hero		hero;
 	private final Map		map;
 
-	private boolean			shouldDrawMap; // Map constraints
 	private Enemy			enemy;
 
 // -----------------------> Public methods
@@ -40,37 +38,69 @@ public class				MapDelegate extends Delegate
 	@Override
 	protected void			whenActivated(boolean isFirstTime)
 	{
-		drawMap();
+		drawMap(true);
+	}
+
+	@Override
+	public void				whenUpdated()
+	{
+		tryResolve();
 	}
 
 	@Override
 	public void				whenResponded(Commands.Abstract command)
 	{
+		boolean				shouldDrawMap;
+		boolean				shouldStartBattle;
+
 		shouldDrawMap = tryMoveHero(command);
 		enemy = checkCollisionWithEnemy();
 
-		drawMapIfNeeded();
-		startBattleIfNeeded();
+		shouldStartBattle = enemy != null;
 
-		tryResolve();
+		if (shouldDrawMap)
+			drawMap(!shouldStartBattle);
+
+		if (shouldStartBattle)
+			startBattle();
 	}
 
 // -----------------------> Private methods
 
+	private void			tryResolve()
+	{
+		if (map.isOnBorder(hero.getPosition()))
+		{
+			Session.getInstance().setMap(null);
+			requestResolution();
+		}
+	}
+
 	private boolean			tryMoveHero(Commands.Abstract command)
 	{
-		if (command instanceof Commands.GoNorth)
-			hero.setPosition(hero.getPosition().add(new Point(0, 1)));
-		else if (command instanceof Commands.GoEast)
-			hero.setPosition(hero.getPosition().add(new Point(1, 0)));
-		else if (command instanceof Commands.GoSouth)
-			hero.setPosition(hero.getPosition().add(new Point(0, -1)));
-		else if (command instanceof Commands.GoWest)
-			hero.setPosition(hero.getPosition().add(new Point(-1, 0)));
-		else
-			throw new Exceptions.UnexpectedCodeBranch();
+		Point				oldPosition;
+		Point				newPosition;
 
-		return true;
+		oldPosition = hero.getPosition();
+
+		if (command instanceof Commands.GoNorth)
+			newPosition = oldPosition.add(new Point(0, 1));
+		else if (command instanceof Commands.GoEast)
+			newPosition = oldPosition.add(new Point(1, 0));
+		else if (command instanceof Commands.GoSouth)
+			newPosition = oldPosition.add(new Point(0, -1));
+		else if (command instanceof Commands.GoWest)
+			newPosition = oldPosition.add(new Point(-1, 0));
+		else
+			throw new UnrecognizedCommandException(command);
+
+		if (map.isInside(newPosition))
+		{
+			hero.setPosition(newPosition);
+			return true;
+		}
+
+		return false;
 	}
 
 	private Enemy			checkCollisionWithEnemy()
@@ -88,29 +118,13 @@ public class				MapDelegate extends Delegate
 		return null;
 	}
 
-	private void			tryResolve()
+	private void			drawMap(boolean allowHeroMovement)
 	{
-		if (map.getCreatures().size() == 1)
-		{
-			Session.getInstance().setMap(null);
-			resolve();
-		}
+		sendRequest(new Requests.Map(map, hero.getPosition(), allowHeroMovement));
 	}
 
-	private void			drawMap()
+	private void			startBattle()
 	{
-		sendRequest(new Requests.Map(map, hero.getPosition(), true));
-	}
-
-	private void			drawMapIfNeeded()
-	{
-		if (shouldDrawMap)
-			sendRequest(new Requests.Map(map, hero.getPosition(), enemy == null));
-	}
-
-	private void			startBattleIfNeeded()
-	{
-		if (enemy != null)
-			linkChild(new BattleDelegate(enemy));
+		linkChild(new BattleDelegate(enemy));
 	}
 }

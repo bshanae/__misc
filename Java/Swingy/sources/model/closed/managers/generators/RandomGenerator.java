@@ -15,36 +15,33 @@ public class					RandomGenerator
 
 	public static float			random(Function function)
 	{
-		float					linearRandom;
-
-		linearRandom = (float)Math.random();
 		switch (function)
 		{
 			case SINE:
-				return randomBetween(Function.LINEAR, 0.f, (float)Math.PI / 2.f);
+				return (float)Math.sin(randomBetween(Function.LINEAR, 0.f, (float)Math.PI / 2.f));
 
 			default:
-				return linearRandom;
+				return (float)Math.random();
 		}
 	}
 
 	public static float			randomBetween(float min, float max)
 	{
-		return (random() * max - min) + min;
+		return (random() * (max + 1 - min)) + min;
 	}
 
 	public static int			randomBetween(int min, int max)
 	{
-		return (int)(random() * max - min) + min;
+		return (int)randomBetween((float)min, (float)max);
 	}
 
 	public static float			randomBetween(Function function, float min, float max)
 	{
-		return (random(function) * max - min) + min;
+		return (random(function) * (max + 1 - min)) + min;
 	}
 
 	public static int			randomBetween(Function function, int min, int max)
 	{
-		return (int)(random(function) * max - min) + min;
+		return (int)randomBetween(function, (float)min, (float)max);
 	}
 }

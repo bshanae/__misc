@@ -69,7 +69,7 @@ public class				HeroSelectionDelegate extends Delegate
 				assert false;
 
 			Session.getInstance().setHero(hero);
-			resolve();
+			requestResolution();
 		}
 		catch (HeroStorage.HeroNotFoundException exception)
 		{

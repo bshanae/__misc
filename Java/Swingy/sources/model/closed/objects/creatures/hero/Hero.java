@@ -27,7 +27,7 @@ public class					Hero extends Creature
 	public int					getBaseHealth()
 	{
 		// TODO
-		return 1000;
+		return 200;
 	}
 
 	public HeroClass			getHeroClass()

@@ -52,7 +52,6 @@ public abstract class				Creature
 
 	public void						setPosition(Point position)
 	{
-		assert position != null;
 		this.position = position;
 	}
 

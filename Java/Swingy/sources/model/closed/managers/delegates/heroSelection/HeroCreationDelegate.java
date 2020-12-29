@@ -49,7 +49,7 @@ public class			HeroCreationDelegate extends Delegate
 				break;
 
 			case CREATED_HERO:
-				resolve(hero);
+				requestResolution(hero);
 				break;
 		}
 	}

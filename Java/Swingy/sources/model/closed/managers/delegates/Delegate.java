@@ -1,5 +1,7 @@
 package model.closed.managers.delegates;
 
+import application.service.Debug;
+import application.service.Exceptions;
 import controller.open.Commands;
 import model.closed.Game;
 import model.closed.managers.delegates.common.ErrorDelegate;
@@ -8,6 +10,16 @@ import model.open.Requests;
 
 public abstract class			Delegate
 {
+// ---------------------------> Exceptions
+
+	public static class			UnrecognizedCommandException extends RuntimeException
+	{
+		public					UnrecognizedCommandException(Commands.Abstract command)
+		{
+			super("Can't recognize command of type '" + command.getClass() + "'");
+		}
+	}
+
 // ---------------------------> Fields
 
 	private boolean				isActivated;
@@ -19,6 +31,9 @@ public abstract class			Delegate
 	private Delegate			parentDelegate;
 	private Delegate			childDelegate;
 
+	private boolean				shouldResolve;
+	private Object				resolutionMessage;
+
 // ---------------------------> Constructor
 
 	protected					Delegate()
@@ -28,9 +43,22 @@ public abstract class			Delegate
 
 		isFirstTimeActivated = true;
 		isFirstTimeDeactivated = true;
+
+		shouldResolve = false;
+		resolutionMessage = null;
 	}
 
-// ---------------------------> Hierarchy methods
+// ---------------------------> Properties
+
+	public boolean				isActivated()
+	{
+		return isActivated;
+	}
+
+	public boolean				isResolved()
+	{
+		return isResolved;
+	}
 
 	public boolean				hasParent()
 	{
@@ -41,6 +69,8 @@ public abstract class			Delegate
 	{
 		return childDelegate != null;
 	}
+
+// ---------------------------> Hierarchy methods
 
 	public void					linkParent(Delegate parentDelegate)
 	{
@@ -65,6 +95,8 @@ public abstract class			Delegate
 
 	public void					linkChild(Delegate childDelegate)
 	{
+		logChildLinking(childDelegate);
+
 		checkHasNoChild();
 		childDelegate.checkHasNoParent();
 
@@ -77,6 +109,8 @@ public abstract class			Delegate
 
 	protected void				unlinkChild()
 	{
+		logChildUnlinking();
+
 		checkHasChild();
 		childDelegate.checkHasParent();
 
@@ -114,6 +148,12 @@ public abstract class			Delegate
 	{
 		checkNotResolved();
 
+		if (shouldResolve)
+		{
+			resolve();
+			return;
+		}
+
 		if (childDelegate != null)
 			childDelegate.update();
 
@@ -127,32 +167,44 @@ public abstract class			Delegate
 
 		if (childDelegate != null)
 			childDelegate.respond(command);
-
-		if (isActivated)
+		else if (isActivated)
 			whenResponded(command);
+		else
+			throw new Exceptions.UnexpectedCodeBranch();
 	}
 
 // ---------------------------> Resolution methods
 
-	protected final void		resolve()
+	protected final void		requestResolution()
 	{
-		resolve(null);
+		shouldResolve = true;
 	}
 
-	protected final void 		resolve(Object message)
+	protected final void 		requestResolution(Object message)
 	{
+		shouldResolve = true;
+		resolutionMessage = message;
+	}
+
+	private void 				resolve()
+	{
+		Delegate				parentCopy;
+
 		checkHasNoChild();
 		checkIfActivated();
 
 		if (hasParent())
 		{
-			Delegate			parentCopy = parentDelegate;
+			parentCopy = parentDelegate;
 
 			unlinkParent();
-			parentCopy.whenChildResolved(message);
+			parentCopy.whenChildResolved(resolutionMessage);
 		}
 
 		isResolved = true;
+
+		shouldResolve = false;
+		resolutionMessage = null;
 	}
 
 // ---------------------------> Verification methods
@@ -229,5 +281,25 @@ public abstract class			Delegate
 	protected void				sendRequest(Requests.Abstract request)
 	{
 		Model.getInstance().notifyListener(request);
+	}
+
+// ---------------------------> Logging
+
+	private void				logChildLinking(Delegate delegate)
+	{
+		Debug.logFormat
+		(
+			"[Model/Delegate] Linking child delegate of type '%s'",
+			delegate.getClass()
+		);
+	}
+
+	private void				logChildUnlinking()
+	{
+		Debug.logFormat
+		(
+			"[Model/Delegate] Unlinking child delegate of type '%s'",
+			childDelegate.getClass()
+		);
 	}
 }

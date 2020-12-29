@@ -5,6 +5,8 @@ import controller.open.Commands;
 import model.closed.managers.heroStorage.HeroStorage;
 import model.closed.managers.delegates.core.CoreDelegate;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class						Game
 {
 	private enum					State
@@ -16,6 +18,8 @@ public class						Game
 
 	private State					state;
 	private final CoreDelegate		coreDelegate;
+
+	ReentrantLock					lock;
 
 	public static Game				getInstance()
 	{
@@ -31,6 +35,8 @@ public class						Game
 
 	public							Game()
 	{
+		lock = new ReentrantLock();
+
 		coreDelegate = new CoreDelegate();
 		state = State.WAITING;
 	}
@@ -55,11 +61,15 @@ public class						Game
 
 	public void						update()
 	{
+		lock.lock();
 		coreDelegate.update();
+		lock.unlock();
 	}
 
 	public void						respondToCommand(Commands.Abstract command)
 	{
+		lock.lock();
 		coreDelegate.respond(command);
+		lock.unlock();
 	}
 }

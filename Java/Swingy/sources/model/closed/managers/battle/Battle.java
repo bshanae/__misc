@@ -9,34 +9,12 @@ import model.closed.objects.creatures.hero.Hero;
 
 public class					Battle
 {
-// ---------------------------> Nested classes
-
-	private enum				Turn
-	{
-		HERO,
-		OPPONENT;
-
-		public Turn				next()
-		{
-			switch (this)
-			{
-				case HERO:
-					return OPPONENT;
-
-				case OPPONENT:
-					return HERO;
-			}
-
-			return null;
-		}
-	}
-
 // ---------------------------> Attributes
 
 	private final Hero			hero;
 	private final Enemy			opponent;
 
-	private Turn				turn;
+	private BattleTurn			turn;
 	private BattleLogger		logger;
 
 // ---------------------------> Properties
@@ -65,7 +43,7 @@ public class					Battle
 		hero.resetHealth();
 		opponent.resetHealth();
 
-		turn = Turn.HERO;
+		turn = BattleTurn.HERO;
 	}
 
 // ---------------------------> Public methods

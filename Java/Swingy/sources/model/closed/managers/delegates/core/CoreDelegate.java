@@ -58,7 +58,7 @@ public class					CoreDelegate extends Delegate
 				break;
 
 			case PLAYED_GAME:
-				resolve();
+				requestResolution();
 				break;
 
 			default:

@@ -22,6 +22,6 @@ public class        		ErrorDelegate extends Delegate
 	@Override
 	public void				whenResponded(Commands.Abstract command)
 	{
-		resolve();
+		requestResolution();
 	}
 }

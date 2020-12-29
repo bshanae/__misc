@@ -10,21 +10,20 @@ import model.closed.objects.creatures.hero.Hero;
 
 public class							MapGenerator
 {
+// -----------------------------------> Constants
+
+	private static final float			ENEMY_DENSITY = 0.4f;
+	private static final int			LIMIT_OF_ATTEMPTS_TO_GENERATE_POSITION = 100;
+
+// -----------------------------------> Attributes
+
 	private Map							map;
+
+// -----------------------------------> Public methods
 
 	public static MapGenerator			getInstance()
 	{
 		return SingletonMap.getInstanceOf(MapGenerator.class);
-	}
-
-	private static int					getSizeForLevel(int level)
-	{
-		return (level - 1 ) * 5 + 10 - (level % 2);
-	}
-
-	private int							getNumberOfEnemies()
-	{
-		return (int)((float)map.getSize().x * 0.4f);
 	}
 
 	public Map							generate()
@@ -33,6 +32,7 @@ public class							MapGenerator
 		int								level;
 
 		int								numberOfEnemies;
+		Point							position;
 		Enemy							enemy;
 
 		hero = Session.getInstance().getHero();
@@ -47,25 +47,48 @@ public class							MapGenerator
 		for (int i = 0; i < numberOfEnemies; i++)
 		{
 			enemy = EnemyGenerator.generate();
-			enemy.setPosition(getUniqueRandomPosition());
+			position = tryGetUniqueRandomPosition();
 
-			map.getCreatures().add(enemy);
+			if (position != null)
+			{
+				enemy.setPosition(position);
+				map.getCreatures().add(enemy);
+			}
 		}
 
 		return map;
 	}
 
-	private Point						getUniqueRandomPosition()
+// -----------------------------------> Private methods
+
+	private static int					getSizeForLevel(int level)
+	{
+		return (level - 1 ) * 5 + 10 - (level % 2);
+	}
+
+	private int							getNumberOfEnemies()
+	{
+		return (int)((float)map.getSize().x * ENEMY_DENSITY * (float)map.getSize().y * ENEMY_DENSITY);
+	}
+
+	private Point						tryGetUniqueRandomPosition()
 	{
 		Point							position;
 
-		do
+		for (int i = 0; i < LIMIT_OF_ATTEMPTS_TO_GENERATE_POSITION; i++)
 		{
-			position = Point.random(new Point(0), map.getSize());
-		}
-		while (!isPositionUnique(position));
+			position = getRandomPosition();
 
-		return position;
+			if (isPositionUnique(position))
+				return position;
+		}
+
+		return null;
+	}
+
+	private Point						getRandomPosition()
+	{
+		return Point.random(new Point(0), map.getSize().subtract(new Point(1)));
 	}
 
 	private boolean						isPositionUnique(Point position)
