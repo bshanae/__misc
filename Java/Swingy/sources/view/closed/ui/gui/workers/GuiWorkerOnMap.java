@@ -4,22 +4,22 @@ import application.utils.Point;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
+import view.closed.ui.gui.utils.GuiSettings;
 import view.closed.ui.gui.utils.GuiSignalSender;
 import view.closed.ui.utils.MapGenerator;
 import view.open.ButtonId;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
+import java.awt.*;
 
 public class							GuiWorkerOnMap extends GuiWorker
 {
 // -----------------------------------> Constants
 
-	private static final Point			CANVAS_SIZE = new Point(20, 15);
+	private static final Point			CANVAS_SIZE = new Point(21, 15);
 
 // -----------------------------------> Attributes
 
-	private static final ImageIcon[]	iconsOfArrows;
 	private static final MapGenerator	mapGenerator;
 
 // -----------------------------------> Static initializer
@@ -27,12 +27,6 @@ public class							GuiWorkerOnMap extends GuiWorker
 	static
 	{
 		mapGenerator = new MapGenerator(CANVAS_SIZE);
-
-		iconsOfArrows = new ImageIcon[4];
-		iconsOfArrows[0] = new ImageIcon("resources/gui/arrow-up.png");
-		iconsOfArrows[1] = new ImageIcon("resources/gui/arrow-left.png");
-		iconsOfArrows[2] = new ImageIcon("resources/gui/arrow-right.png");
-		iconsOfArrows[3] = new ImageIcon("resources/gui/arrow-down.png");
 	}
 
 // -----------------------------------> Public methods
@@ -50,10 +44,10 @@ public class							GuiWorkerOnMap extends GuiWorker
 		JPanel							panel;
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout("fill"));
+		panel.setLayout(new MigLayout("fill", "", "10[]10[]10"));
 
-		panel.add(buildMap(request), "grow, wrap, width 600!, height 400!, center");
-		panel.add(buildButtons(), "center");
+		panel.add(buildMap(request), "grow, wrap, width 800!, center");
+		panel.add(buildMenu(), "center");
 
 		return panel;
 	}
@@ -68,49 +62,98 @@ public class							GuiWorkerOnMap extends GuiWorker
 
 		panel = new JPanel();
 		panel.setLayout(new MigLayout(layoutConfig));
-		panel.setBorder(LineBorder.createGrayLineBorder());
+		panel.setBorder(BorderFactory.createTitledBorder("Map"));
 
 		map = mapGenerator.generate((Requests.Map)request);
 
 		for (int y = 0; y < CANVAS_SIZE.y; y++)
 			for (int x = 0; x < CANVAS_SIZE.x; x++)
-				panel.add(buildCell(map[y][x]), "center");
+				panel.add(buildCell(map[y][x]), "grow, center");
 
 		return panel;
 	}
 
 	private JComponent					buildCell(char character)
 	{
-		return new JLabel("" + character);
+		JLabel							label;
+
+		label = new JLabel();
+		label.setFont(new Font(GuiSettings.FONT_NAME, Font.PLAIN, 13));
+		label.setHorizontalAlignment(JLabel.CENTER);
+		label.setText("" + character);
+
+		return label;
 	}
 
-	private JComponent					buildButtons()
+	private JComponent					buildMenu()
 	{
-		JPanel panel;
-		JButton[] buttons;
+		JPanel							panel;
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout());
+		panel.setLayout(new MigLayout("fill, insets 5", "push[]30[]30[]push"));
 
+		panel.add(buildHeroButtons(), "growy, width 200!");
+		panel.add(buildControlButtons());
+		panel.add(buildSystemButtons(), "growy, width 200!");
+
+		return panel;
+	}
+
+	private JComponent					buildControlButtons()
+	{
+		JPanel							panel;
+		JButton[]						buttons;
+
+		panel = new JPanel();
+		panel.setLayout(new MigLayout("insets 8 15 8 15"));
+		panel.setBorder(BorderFactory.createTitledBorder("Controls"));
+
+		buttons = new JButton[4];
+
+		for (int i = 0; i < 4; i++)
 		{
-			buttons = new JButton[4];
-
-			for (int i = 0; i < 4; i++)
-			{
-				buttons[i] = new JButton(iconsOfArrows[i]);
-				buttons[i].setBorder(BorderFactory.createEmptyBorder());
-			}
-
-			buttons[0].addActionListener(new GuiSignalSender(ButtonId.MAP_ARROW_UP));
-			buttons[1].addActionListener(new GuiSignalSender(ButtonId.MAP_ARROW_LEFT));
-			buttons[2].addActionListener(new GuiSignalSender(ButtonId.MAP_ARROW_RIGHT));
-			buttons[3].addActionListener(new GuiSignalSender(ButtonId.MAP_ARROW_DOWN));
+			buttons[i] = new JButton();
+			buttons[i].setFont(new Font("Arial", Font.PLAIN, 18));
 		}
 
-		panel.add(buttons[0], "cell 1 0");
-		panel.add(buttons[1], "cell 0 1");
-		panel.add(buttons[2], "cell 2 1");
-		panel.add(buttons[3], "cell 1 2");
+		buttons[0].setText("▲");
+		buttons[1].setText("◀");
+		buttons[2].setText("▶");
+		buttons[3].setText("▼");
+
+		buttons[0].addActionListener(new GuiSignalSender(ButtonId.MAP_ARROW_UP));
+		buttons[1].addActionListener(new GuiSignalSender(ButtonId.MAP_ARROW_LEFT));
+		buttons[2].addActionListener(new GuiSignalSender(ButtonId.MAP_ARROW_RIGHT));
+		buttons[3].addActionListener(new GuiSignalSender(ButtonId.MAP_ARROW_DOWN));
+
+		panel.add(buttons[0], "width 30!, height 30!, cell 1 0");
+		panel.add(buttons[1], "width 30!, height 30!, cell 0 1");
+		panel.add(buttons[2], "width 30!, height 30!, cell 2 1");
+		panel.add(buttons[3], "width 30!, height 30!, cell 1 2");
+
+		return panel;
+	}
+
+	private JComponent					buildHeroButtons()
+	{
+		return buildSideMenu("Hero", new JButton("Stats"), new JButton("Inventory"));
+	}
+
+	private JComponent					buildSystemButtons()
+	{
+		return buildSideMenu("System", new JButton("Console"), new JButton("Exit"));
+	}
+
+	private JComponent					buildSideMenu(String title, JButton upperButton, JButton lowerButton)
+	{
+		JPanel							panel;
+
+		panel = new JPanel();
+		panel.setLayout(new MigLayout("fill, insets 5", "", "push[]20[]push"));
+		panel.setBorder(BorderFactory.createTitledBorder(title));
+
+		panel.add(upperButton, "wrap, center, width 100!");
+		panel.add(lowerButton, "center center, width 100!");
 
 		return panel;
 	}
