@@ -7,19 +7,27 @@ import java.util.List;
 
 public abstract class				Creature
 {
-// -------------------------------> Final attributes
+// -------------------------------> Attributes
 
 	private final String			name;
 
-// -------------------------------> Attributes
-
 	private int						health;
-	private int						defense;
 	private Point					position;
+
+// -------------------------------> Constructor
+
+	protected						Creature(String name)
+	{
+		this.name = name;
+	}
 
 // -------------------------------> Abstract properties
 
-	public abstract int				getBaseHealth();
+	public abstract int				getLevel();
+
+	protected abstract int			getBaseHealth();
+
+	public abstract int				getDefense();
 
 	public abstract List<Attack>	getAttacks();
 
@@ -35,16 +43,6 @@ public abstract class				Creature
 		return health;
 	}
 
-	public int						getDefense()
-	{
-		return defense;
-	}
-
-	public void						setDefense(int defense)
-	{
-		this.defense = defense;
-	}
-
 	public Point					getPosition()
 	{
 		return position;
@@ -53,13 +51,6 @@ public abstract class				Creature
 	public void						setPosition(Point position)
 	{
 		this.position = position;
-	}
-
-// -------------------------------> Constructor
-
-	protected						Creature(String name)
-	{
-		this.name = name;
 	}
 
 // -------------------------------> Public methods
@@ -83,6 +74,7 @@ public abstract class				Creature
 
 	public void						hit(int damage)
 	{
+		damage = Math.max(0, damage - getDefense());
 		health = Math.max(0, health - damage);
 	}
 }

@@ -6,13 +6,13 @@ import model.closed.objects.Attack;
 import java.util.LinkedList;
 import java.util.List;
 
-public class				Hollow extends Enemy
+public class				Ogre extends Enemy
 {
 // -----------------------> Constructor
 
-	public					Hollow()
+	public					Ogre()
 	{
-		super("Hollow", 0);
+		super("Ogre", 1);
 	}
 
 // -----------------------> Properties
@@ -20,7 +20,7 @@ public class				Hollow extends Enemy
 	@Override
 	public int				getBaseHealth()
 	{
-		return 200;
+		return 1000;
 	}
 
 	@Override
@@ -35,8 +35,8 @@ public class				Hollow extends Enemy
 		List<Attack>		attacks;
 
 		attacks = new LinkedList<>();
-		attacks.add(new Attack("Punch", 60, new Range<>(20, 30), 0.01f));
-		attacks.add(new Attack("Byte", 40, new Range<>(30, 40), 0.01f));
+		attacks.add(new Attack("Punch", 90, new Range<>(30, 30), 0.01f));
+		attacks.add(new Attack("Fall", 10, new Range<>(150, 250), 0.01f));
 
 		return attacks;
 	}

@@ -1,5 +1,6 @@
 package model.closed.objects.creatures.hero;
 
+import application.service.Debug;
 import model.closed.objects.Attack;
 import model.closed.objects.artefacts.Armors;
 import model.closed.objects.artefacts.Helms;
@@ -24,35 +25,32 @@ public class					Hero extends Creature
 // ---------------------------> Properties
 
 	@Override
-	public int					getBaseHealth()
-	{
-		// TODO
-		return 200;
-	}
-
-	public HeroClass			getHeroClass()
-	{
-		return heroClass;
-	}
-
 	public int					getLevel()
 	{
 		return level;
 	}
 
-	public void					setLevel(int level)
+	@Override
+	public int					getBaseHealth()
 	{
-		this.level = level;
+		return calculateOwnHealth() + (helm != null ? helm.getHealthIncrease() : 0);
 	}
 
-	public int					getExperience()
+	@Override
+	public int					getDefense()
 	{
-		return experience;
+		return calculateOwnDefense() + (armor != null ? armor.getDefense() : 0);
 	}
 
-	public void					setExperience(int value)
+	@Override
+	public List<Attack>			getAttacks()
 	{
-		this.experience = value;
+		return weapon != null ? transformAttacks(weapon.getAttacks()) : new LinkedList<>();
+	}
+
+	public HeroClass			getHeroClass()
+	{
+		return heroClass;
 	}
 
 	public Helms.Abstract		getHelm()
@@ -85,12 +83,6 @@ public class					Hero extends Creature
 		this.weapon = weapon;
 	}
 
-	@Override
-	public List<Attack>			getAttacks()
-	{
-		return weapon != null ? weapon.getAttacks() : new LinkedList<>();
-	}
-
 // ---------------------------> Constructor
 
 	public						Hero(String name, HeroClass heroClass)
@@ -105,4 +97,63 @@ public class					Hero extends Creature
 		setWeapon(new Weapons.Sword());
 	}
 
+// ---------------------------> Public methods
+
+	public void					addExperience(int value)
+	{
+		Debug.logFormat("[Model/Hero] Hero gained %d experience", value);
+
+		this.experience += value;
+		updateLevel();
+	}
+
+// ---------------------------> Private methods
+
+	private int					calculateOwnHealth()
+	{
+		return 100 * (level + 1);
+	}
+
+	private int					calculateOwnDefense()
+	{
+		return 5 * (level + 1);
+	}
+
+	private int					calculateAttackGain()
+	{
+		return 10 * (level + 1);
+	}
+
+	private int					calculateExperienceForNextLevel()
+	{
+		return level * 1000 + (level - 1) * (level - 1) * 450;
+	}
+
+	private void				updateLevel()
+	{
+		int						experienceForNextLevel;
+
+		experienceForNextLevel = calculateExperienceForNextLevel();
+		if (experience >= experienceForNextLevel)
+		{
+			experience -= experienceForNextLevel;
+			level++;
+
+			Debug.logFormat("[Model/Hero] Hero upgraded to level %d", level);
+		}
+	}
+
+	private List<Attack>		transformAttacks(List<Attack> rawAttacks)
+	{
+		int						gain;
+		List<Attack>			attacks;
+
+		gain = calculateAttackGain();
+		attacks = new LinkedList<>();
+
+		for (Attack rawAttack : rawAttacks)
+			attacks.add(rawAttack.applyGain(gain));
+
+		return attacks;
+	}
 }

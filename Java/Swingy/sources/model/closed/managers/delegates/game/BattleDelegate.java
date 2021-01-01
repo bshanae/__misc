@@ -12,18 +12,13 @@ import java.util.TimerTask;
 
 public class					BattleDelegate extends Delegate
 {
-	private class				ExecuteBattleTurnTask extends TimerTask
+	private class				RequestBattleTurnTask extends TimerTask
 	{
 		@Override
 		public void				run()
 		{
 			timer = null;
-
-			if (!battle.isFinished())
-			{
-				battle.executeTurn();
-				showLog();
-			}
+			shouldExecuteTurn = true;
 		}
 	}
 
@@ -33,6 +28,7 @@ public class					BattleDelegate extends Delegate
 	private final Battle		battle;
 
 	private Timer				timer;
+	private boolean				shouldExecuteTurn;
 
 	public						BattleDelegate(Enemy opponent)
 	{
@@ -40,6 +36,7 @@ public class					BattleDelegate extends Delegate
 		battle.setLogger(new BattleLogger());
 
 		timer = null;
+		shouldExecuteTurn = false;
 	}
 
 	@Override
@@ -54,7 +51,18 @@ public class					BattleDelegate extends Delegate
 		if (timer == null)
 		{
 			timer = new Timer();
-			timer.schedule(new ExecuteBattleTurnTask(), (int)(LOG_DELAY * MILLISECONDS_IN_A_SECOND));
+			timer.schedule(new RequestBattleTurnTask(), (int)(LOG_DELAY * MILLISECONDS_IN_A_SECOND));
+		}
+
+		if (shouldExecuteTurn)
+		{
+			if (!battle.isFinished())
+			{
+				battle.executeTurn();
+				showLog();
+			}
+
+			shouldExecuteTurn = false;
 		}
 	}
 

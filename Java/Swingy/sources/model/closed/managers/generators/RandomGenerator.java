@@ -25,6 +25,11 @@ public class					RandomGenerator
 		}
 	}
 
+	public static boolean		randomWithProbability(float probability)
+	{
+		return random() < probability;
+	}
+
 	public static float			randomBetween(float min, float max)
 	{
 		return (random() * (max + 1 - min)) + min;

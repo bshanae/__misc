@@ -50,7 +50,7 @@ public class					Battle
 
 	public void					executeTurn()
 	{
-		BattleTurnReport report = null;
+		BattleTurnReport		report = null;
 
 		if (isFinished())
 			throw new RuntimeException();
@@ -92,8 +92,24 @@ public class					Battle
 		attackee.hit(damage);
 
 		if (attackee.isDead())
-			Session.getInstance().getMap().getCreatures().remove(attackee);
+			finish(attacker, attackee);
 
 		return new BattleTurnReport(attacker, attackee, attack, isCritical, damage, isFinished());
+	}
+
+	private void				finish(Creature winner, Creature loser)
+	{
+		Hero					hero;
+		Enemy					enemy;
+
+		if (winner instanceof Hero)
+		{
+			hero = (Hero)winner;
+			enemy = (Enemy)loser;
+
+			hero.addExperience(enemy.getExperienceForDefeating());
+		}
+
+		Session.getInstance().getMap().getCreatures().remove(loser);
 	}
 }

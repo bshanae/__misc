@@ -24,4 +24,15 @@ public class						Attack
 		this.damageRange = damageRange;
 		this.criticalChance = criticalChance;
 	}
+
+	public Attack					applyGain(int gain)
+	{
+		return new Attack
+		(
+			name,
+			weight,
+			new Range<>(damageRange.min + gain, damageRange.max + gain),
+			criticalChance
+		);
+	}
 }

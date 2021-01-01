@@ -46,14 +46,14 @@ public class								Model
 
 	public void								notifyListener(Requests.Abstract request)
 	{
-		Debug.log("[Model/Model] Sending request of type " + request.getClass());
+		Debug.logFormat("[Model/Model] Sending request of type '%s'", request.getClass());
 		requestQueue.add(request);
 	}
 
 	@Override
 	public void								listen(Commands.Abstract command)
 	{
-		Debug.log("[Model/Model] Received command of type " + command.getClass());
+		Debug.logFormat("[Model/Model] Received command of type '%s'", command.getClass());
 		Game.getInstance().respondToCommand(command);
 	}
 }

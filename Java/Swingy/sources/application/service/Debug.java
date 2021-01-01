@@ -4,6 +4,12 @@ import application.ApplicationOptions;
 
 public abstract class		Debug
 {
+	public static void		throwException(String message)
+	{
+		if (ApplicationOptions.get(ApplicationOptions.Options.DEBUG))
+			throw new RuntimeException(message);
+	}
+
 	public static void		log(String message)
 	{
 		if (ApplicationOptions.get(ApplicationOptions.Options.DEBUG))
