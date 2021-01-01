@@ -2,39 +2,36 @@ package model.closed.managers.generators;
 
 import application.service.Debug;
 import model.closed.managers.Session;
-import model.closed.managers.metas.enemyMeta.EnemyMeta;
-import model.closed.managers.metas.enemyMeta.HollowMeta;
-import model.closed.managers.metas.enemyMeta.HollowSoldierMeta;
-import model.closed.managers.metas.enemyMeta.OgreMeta;
+import model.closed.managers.metas.EnemyMetas;
 import model.closed.objects.creatures.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class				EnemyGenerator
+public abstract class							EnemyGenerator
 {
-// -------------------------------> Constants
+// -------------------------------------------> Constants
 
-	private static final int		NUMBER_OF_ATTEMPTS_TO_SELECT_ENEMY = 100;
+	private static final int					NUMBER_OF_ATTEMPTS_TO_SELECT_ENEMY = 100;
 
-// -------------------------------> Attributes
+// -------------------------------------------> Attributes
 
 	private static final
-	List<EnemyMeta>					allEnemyMetas = new ArrayList<EnemyMeta>()
+	List<EnemyMetas.Abstract>					allEnemyMetas = new ArrayList<EnemyMetas.Abstract>()
 	{{
-		add(new HollowMeta());
-		add(new HollowSoldierMeta());
-		add(new OgreMeta());
+		add(new EnemyMetas.Hollow());
+		add(new EnemyMetas.HollowSoldier());
+		add(new EnemyMetas.Ogre());
 
 	}};
 
-// -------------------------------> Public methods
+// -------------------------------------------> Public methods
 
-	public static Enemy				generate()
+	public static Enemy							generate()
 	{
-		List<EnemyMeta>				possibleEnemies;
-		EnemyMeta					selectedEnemy;
+		List<EnemyMetas.Abstract>				possibleEnemies;
+		EnemyMetas.Abstract						selectedEnemy;
 
 		possibleEnemies = generateEnemiesForCurrentLevel();
 		selectedEnemy = selectRandomEnemy(possibleEnemies);
@@ -44,14 +41,14 @@ public abstract class				EnemyGenerator
 		return selectedEnemy.getInstance();
 	}
 
-// -------------------------------> Private methods
+// -------------------------------------------> Private methods
 
-	private static List<EnemyMeta>	generateEnemiesForCurrentLevel()
+	private static List<EnemyMetas.Abstract>	generateEnemiesForCurrentLevel()
 	{
-		List<EnemyMeta>				list;
+		List<EnemyMetas.Abstract>				list;
 
 		list = new LinkedList<>();
-		for (EnemyMeta enemyMeta : allEnemyMetas)
+		for (EnemyMetas.Abstract enemyMeta : allEnemyMetas)
 		{
 			if (enemyMeta.getAppearanceLevel() <= Session.getInstance().getLevel())
 				list.add(enemyMeta);
@@ -60,12 +57,12 @@ public abstract class				EnemyGenerator
 		return list;
 	}
 
-	private static EnemyMeta		selectRandomEnemy(List<EnemyMeta> list)
+	private static EnemyMetas.Abstract			selectRandomEnemy(List<EnemyMetas.Abstract> list)
 	{
-		int							selectedIndex;
-		EnemyMeta					selectedMeta;
+		int										selectedIndex;
+		EnemyMetas.Abstract						selectedMeta;
 
-		float						appearanceProbability;
+		float									appearanceProbability;
 
 		for (int i = 0; i < NUMBER_OF_ATTEMPTS_TO_SELECT_ENEMY; i++)
 		{
@@ -82,12 +79,12 @@ public abstract class				EnemyGenerator
 		return list.get(0);
 	}
 
-	private static float			getTransformedAppearanceProbability(EnemyMeta meta)
+	private static float						getTransformedAppearanceProbability(EnemyMetas.Abstract meta)
 	{
-		int							currentLevel;
-		int							appearanceLevel;
+		int										currentLevel;
+		int										appearanceLevel;
 
-		float						appearProbabilityMultiplier;
+		float									appearProbabilityMultiplier;
 
 		currentLevel = Session.getInstance().getLevel();
 		appearanceLevel = meta.getAppearanceLevel();

@@ -5,12 +5,18 @@ import model.closed.objects.Attack;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class		AttackGenerator
+public abstract class			AttackGenerator
 {
-	public static Attack	generateAttack(List<Attack> possibleAttacks)
+// ---------------------------> Constants
+
+	public static final float	CRITICAL_MULTIPLIER = 2.5f;
+
+// ---------------------------> Public methods
+
+	public static Attack		generateAttack(List<Attack> possibleAttacks)
 	{
-		List<Float>			weights;
-		int					randomIndex;
+		List<Float>				weights;
+		int						randomIndex;
 
 		weights = new LinkedList<>();
 		for (Attack possibleAttack : possibleAttacks)
@@ -20,32 +26,34 @@ public abstract class		AttackGenerator
 		return possibleAttacks.get(randomIndex);
 	}
 
-	public static boolean	generateIsCritical(Attack attack)
+	public static boolean		generateIsCritical(Attack attack)
 	{
 		return RandomGenerator.random() < attack.criticalChance;
 	}
 
-	public static int		generateDamage(Attack attack, boolean isCritical)
+	public static int			generateDamage(Attack attack, boolean isCritical)
 	{
-		int					damageMin;
-		int					damageMax;
-		int					baseDamage;
-		int					finalDamage;
+		int						damageMin;
+		int						damageMax;
+		int						baseDamage;
+		int						finalDamage;
 
 		damageMin = attack.damageRange.min;
 		damageMax = attack.damageRange.max;
 
 		baseDamage = RandomGenerator.randomBetween(RandomGenerator.Function.SINE, damageMin, damageMax);
-		finalDamage = isCritical ? (int)(baseDamage * Attack.CRITICAL_MULTIPLIER) : baseDamage;
+		finalDamage = isCritical ? (int)(baseDamage * CRITICAL_MULTIPLIER) : baseDamage;
 
 		return finalDamage;
 	}
 
-	private static int		generateIndex(List<Float> weights)
+// ---------------------------> Private methods
+
+	private static int			generateIndex(List<Float> weights)
 	{
-		float				totalWeight;
-		float				random;
-		float				sumOfProcessedWeight;
+		float					totalWeight;
+		float					random;
+		float					sumOfProcessedWeight;
 
 		totalWeight = 0f;
 		for (Float weight : weights)

@@ -4,8 +4,6 @@ import application.utils.Range;
 
 public class						Attack
 {
-	public static final float		CRITICAL_MULTIPLIER = 2.5f;
-
 	public final String				name;
 	public final float				weight;
 	public final Range<Integer>		damageRange;

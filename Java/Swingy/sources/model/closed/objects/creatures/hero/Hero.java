@@ -33,7 +33,7 @@ public class					Hero extends Creature
 	@Override
 	public int					getBaseHealth()
 	{
-		return calculateOwnHealth() + (helm != null ? helm.getHealthIncrease() : 0);
+		return calculateOwnHealth() + (helm != null ? helm.getHealthGain() : 0);
 	}
 
 	@Override

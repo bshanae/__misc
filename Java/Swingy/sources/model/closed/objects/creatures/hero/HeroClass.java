@@ -21,7 +21,6 @@ public enum						HeroClass
 		put(MAGE, "Mage");
 	}};
 
-
 	private static final
 	Map<String, HeroClass>		stringToClass = new HashMap<String , HeroClass>()
 	{{
@@ -29,6 +28,15 @@ public enum						HeroClass
 		put("Swordsman", SWORDSMAN);
 		put("Assassin", ASSASSIN);
 		put("Mage", MAGE);
+	}};
+
+	private static final
+	Map<HeroClass, Integer>		classToBitflag = new HashMap<HeroClass, Integer>()
+	{{
+		put(WARRIOR, 0b0001);
+		put(SWORDSMAN, 0b0010);
+		put(ASSASSIN, 0b0100);
+		put(MAGE, 0b1000);
 	}};
 
 	public String				toString()
@@ -48,5 +56,11 @@ public enum						HeroClass
 		}
 
 		throw new ClassNotFoundException();
+	}
+
+	public int					toFlag()
+	{
+		assert classToBitflag.containsKey(this);
+		return classToBitflag.get(this);
 	}
 }

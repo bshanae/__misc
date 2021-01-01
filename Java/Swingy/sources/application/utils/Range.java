@@ -5,6 +5,12 @@ public class			Range<T extends Comparable<T>>
 	public final T		min;
 	public final T		max;
 
+	public				Range(T value)
+	{
+		min = value;
+		max = value;
+	}
+
 	public				Range(T min, T max)
 	{
 		this.min = min;
