@@ -24,6 +24,11 @@ public abstract class				Enemy extends Creature
 		return level;
 	}
 
+	public String					getNameWithLevel()
+	{
+		return String.format("%s (level %d)", getName(), getLevel());
+	}
+
 	public int						getExperienceForDefeating()
 	{
 		return 200 * (level + 1) * (level + 1);

@@ -10,8 +10,10 @@ import model.open.Requests;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class					BattleDelegate extends Delegate
+public class					BattleDelegateC extends Delegate
 {
+// ---------------------------> Nested types
+
 	private class				RequestBattleTurnTask extends TimerTask
 	{
 		@Override
@@ -22,15 +24,21 @@ public class					BattleDelegate extends Delegate
 		}
 	}
 
+// ---------------------------> Constants
+
 	private static final float	LOG_DELAY = 1.f;
 	private static final float	MILLISECONDS_IN_A_SECOND = 1000;
+
+// ---------------------------> Attributes
 
 	private final Battle		battle;
 
 	private Timer				timer;
 	private boolean				shouldExecuteTurn;
 
-	public						BattleDelegate(Enemy opponent)
+// ---------------------------> Constructor
+
+	public						BattleDelegateC(Enemy opponent)
 	{
 		battle = new model.closed.managers.battle.Battle(opponent);
 		battle.setLogger(new BattleLogger());
@@ -38,6 +46,8 @@ public class					BattleDelegate extends Delegate
 		timer = null;
 		shouldExecuteTurn = false;
 	}
+
+// ---------------------------> Protected methods
 
 	@Override
 	protected void				whenActivated(boolean isFirstTime)
@@ -72,6 +82,8 @@ public class					BattleDelegate extends Delegate
 		if (command instanceof Commands.Ok)
 			requestResolution();
 	}
+
+// ---------------------------> Private methods
 
 	private void				showLog()
 	{

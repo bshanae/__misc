@@ -91,5 +91,9 @@ public abstract class				Commands
 		}
 	}
 
+	public static class				AnswerA implements Abstract {}
+
+	public static class				AnswerB implements Abstract {}
+
 	public static class				Ok implements Abstract {}
 }

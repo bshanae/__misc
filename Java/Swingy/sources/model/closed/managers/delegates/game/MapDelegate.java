@@ -125,6 +125,6 @@ public class				MapDelegate extends Delegate
 
 	private void			startBattle()
 	{
-		linkChild(new BattleDelegate(enemy));
+		linkChild(new BattleDelegateA(enemy));
 	}
 }

@@ -14,6 +14,15 @@ public class					GuiSignalTranslator extends SignalTranslator
 		guiSignal = (Signals.Gui)signal;
 		switch (guiSignal.buttonId)
 		{
+			case INFO_OK:
+				return new Commands.Ok();
+
+			case QUESTION_ANSWER_A:
+				return new Commands.AnswerA();
+
+			case QUESTION_ANSWER_B:
+				return new Commands.AnswerB();
+
 			case HERO_SELECTOR_CREATE_0:
 			case HERO_SELECTOR_CREATE_1:
 			case HERO_SELECTOR_CREATE_2:

@@ -10,6 +10,10 @@ public class			GuiWorkerFactory extends UiWorkerFactory
 	@Override
 	public GuiWorker	build(Requests.Abstract request)
 	{
+		if (request instanceof Requests.Info)
+			return new GuiWorkerOnInfo();
+		if (request instanceof Requests.Question)
+			return new GuiWorkerOnQuestion();
 		if (request instanceof Requests.HeroSelector)
 			return new GuiWorkerOnHeroSelector();
 		if (request instanceof Requests.NameEntry)

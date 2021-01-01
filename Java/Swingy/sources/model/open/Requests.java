@@ -56,7 +56,29 @@ public abstract class						Requests
 		}
 	}
 
+	public static class						Info extends WithMessage
+	{
+		public 								Info(String message)
+		{
+			super(message);
+		}
+	}
+
 // --------------------------------------->	With complex structure
+
+	public static class						Question implements Ui
+	{
+		public final String					question;
+		public final String					answerA;
+		public final String					answerB;
+
+		public 								Question(String question, String answerA, String answerB)
+		{
+			this.question = question;
+			this.answerA = answerA;
+			this.answerB = answerB;
+		}
+	}
 
 	public static class						Map implements Ui
 	{

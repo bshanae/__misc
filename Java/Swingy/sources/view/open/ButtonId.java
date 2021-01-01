@@ -2,6 +2,13 @@ package view.open;
 
 public enum			ButtonId
 {
+	// Info
+	INFO_OK,
+
+	// Question
+	QUESTION_ANSWER_A,
+	QUESTION_ANSWER_B,
+
 	// Hero Selector
 	HERO_SELECTOR_CREATE_0,
 	HERO_SELECTOR_CREATE_1,
