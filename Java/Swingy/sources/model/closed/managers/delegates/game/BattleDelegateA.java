@@ -33,7 +33,8 @@ public class BattleDelegateA extends Delegate
 	@Override
 	protected void				whenActivated(boolean isFirstTime)
 	{
-		showQuestion();
+		if (isFirstTime)
+			showQuestion();
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class BattleDelegateA extends Delegate
 	}
 
 	@Override
-	protected void			whenChildResolved(Object message)
+	protected void				whenChildResolved(ResolutionMessage message)
 	{
 		requestResolution();
 	}

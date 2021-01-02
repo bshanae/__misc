@@ -2,41 +2,44 @@ package model.closed.managers.delegates;
 
 import application.service.Debug;
 import application.service.Exceptions;
+import application.service.LogGroup;
 import controller.open.Commands;
 import model.closed.Game;
 import model.closed.managers.delegates.common.ErrorDelegate;
 import model.open.Model;
 import model.open.Requests;
 
-public abstract class			Delegate
+public abstract class				Delegate
 {
-// ---------------------------> Exceptions
+// -------------------------------> Nested types
 
-	public static class			UnrecognizedCommandException extends RuntimeException
+	protected static abstract class	ResolutionMessage {}
+
+	public static class				UnrecognizedCommandException extends RuntimeException
 	{
-		public					UnrecognizedCommandException(Commands.Abstract command)
+		public						UnrecognizedCommandException(Commands.Abstract command)
 		{
 			super("Can't recognize command of type '" + command.getClass() + "'");
 		}
 	}
 
-// ---------------------------> Fields
+// -------------------------------> Fields
 
-	private boolean				isActivated;
-	private boolean				isResolved;
+	private boolean					isActivated;
+	private boolean					isResolved;
 
-	private boolean				isFirstTimeActivated;
-	private boolean				isFirstTimeDeactivated;
+	private boolean					isFirstTimeActivated;
+	private boolean					isFirstTimeDeactivated;
 
-	private Delegate			parentDelegate;
-	private Delegate			childDelegate;
+	private Delegate				parentDelegate;
+	private Delegate				childDelegate;
 
-	private boolean				shouldResolve;
-	private Object				resolutionMessage;
+	private boolean					shouldResolve;
+	private ResolutionMessage		resolutionMessage;
 
-// ---------------------------> Constructor
+// -------------------------------> Constructor
 
-	protected					Delegate()
+	protected						Delegate()
 	{
 		isActivated = false;
 		isResolved = false;
@@ -48,31 +51,31 @@ public abstract class			Delegate
 		resolutionMessage = null;
 	}
 
-// ---------------------------> Properties
+// -------------------------------> Properties
 
-	public boolean				isActivated()
+	public boolean					isActivated()
 	{
 		return isActivated;
 	}
 
-	public boolean				isResolved()
+	public boolean					isResolved()
 	{
 		return isResolved;
 	}
 
-	public boolean				hasParent()
+	public boolean					hasParent()
 	{
 		return parentDelegate != null;
 	}
 
-	public boolean				hasChild()
+	public boolean					hasChild()
 	{
 		return childDelegate != null;
 	}
 
-// ---------------------------> Hierarchy methods
+// -------------------------------> Hierarchy methods
 
-	public void					linkParent(Delegate parentDelegate)
+	public void						linkParent(Delegate parentDelegate)
 	{
 		parentDelegate.checkHasNoChild();
 		checkHasNoParent();
@@ -81,7 +84,7 @@ public abstract class			Delegate
 		this.parentDelegate = parentDelegate;
 	}
 
-	protected void				unlinkParent()
+	protected void					unlinkParent()
 	{
 		checkHasParent();
 		parentDelegate.checkHasChild();
@@ -93,7 +96,7 @@ public abstract class			Delegate
 		parentDelegate = null;
 	}
 
-	public void					linkChild(Delegate childDelegate)
+	public void						linkChild(Delegate childDelegate)
 	{
 		logChildLinking(childDelegate);
 
@@ -107,7 +110,7 @@ public abstract class			Delegate
 		childDelegate.activate();
 	}
 
-	protected void				unlinkChild()
+	protected void					unlinkChild()
 	{
 		logChildUnlinking();
 
@@ -121,9 +124,9 @@ public abstract class			Delegate
 		this.childDelegate = null;
 	}
 
-// ---------------------------> Control methods
+// -------------------------------> Control methods
 
-	protected void				activate()
+	protected void					activate()
 	{
 		checkNotResolved();
 
@@ -133,7 +136,7 @@ public abstract class			Delegate
 		isFirstTimeActivated = false;
 	}
 
-	protected void				deactivate()
+	protected void					deactivate()
 	{
 		checkIfActivated();
 		checkNotResolved();
@@ -144,7 +147,7 @@ public abstract class			Delegate
 		isFirstTimeDeactivated = false;
 	}
 
-	public final void			update()
+	public final void				update()
 	{
 		checkNotResolved();
 
@@ -161,7 +164,7 @@ public abstract class			Delegate
 			whenUpdated();
 	}
 
-	public final void			respond(Commands.Abstract command)
+	public final void				respond(Commands.Abstract command)
 	{
 		checkNotResolved();
 
@@ -173,22 +176,22 @@ public abstract class			Delegate
 			throw new Exceptions.UnexpectedCodeBranch();
 	}
 
-// ---------------------------> Resolution methods
+// -------------------------------> Resolution methods
 
-	protected final void		requestResolution()
+	protected final void			requestResolution()
 	{
 		shouldResolve = true;
 	}
 
-	protected final void 		requestResolution(Object message)
+	protected final void 			requestResolution(ResolutionMessage message)
 	{
 		shouldResolve = true;
 		resolutionMessage = message;
 	}
 
-	private void 				resolve()
+	private void 					resolve()
 	{
-		Delegate				parentCopy;
+		Delegate					parentCopy;
 
 		checkHasNoChild();
 		checkIfActivated();
@@ -207,57 +210,57 @@ public abstract class			Delegate
 		resolutionMessage = null;
 	}
 
-// ---------------------------> Verification methods
+// -------------------------------> Verification methods
 
-	private void				checkHasParent()
+	private void					checkHasParent()
 	{
 		assert hasParent();
 	}
 
-	private void				checkHasNoParent()
+	private void					checkHasNoParent()
 	{
 		assert !hasParent();
 	}
 
-	private void				checkHasChild()
+	private void					checkHasChild()
 	{
 		assert hasChild();
 	}
 
-	private void				checkHasNoChild()
+	private void					checkHasNoChild()
 	{
 		assert !hasChild();
 	}
 
-	private void				checkIfActivated()
+	private void					checkIfActivated()
 	{
 		assert isActivated;
 	}
 
-	private void				checkIfDeactivated()
+	private void					checkIfDeactivated()
 	{
 		assert !isActivated;
 	}
 
-	private void				checkNotResolved()
+	private void					checkNotResolved()
 	{
 		assert !isResolved;
 	}
 
-// ---------------------------> Callback methods
+// -------------------------------> Callback methods
 
-	protected void 				whenActivated(boolean isFirstTime) {}
-	protected void 				whenDeactivated(boolean isFirstTime) {}
+	protected void 					whenActivated(boolean isFirstTime) {}
+	protected void 					whenDeactivated(boolean isFirstTime) {}
 
-	protected void 				whenUpdated() {}
+	protected void 					whenUpdated() {}
 
-	protected void				whenResponded(Commands.Abstract command) {}
+	protected void					whenResponded(Commands.Abstract command) {}
 
-	protected void				whenChildResolved(Object message) {}
+	protected void					whenChildResolved(ResolutionMessage message) {}
 
-// ---------------------------> Helper methods
+// -------------------------------> Helper methods
 
-	protected boolean			validateCommand(Commands.Abstract command, Class<?> expectedClass)
+	protected boolean				validateCommand(Commands.Abstract command, Class<?> expectedClass)
 	{
 		if (!expectedClass.isAssignableFrom(command.getClass()))
 		{
@@ -268,7 +271,7 @@ public abstract class			Delegate
 		return true;
 	}
 
-	public boolean				tryRespondToCommonCommands(Commands.Abstract command)
+	public boolean					tryRespondToCommonCommands(Commands.Abstract command)
 	{
 		if (command instanceof Commands.Exit)
 			Game.getInstance().terminate();
@@ -278,26 +281,28 @@ public abstract class			Delegate
 		return true;
 	}
 
-	protected void				sendRequest(Requests.Abstract request)
+	protected void					sendRequest(Requests.Abstract request)
 	{
 		Model.getInstance().notifyListener(request);
 	}
 
-// ---------------------------> Logging
+// -------------------------------> Logging
 
-	private void				logChildLinking(Delegate delegate)
+	private void					logChildLinking(Delegate delegate)
 	{
 		Debug.logFormat
 		(
+			LogGroup.DELEGATE,
 			"[Model/Delegate] Linking child delegate of type '%s'",
 			delegate.getClass()
 		);
 	}
 
-	private void				logChildUnlinking()
+	private void					logChildUnlinking()
 	{
 		Debug.logFormat
 		(
+			LogGroup.DELEGATE,
 			"[Model/Delegate] Unlinking child delegate of type '%s'",
 			childDelegate.getClass()
 		);

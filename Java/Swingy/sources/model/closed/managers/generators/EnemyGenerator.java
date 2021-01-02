@@ -1,8 +1,9 @@
 package model.closed.managers.generators;
 
 import application.service.Debug;
+import application.service.LogGroup;
 import model.closed.managers.Session;
-import model.closed.managers.metas.EnemyMetas;
+import model.closed.managers.meta.EnemyMetas;
 import model.closed.objects.creatures.enemies.Enemy;
 
 import java.util.ArrayList;
@@ -36,7 +37,11 @@ public abstract class							EnemyGenerator
 		possibleEnemies = generateEnemiesForCurrentLevel();
 		selectedEnemy = selectRandomEnemy(possibleEnemies);
 
-		Debug.logFormat("[Model/EnemyGenerator] Spawning enemy using meta '%s'", selectedEnemy.getClass());
+		Debug.logFormat
+		(
+			LogGroup.GAME,
+			"[Model/EnemyGenerator] Spawning enemy '%s'", selectedEnemy.getInstance().getName()
+		);
 
 		return selectedEnemy.getInstance();
 	}
@@ -50,7 +55,7 @@ public abstract class							EnemyGenerator
 		list = new LinkedList<>();
 		for (EnemyMetas.Abstract enemyMeta : allEnemyMetas)
 		{
-			if (enemyMeta.getAppearanceLevel() <= Session.getInstance().getLevel())
+			if (enemyMeta.getAppearanceLevel() <= Session.getLevel())
 				list.add(enemyMeta);
 		}
 
@@ -86,7 +91,7 @@ public abstract class							EnemyGenerator
 
 		float									appearProbabilityMultiplier;
 
-		currentLevel = Session.getInstance().getLevel();
+		currentLevel = Session.getLevel();
 		appearanceLevel = meta.getAppearanceLevel();
 
 		appearProbabilityMultiplier = 1.f;

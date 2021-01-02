@@ -12,7 +12,7 @@ public abstract class				Armors
 			this.defense = defense;
 		}
 
-		public int					getDefense()
+		public int					getDefenseGain()
 		{
 			return defense;
 		}

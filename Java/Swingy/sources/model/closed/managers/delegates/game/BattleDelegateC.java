@@ -1,15 +1,21 @@
 package model.closed.managers.delegates.game;
 
 import controller.open.Commands;
+import model.closed.managers.Session;
 import model.closed.managers.battle.Battle;
 import model.closed.managers.battle.BattleLogger;
 import model.closed.managers.delegates.Delegate;
+import model.closed.managers.generators.ArtefactGenerator;
+import model.closed.objects.artefacts.Artefact;
 import model.closed.objects.creatures.enemies.Enemy;
 import model.open.Requests;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Handles battle
+ */
 public class					BattleDelegateC extends Delegate
 {
 // ---------------------------> Nested types
@@ -52,18 +58,56 @@ public class					BattleDelegateC extends Delegate
 	@Override
 	protected void				whenActivated(boolean isFirstTime)
 	{
-		showLog();
+		if (isFirstTime)
+			showLog();
 	}
 
 	@Override
 	protected void				whenUpdated()
+	{
+		updateTimer();
+		updateBattle();
+	}
+
+	@Override
+	protected void				whenResponded(Commands.Abstract command)
+	{
+		if (command instanceof Commands.Ok)
+		{
+			if (battle.getOpponent().isDead())
+			{
+				if (!tryGetArtefact(battle.getOpponent()))
+					requestResolution();
+			}
+			else
+				requestResolution();
+		}
+	}
+
+	@Override
+	protected void				whenChildResolved(ResolutionMessage message)
+	{
+		requestResolution();
+	}
+
+// ---------------------------> Private methods
+
+	private void				showLog()
+	{
+		sendRequest(new Requests.Battle(battle));
+	}
+
+	private void				updateTimer()
 	{
 		if (timer == null)
 		{
 			timer = new Timer();
 			timer.schedule(new RequestBattleTurnTask(), (int)(LOG_DELAY * MILLISECONDS_IN_A_SECOND));
 		}
+	}
 
+	private void				updateBattle()
+	{
 		if (shouldExecuteTurn)
 		{
 			if (!battle.isFinished())
@@ -76,17 +120,17 @@ public class					BattleDelegateC extends Delegate
 		}
 	}
 
-	@Override
-	protected void				whenResponded(Commands.Abstract command)
+	private boolean				tryGetArtefact(Enemy enemy)
 	{
-		if (command instanceof Commands.Ok)
-			requestResolution();
-	}
+		Artefact				droppedArtefact;
 
-// ---------------------------> Private methods
+		droppedArtefact = ArtefactGenerator.generate(enemy.getMeta());
+		if (droppedArtefact != null)
+		{
+			linkChild(new ArtefactDelegate(droppedArtefact));
+			return true;
+		}
 
-	private void				showLog()
-	{
-		sendRequest(new Requests.Battle(battle));
+		return false;
 	}
 }

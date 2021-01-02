@@ -1,38 +1,39 @@
 package model.closed.objects.creatures.enemies;
 
 import application.utils.Range;
+import model.closed.managers.meta.EnemyMetas;
 import model.closed.objects.Attack;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class				HollowSoldier extends Enemy
+public class					HollowSoldier extends Enemy
 {
-// -----------------------> Constructor
+// ---------------------------> Constructor
 
-	public					HollowSoldier()
+	public						HollowSoldier()
 	{
 		super("Hollow soldier", 1);
 	}
 
-// -----------------------> Properties
+// ---------------------------> Properties
 
 	@Override
-	public int				getBaseHealth()
+	public int					getBaseHealth()
 	{
 		return 400;
 	}
 
 	@Override
-	public int				getDefense()
+	public int					getDefense()
 	{
 		return 10;
 	}
 
 	@Override
-	public List<Attack>		getAttacks()
+	public List<Attack>			getAttacks()
 	{
-		List<Attack>		attacks;
+		List<Attack>			attacks;
 
 		attacks = new LinkedList<>();
 		attacks.add(new Attack("Blow with sword", 70, new Range<>(40, 55), 0.05f));
@@ -40,4 +41,11 @@ public class				HollowSoldier extends Enemy
 
 		return attacks;
 	}
+
+	@Override
+	public EnemyMetas.Abstract	getMeta()
+	{
+		return new EnemyMetas.HollowSoldier();
+	}
+
 }

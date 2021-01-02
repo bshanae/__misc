@@ -12,7 +12,8 @@ public class					BattleDelegateB1 extends Delegate
 	@Override
 	protected void				whenActivated(boolean isFirstTime)
 	{
-		sendRequest(new Requests.Info("You run away from enemy!"));
+		if (isFirstTime)
+			sendRequest(new Requests.Info("You run away from enemy!"));
 	}
 
 	@Override
@@ -25,7 +26,7 @@ public class					BattleDelegateB1 extends Delegate
 	}
 
 	@Override
-	protected void			whenChildResolved(Object message)
+	protected void			whenChildResolved(ResolutionMessage message)
 	{
 		requestResolution(message);
 	}

@@ -4,6 +4,7 @@ import application.service.Debug;
 import application.patterns.SingletonMap;
 import application.patterns.uniqueNotifier.UniqueListener;
 import application.patterns.uniqueNotifier.UniqueNotifier;
+import application.service.LogGroup;
 import controller.closed.SignalTranslator;
 import view.open.Signals;
 
@@ -21,8 +22,8 @@ public class					Controller
 	{
 		Commands.Abstract		command = SignalTranslator.translate(signal);
 
-		Debug.logFormat("[Controller/Controller] Received signal of type '%s'", signal.getClass());
-		Debug.logFormat("[Controller/Controller] Sending command of type '%s'", command.getClass());
+		Debug.logFormat(LogGroup.MVC, "[Controller/Controller] Received signal of type '%s'", signal.getClass());
+		Debug.logFormat(LogGroup.MVC, "[Controller/Controller] Sending command of type '%s'", command.getClass());
 
 		notifyListener(command);
 	}

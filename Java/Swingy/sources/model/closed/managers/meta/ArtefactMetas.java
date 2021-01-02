@@ -1,7 +1,8 @@
-package model.closed.managers.metas;
+package model.closed.managers.meta;
 
 import model.closed.objects.artefacts.Artefact;
-import model.closed.objects.creatures.hero.HeroClass;
+import model.closed.objects.artefacts.WeaponsCategories;
+import model.closed.objects.creatures.hero.HeroClasses;
 
 public class								ArtefactMetas
 {
@@ -21,7 +22,8 @@ public class								ArtefactMetas
 			return dropProbability;
 		}
 
-		public abstract int					getHeroClassFlags();
+		public abstract
+		SupportedHeroClasses				getSupportedHeroClasses();
 
 		public abstract Artefact			getInstance();
 	}
@@ -36,9 +38,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -56,9 +58,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -76,9 +78,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -96,9 +98,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -116,9 +118,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -136,9 +138,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -159,9 +161,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -179,9 +181,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -199,9 +201,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -219,9 +221,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -239,9 +241,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -259,9 +261,9 @@ public class								ArtefactMetas
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public SupportedHeroClasses			getSupportedHeroClasses()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag() | HeroClass.MAGE.toFlag();
+			return new SupportedHeroClasses(SupportedHeroClasses.ANY);
 		}
 
 		@Override
@@ -271,20 +273,33 @@ public class								ArtefactMetas
 		}
 	}
 
-// ---------------------------------------> Weapons : Warrior
+// ---------------------------------------> Weapons : Hammers
 
-	public static class						Hammer extends Abstract
+	private static abstract class			AbstractHammer extends Abstract
+	{
+		private final
+		WeaponCategoryMetas.Abstract		weaponCategoryMeta;
+
+		public								AbstractHammer(float dropProbability)
+		{
+			super(dropProbability);
+			weaponCategoryMeta = new WeaponCategoryMetas.Hammer();
+		}
+
+		@Override
+		public SupportedHeroClasses			getSupportedHeroClasses()
+		{
+			return weaponCategoryMeta.getSupportedHeroClasses();
+		}
+	}
+
+	public static class						Hammer extends AbstractHammer
 	{
 		public								Hammer(float dropProbability)
 		{
 			super(dropProbability);
 		}
 
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.WARRIOR.toFlag();
-		}
 
 		@Override
 		public Artefact						getInstance()
@@ -293,17 +308,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						GreatHammer extends Abstract
+	public static class						GreatHammer extends AbstractHammer
 	{
 		public								GreatHammer(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.WARRIOR.toFlag();
 		}
 
 		@Override
@@ -313,19 +322,45 @@ public class								ArtefactMetas
 		}
 	}
 
-// ---------------------------------------> Weapons : Warrior + Swordsman + Assassin
-
-	public static class						OldSword extends Abstract
+	public static class						KnightGreatHammer extends AbstractHammer
 	{
-		public								OldSword(float dropProbability)
+		public								KnightGreatHammer(float dropProbability)
 		{
 			super(dropProbability);
 		}
 
 		@Override
-		public int							getHeroClassFlags()
+		public Artefact						getInstance()
 		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag();
+			return new model.closed.objects.artefacts.Weapons.KnightGreatHammer();
+		}
+	}
+
+// ---------------------------------------> Weapons : Swords
+
+	private static abstract class			AbstractSword extends Abstract
+	{
+		private final
+		WeaponCategoryMetas.Abstract		weaponCategoryMeta;
+
+		public								AbstractSword(float dropProbability)
+		{
+			super(dropProbability);
+			weaponCategoryMeta = new WeaponCategoryMetas.Sword();
+		}
+
+		@Override
+		public SupportedHeroClasses			getSupportedHeroClasses()
+		{
+			return weaponCategoryMeta.getSupportedHeroClasses();
+		}
+	}
+
+	public static class						OldSword extends AbstractSword
+	{
+		public								OldSword(float dropProbability)
+		{
+			super(dropProbability);
 		}
 
 		@Override
@@ -335,17 +370,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						SteelSword extends Abstract
+	public static class						SteelSword extends AbstractSword
 	{
 		public								SteelSword(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -355,17 +384,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						SoldierSword extends Abstract
+	public static class						SoldierSword extends AbstractSword
 	{
 		public								SoldierSword(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -375,17 +398,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						KnightSword extends Abstract
+	public static class						KnightSword extends AbstractSword
 	{
 		public								KnightSword(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -395,20 +412,31 @@ public class								ArtefactMetas
 		}
 	}
 
+// ---------------------------------------> Weapons : Rapiers
 
-// ---------------------------------------> Weapons : Swordsman
+	private static abstract class			AbstractRapier extends Abstract
+	{
+		private final
+		WeaponCategoryMetas.Abstract		weaponCategoryMeta;
 
-	public static class						Rapier extends Abstract
+		public								AbstractRapier(float dropProbability)
+		{
+			super(dropProbability);
+			weaponCategoryMeta = new WeaponCategoryMetas.Sword();
+		}
+
+		@Override
+		public SupportedHeroClasses			getSupportedHeroClasses()
+		{
+			return weaponCategoryMeta.getSupportedHeroClasses();
+		}
+	}
+
+	public static class						Rapier extends AbstractRapier
 	{
 		public								Rapier(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.SWORDSMAN.toFlag();
 		}
 
 		@Override
@@ -418,17 +446,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						KnightRapier extends Abstract
+	public static class						KnightRapier extends AbstractRapier
 	{
 		public								KnightRapier(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.SWORDSMAN.toFlag();
 		}
 
 		@Override
@@ -438,17 +460,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						LegendaryRapier extends Abstract
+	public static class						LegendaryRapier extends AbstractRapier
 	{
 		public								LegendaryRapier(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.SWORDSMAN.toFlag();
 		}
 
 		@Override
@@ -458,19 +474,31 @@ public class								ArtefactMetas
 		}
 	}
 
-// ---------------------------------------> Weapons : Swordsman + Assassin
+// ---------------------------------------> Weapons : Scimitars
 
-	public static class						OldScimitar extends Abstract
+	private static abstract class			AbstractScimitar extends Abstract
+	{
+		private final
+		WeaponCategoryMetas.Abstract		weaponCategoryMeta;
+
+		public								AbstractScimitar(float dropProbability)
+		{
+			super(dropProbability);
+			weaponCategoryMeta = new WeaponCategoryMetas.Scimitar();
+		}
+
+		@Override
+		public SupportedHeroClasses			getSupportedHeroClasses()
+		{
+			return weaponCategoryMeta.getSupportedHeroClasses();
+		}
+	}
+
+	public static class						OldScimitar extends AbstractScimitar
 	{
 		public								OldScimitar(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -480,17 +508,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						SteelScimitar extends Abstract
+	public static class						SteelScimitar extends AbstractScimitar
 	{
 		public								SteelScimitar(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -500,17 +522,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						BanditScimitar extends Abstract
+	public static class						BanditScimitar extends AbstractScimitar
 	{
 		public								BanditScimitar(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -520,17 +536,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						LegendaryScimitar extends Abstract
+	public static class						LegendaryScimitar extends AbstractScimitar
 	{
 		public								LegendaryScimitar(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -540,19 +550,31 @@ public class								ArtefactMetas
 		}
 	}
 
-// ---------------------------------------> Weapons : Assassin
+// ---------------------------------------> Weapons : Daggers
 
-	public static class						OldDagger extends Abstract
+	private static abstract class			AbstractDagger extends Abstract
+	{
+		private final
+		WeaponCategoryMetas.Abstract		weaponCategoryMeta;
+
+		public								AbstractDagger(float dropProbability)
+		{
+			super(dropProbability);
+			weaponCategoryMeta = new WeaponCategoryMetas.Dagger();
+		}
+
+		@Override
+		public SupportedHeroClasses			getSupportedHeroClasses()
+		{
+			return weaponCategoryMeta.getSupportedHeroClasses();
+		}
+	}
+
+	public static class						OldDagger extends AbstractDagger
 	{
 		public								OldDagger(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -562,17 +584,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						SteelDagger extends Abstract
+	public static class						SteelDagger extends AbstractDagger
 	{
 		public								SteelDagger(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -582,17 +598,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						BanditDagger extends Abstract
+	public static class						BanditDagger extends AbstractDagger
 	{
 		public								BanditDagger(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -602,17 +612,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						EnchantedDagger extends Abstract
+	public static class						EnchantedDagger extends AbstractDagger
 	{
 		public								EnchantedDagger(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.ASSASSIN.toFlag();
 		}
 
 		@Override
@@ -622,19 +626,31 @@ public class								ArtefactMetas
 		}
 	}
 
-// ---------------------------------------> Weapons : Mage
+// ---------------------------------------> Weapons : Stuffs
 
-	public static class						BrokenStuff extends Abstract
+	private static abstract class			AbstractStuff extends Abstract
+	{
+		private final
+		WeaponCategoryMetas.Abstract		weaponCategoryMeta;
+
+		public								AbstractStuff(float dropProbability)
+		{
+			super(dropProbability);
+			weaponCategoryMeta = new WeaponCategoryMetas.Stuff();
+		}
+
+		@Override
+		public SupportedHeroClasses			getSupportedHeroClasses()
+		{
+			return weaponCategoryMeta.getSupportedHeroClasses();
+		}
+	}
+
+	public static class						BrokenStuff extends AbstractStuff
 	{
 		public								BrokenStuff(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.MAGE.toFlag();
 		}
 
 		@Override
@@ -644,17 +660,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						StudentStuff extends Abstract
+	public static class						StudentStuff extends AbstractStuff
 	{
 		public								StudentStuff(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.MAGE.toFlag();
 		}
 
 		@Override
@@ -664,17 +674,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						MasterStuff extends Abstract
+	public static class						MasterStuff extends AbstractStuff
 	{
 		public								MasterStuff(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.MAGE.toFlag();
 		}
 
 		@Override
@@ -684,17 +688,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						RoyalMageStuff extends Abstract
+	public static class						RoyalMageStuff extends AbstractStuff
 	{
 		public								RoyalMageStuff(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.MAGE.toFlag();
 		}
 
 		@Override
@@ -704,17 +702,11 @@ public class								ArtefactMetas
 		}
 	}
 
-	public static class						CursedStuff extends Abstract
+	public static class						CursedStuff extends AbstractStuff
 	{
 		public								CursedStuff(float dropProbability)
 		{
 			super(dropProbability);
-		}
-
-		@Override
-		public int							getHeroClassFlags()
-		{
-			return HeroClass.MAGE.toFlag();
 		}
 
 		@Override

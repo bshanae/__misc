@@ -26,7 +26,7 @@ public class					CoreDelegate extends Delegate
 	{
 		this.activate();
 
-		if (!ApplicationOptions.get(ApplicationOptions.Options.LAUNCH_GUI))
+		if (ApplicationOptions.get(ApplicationOptions.LAUNCH_CONSOLE))
 			sendRequest(new Requests.SwitchToConsole());
 		else
 			sendRequest(new Requests.SwitchToGui());
@@ -67,7 +67,7 @@ public class					CoreDelegate extends Delegate
 	}
 
 	@Override
-	protected void				whenChildResolved(Object message)
+	protected void				whenChildResolved(ResolutionMessage message)
 	{
 		switch (state)
 		{

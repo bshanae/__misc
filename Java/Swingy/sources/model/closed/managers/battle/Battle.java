@@ -19,6 +19,16 @@ public class					Battle
 
 // ---------------------------> Properties
 
+	public Hero					getHero()
+	{
+		return hero;
+	}
+
+	public Enemy				getOpponent()
+	{
+		return opponent;
+	}
+
 	public BattleLogger			getLogger()
 	{
 		return logger;
@@ -37,7 +47,7 @@ public class					Battle
 
 	public						Battle(Enemy opponent)
 	{
-		this.hero = Session.getInstance().getHero();
+		this.hero = Session.getHero();
 		this.opponent = opponent;
 
 		hero.resetHealth();
@@ -110,6 +120,6 @@ public class					Battle
 			hero.addExperience(enemy.getExperienceForDefeating());
 		}
 
-		Session.getInstance().getMap().getCreatures().remove(loser);
+		Session.getMap().getCreatures().remove(loser);
 	}
 }

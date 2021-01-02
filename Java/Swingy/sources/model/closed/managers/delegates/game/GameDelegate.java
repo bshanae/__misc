@@ -18,7 +18,7 @@ public class				GameDelegate extends Delegate
 	}
 
 	@Override
-	protected void			whenChildResolved(Object message)
+	protected void			whenChildResolved(ResolutionMessage message)
 	{
 		linkChild(new MapDelegate());
 	}

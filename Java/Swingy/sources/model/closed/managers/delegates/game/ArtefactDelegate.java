@@ -1,8 +1,10 @@
 package model.closed.managers.delegates.game;
 
 import controller.open.Commands;
+import model.closed.managers.Session;
 import model.closed.managers.delegates.Delegate;
 import model.closed.objects.artefacts.Artefact;
+import model.closed.objects.artefacts.Helms;
 import model.closed.objects.creatures.enemies.Enemy;
 import model.open.Requests;
 
@@ -30,6 +32,27 @@ public class					ArtefactDelegate extends Delegate
 	@Override
 	protected void				whenActivated(boolean isFirstTime)
 	{
+		if (isFirstTime)
+			showQuestion();
+	}
+
+	@Override
+	protected void				whenResponded(Commands.Abstract command)
+	{
+		if (command instanceof Commands.AnswerA)
+			;
+		else if (command instanceof Commands.AnswerB)
+			Session.getHero().getInventory().setArtefact(artefact);
+		else
+			throw new UnrecognizedCommandException(command);
+
+		requestResolution();
+	}
+
+// ---------------------------> Private methods
+
+	private void				showQuestion()
+	{
 		sendRequest
 		(
 			new Requests.Question
@@ -39,16 +62,5 @@ public class					ArtefactDelegate extends Delegate
 				ANSWER_TAKE
 			)
 		);
-	}
-
-	@Override
-	protected void				whenResponded(Commands.Abstract command)
-	{
-		if (command instanceof Commands.AnswerA)
-			; // TODO
-		else if (command instanceof Commands.AnswerB)
-			; // TODO
-		else
-			throw new UnrecognizedCommandException(command);
 	}
 }

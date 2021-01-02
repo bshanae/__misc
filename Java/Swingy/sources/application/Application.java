@@ -15,7 +15,7 @@ public class			Application
 		}
 		catch (Exception exception)
 		{
-			if (!ApplicationOptions.get(ApplicationOptions.Options.DEBUG))
+			if (!ApplicationOptions.get(ApplicationOptions.DEBUG))
 				System.out.println("Terminating with exception, enable debug mode for more info");
 			else
 			{

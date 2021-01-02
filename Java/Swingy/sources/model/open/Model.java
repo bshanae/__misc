@@ -4,6 +4,7 @@ import application.service.Debug;
 import application.patterns.SingletonMap;
 import application.patterns.uniqueNotifier.UniqueListener;
 import application.patterns.uniqueNotifier.UniqueNotifier;
+import application.service.LogGroup;
 import controller.open.Commands;
 import model.closed.Game;
 
@@ -46,14 +47,14 @@ public class								Model
 
 	public void								notifyListener(Requests.Abstract request)
 	{
-		Debug.logFormat("[Model/Model] Sending request of type '%s'", request.getClass());
+		Debug.logFormat(LogGroup.MVC, "[Model/Model] Sending request of type '%s'", request.getClass());
 		requestQueue.add(request);
 	}
 
 	@Override
 	public void								listen(Commands.Abstract command)
 	{
-		Debug.logFormat("[Model/Model] Received command of type '%s'", command.getClass());
+		Debug.logFormat(LogGroup.MVC, "[Model/Model] Received command of type '%s'", command.getClass());
 		Game.getInstance().respondToCommand(command);
 	}
 }

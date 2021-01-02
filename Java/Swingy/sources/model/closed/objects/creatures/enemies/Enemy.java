@@ -1,36 +1,39 @@
 package model.closed.objects.creatures.enemies;
 
+import model.closed.managers.meta.EnemyMetas;
 import model.closed.objects.creatures.Creature;
 
-public abstract class				Enemy extends Creature
+public abstract class					Enemy extends Creature
 {
-// -------------------------------> Attributes
+// -----------------------------------> Attributes
 
-	private final int				level;
+	private final int					level;
 
-// -------------------------------> Constructor
+// -----------------------------------> Constructor
 
-	public 							Enemy(String name, int level)
+	public 								Enemy(String name, int level)
 	{
 		super(name);
 		this.level = level;
 	}
 
-// -------------------------------> Properties
+// -----------------------------------> Properties
 
 	@Override
-	public int						getLevel()
+	public int							getLevel()
 	{
 		return level;
 	}
 
-	public String					getNameWithLevel()
+	public String						getNameWithLevel()
 	{
 		return String.format("%s (level %d)", getName(), getLevel());
 	}
 
-	public int						getExperienceForDefeating()
+	public int							getExperienceForDefeating()
 	{
 		return 200 * (level + 1) * (level + 1);
 	}
+
+	public abstract EnemyMetas.Abstract	getMeta();
 }

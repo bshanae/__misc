@@ -2,7 +2,7 @@ package model.closed.managers.heroStorage;
 
 import application.patterns.SingletonMap;
 import model.closed.objects.creatures.hero.Hero;
-import model.closed.objects.creatures.hero.HeroClass;
+import model.closed.objects.creatures.hero.HeroClasses;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class					HeroStorage
 	public void					download()
 	{
 		heroes = new LinkedList<>();
-		heroes.add(new Hero("Petr", HeroClass.ASSASSIN));
+		heroes.add(new HeroClasses.Assassin().createHero("Petr"));
 	}
 
 	public void					upload()

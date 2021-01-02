@@ -26,11 +26,11 @@ public class				MapDelegate extends Delegate
 
 	public					MapDelegate()
 	{
-		hero = Session.getInstance().getHero();
+		hero = Session.getHero();
 		map = MapGenerator.getInstance().generate();
 		enemy = null;
 
-		Session.getInstance().setMap(map);
+		Session.setMap(map);
 	}
 
 // -----------------------> Protected methods
@@ -71,7 +71,7 @@ public class				MapDelegate extends Delegate
 	{
 		if (map.isOnBorder(hero.getPosition()))
 		{
-			Session.getInstance().setMap(null);
+			Session.setMap(null);
 			requestResolution();
 		}
 	}

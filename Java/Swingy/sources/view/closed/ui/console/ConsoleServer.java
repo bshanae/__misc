@@ -21,7 +21,7 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 
 	private void				execute(ConsoleTasks.Clean task)
 	{
-		if (ApplicationOptions.get(ApplicationOptions.Options.IDE))
+		if (ApplicationOptions.get(ApplicationOptions.IDE))
 			return ;
 
 		System.out.print("\033\143");

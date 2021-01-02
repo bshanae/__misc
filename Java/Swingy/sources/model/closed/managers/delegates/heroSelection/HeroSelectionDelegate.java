@@ -37,7 +37,7 @@ public class				HeroSelectionDelegate extends Delegate
 	}
 
 	@Override
-	protected void			whenChildResolved(Object message)
+	protected void			whenChildResolved(ResolutionMessage message)
 	{
 	}
 
@@ -68,7 +68,7 @@ public class				HeroSelectionDelegate extends Delegate
 			else
 				assert false;
 
-			Session.getInstance().setHero(hero);
+			Session.setHero(hero);
 			requestResolution();
 		}
 		catch (HeroStorage.HeroNotFoundException exception)
