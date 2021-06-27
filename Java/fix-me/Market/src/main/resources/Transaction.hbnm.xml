@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.bshanae.fixMe.market.transaction.Transaction" table="TRANSACTIONS">
+        <id name="id" column="ID" type="int"/>
+        <property name="action" column="ACTION" type="string"/>
+        <property name="instrument" column="INSTRUMENT" type="string"/>
+        <property name="price" column="PRICE" type="int"/>
+        <property name="quantity" column="QUANTITY" type="int"/>
+    </class>
+</hibernate-mapping>

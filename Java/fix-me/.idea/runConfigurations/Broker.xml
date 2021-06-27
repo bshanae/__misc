@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Broker" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8.0_275" />
+    <option name="MAIN_CLASS_NAME" value="org.bshanae.fixMe.broker.Daemon" />
+    <module name="fix-me.Broker" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

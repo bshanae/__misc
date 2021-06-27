@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="fix-me.Router" />
+        <module name="Router" />
+        <module name="fix-me.Market" />
+        <module name="Broker" />
+        <module name="fix-me.Broker" />
+        <module name="fix-me.Tools" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ModuleA" target="1.8" />
+      <module name="ModuleB" target="1.5" />
+      <module name="Tools" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
