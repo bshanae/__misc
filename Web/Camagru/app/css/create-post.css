@@ -1,0 +1,128 @@
+#title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#source-buttons {
+    align-self: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.source-button {
+    width: 40%;
+    border-style: none;
+    background-color: #c5c5c5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.source-button:hover {
+    background-color: #4343fd;
+}
+
+.source-button:active {
+    background-color: blue
+}
+
+.source-button * {
+    align-self: center;
+}
+
+.source-button img {
+    width: 60%;
+}
+
+#take-photo {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 3rem;
+    border-radius: 0;
+    border-style: none;
+    font-size: 1.3rem;
+}
+
+.canvas-holder {
+    text-align: center;
+}
+
+.canvas {
+    width: 100%;
+}
+
+.image-control-panel {
+    display: flex;
+}
+
+.image-control-buttons {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-control-buttons button {
+    width: 48%;
+    border-radius: 0;
+    border-style: none;
+}
+
+#stickers-container {
+    height: 0;
+}
+
+#master-stickers-container {
+    border: solid 2px black;
+    padding: 4px;
+}
+
+#post-text {
+    width: 100%;
+    height: 12rem;
+    border: solid 2px black;
+    padding: 4px;
+    font-size: 1.2rem;
+}
+
+#post-button {
+    width: 100%;
+    height: 3rem;
+    border-style: none;
+    background-color: #424585;
+}
+
+@media only screen and (max-width: 600px) {
+    .source-button {
+        height: 15rem;
+    }
+
+    .source-button {
+        font-size: 1rem;
+    }
+
+    .image-control-buttons button {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .source-button {
+        height: 30rem;
+    }
+
+    .source-button {
+        font-size: 2rem;
+    }
+
+    .image-control-buttons button {
+        font-size: 1.3rem;
+    }
+}
+
+.bottom-offset {
+    margin-bottom: 1rem;
+}

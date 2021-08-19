@@ -1,0 +1,30 @@
+#header {
+    width: 100%;
+    background: #04AA6D;
+    padding: 1rem 1rem 1rem 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#logo a {
+    color: black;
+    text-decoration: none;
+    vertical-align: center;
+}
+
+#navigation ul {
+    display: flex;
+    margin: 0;
+}
+
+#navigation ul li {
+    margin: 0 0.6rem 0 0.6rem;
+    list-style: none;
+    width: 1.3rem;
+}

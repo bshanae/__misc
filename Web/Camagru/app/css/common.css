@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    font-family: Georama, serif;
+    letter-spacing: 0.08rem;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .responsive-content {
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .responsive-content {
+        width: 40rem;
+    }
+}
+
+.responsive-content {
+    align-self: center;
+}
+
+
+.text-align-center {
+   text-align: center;
+}
