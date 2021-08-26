@@ -1,0 +1,38 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <Objective-C>
+      <option name="INDENT_DIRECTIVE_AS_CODE" value="true" />
+      <option name="NAMESPACE_BRACE_PLACEMENT" value="2" />
+      <option name="FUNCTION_BRACE_PLACEMENT" value="2" />
+      <option name="BLOCK_BRACE_PLACEMENT" value="2" />
+      <option name="FUNCTION_CALL_ARGUMENTS_ALIGN_MULTILINE" value="false" />
+      <option name="FUNCTION_CALL_ARGUMENTS_NEW_LINE_AFTER_LPAR" value="true" />
+      <option name="FUNCTION_CALL_ARGUMENTS_NEW_LINE_BEFORE_RPAR" value="true" />
+      <option name="FUNCTION_CALL_ARGUMENTS_ALIGN_MULTILINE_PARS" value="true" />
+    </Objective-C>
+    <yaml>
+      <option name="SPACE_BEFORE_COLON" value="true" />
+    </yaml>
+    <codeStyleSettings language="CMake">
+      <indentOptions>
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+        <option name="USE_TAB_CHARACTER" value="true" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="ObjectiveC">
+      <option name="BRACE_STYLE" value="2" />
+      <option name="CLASS_BRACE_STYLE" value="2" />
+      <indentOptions>
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+        <option name="USE_TAB_CHARACTER" value="true" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="Shell Script">
+      <indentOptions>
+        <option name="INDENT_SIZE" value="4" />
+        <option name="TAB_SIZE" value="4" />
+        <option name="USE_TAB_CHARACTER" value="true" />
+      </indentOptions>
+    </codeStyleSettings>
+  </code_scheme>
+</component>

@@ -1,0 +1,36 @@
+scene :
+  objects :
+    - name : scene closer
+      components :
+        - type : scene closer
+
+    - name : camera
+      components :
+        - type : default camera
+          position : [ 0, 110, 220 ]
+          yaw : -90
+          pitch : 0
+          fov : 45
+          rotation speed : 0.005
+          movement speed : 3
+
+    - name : human
+      components :
+        - type : model
+          source : Human.fbx
+        - type : animator
+        - type : default renderer
+        - type : mesh selector
+        - type : mesh manipulator
+          scaling speed : 0.01
+
+    - name : lights
+      components :
+        - type : ambient light
+          intensity : 0.1
+        - type : point light
+          position : [ -200, 100, 200 ]
+          intensity : 0.2
+        - type : point light
+          position : [ 200, 100, 200 ]
+          intensity : 0.9
