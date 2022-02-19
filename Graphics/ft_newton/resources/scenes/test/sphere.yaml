@@ -1,0 +1,13 @@
+scene:
+  meta:
+
+  objects:
+    - prototype: test/objects/camera
+    - prototype: test/complex/lights
+    - prototype: test/objects/toolbox
+
+    - name: object
+      prototype: test/objects/sphere
+      components:
+        - type: transformation
+          position: [ 0, 0, 0 ]

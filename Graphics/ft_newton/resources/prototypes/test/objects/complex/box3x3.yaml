@@ -1,0 +1,19 @@
+name: line box 3
+children:
+  - name: line box 1
+    prototype: test/objects/complex/box3
+    components:
+      - type: transformation
+        position: [ 0, 0, -11 ]
+
+  - name: line box 2
+    prototype: test/objects/complex/box3
+    components:
+      - type: transformation
+        position: [ 0, 0, 0 ]
+
+  - name: line box 3
+    prototype: test/objects/complex/box3
+    components:
+      - type: transformation
+        position: [ 0, 0, 11 ]

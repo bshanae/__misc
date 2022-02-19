@@ -1,0 +1,20 @@
+window:
+  size: [ 1080, 720 ]
+  title: ft_newtone
+
+time:
+  scale: 1.0
+  fixed step: 0.01
+
+physics:
+  linear velocity damping: 0.998
+  angular velocity damping: 0.998
+  gravity acceleration: [ 0, -20, 0]
+
+rendering:
+  background color: [ 0.1, 0.1, 0.1, 1 ]
+
+ui:
+  fonts:
+    - name: arial
+      height: 64

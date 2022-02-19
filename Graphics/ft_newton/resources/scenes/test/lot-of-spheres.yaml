@@ -1,0 +1,23 @@
+scene:
+  meta:
+    models:
+      - file: sphere.fbx
+        number of instances: 126
+
+  objects:
+    - prototype: test/objects/camera
+    - prototype: test/complex/lights
+
+    - prototype: test/complex/sphere5x5x5
+      components:
+        - type: transformation
+          position: [ 0, 50, 0 ]
+
+    - name: sphere 1
+      prototype: test/objects/sphere
+      components:
+        - type: transformation
+          position: [ 0, -100, 0 ]
+          scale: [ 100, 100, 100 ]
+        - type: rigid body
+          mass: 999999999

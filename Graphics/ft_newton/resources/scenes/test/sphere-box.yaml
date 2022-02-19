@@ -1,0 +1,28 @@
+scene:
+    meta:
+        models:
+            -   file: cube.fbx
+                number of instances: 100
+            -   file: sphere.fbx
+                number of instances: 100
+
+    objects:
+        -   prototype: common/camera
+        -   prototype: common/lights
+        -   prototype: test/menu
+
+        -   name: a
+            prototype: test/objects/sphere
+            components:
+                -   type: transformation
+                    position: [ 0, 0, 0 ]
+                -   type: rigid body
+                    mass: 100
+
+        -   name: b
+            prototype: test/objects/box
+            components:
+                -   type: transformation
+                    position: [ 0, -15, 0 ]
+                -   type: rigid body
+                    mass: inf

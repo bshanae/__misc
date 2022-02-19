@@ -1,0 +1,31 @@
+name: line sphere 5
+children:
+  - name: line sphere 1
+    prototype: test/objects/complex/sphere5
+    components:
+      - type: transformation
+        position: [ 0, 0, -22 ]
+
+  - name: line sphere 2
+    prototype: test/objects/complex/sphere5
+    components:
+      - type: transformation
+        position: [ 0, 0, -11 ]
+
+  - name: line sphere 3
+    prototype: test/objects/complex/sphere5
+    components:
+      - type: transformation
+        position: [ 0, 0, 0 ]
+
+  - name: line sphere 4
+    prototype: test/objects/complex/sphere5
+    components:
+      - type: transformation
+        position: [ 0, 0, 11 ]
+
+  - name: line sphere 5
+    prototype: test/objects/complex/sphere5
+    components:
+      - type: transformation
+        position: [ 0, 0, 22 ]

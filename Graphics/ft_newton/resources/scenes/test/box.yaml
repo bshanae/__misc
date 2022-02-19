@@ -1,0 +1,12 @@
+scene:
+  meta:
+
+  objects:
+    - prototype: common/camera
+    - prototype: common/lights
+    - prototype: test/menu
+
+    - name: box
+      prototype: test/objects/box
+      components:
+        - type: transformation

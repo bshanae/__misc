@@ -1,0 +1,19 @@
+name: layer box 3
+children:
+  - name: layer box 1
+    prototype: test/objects/complex/box3x3
+    components:
+      - type: transformation
+        position: [ 0, -11, 0 ]
+
+  - name: layer box 2
+    prototype: test/objects/complex/box3x3
+    components:
+      - type: transformation
+        position: [ 0, 0, 0 ]
+
+  - name: layer box 3
+    prototype: test/objects/complex/box3x3
+    components:
+      - type: transformation
+        position: [ 0, 11, 0 ]

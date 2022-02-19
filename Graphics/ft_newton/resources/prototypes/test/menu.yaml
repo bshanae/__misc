@@ -1,0 +1,133 @@
+name: menu-with-tools
+children:
+    -   name: instruments
+        components:
+            -   type: manipulator
+                impulse factor: 350
+            -   type: shooter
+                bullet kind: box
+                bullet size: [ 5, 5, 5 ]
+                bullet mass: 1
+                shot force: 12000
+            - type: collision visualiser
+
+    -   name: menu
+        components:
+            -   type: transformation
+            -   type: menu
+                main page: main
+                width: 270
+        children:
+            -   prototype: common/menu/background
+            -   name: page-main
+                components:
+                    -   type: transformation
+                    -   type: page with selector
+                        own name: main
+                children:
+                    -   name: tools
+                        prototype: common/menu/button
+                        components:
+                            -   type: transformation
+                                position: [ 30, 685 ]
+                            -   type: button
+                                text: "Tools"
+                            -   type: page switcher
+                                target page: "tools"
+                    -   name: statistics
+                        prototype: common/menu/button
+                        components:
+                            -   type: transformation
+                                position: [ 30, 661 ]
+                            -   type: button
+                                text: "Statistics"
+                            -   type: page switcher
+                                target page: "statistics"
+                    -   name: reset-scene
+                        prototype: common/menu/button
+                        components:
+                            -   type: transformation
+                                position: [ 30, 637 ]
+                            -   type: button
+                                text: "Reset scene"
+                            -   type: scene resetter
+                                target page: "1"
+                    -   name: close-scene
+                        prototype: common/menu/button
+                        components:
+                            -   type: transformation
+                                position: [ 30, 611 ]
+                            -   type: button
+                                text: "Close scene"
+                            -   type: scene closer
+                                target page: "1"
+            -   name: page-tools
+                components:
+                    -   type: transformation
+                    -   type: page with selector
+                        own name: tools
+                        parent name: main
+                children:
+                    -   name: manipulator
+                        prototype: common/menu/switch
+                        components:
+                            -   type: transformation
+                                position: [ 30, 685 ]
+                            -   type: switch
+                                text: "Manipulate"
+                            -   type: manipulator controller
+                    -   name: shooter
+                        prototype: common/menu/switch
+                        components:
+                            -   type: transformation
+                                position: [ 30, 661 ]
+                            -   type: switch
+                                text: "Shoot"
+                            -   type: shooter controller
+                    -   name: collider visualiser
+                        prototype: common/menu/switch
+                        components:
+                            -   type: transformation
+                                position: [ 30, 637 ]
+                            -   type: switch
+                                text: "Visualise colliders"
+                            -   type: collider visualiser controller
+                    -   name: collision visualiser
+                        prototype: common/menu/switch
+                        components:
+                            -   type: transformation
+                                position: [ 30, 613 ]
+                            -   type: switch
+                                text: "Visualise collision"
+                            -   type: collision visualiser controller
+            -   name: page-statistics
+                components:
+                    -   type: transformation
+                    -   type: page
+                        own name: statistics
+                        parent name: main
+                children:
+                    -   name: fps
+                        prototype: common/menu/text
+                        components:
+                            -   type: transformation
+                                position: [ 30, 685 ]
+                            -   type: text
+                                text: ""
+                            -   type: fps displayer
+                    -   name: draw call count
+                        prototype: common/menu/text
+                        components:
+                            -   type: transformation
+                                position: [ 30, 661 ]
+                            -   type: text
+                                text: ""
+                            -   type: draw call count displayer
+                    -   name: collider count
+                        prototype: common/menu/text
+                        components:
+                            -   type: transformation
+                                position: [ 30, 637 ]
+                            -   type: text
+                                text: ""
+                            -   type: collider count displayer

@@ -1,0 +1,8 @@
+name: background
+components:
+    -   type: transformation
+        position: [ 100, 360, 0 ]
+        scale: [ 200, 720, 1 ]
+    -   type: background
+        color: [ 0.07, 0.07, 0.07 ]
+    -   type: background renderer

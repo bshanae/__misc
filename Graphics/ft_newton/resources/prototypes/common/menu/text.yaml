@@ -1,0 +1,7 @@
+name: text
+components:
+    -   type: text
+        font name: arial
+        font height: 16
+        font color: [ 0.85, 0.85, 0.85 ]
+    -   type: text renderer

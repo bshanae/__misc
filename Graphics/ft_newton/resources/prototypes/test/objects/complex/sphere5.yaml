@@ -1,0 +1,46 @@
+name: sphere 5
+children:
+  - name: sphere 1
+    prototype: test/objects/sphere
+    components:
+      - type: transformation
+        position: [ -22, 0, 0 ]
+      - type: rigid body
+        mass: 3
+        obey gravity: true
+
+  - name: sphere 2
+    prototype: test/objects/sphere
+    components:
+      - type: transformation
+        position: [ -11, 0, 0 ]
+      - type: rigid body
+        mass: 3
+        obey gravity: true
+
+  - name: sphere 3
+    prototype: test/objects/sphere
+    components:
+      - type: transformation
+        position: [ 0, 0, 0 ]
+      - type: rigid body
+        mass: 3
+        obey gravity: true
+
+  - name: sphere 4
+    prototype: test/objects/sphere
+    components:
+      - type: transformation
+        position: [ 11, 0, 0 ]
+      - type: rigid body
+        mass: 3
+        obey gravity: true
+
+  - name: sphere 5
+    prototype: test/objects/sphere
+    components:
+      - type: transformation
+        position: [ 22, 0, 0 ]
+      - type: rigid body
+        mass: 3
+        obey gravity: true

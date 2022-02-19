@@ -1,0 +1,8 @@
+name: statistics
+components:
+  - type: transformation
+    position: [ 20, 690, 1 ]
+  - type: statistics
+    font name: arial
+    font height: 16
+    font color: [ 1, 1, 1, 1 ]

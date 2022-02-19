@@ -1,0 +1,14 @@
+name: box
+tag: interactable
+components:
+    -   type: model
+        file: cube.fbx
+    -   type: transformation
+        scale: [ 10, 10, 10 ]
+    -   type: model renderer
+    -   type: box collider
+        size: [ 10, 10, 10 ]
+    -   type: rigid body
+        mass: 20
+        coefficient of restitution: 0.2
+        friction: 0

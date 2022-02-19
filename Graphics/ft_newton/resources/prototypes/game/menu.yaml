@@ -1,0 +1,32 @@
+name: menu
+components:
+    -   type: transformation
+    -   type: menu
+        main page: main
+        width: 270
+children:
+    -   prototype: common/menu/background
+    -   name: page-main
+        components:
+            -   type: transformation
+            -   type: page with selector
+                own name: main
+        children:
+            -   name: reset scene
+                prototype: common/menu/button
+                components:
+                    -   type: transformation
+                        position: [ 30, 685 ]
+                    -   type: button
+                        text: "Reset scene"
+                    -   type: scene resetter
+                        target page: "1"
+            -   name: close scene
+                prototype: common/menu/button
+                components:
+                    -   type: transformation
+                        position: [ 30, 661 ]
+                    -   type: button
+                        text: "Close scene"
+                    -   type: scene closer
+                        target page: "1"

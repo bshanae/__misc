@@ -1,0 +1,56 @@
+scene:
+    meta:
+        models:
+            -   file: cube.fbx
+                number of instances: 100
+            -   file: sphere.fbx
+                number of instances: 100
+
+    objects:
+        -   prototype: common/camera
+            components:
+                -   type: free camera
+                    position: [ 0, 0, 200 ]
+
+        -   prototype: common/lights
+        -   prototype: test/menu
+
+        -   name: projectile
+            prototype: test/objects/box
+            components:
+                -   type: transformation
+                    position: [ -80, -10, 0 ]
+                    scale: [ 10, 10, 10 ]
+                -   type: rigid body
+                    mass: inf
+                -   type: box collider
+                    size: [ 10, 10, 10 ]
+
+        -   name: target
+            components:
+                -   type: transformation
+                    position: [ 80, 0, 0 ]
+            children:
+                -   prototype: test/objects/box
+                    components:
+                        -   type: transformation
+                            position: [ 0, -10, 0 ]
+#                -   prototype: test/objects/box
+#                    components:
+#                        -   type: transformation
+#                            position: [ 0, 5, 0 ]
+#                -   prototype: test/objects/box
+#                    components:
+#                        -   type: transformation
+#                            position: [ 0, 20, 0 ]
+
+        -   name: platform
+            prototype: test/objects/box
+            components:
+                -   type: transformation
+                    position: [ 0, -30, 0 ]
+                    scale: [ 200, 2, 25 ]
+                -   type: rigid body
+                    mass: inf
+                -   type: box collider
+                    size: [ 200, 2, 25 ]

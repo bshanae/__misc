@@ -1,0 +1,10 @@
+name: switch
+components:
+    -   type: switch
+        font name: arial
+        font height: 16
+        default color: [ 0.6, 0.6, 0.6 ]
+        hover color: [ 1, 1, 1 ]
+        default active color: [ 0.585, 0.174, 0.126 ]
+        hover active color: [ 0.975, 0.29, 0.21 ]
+    -   type: text renderer

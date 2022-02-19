@@ -1,0 +1,25 @@
+name: box 3
+children:
+  - name: box 1
+    prototype: test/objects/box
+    components:
+      - type: transformation
+        position: [ -11, 0, 0 ]
+      - type: rigid body
+        mass: 3
+
+  - name: box 2
+    prototype: test/objects/box
+    components:
+      - type: transformation
+        position: [ 0, 0, 0 ]
+      - type: rigid body
+        mass: 3
+
+  - name: box 3
+    prototype: test/objects/box
+    components:
+      - type: transformation
+        position: [ +11, 0, 0 ]
+      - type: rigid body
+        mass: 3

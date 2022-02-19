@@ -1,0 +1,14 @@
+name: sphere
+tag: interactable
+components:
+  - type: model
+    file: sphere.fbx
+  - type: transformation
+    scale: [ 10, 10, 10 ]
+  - type: model renderer
+  - type: sphere collider
+    radius: 5
+  - type: rigid body
+    mass: 20
+    coefficient of restitution: 0.4
+    friction: 0

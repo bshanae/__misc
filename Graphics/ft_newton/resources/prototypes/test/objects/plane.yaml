@@ -1,0 +1,16 @@
+name: plane
+tag: interactable
+components:
+    -   type: model
+        file: quad.fbx
+    -   type: transformation
+        orientation: [ -90, 0, 0 ]
+        scale: [ 15, 15, 1 ]
+    -   type: model renderer
+    -   type: plane collider
+        normal: [ 0, 1, 0 ]
+        distance from origin: 0
+    -   type: rigid body
+        mass: 20
+        coefficient of restitution: 0.25
+        friction: 0

@@ -1,0 +1,45 @@
+scene:
+    meta:
+        models:
+            -   file: cube.fbx
+                number of instances: 100
+            -   file: sphere.fbx
+                number of instances: 100
+
+    objects:
+        -   prototype: common/camera
+            components:
+                -   type: free camera
+                    position: [ 0, 0, 150 ]
+
+        -   prototype: common/lights
+        -   prototype: test/menu
+
+        -   name: target
+            components:
+                -   type: transformation
+                    position: [ 0, 0, 0 ]
+            children:
+                -   prototype: test/objects/complex/box3
+                    components:
+                        -   type: transformation
+                            position: [ 0, -10, 0 ]
+                -   prototype: test/objects/complex/box3
+                    components:
+                        -   type: transformation
+                            position: [ 0, 5, 0 ]
+                -   prototype: test/objects/complex/box3
+                    components:
+                        -   type: transformation
+                            position: [ 0, 20, 0 ]
+
+        -   name: platform
+            prototype: test/objects/box
+            components:
+                -   type: transformation
+                    position: [ 0, -30, 0 ]
+                    scale: [ 50, 5, 50 ]
+                -   type: rigid body
+                    mass: inf
+                -   type: box collider
+                    size: [ 50, 5, 50 ]

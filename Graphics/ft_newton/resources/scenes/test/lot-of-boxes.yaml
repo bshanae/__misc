@@ -1,0 +1,23 @@
+scene:
+  meta:
+    models:
+      - file: cube.fbx
+        number of instances: 81
+
+  objects:
+    - prototype: test/objects/camera
+    - prototype: test/complex/lights
+
+    - prototype: test/complex/box3x3x3
+      components:
+        - type: transformation
+          position: [ 0, 0, 0 ]
+
+    - name: box 1
+      prototype: test/objects/box
+      components:
+        - type: transformation
+          position: [ 0, -50, 0 ]
+          scale: [ 100, 10, 100 ]
+        - type: rigid body
+          mass: 999999999

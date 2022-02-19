@@ -1,0 +1,9 @@
+name: camera
+tag: camera
+components:
+    -   type: transformation
+        position: [ 0, 0, 100 ]
+    -   type: free camera
+        fov: 50
+        rotation speed: 0.2
+        movement speed: 80
